@@ -1,0 +1,34 @@
+Scripting: Accessing scene nodes
+Accessing scene nodes (GUI and Headless)
+The elements of the scene can be accessed via lux.getSceneTree() with each scene tree node being of the type lux.SceneNode. It is useful because for each node you can hide/show, lock/unlock, select/deselect, change material, apply transformations, duplicate, move and more. Try help(lux.SceneNode) for more information.
+
+Let’s say you wanted to hide all nodes having “Cord” as part of their name:
+
+>>> root = lux.getSceneTree()
+>>> for node in root.find(name = "Cord"):
+        node.hide()
+Another example could be that you wanted to access all groups called “Padding” and selecting all child nodes (in the scene with outline) whose name is “Ear Pad”:
+
+>>> for node in root.find(name = "Padding", types = lux.NODE_TYPE_GROUP):
+        for ch in node.getChildren():
+            if ch.getName() == "Ear Pad":
+                ch.select()
+If you have hidden some parts and want to simply show everything again:
+
+>>> root.show()
+Note
+The root node itself is a lux.SceneNode so the same functions can be invoked on it as with child nodes.
+
+It is also possible to change materials. To simulate ambient occlusion you could do the following:
+
+>>> for node in root.find(""):
+        node.setMaterial("Matte White")
+Tip
+Use lux.SceneNode.find(“”) to simply find everything.
+
+Nodes can be moved to other groups, just like in the scene tree with drag-and-drop. In the following we find the group “Headphone #1” and move all nodes to it that are using a material with “Padding” in it.
+
+>>> grp = root.find(name = "Headphone #1")[0] # Take first node of set.
+>>> for node in root.find(mat = "Padding"):
+        node.moveToGroup(grp)
+True

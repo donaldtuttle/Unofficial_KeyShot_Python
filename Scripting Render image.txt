@@ -1,0 +1,19 @@
+Scripting: Render image
+Render Image (GUI and Headless)
+Assuming you have already loaded a BIP file, or imported some geometry, and you want to render to an image with scripting then do the following:
+
+>>> lux.renderImage("/path/to/save/image.png", width = 1200, height = 1000)
+In this case we render the image to “/path/to/save/image.png” as a PNG file with dimensions 1200×1000 pixels. Notice that the format of the image is determined from the file extension.
+
+As with importing, advanced options can be passed using the opts option. An example could be to setup for rendering with max time of 10 seconds:
+
+>>> opts = lux.getRenderOptions()
+>>> opts.setMaxTimeRendering(10)
+>>> lux.renderImage("/path/to/save/image.png", width = 1200, height = 1000, opts = opts)
+Another example could be to render using advanced rendering method with 64 samples, 8 threads, and 64 ray bounces:
+
+>>> opts = lux.getRenderOptions()
+>>> opts.setAdvancedRendering(64)
+>>> opts.setThreads(8)
+>>> opts.setRayBounces(64)
+>>> lux.renderImage("/path/to/save/image.png", width = 1200, height = 1000, opts = opts)

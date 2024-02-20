@@ -42,7 +42,7 @@ Similar to the `luxmath` library, but focused on headless applications. [Discove
 
 ## Example Scripts
 
-A collection of scripts demonstrating the practical application of KeyShot's Python API for common tasks and advanced customizations. [Browse example scripts.](Scripts/README.md)
+A collection of scripts demonstrating the practical application of KeyShot's Python API for common tasks and advanced customizations. [Browse example scripts.](Scripts/)
 
 ## Contributing
 

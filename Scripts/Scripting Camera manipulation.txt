@@ -1,0 +1,37 @@
+Scripting: Camera manipulation
+Camera Manipulation (GUI and Headless)
+Working with cameras in scripting is just like using the Camera tab in Project → Camera: You can create a camera, manipulate it to suit your needs, and save it.
+
+>>> lux.newCamera("New")
+True
+>>> lux.setCameraLookAt(pt = (1, 1, 1)) # Example manipulation.
+>>> lux.saveCamera()
+Inspect the cameras available:
+
+>>> lux.getCameras()
+['New', 'last_active', 'default']
+Choose another camera:
+
+>>> lux.setCamera("default")
+Remove the camera you just created:
+
+>>> lux.removeCamera("New")
+True
+>>> lux.getCameras()
+['last_active', 'default']
+Note
+If you remove the active camera it will choose the “Free Camera”.
+
+You can also set a standard view:
+
+>>> lux.setStandardView(lux.VIEW_TOP)
+The following 7 standard views are available:
+
+lux.VIEW_FRONT
+lux.VIEW_BACK
+lux.VIEW_TOP
+lux.VIEW_BOTTOM
+lux.VIEW_LEFT
+lux.VIEW_RIGHT
+lux.VIEW_ISOMETRIC
+Setting a standard view manipulates the active camera so you could create a camera for each standard view, but remember to save them.

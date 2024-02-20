@@ -22,11 +22,11 @@ KeyShot by Luxion is a leading real-time 3D rendering and animation software. Th
 
 ## lux Library Documentation
 
-The `lux` library is KeyShot's primary interface for scripting, offering functions to control scenes, materials, cameras, rendering, and more. [Explore the lux library documentation.](lux/KeyShot_Lux_API.md)
+The `lux` library is KeyShot's primary interface for scripting, offering functions to control scenes, materials, cameras, rendering, and more. [Explore the lux library documentation.](lux/KeyShot_lux_API.md)
 
 ## luxmath Library Documentation
 
-For mathematical operations, the `luxmath` library provides Vector and Matrix classes, essential for transformations and other calculations in scripts. [Learn more about luxmath.](luxmath/KeyShot_LuxMath_API.md)
+For mathematical operations, the `luxmath` library provides Vector and Matrix classes, essential for transformations and other calculations in scripts. [Learn more about luxmath.](luxmath/KeyShot_luxmath_API.md)
 
 ## Headless Mode Documentation
 
@@ -34,11 +34,11 @@ Running KeyShot in headless mode enables automation and integration into pipelin
 
 ### lux Headless
 
-Documentation specific to using the `lux` library without the KeyShot interface. [Dive into lux headless mode.](lux_headless/KeyShot_Headless_Lux_API.md)
+Documentation specific to using the `lux` library without the KeyShot interface. [Dive into lux headless mode.](lux_headless/KeyShot_headless_lux_API.md)
 
 ### luxmath Headless
 
-Similar to the `luxmath` library, but focused on headless applications. [Discover luxmath in headless mode.](luxmath_headless/KeyShot_Headless_LuxMath_API.md)
+Similar to the `luxmath` library, but focused on headless applications. [Discover luxmath in headless mode.](luxmath_headless/KeyShot_headless_luxmath_API.md)
 
 ## Example Scripts
 

@@ -4,6 +4,28 @@ Unofficial KeyShot Python Libraries and Documentation
 
 Welcome to the KeyShot Python API Documentation repository. This resource is created to provide comprehensive guides, detailed documentation, and practical script examples for users of KeyShot's Python API. Whether you're automating tasks in KeyShot, extending its functionalities, or integrating KeyShot into your digital pipeline, this repository aims to be your go-to reference.
 
+## What is this?
+
+An unofficial reference for KeyShot's Python interfaces, with example scripts
+for scene access, transforms, cameras, materials, import, and rendering.
+
+## Why care?
+
+Suppose a product scene contains many parts and you need to inspect or adjust
+them consistently. A script can turn that repeated scene work into an explicit
+sequence you can review and reuse. This repository provides examples and API
+notes to help build that sequence.
+
+## Try this
+
+Open [Accessing Scene Nodes](Scripts/Accessing%20Scene%20Nodes.txt) and compare
+the example with your scene tree. Then read
+[Transforming scene nodes](Scripts/Scripting%20Transforming%20scene%20nodes.txt)
+to see how selection and transforms connect. Try edits on a copy of a scene in
+a KeyShot installation with scripting support; the examples use KeyShot's
+environment, not standalone Python.
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)

@@ -1,25 +1,32 @@
 # KeyShot Python Agent (Agnostic)
 
-Portable, model-agnostic agent setup for KeyShot Studio 2026.x (prefer 2026.2 when available; Python 3.13).
+Portable, model-agnostic agent setup for KeyShot Studio 2026.2.
+
+## API source of truth
+
+[`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` captured in the KeyShot 2026.2 scripting console. This is what exists in the runtime. Prefer it over the public 2026.1 website, which lags.
+
+The help() banner inside the dump still says “KeyShot 2023.2” / “Python3.11”. That banner is stale. The capture is from 2026.2.
 
 ## Mandatory Knowledge (include all of this)
 
 - `constraints.md` — hard rules (node IDs, dialogs, matrices, verification, API limits). Read first.
 - `system_prompt.md` — drop-in system / developer message.
-- `knowledge_base.md` — TOC-driven structured reference.
+- `knowledge_base.md` — TOC. This is the TOC.
 - `kpsa_knowledge/` — elevated KPSA guides (best practices, GUI, transforms, quick ref, thin API pointer).
 - `materials/` — shader node types, parameters, and individual material files.
+- `lux/KeyShot_lux_API.md` — 2026.2 API source of truth.
 
-Treat every file under these as authoritative context. Do not invent API methods, parameter names, or node types. Prefer live official 2026 docs for full signatures.
+Treat every file under these as authoritative context. Do not invent API methods, parameter names, or node types. Verify against the 2026.2 dump.
 
 ## How to Use
 
 1. Copy `system_prompt.md` into the system prompt.
-2. Attach or include `constraints.md` + `knowledge_base.md` + the full contents of `kpsa_knowledge/` + `materials/` as knowledge/context.
-3. The agent is instructed to start with constraints, use the TOC, apply verification patterns, and prefer official docs.
+2. Attach or include `constraints.md` + `knowledge_base.md` + the full contents of `kpsa_knowledge/` + `materials/` + `lux/KeyShot_lux_API.md` as knowledge/context.
+3. The agent starts with constraints, uses the TOC, applies verification patterns, and verifies API against the 2026.2 dump.
 
 Works with any LLM (Grok, Claude, GPT, local models, custom agents). No vendor lock-in.
 
 ## Maintenance
 
-When KeyShot ships scripting changes, update the relevant files in `kpsa_knowledge/` and `materials/` first, then elevate constraints if needed.
+When KeyShot ships scripting changes, refresh `lux/KeyShot_lux_API.md` from a new `help(lux)` capture first, then update the relevant files in `kpsa_knowledge/` and `materials/`.

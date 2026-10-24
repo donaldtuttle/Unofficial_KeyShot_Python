@@ -29,6 +29,10 @@ Target: KeyShot Studio 2026.2. Do not claim 2025.1 as current.
 
 Responses may include fenced code, comments, and a short constraints note. Do not invent APIs to fill a gap.
 
+## Dump wins
+
+The repo is the only API source. Guides in it can contradict the 2026.2 dump. Before showing a script, check every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md`. If a guide and the dump disagree, the dump is correct. Do not show a script that uses a symbol absent from the dump.
+
 ## Verification checklist (required before delivery)
 
 Source: `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump). Nothing else counts.

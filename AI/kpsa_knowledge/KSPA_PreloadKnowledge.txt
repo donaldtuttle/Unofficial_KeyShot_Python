@@ -1,0 +1,18 @@
+### Process for Handling Script Requests (for functionality "X")
+
+1. **TOC:**
+    - Which contains links to the TOC in each knowledge file to ensure the AI has a structured, searchable index. 
+
+2. **Reference:**
+- Consult the KSAP knowledge , which includes descriptions, Luxion KeyShot classes, functions, and keywords tagged for each script.
+
+2. **Locate Topic X:**
+    - Use the keyword or functionality (X) provided in the request to find the relevant section in the TOC.
+
+3. **Fetch Information:**
+    - Once the relevant section is identified, fetch the corresponding information from the knowledge files.
+
+4. **Provide Response:**
+    - Use the fetched information to generate a response or script that addresses the user's request.
+
+This process ensures that the AI can efficiently locate and utilize the relevant information from the knowledge files to fulfill the user's scripting needs.

@@ -1,0 +1,61 @@
+### Material: Gem
+  - **SHADER_TYPE**: lux_gem
+  - **abbe_number** (PARAMETER_TYPE_FLOAT): Abbe number for the material, influencing dispersion. (Value: 0.0)
+  - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **color** (PARAMETER_TYPE_COLOR): The color of the material. (Value: (0.3025, 0.3025, 0.3025))
+  - **dispersion_samples** (PARAMETER_TYPE_INTEGER): Number of samples for calculating dispersion. (Value: 3)
+  - **glossy_samples** (PARAMETER_TYPE_INTEGER): Number of samples used for glossy reflections. (Value: 9)
+  - **ior** (PARAMETER_TYPE_FLOAT): Index of Refraction; affects the bending of light. (Value: 1.5)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **roughness** (PARAMETER_TYPE_FLOAT): Controls the sharpness of reflections. (Value: 0.0)
+  - **solid** (PARAMETER_TYPE_BOOLEAN): Determines if the material is treated as a solid object. (Value: False)
+  - **transparency** (PARAMETER_TYPE_FLOAT): Defines the level of transparency. (Value: 500.0)
+
+
+## Parameters for shader node in material'Gem':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- abbe_number (Type: 4)
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- color (Type: 13)
+- dispersion_samples (Type: 2)
+- glossy_samples (Type: 2)
+- ior (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- roughness (Type: 4)
+- solid (Type: 1)
+- transparency (Type: 4)
+
+## The Gem Material Type is related to the Solid Glass, Dielectric, and Liquid Material Type. The settings have been optimized to be relevant to rendering gem stones. The Abbe Number (dispersion) control is especially important for gem stone rendering as it produces the “fire” effect that is often desired.
+
+Color
+This controls the overall color of the gemstone. When light enters the surface it will take on the color set here. The amount of color you see in this material is highly dependent on the transparency setting as well.
+
+Transparency Distance
+(Formerly Transparency) This slider controls the depth of the color selected in the Color setting, depending on the thickness of the part to which the material is applied. After setting a color in the Color setting, use Transparency Distance to make that color more or less saturated and prominent. A lower setting will show the color more in thin areas of the model, and a high setting will make the color faint in the thin areas.
+
+This physically accurate parameter simulates the effect you can observe by looking at the color of the shallow water at a beach versus the deep blue of a deep ocean. Without this you would see through to the bottom of the deepest ocean as easily as to the bottom of a swimming pool.
+
+Refractive Index
+This controls how much light will bend or “refract” as it passes through parts on your model that have this type of material. The default of 1.5 (the Refractive Index of Lapis Lazuli) is a general setting and will need to be adjusted depending on the gem you desire. A Table of Refractive Index for Gemstones can be found on the International Gem Society website.
+
+Roughness
+Roughness on this type of material will spread out highlights on the surface similar to what you see on other, non-transparent, materials. However, it also spreads out the light that is transmitted through the material. This is used to create a frosted glass look.
+
+Samples
+This can be used with a low setting to produce a more imperfect/noisy result or a high setting to smooth out the noise/grain for a smoother frosted look.
+
+Abbe Number (Dispersion)
+The Abbe number controls dispersion of light as it is transmitted through the surface and produces a prismatic effect. This prismatic color effect can be used to create the “fire” effect often desired when rendering gem stones. A value of zero will disable the dispersion effect entirely. A low value will show heavy dispersion, and as you increase the value, the effect will become more subtle. A setting around 35-55 is a good starting point if a subtle dispersion effect is desired.
+
+Dispersion Samples
+This can be used with a low setting to produce a more imperfect/noisy result or a higher value to smooth out the noise/grain for a smoother look.
+
+Ignore intersecting geometry
+When enabled overlapping geometry will be ignored. This is useful for e.g. the prong setting of diamond ring, where the real life deformation made to the prongs when fixing the gemstone is not modeled and the geometry is in fact overlapping,

@@ -418,5 +418,136 @@ Identifiers for different shader types, e.g., SHADER_TYPE_ADVANCED, SHADER_TYPE_
     SHADER_TYPE_COLOR_TO_NUMBER = 'convert_rgba_to_float'
     SHADER_TYPE_CONTOUR = 'lux_contour_tex'
     SHADER_TYPE_CURVATURE = 'lux_curvature'
+    SHADER_TYPE_CURVE_COLOR_RANDOMIZE = 'lux_curve_randomize'
+    SHADER_TYPE_CURVE_FADE = 'animation_curve'
+    SHADER_TYPE_CUTAWAY = 'lux_cutaway'
+    SHADER_TYPE_DIELECTRIC = 'lux_glass'
+    SHADER_TYPE_DIFFUSE = 'lux_diffuse'
+    SHADER_TYPE_DISPLACE = 'lux_displace'
+    SHADER_TYPE_EMISSIVE = 'lux_emissive'
+    SHADER_TYPE_FIBER_WEAVE = 'lux_carbon'
+    SHADER_TYPE_FLAKES = 'lux_flakes'
+    SHADER_TYPE_FLAT = 'lux_constant'
+    SHADER_TYPE_FUZZ = 'lux_fuzz'
+    SHADER_TYPE_GEM = 'lux_gem'
+    SHADER_TYPE_GENERAL = 'lux_general'
+    SHADER_TYPE_GENERIC = 'lux_generic'
+    SHADER_TYPE_GLASS = 'lux_window_glass'
+    SHADER_TYPE_GLASS_SOLID = 'lux_glass_simple'
+    SHADER_TYPE_GRANITE = 'lux_granite'
+    SHADER_TYPE_GROUND = 'lux_ground'
+    SHADER_TYPE_IES_LIGHT = 'lux_ies_light'
+    SHADER_TYPE_LEATHER = 'lux_leather_tex'
+    SHADER_TYPE_LIQUID = 'lux_liquid'
+    SHADER_TYPE_MAPPING_2D = 'mapping2d'
+    SHADER_TYPE_MAPPING_WARP = 'lux_mapping_warp'
+    SHADER_TYPE_MARBLE = 'lux_marble'
+    SHADER_TYPE_MATCAP = 'matcap'
+    SHADER_TYPE_MEASURED = '__measured'
+    SHADER_TYPE_MESH = 'lux_mesh'
+    SHADER_TYPE_MESH_CIRCULAR = 'lux_lattice_circular'
+    SHADER_TYPE_MESH_LIGHT = 'lux_mesh_light'
+    SHADER_TYPE_MESH_POLYGON = 'lux_lattice_polygon'
+    SHADER_TYPE_METAL = 'lux_metal'
+    SHADER_TYPE_METALLIC_PAINT = 'metallic_paint'
+    SHADER_TYPE_MOLD_TECH_PLASTIC = 'lux_moldtech_plastic'
+    SHADER_TYPE_NOISE_FRACTAL = 'lux_fractal_noise'
+    SHADER_TYPE_NOISE_TEXTURE = 'lux_noise'
+    SHADER_TYPE_OCCLUSION = 'lux_occlusion_tex'
+    SHADER_TYPE_PAINT = 'lux_paint'
+    SHADER_TYPE_PLASTIC = 'lux_plastic_simple'
+    SHADER_TYPE_PLASTIC_CLOUDY = 'lux_cloudy_plastic'
+    SHADER_TYPE_PLASTIC_FIBER = 'lux_textile_fiber'
+    SHADER_TYPE_PLASTIC_TRANSPARENT = 'lux_plastic'
+    SHADER_TYPE_POINT_LIGHT = 'lux_point_light'
+    SHADER_TYPE_RAY_MASK = 'lux_ray_mask'
+    SHADER_TYPE_REALCLOTH = 'lux_real_cloth'
+    SHADER_TYPE_ROUNDED_EDGES = 'lux_rounded'
+    SHADER_TYPE_SCATTERING_MEDIUM = 'lux_scattering_medium'
+    SHADER_TYPE_SCRATCHES = 'lux_scratches_worley'
+    SHADER_TYPE_SPOTLIGHT = 'lux_spotlight'
+    SHADER_TYPE_SPOTS = 'lux_spots'
+    SHADER_TYPE_TEXTURE_MAP = '__texture'
+    SHADER_TYPE_THIN_FILM = 'lux_thinfilm'
+    SHADER_TYPE_TILED_UV = 'lux_tiled_texturemap'
+    SHADER_TYPE_TOON = 'lux_toon'
+    SHADER_TYPE_TRANSLUCENT = 'lux_translucent'
+    SHADER_TYPE_TRANSLUCENT_ADVANCED = 'lux_translucent2'
+    SHADER_TYPE_TRANSLUCENT_MEDIUM = 'lux_translucent_mc'
+    SHADER_TYPE_TRI_PLANAR = 'triplanar'
+    SHADER_TYPE_VELVET = 'lux_velvet'
+    SHADER_TYPE_VERTEX_COLOR = 'lux_vertex_color'
+    SHADER_TYPE_VIDEO_MAP = 'sequence_rgba'
+    SHADER_TYPE_VOLUME_MAP = 'lux_volume'
+    SHADER_TYPE_WEAVE = 'lux_weave2'
+    SHADER_TYPE_WIREFRAME = 'show_wireframe'
+    SHADER_TYPE_WOOD = 'lux_wood'
+    SHADER_TYPE_WOOD_ADVANCED = 'lux_wood2'
+    SHADER_TYPE_XRAY = 'lux_xray'
+Scene Units Constants:
+### Scene Units### :
+    UNIT_CM = 1
+    UNIT_FT = 3
+    UNIT_IN = 2
+    UNIT_M = 4
+    UNIT_MM = 0
+Camera Constants:
+Constants for specifying camera types and views, e.g., CAMERA_TYPE_ORTHOGRAPHIC, VIEW_FRONT, VIEW_BACK, etc.
+### Camera### :
+    CAMERA_TYPE_ORTHOGRAPHIC = 65536
+    CAMERA_TYPE_PANORAMA = 4096
+    CAMERA_TYPE_PERSPECTIVE = 16384
+    CAMERA_TYPE_PERSPECTIVE_STEREO = 32768
+    CAMERA_TYPE_SHIFT = 8192
+    PANORAMA_TYPE_CUBEMAP = 1
+    PANORAMA_TYPE_SPHERICAL = 0
+    VIEW_BACK = 2
+    VIEW_BOTTOM = 6
+    VIEW_FRONT = 1
+    VIEW_ISOMETRIC = 7
+    VIEW_LEFT = 3
+    VIEW_RIGHT = 4
+    VIEW_TOP = 5
+    XR_CENTER_CAMERA = 4
+    XR_CENTER_CAMERA_PIVOT = 5
+    XR_CENTER_ENVIRONMENT = 1
+    XR_CENTER_OBJECT = 2
+    XR_TYPE_CUSTOM = 5
+    XR_TYPE_HEMISPHERICAL = 3
+    XR_TYPE_SPHERICAL = 2
+    XR_TYPE_TUMBLE = 4
+    XR_TYPE_TURNTABLE = 1
+### CMF Exclusive### 
+    CMF_KIND_COLOR_CMYK = 4
+    CMF_KIND_COLOR_HEX = 6
+    CMF_KIND_COLOR_LAB = 5
+    CMF_KIND_COLOR_NAME = 2
+    CMF_KIND_COLOR_RGB = 3
+    CMF_KIND_COLOR_SWATCH = 7
+    CMF_KIND_IMAGE = 1
+    CMF_KIND_TEXT = 0
+#Set the KeyShot "Resources Library" path based on the operating system.
+Windows
+        library_path = "C:\\Users\\Public\\Documents\\KeyShot"
+MacOS and Unix
+        library_path = "/Library/Application Support/KeyShot"
+Library Constants
+    FOLDER_ANIMATIONS = 8
+    FOLDER_BACKPLATES = 3
+    FOLDER_COLORS = 9
+    FOLDER_CONFIG_ROOT = 14
+    FOLDER_DOWNLOADS = 16
+    FOLDER_ENVIRONMENTS = 5
+    FOLDER_EXTERNAL_PLUGIN = 13
+    FOLDER_FAVORITES = 11
+    FOLDER_MATERIALS = 7
+    FOLDER_MATERIAL_TEMPLATES = 10
+    FOLDER_MODELS = 15
+    FOLDER_RESOURCE_ROOT = 1
+    FOLDER_SCENES = 6
+    FOLDER_SCREENSHOTS = 2
+    FOLDER_SCRIPTS = 12
+    FOLDER_TEXTURES = 4
+Differences in Classes and Functions
 
 [Content continues]

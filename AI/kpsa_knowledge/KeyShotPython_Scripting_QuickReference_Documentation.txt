@@ -82,5 +82,72 @@ This section includes detailed descriptions of KeyShot Python API Classes and th
 42. TextureParameter: Manages texture parameters in materials.
 43. ToonMaterial: Handles toon shader materials.
 44. VideoMap: Manages video textures.
+45. Volume: Represents volumetric materials or effects.
+## Functions
+lux Library Functions:
+The lux library in KeyShot's Python environment provides a range of functions to script and automate tasks within KeyShot, such as rendering, scene manipulation, camera control, and more. Here's a detailed list of the functions available in the lux library, based on the provided documentation:
+### Standard Functions### -
+lux.getActiveEnvironment(): Retrieves the currently active environment settings.
+lux.getOS(): Returns the operating system version string.
+lux.getObjectMaterial(): Gets the material applied to the specified object(s).
+lux.getObjects(): Retrieves the object IDs of the scene.
+lux.getRenderEngine(): Obtains the render engine currently in use.
+lux.getRenderLayers(): Returns a list of render layers in the current scene.
+lux.getRenderOptions(): Provides render options as a lux.RenderOptions object.
+lux.getSceneInfo(): Yields information about the scene, including name, file name, unit/meter scale, and number of triangles, objects, nurbs, curves, scene width/height, and rendering width/height.
+lux.getSceneMaterials(): Retrieves materials currently used in the scene.
+lux.getLocked(): Obtains locked nodes of a group (recursively).
+lux.getMaterial(): Fetches the material of a node.
+lux.getName(): Gets the name of a node.
+lux.getParent(): Retrieves the parent node of a specified node.
+lux.getPath(): Provides the path from the root to the specified node as a tuple of lux.SceneNode objects.
+lux.getRenderLayer(): Fetches the render layer associated with a node, if any.
+lux.getSelected(): Obtains selected nodes of a group (recursively).
+lux.getTransform(): Gets the transformation matrix of a node.
+lux.getLightingPreset(): Retrieves the currently used lighting preset.
+lux.getLightingPresets(): Fetches a list of lighting presets, both default and custom ones.
+lux.getLockResolution(): Indicates whether the resolution is locked or not.
+lux.getMaterialGraph(): Retrieves a lux.MaterialGraph object representing the material graph for a given material name.
+lux.getMaterialMapping(): Provides material mapping: object ID to material name.
+lux.getMaterialTemplates(): Fetches material template names.
+lux.getMetaData(): Obtains metadata of the scene.
+lux.getModelSets(): Returns the list of active model sets.
+lux.getMultiMaterial(): Retrieves a multi-material instance from its name.
+lux.getSceneTree(): Provides a lux.SceneNode object representing the root of the scene tree.
+lux.getSphericalCamera(): Fetches spherical information of the active camera in degrees.
+lux.getStudios(): Retrieves studio names of the scene.
+lux.getSystemInfo(): Yields information about the system as a dictionary.
+lux.getActiveStudio(): Obtains the active studio of the scene.
+lux.getAnimationFrame(): Returns the current animation frame.
+lux.getAnimationInfo(): Provides information about the animation, including duration in seconds and the number of frames.
+lux.getAnimationTime(): Yields the current animation time in seconds.
+lux.getBrowserDialog(): Shows a browser dialog for loading either URL or HTML contents.
+lux.getActiveCamera(): Retrieves the currently active camera.
+lux.getActiveEnvironment(): Retrieves the current active environment.
+lux.getActiveImageStyle(): Gets the currently active image style.
+lux.getActiveMaterial(): Retrieves the currently active material.
+lux.getActiveModelSet(): Gets the current active model set.
+lux.getActiveRenderLayer(): Retrieves the current active render layer.
+lux.getActiveScene(): Gets the currently active scene.
+lux.getActiveStudio(): Retrieves the current active studio.
+lux.getAnimation(): Retrieves information about a specific animation.
+lux.getAnimations(): Gets a list of animations in the scene.
+lux.getBackground(): Retrieves the current background settings.
+lux.getCameras(): Returns a list of cameras in the scene.
+lux.getEnvironment(): Retrieves a specific environment.
+lux.getEnvironments(): Lists all environments in the scene.
+lux.getImageStyles(): Retrieves a list of image styles.
+lux.getMaterialGraph(): Represents and manipulates the material graph structure.
+lux.getMaterial(): Retrieves a specific material.
+lux.getMaterials(): Lists all materials in the scene.
+lux.getModelSets(): Retrieves model sets in the scene.
+lux.getRenderLayer(): Gets a specific render layer.
+lux.getRenderLayers(): Retrieves all render layers in the scene.
+lux.getRenderOptions(): Gets the current render options.
+lux.getExternalFiles() (Headless): Lists external files associated with the scene.
+lux.getImportOptions() (Headless): Retrieves current import options.
+lux.getKeyShotDisplayVersion() (Headless): Gets the display version of KeyShot.
+lux.getKeyShotFolder() (Headless): Returns the KeyShot folder path.
+lux.getKeyShotVersion() (Headless): Retrieves the full KeyShot version.
 
-[Content continues — full QuickReference staged in subsequent commits]
+[Content continues]

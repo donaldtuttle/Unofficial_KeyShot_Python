@@ -1,0 +1,86 @@
+## Quick Reference:
+
+### Table of Contents
+1. [Quick Reference](#quick-reference)
+2. [KeyShot Python API Classes and Their General Functionalities](#keyshot-python-api-classes-and-their-general-functionalities)
+    - [Classes](#classes)
+    - [Functions](#functions)
+    - [Constants](#constants)
+### Note:
+This section includes detailed descriptions of KeyShot Python API Classes and their Functionalities, along with a comprehensive list of Constants in the 'lux' library.
+3. [Standard Functions](#standard-functions)
+4. [Headless-Specific Functions](#headless-specific-functions)
+5. [Constants](#constants)
+6. [Export Options](#export-options)
+7. [Image Style](#image-style)
+8. [Viewer Options](#viewer-options)
+9. [Message Window](#message-window)
+10. [Thumbnail Models](#thumbnail-models)
+11. [Node Types](#node-types)
+12. [All Parameters](#all-parameters)
+13. [Render Settings and Options](#render-settings-and-options)
+14. [Save Options](#save-options)
+15. [Shader Nodes](#shader-nodes)
+16. [Scene Units](#scene-units)
+17. [Camera Types and Views](#camera-types-and-views)
+18. [CMF Exclusive](#cmf-exclusive)
+19. [Script Examples Reference](#script-examples-reference)
+    - [Batch Rename ModelSets GUI](#batch-rename-modelsets-gui)
+    - [Render Ambient Occlusion](#render-ambient-occlusion)
+    - [Get Scene Materials](#get-scene-materials)
+    - [Duplicate and Randomly Scatter Objects (Headless Compliant)](#duplicate-and-randomly-scatter-objects-headless-compliant)
+    - [Saves the Scenes Materials and Multi-Material Sub-Materials to the Material Library](#saves-the-scenes-materials-and-multi-material-sub-materials-to-the-material-library)
+    - [Save Sub-Materials of Multi-Materials (PC and Apple Compatible)](#save-sub-materials-of-multi-materials-pc-and-apple-compatible)
+    - [Import CAD File, Create New Model Set, and Name After File](#import-cad-file-create-new-model-set-and-name-after-file)
+20. [Supported File Formats](#supported-file-formats)
+    - [Supported Import File Formats](#supported-import-file-formats)
+    - [Supported Export File Formats](#supported-export-file-formats)
+
+## KeyShot Python API Classes and Their General Functionalities ### -
+## Classes
+1. ColorParameter: Manages color-related parameters in materials or environments.
+2. Colorway: Handles colorway settings for multi-materials or studios.
+3. Env: Configures environment settings like background, lighting, etc.
+4. ImageStyle: Controls image style settings for render outputs.
+5. MaterialGraph: Represents and manipulates the material graph structure.
+6. MaterialMetadata: Manages metadata associated with materials.
+7. MultiMaterial: Manages and configures multi-materials.
+8. RenderOptions: Sets options for rendering, such as resolution and quality.
+9. SceneNode: Represents nodes in the scene tree for manipulation.
+10. ShaderEdge: Handles connections between shader nodes in material graphs.
+11. ShaderNode: Represents individual shader nodes in material graphs.
+12. ShaderParameter: Manages parameters of shader nodes.
+13. Studio: Configures studio settings, including camera, environment, and model sets.
+14. ThumbnailRenderOptions: Sets rendering options for thumbnails.
+15. Animation: Controls animation-related settings and operations.
+16. BloomParameter: Manages bloom effect parameters in image styles.
+17. Curve: Represents and manipulates curve data.
+18. CurveControlPoint: Manages control points for curves.
+19. CurveParameter: Handles curve parameters in shader nodes.
+20. DenoiseParameter: Configures denoise settings in render options.
+21. Display: Controls display settings within KeyShot.
+22. FlakeParameter: Manages flake effect parameters in materials.
+23. GeometryNode: Represents geometry nodes in the scene.
+24. GeometryShaders: Manages shaders applied to geometries.
+25. Image: Handles image data and operations.
+26. ImageEffects: Configures post-processing effects on images.
+27. ImageLayers: Manages layers in composite images.
+28. Label: Controls label properties on materials.
+29. Light: Manages light sources in the scene.
+30. LightMaterial: Handles materials specifically for lights.
+31. Material: Represents and manipulates materials.
+32. NormalMapParameter: Manages normal map parameters in materials.
+33. NumberParameter: Handles numeric parameters in shader nodes.
+34. OrthographicCamera: Configures orthographic camera settings.
+35. PanoramicCamera: Manages panoramic camera settings.
+36. PerspectiveCamera: Controls perspective camera properties.
+37. ProceduralTexture: Handles procedural textures in materials.
+38. RenderLayers: Manages render layers in the scene.
+39. ScatteringMedium: Configures settings for volume scattering.
+40. SphericalCamera: Manages spherical camera settings.
+41. Texture: Represents and manipulates texture data.
+42. TextureParameter: Manages texture parameters in materials.
+43. ToonMaterial: Handles toon shader materials.
+44. VideoMap: Manages video textures.
+
+[Content continues — full QuickReference staged in subsequent commits]

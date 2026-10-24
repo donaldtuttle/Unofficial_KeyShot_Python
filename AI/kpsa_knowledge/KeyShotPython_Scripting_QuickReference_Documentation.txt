@@ -1,1 +1,2206 @@
-PLACEHOLDER_WILL_REPLACE
+## Quick Reference:
+
+### Table of Contents
+1. [Quick Reference](#quick-reference)
+2. [KeyShot Python API Classes and Their General Functionalities](#keyshot-python-api-classes-and-their-general-functionalities)
+    - [Classes](#classes)
+    - [Functions](#functions)
+    - [Constants](#constants)
+### Note:
+This section includes detailed descriptions of KeyShot Python API Classes and their Functionalities, along with a comprehensive list of Constants in the 'lux' library.
+3. [Standard Functions](#standard-functions)
+4. [Headless-Specific Functions](#headless-specific-functions)
+5. [Constants](#constants)
+6. [Export Options](#export-options)
+7. [Image Style](#image-style)
+8. [Viewer Options](#viewer-options)
+9. [Message Window](#message-window)
+10. [Thumbnail Models](#thumbnail-models)
+11. [Node Types](#node-types)
+12. [All Parameters](#all-parameters)
+13. [Render Settings and Options](#render-settings-and-options)
+14. [Save Options](#save-options)
+15. [Shader Nodes](#shader-nodes)
+16. [Scene Units](#scene-units)
+17. [Camera Types and Views](#camera-types-and-views)
+18. [CMF Exclusive](#cmf-exclusive)
+19. [Script Examples Reference](#script-examples-reference)
+    - [Batch Rename ModelSets GUI](#batch-rename-modelsets-gui)
+    - [Render Ambient Occlusion](#render-ambient-occlusion)
+    - [Get Scene Materials](#get-scene-materials)
+    - [Duplicate and Randomly Scatter Objects (Headless Compliant)](#duplicate-and-randomly-scatter-objects-headless-compliant)
+    - [Saves the Scenes Materials and Multi-Material Sub-Materials to the Material Library](#saves-the-scenes-materials-and-multi-material-sub-materials-to-the-material-library)
+    - [Save Sub-Materials of Multi-Materials (PC and Apple Compatible)](#save-sub-materials-of-multi-materials-pc-and-apple-compatible)
+    - [Import CAD File, Create New Model Set, and Name After File](#import-cad-file-create-new-model-set-and-name-after-file)
+20. [Supported File Formats](#supported-file-formats)
+    - [Supported Import File Formats](#supported-import-file-formats)
+    - [Supported Export File Formats](#supported-export-file-formats)
+
+## KeyShot Python API Classes and Their General Functionalities ### -
+## Classes
+1. ColorParameter: Manages color-related parameters in materials or environments.
+2. Colorway: Handles colorway settings for multi-materials or studios.
+3. Env: Configures environment settings like background, lighting, etc.
+4. ImageStyle: Controls image style settings for render outputs.
+5. MaterialGraph: Represents and manipulates the material graph structure.
+6. MaterialMetadata: Manages metadata associated with materials.
+7. MultiMaterial: Manages and configures multi-materials.
+8. RenderOptions: Sets options for rendering, such as resolution and quality.
+9. SceneNode: Represents nodes in the scene tree for manipulation.
+10. ShaderEdge: Handles connections between shader nodes in material graphs.
+11. ShaderNode: Represents individual shader nodes in material graphs.
+12. ShaderParameter: Manages parameters of shader nodes.
+13. Studio: Configures studio settings, including camera, environment, and model sets.
+14. ThumbnailRenderOptions: Sets rendering options for thumbnails.
+15. Animation: Controls animation-related settings and operations.
+16. BloomParameter: Manages bloom effect parameters in image styles.
+17. Curve: Represents and manipulates curve data.
+18. CurveControlPoint: Manages control points for curves.
+19. CurveParameter: Handles curve parameters in shader nodes.
+20. DenoiseParameter: Configures denoise settings in render options.
+21. Display: Controls display settings within KeyShot.
+22. FlakeParameter: Manages flake effect parameters in materials.
+23. GeometryNode: Represents geometry nodes in the scene.
+24. GeometryShaders: Manages shaders applied to geometries.
+25. Image: Handles image data and operations.
+26. ImageEffects: Configures post-processing effects on images.
+27. ImageLayers: Manages layers in composite images.
+28. Label: Controls label properties on materials.
+29. Light: Manages light sources in the scene.
+30. LightMaterial: Handles materials specifically for lights.
+31. Material: Represents and manipulates materials.
+32. NormalMapParameter: Manages normal map parameters in materials.
+33. NumberParameter: Handles numeric parameters in shader nodes.
+34. OrthographicCamera: Configures orthographic camera settings.
+35. PanoramicCamera: Manages panoramic camera settings.
+36. PerspectiveCamera: Controls perspective camera properties.
+37. ProceduralTexture: Handles procedural textures in materials.
+38. RenderLayers: Manages render layers in the scene.
+39. ScatteringMedium: Configures settings for volume scattering.
+40. SphericalCamera: Manages spherical camera settings.
+41. Texture: Represents and manipulates texture data.
+42. TextureParameter: Manages texture parameters in materials.
+43. ToonMaterial: Handles toon shader materials.
+44. VideoMap: Manages video textures.
+45. Xr: Manages XR-related settings and configurations.
+46. XrCamera: Controls XR camera properties.
+47. XrEnvironment: Configures XR environment settings.
+48. XrLight: Manages lights in XR scenes.
+49. XrMaterial: Handles materials for XR rendering.
+50. XrNode: Represents nodes in XR scenes.
+
+### Functions
+- getActiveModelSet(): Retrieves the currently active model set.
+- getCamera(): Gets the current camera settings.
+- getEnvironment(): Retrieves the current environment configuration.
+- getMaterialLibrary(): Accesses the material library.
+- getModelSets(): Lists all model sets in the scene.
+- getSceneTree(): Retrieves the scene tree structure.
+- renderImage(): Initiates an image render with specified options.
+- saveFile(): Saves the current scene or assets.
+- setActiveCamera(): Sets the active camera.
+- setEnvironment(): Applies a new environment.
+- addNode(): Adds a new node to the scene.
+- deleteNode(): Removes a node from the scene.
+- getNodeByName(): Finds a node by its name.
+- setMaterial(): Assigns a material to a node.
+- getMaterial(): Retrieves the material of a node.
+- createMaterial(): Creates a new material.
+- duplicateNode(): Duplicates an existing node.
+- moveNode(): Moves a node to a new position.
+- rotateNode(): Rotates a node.
+- scaleNode(): Scales a node.
+- getTransform(): Gets the transformation matrix of a node.
+- setTransform(): Sets the transformation matrix of a node.
+- getBoundingBox(): Retrieves the bounding box of a node.
+- isVisible(): Checks if a node is visible.
+- setVisible(): Sets the visibility of a node.
+- getChildren(): Gets the child nodes of a parent node.
+- getParent(): Gets the parent of a node.
+- renameNode(): Renames a node.
+- getNodeType(): Gets the type of a node.
+- hasMaterial(): Checks if a node has a material.
+- clearMaterials(): Removes materials from nodes.
+- applyMaterialTemplate(): Applies a material template.
+- getShaderNodes(): Retrieves shader nodes in a material graph.
+- addShaderNode(): Adds a shader node to a graph.
+- connectShaders(): Connects two shader nodes.
+- getParameter(): Gets a parameter value from a shader or material.
+- setParameter(): Sets a parameter value.
+- getAllParameters(): Lists all parameters of an object.
+- renderToFile(): Renders the scene to a file.
+- setRenderOptions(): Configures render settings.
+- getRenderOptions(): Retrieves current render options.
+- startAnimation(): Starts animation playback.
+- stopAnimation(): Stops animation.
+- setFrame(): Sets the current animation frame.
+- getFrameCount(): Gets the total number of frames.
+- exportScene(): Exports the scene in a specified format.
+- importFile(): Imports a file into the scene.
+- createModelSet(): Creates a new model set.
+- deleteModelSet(): Deletes a model set.
+- setActiveModelSet(): Sets the active model set.
+- getModelSetName(): Gets the name of a model set.
+- setModelSetName(): Sets the name of a model set.
+- addToModelSet(): Adds a node to a model set.
+- removeFromModelSet(): Removes a node from a model set.
+- getModelSetNodes(): Lists nodes in a model set.
+- createCamera(): Creates a new camera.
+- deleteCamera(): Deletes a camera.
+- getCameras(): Lists all cameras.
+- setCameraPosition(): Sets the position of a camera.
+- getCameraPosition(): Gets the position of a camera.
+- setCameraTarget(): Sets the target of a camera.
+- getCameraTarget(): Gets the target of a camera.
+- setCameraFOV(): Sets the field of view of a camera.
+- getCameraFOV(): Gets the field of view of a camera.
+- setEnvironmentIntensity(): Sets the intensity of the environment.
+- getEnvironmentIntensity(): Gets the intensity of the environment.
+- setBackground(): Sets the background.
+- getBackground(): Gets the background.
+- addLight(): Adds a light to the scene.
+- deleteLight(): Deletes a light.
+- getLights(): Lists all lights.
+- setLightIntensity(): Sets the intensity of a light.
+- getLightIntensity(): Gets the intensity of a light.
+- setLightColor(): Sets the color of a light.
+- getLightColor(): Gets the color of a light.
+- setLightPosition(): Sets the position of a light.
+- getLightPosition(): Gets the position of a light.
+- createMaterialGraph(): Creates a new material graph.
+- getMaterialGraph(): Gets the material graph of a material.
+- addNodeToGraph(): Adds a node to the material graph.
+- removeNodeFromGraph(): Removes a node from the material graph.
+- getGraphNodes(): Lists nodes in the material graph.
+- setGraphConnection(): Sets a connection in the graph.
+- getGraphConnections(): Gets connections in the graph.
+- evaluateGraph(): Evaluates the material graph.
+- getMaterialType(): Gets the type of a material.
+- setMaterialType(): Sets the type of a material.
+- getMaterialName(): Gets the name of a material.
+- setMaterialName(): Sets the name of a material.
+- duplicateMaterial(): Duplicates a material.
+- deleteMaterial(): Deletes a material.
+- getMaterialLibraryPath(): Gets the path of the material library.
+- saveMaterialToLibrary(): Saves a material to the library.
+- loadMaterialFromLibrary(): Loads a material from the library.
+- getLibraryMaterials(): Lists materials in the library.
+- createMultiMaterial(): Creates a multi-material.
+- addSubMaterial(): Adds a sub-material to a multi-material.
+- removeSubMaterial(): Removes a sub-material.
+- getSubMaterials(): Lists sub-materials.
+- setSubMaterial(): Sets a sub-material.
+- getColorway(): Gets the colorway.
+- setColorway(): Sets the colorway.
+- getColorways(): Lists colorways.
+- createColorway(): Creates a colorway.
+- deleteColorway(): Deletes a colorway.
+- applyColorway(): Applies a colorway.
+- getStudio(): Gets the current studio.
+- setStudio(): Sets the studio.
+- getStudios(): Lists studios.
+- createStudio(): Creates a studio.
+- deleteStudio(): Deletes a studio.
+- getEnvironmentMap(): Gets the environment map.
+- setEnvironmentMap(): Sets the environment map.
+- getHDRI(): Gets the HDRI.
+- setHDRI(): Sets the HDRI.
+- getBackplate(): Gets the backplate.
+- setBackplate(): Sets the backplate.
+- getGround(): Gets the ground settings.
+- setGround(): Sets the ground settings.
+- getShadows(): Gets shadow settings.
+- setShadows(): Sets shadow settings.
+- getReflections(): Gets reflection settings.
+- setReflections(): Sets reflection settings.
+- getOcclusion(): Gets occlusion settings.
+- setOcclusion(): Sets occlusion settings.
+- renderAmbientOcclusion(): Renders ambient occlusion.
+- getImageStyle(): Gets the image style.
+- setImageStyle(): Sets the image style.
+- getImageStyles(): Lists image styles.
+- createImageStyle(): Creates an image style.
+- deleteImageStyle(): Deletes an image style.
+- getRenderLayers(): Gets render layers.
+- setRenderLayers(): Sets render layers.
+- addRenderLayer(): Adds a render layer.
+- removeRenderLayer(): Removes a render layer.
+- getDenoise(): Gets denoise settings.
+- setDenoise(): Sets denoise settings.
+- getBloom(): Gets bloom settings.
+- setBloom(): Sets bloom settings.
+- getToneMapping(): Gets tone mapping settings.
+- setToneMapping(): Sets tone mapping settings.
+- getColorManagement(): Gets color management settings.
+- setColorManagement(): Sets color management settings.
+- getOutputFormat(): Gets the output format.
+- setOutputFormat(): Sets the output format.
+- getResolution(): Gets the resolution.
+- setResolution(): Sets the resolution.
+- getSamples(): Gets the sample count.
+- setSamples(): Sets the sample count.
+- getQuality(): Gets the quality setting.
+- setQuality(): Sets the quality setting.
+- getProgress(): Gets the render progress.
+- cancelRender(): Cancels the current render.
+- getRenderStatus(): Gets the render status.
+- saveRender(): Saves the render.
+- getRenderPath(): Gets the render path.
+- setRenderPath(): Sets the render path.
+- getSceneUnits(): Gets the scene units.
+- setSceneUnits(): Sets the scene units.
+- getNodeID(): Gets the ID of a node.
+- getNodeByID(): Gets a node by ID.
+- getAllNodes(): Gets all nodes.
+- filterNodes(): Filters nodes by criteria.
+- getGeometry(): Gets geometry data.
+- setGeometry(): Sets geometry data.
+- getMesh(): Gets mesh data.
+- setMesh(): Sets mesh data.
+- getVertices(): Gets vertices.
+- setVertices(): Sets vertices.
+- getNormals(): Gets normals.
+- setNormals(): Sets normals.
+- getUVs(): Gets UVs.
+- setUVs(): Sets UVs.
+- getFaces(): Gets faces.
+- setFaces(): Sets faces.
+- calculateNormals(): Calculates normals.
+- subdivideMesh(): Subdivides a mesh.
+- smoothMesh(): Smooths a mesh.
+- getBoundingSphere(): Gets the bounding sphere.
+- rayIntersect(): Performs ray intersection.
+- getClosestPoint(): Gets the closest point.
+- projectPoint(): Projects a point.
+- getVolume(): Gets the volume.
+- getSurfaceArea(): Gets the surface area.
+- isManifold(): Checks if manifold.
+- repairMesh(): Repairs a mesh.
+- getTexture(): Gets a texture.
+- setTexture(): Sets a texture.
+- loadTexture(): Loads a texture.
+- saveTexture(): Saves a texture.
+- getTextureSize(): Gets texture size.
+- setTextureSize(): Sets texture size.
+- getTextureFormat(): Gets texture format.
+- setTextureFormat(): Sets texture format.
+- createProceduralTexture(): Creates a procedural texture.
+- evaluateProcedural(): Evaluates a procedural texture.
+- getVideoMap(): Gets a video map.
+- setVideoMap(): Sets a video map.
+- playVideo(): Plays a video.
+- pauseVideo(): Pauses a video.
+- getVideoFrame(): Gets the video frame.
+- setVideoFrame(): Sets the video frame.
+- getAnimation(): Gets animation data.
+- setAnimation(): Sets animation data.
+- getKeyframes(): Gets keyframes.
+- addKeyframe(): Adds a keyframe.
+- removeKeyframe(): Removes a keyframe.
+- interpolateAnimation(): Interpolates animation.
+- getCurve(): Gets a curve.
+- setCurve(): Sets a curve.
+- addControlPoint(): Adds a control point.
+- removeControlPoint(): Removes a control point.
+- evaluateCurve(): Evaluates a curve.
+- getXRSettings(): Gets XR settings.
+- setXRSettings(): Sets XR settings.
+- enableXR(): Enables XR mode.
+- disableXR(): Disables XR mode.
+- getXRCamera(): Gets the XR camera.
+- setXRCamera(): Sets the XR camera.
+- getXREnvironment(): Gets the XR environment.
+- setXREnvironment(): Sets the XR environment.
+- getCMFData(): Gets CMF data.
+- setCMFData(): Sets CMF data.
+- exportCMF(): Exports CMF.
+- importCMF(): Imports CMF.
+- getInputDialog(): Shows an input dialog (GUI).
+- getMessageWindow(): Shows a message window.
+- showProgress(): Shows a progress indicator.
+- updateProgress(): Updates progress.
+- hideProgress(): Hides progress.
+- getHeadlessMode(): Checks if in headless mode.
+- setHeadlessMode(): Sets headless mode.
+- getLog(): Gets the log.
+- clearLog(): Clears the log.
+- writeLog(): Writes to the log.
+- getVersion(): Gets the KeyShot version.
+- getAPIVersion(): Gets the API version.
+- isLicensed(): Checks license status.
+- getLicenseInfo(): Gets license information.
+- quit(): Quits KeyShot.
+- restart(): Restarts KeyShot.
+- getPreferences(): Gets preferences.
+- setPreferences(): Sets preferences.
+- savePreferences(): Saves preferences.
+- loadPreferences(): Loads preferences.
+- getPluginPath(): Gets the plugin path.
+- loadPlugin(): Loads a plugin.
+- unloadPlugin(): Unloads a plugin.
+- getPlugins(): Lists plugins.
+- executeScript(): Executes a script.
+- getScriptPath(): Gets the script path.
+- setScriptPath(): Sets the script path.
+- getWorkingDirectory(): Gets the working directory.
+- setWorkingDirectory(): Sets the working directory.
+- getTempDirectory(): Gets the temp directory.
+- createDirectory(): Creates a directory.
+- deleteDirectory(): Deletes a directory.
+- listDirectory(): Lists directory contents.
+- fileExists(): Checks if a file exists.
+- directoryExists(): Checks if a directory exists.
+- copyFile(): Copies a file.
+- moveFile(): Moves a file.
+- deleteFile(): Deletes a file.
+- getFileSize(): Gets file size.
+- getFileModified(): Gets file modified time.
+- readFile(): Reads a file.
+- writeFile(): Writes a file.
+- appendFile(): Appends to a file.
+- getSystemInfo(): Gets system information.
+- getMemoryUsage(): Gets memory usage.
+- getCPUUsage(): Gets CPU usage.
+- getGPUInfo(): Gets GPU information.
+- isGPUAvailable(): Checks if GPU is available.
+- enableGPU(): Enables GPU rendering.
+- disableGPU(): Disables GPU rendering.
+- getRenderEngine(): Gets the render engine.
+- setRenderEngine(): Sets the render engine.
+- getAvailableEngines(): Lists available engines.
+- getNetworkRenderStatus(): Gets network render status.
+- startNetworkRender(): Starts network render.
+- stopNetworkRender(): Stops network render.
+- getRenderNodes(): Lists render nodes.
+- addRenderNode(): Adds a render node.
+- removeRenderNode(): Removes a render node.
+- getJobQueue(): Gets the job queue.
+- addJob(): Adds a job.
+- removeJob(): Removes a job.
+- getJobStatus(): Gets job status.
+- cancelJob(): Cancels a job.
+- getQueuePosition(): Gets queue position.
+- prioritizeJob(): Prioritizes a job.
+- getRenderHistory(): Gets render history.
+- clearRenderHistory(): Clears render history.
+- getLastRender(): Gets the last render.
+- compareRenders(): Compares renders.
+- getDifferenceMap(): Gets a difference map.
+- applyImageEffects(): Applies image effects.
+- getImageEffects(): Gets image effects.
+- setImageEffects(): Sets image effects.
+- getLayers(): Gets image layers.
+- addLayer(): Adds a layer.
+- removeLayer(): Removes a layer.
+- setLayerOpacity(): Sets layer opacity.
+- getLayerOpacity(): Gets layer opacity.
+- setLayerBlendMode(): Sets layer blend mode.
+- getLayerBlendMode(): Gets layer blend mode.
+- flattenLayers(): Flattens layers.
+- getComposite(): Gets the composite.
+- saveComposite(): Saves the composite.
+- getHistogram(): Gets the histogram.
+- adjustLevels(): Adjusts levels.
+- adjustCurves(): Adjusts curves.
+- adjustHueSaturation(): Adjusts hue/saturation.
+- adjustBrightnessContrast(): Adjusts brightness/contrast.
+- applyFilter(): Applies a filter.
+- getAvailableFilters(): Lists available filters.
+- sharpenImage(): Sharpens an image.
+- blurImage(): Blurs an image.
+- resizeImage(): Resizes an image.
+- cropImage(): Crops an image.
+- rotateImage(): Rotates an image.
+- flipImage(): Flips an image.
+- getPixel(): Gets a pixel value.
+- setPixel(): Sets a pixel value.
+- getImageData(): Gets image data.
+- setImageData(): Sets image data.
+- createImage(): Creates an image.
+- loadImage(): Loads an image.
+- saveImage(): Saves an image.
+- getImageFormat(): Gets image format.
+- setImageFormat(): Sets image format.
+- getColorDepth(): Gets color depth.
+- setColorDepth(): Sets color depth.
+- convertColorSpace(): Converts color space.
+- getColorSpace(): Gets color space.
+- setColorSpace(): Sets color space.
+- applyLUT(): Applies a LUT.
+- getAvailableLUTs(): Lists available LUTs.
+- getWhiteBalance(): Gets white balance.
+- setWhiteBalance(): Sets white balance.
+- getExposure(): Gets exposure.
+- setExposure(): Sets exposure.
+- getGamma(): Gets gamma.
+- setGamma(): Sets gamma.
+- getContrast(): Gets contrast.
+- setContrast(): Sets contrast.
+- getSaturation(): Gets saturation.
+- setSaturation(): Sets saturation.
+- getSharpness(): Gets sharpness.
+- setSharpness(): Sets sharpness.
+- getNoiseReduction(): Gets noise reduction.
+- setNoiseReduction(): Sets noise reduction.
+- getChromaticAberration(): Gets chromatic aberration.
+- setChromaticAberration(): Sets chromatic aberration.
+- getVignette(): Gets vignette.
+- setVignette(): Sets vignette.
+- getGrain(): Gets grain.
+- setGrain(): Sets grain.
+- getBloomIntensity(): Gets bloom intensity.
+- setBloomIntensity(): Sets bloom intensity.
+- getBloomThreshold(): Gets bloom threshold.
+- setBloomThreshold(): Sets bloom threshold.
+- getFlare(): Gets flare.
+- setFlare(): Sets flare.
+- getGlare(): Gets glare.
+- setGlare(): Sets glare.
+- getDepthOfField(): Gets depth of field.
+- setDepthOfField(): Sets depth of field.
+- getMotionBlur(): Gets motion blur.
+- setMotionBlur(): Sets motion blur.
+- getCaustics(): Gets caustics.
+- setCaustics(): Sets caustics.
+- getGlobalIllumination(): Gets global illumination.
+- setGlobalIllumination(): Sets global illumination.
+- getRayDepth(): Gets ray depth.
+- setRayDepth(): Sets ray depth.
+- getShadowQuality(): Gets shadow quality.
+- setShadowQuality(): Sets shadow quality.
+- getReflectionQuality(): Gets reflection quality.
+- setReflectionQuality(): Sets reflection quality.
+- getRefractionQuality(): Gets refraction quality.
+- setRefractionQuality(): Sets refraction quality.
+- getAntiAliasing(): Gets anti-aliasing.
+- setAntiAliasing(): Sets anti-aliasing.
+- getSamplesPerPixel(): Gets samples per pixel.
+- setSamplesPerPixel(): Sets samples per pixel.
+- getAdaptiveSampling(): Gets adaptive sampling.
+- setAdaptiveSampling(): Sets adaptive sampling.
+- getDenoiser(): Gets the denoiser.
+- setDenoiser(): Sets the denoiser.
+- getDenoiseStrength(): Gets denoise strength.
+- setDenoiseStrength(): Sets denoise strength.
+- getDenoiseRadius(): Gets denoise radius.
+- setDenoiseRadius(): Sets denoise radius.
+- getOutputChannels(): Gets output channels.
+- setOutputChannels(): Sets output channels.
+- getAlphaChannel(): Gets alpha channel.
+- setAlphaChannel(): Sets alpha channel.
+- getDepthChannel(): Gets depth channel.
+- setDepthChannel(): Sets depth channel.
+- getNormalChannel(): Gets normal channel.
+- setNormalChannel(): Sets normal channel.
+- getObjectIDChannel(): Gets object ID channel.
+- setObjectIDChannel(): Sets object ID channel.
+- getMaterialIDChannel(): Gets material ID channel.
+- setMaterialIDChannel(): Sets material ID channel.
+- getVelocityChannel(): Gets velocity channel.
+- setVelocityChannel(): Sets velocity channel.
+- getCryptomatte(): Gets cryptomatte.
+- setCryptomatte(): Sets cryptomatte.
+- getAOV(): Gets AOV.
+- setAOV(): Sets AOV.
+- addAOV(): Adds an AOV.
+- removeAOV(): Removes an AOV.
+- getAvailableAOVs(): Lists available AOVs.
+- renderAOV(): Renders an AOV.
+- getPass(): Gets a render pass.
+- setPass(): Sets a render pass.
+- addPass(): Adds a pass.
+- removePass(): Removes a pass.
+- getPasses(): Lists passes.
+- compositePasses(): Composites passes.
+- getBeautyPass(): Gets the beauty pass.
+- getDiffusePass(): Gets the diffuse pass.
+- getSpecularPass(): Gets the specular pass.
+- getReflectionPass(): Gets the reflection pass.
+- getRefractionPass(): Gets the refraction pass.
+- getShadowPass(): Gets the shadow pass.
+- getAOPass(): Gets the AO pass.
+- getEmissionPass(): Gets the emission pass.
+- getVolumePass(): Gets the volume pass.
+- getCustomPass(): Gets a custom pass.
+- setCustomPass(): Sets a custom pass.
+- getPassName(): Gets pass name.
+- setPassName(): Sets pass name.
+- enablePass(): Enables a pass.
+- disablePass(): Disables a pass.
+- isPassEnabled(): Checks if pass is enabled.
+- getPassOpacity(): Gets pass opacity.
+- setPassOpacity(): Sets pass opacity.
+- getPassBlendMode(): Gets pass blend mode.
+- setPassBlendMode(): Sets pass blend mode.
+- getPassColor(): Gets pass color.
+- setPassColor(): Sets pass color.
+- getPassIntensity(): Gets pass intensity.
+- setPassIntensity(): Sets pass intensity.
+- isolatePass(): Isolates a pass.
+- unisolatePass(): Unisolates a pass.
+- getIsolatedPasses(): Gets isolated passes.
+- clearIsolatedPasses(): Clears isolated passes.
+- getRenderRegion(): Gets the render region.
+- setRenderRegion(): Sets the render region.
+- clearRenderRegion(): Clears the render region.
+- enableRegionRender(): Enables region render.
+- disableRegionRender(): Disables region render.
+- getRegionBounds(): Gets region bounds.
+- setRegionBounds(): Sets region bounds.
+- getCameraRegion(): Gets camera region.
+- setCameraRegion(): Sets camera region.
+- getSafeFrame(): Gets safe frame.
+- setSafeFrame(): Sets safe frame.
+- enableSafeFrame(): Enables safe frame.
+- disableSafeFrame(): Disables safe frame.
+- getAspectRatio(): Gets aspect ratio.
+- setAspectRatio(): Sets aspect ratio.
+- lockAspectRatio(): Locks aspect ratio.
+- unlockAspectRatio(): Unlocks aspect ratio.
+- getPixelAspect(): Gets pixel aspect.
+- setPixelAspect(): Sets pixel aspect.
+- getOverscan(): Gets overscan.
+- setOverscan(): Sets overscan.
+- enableOverscan(): Enables overscan.
+- disableOverscan(): Disables overscan.
+- getLetterbox(): Gets letterbox.
+- setLetterbox(): Sets letterbox.
+- enableLetterbox(): Enables letterbox.
+- disableLetterbox(): Disables letterbox.
+- getAnamorphic(): Gets anamorphic.
+- setAnamorphic(): Sets anamorphic.
+- enableAnamorphic(): Enables anamorphic.
+- disableAnamorphic(): Disables anamorphic.
+- getFocalLength(): Gets focal length.
+- setFocalLength(): Sets focal length.
+- getFocusDistance(): Gets focus distance.
+- setFocusDistance(): Sets focus distance.
+- getAperture(): Gets aperture.
+- setAperture(): Sets aperture.
+- getShutterSpeed(): Gets shutter speed.
+- setShutterSpeed(): Sets shutter speed.
+- getISO(): Gets ISO.
+- setISO(): Sets ISO.
+- getExposureCompensation(): Gets exposure compensation.
+- setExposureCompensation(): Sets exposure compensation.
+- getWhitePoint(): Gets white point.
+- setWhitePoint(): Sets white point.
+- getBlackPoint(): Gets black point.
+- setBlackPoint(): Sets black point.
+- getMidPoint(): Gets mid point.
+- setMidPoint(): Sets mid point.
+- getHighlights(): Gets highlights.
+- setHighlights(): Sets highlights.
+- getShadows(): Gets shadows.
+- setShadows(): Sets shadows.
+- getWhites(): Gets whites.
+- setWhites(): Sets whites.
+- getBlacks(): Gets blacks.
+- setBlacks(): Sets blacks.
+- getClarity(): Gets clarity.
+- setClarity(): Sets clarity.
+- getVibrance(): Gets vibrance.
+- setVibrance(): Sets vibrance.
+- getTemperature(): Gets temperature.
+- setTemperature(): Sets temperature.
+- getTint(): Gets tint.
+- setTint(): Sets tint.
+- getHue(): Gets hue.
+- setHue(): Sets hue.
+- getLightness(): Gets lightness.
+- setLightness(): Sets lightness.
+- getRed(): Gets red channel.
+- setRed(): Sets red channel.
+- getGreen(): Gets green channel.
+- setGreen(): Sets green channel.
+- getBlue(): Gets blue channel.
+- setBlue(): Sets blue channel.
+- getCyan(): Gets cyan.
+- setCyan(): Sets cyan.
+- getMagenta(): Gets magenta.
+- setMagenta(): Sets magenta.
+- getYellow(): Gets yellow.
+- setYellow(): Sets yellow.
+- getKey(): Gets key.
+- setKey(): Sets key.
+- getColorBalance(): Gets color balance.
+- setColorBalance(): Sets color balance.
+- getSplitToning(): Gets split toning.
+- setSplitToning(): Sets split toning.
+- getColorGrade(): Gets color grade.
+- setColorGrade(): Sets color grade.
+- getLUTIntensity(): Gets LUT intensity.
+- setLUTIntensity(): Sets LUT intensity.
+- getGrainAmount(): Gets grain amount.
+- setGrainAmount(): Sets grain amount.
+- getGrainSize(): Gets grain size.
+- setGrainSize(): Sets grain size.
+- getVignetteAmount(): Gets vignette amount.
+- setVignetteAmount(): Sets vignette amount.
+- getVignetteMidpoint(): Gets vignette midpoint.
+- setVignetteMidpoint(): Sets vignette midpoint.
+- getVignetteRoundness(): Gets vignette roundness.
+- setVignetteRoundness(): Sets vignette roundness.
+- getVignetteFeather(): Gets vignette feather.
+- setVignetteFeather(): Sets vignette feather.
+- getChromaticAberrationAmount(): Gets CA amount.
+- setChromaticAberrationAmount(): Sets CA amount.
+- getLensDistortion(): Gets lens distortion.
+- setLensDistortion(): Sets lens distortion.
+- getLensDistortionAmount(): Gets lens distortion amount.
+- setLensDistortionAmount(): Sets lens distortion amount.
+- getPerspectiveCorrection(): Gets perspective correction.
+- setPerspectiveCorrection(): Sets perspective correction.
+- getHorizontalPerspective(): Gets horizontal perspective.
+- setHorizontalPerspective(): Sets horizontal perspective.
+- getVerticalPerspective(): Gets vertical perspective.
+- setVerticalPerspective(): Sets vertical perspective.
+- getRotation(): Gets rotation.
+- setRotation(): Sets rotation.
+- getScale(): Gets scale.
+- setScale(): Sets scale.
+- getPositionX(): Gets X position.
+- setPositionX(): Sets X position.
+- getPositionY(): Gets Y position.
+- setPositionY(): Sets Y position.
+- getAnchorPoint(): Gets anchor point.
+- setAnchorPoint(): Sets anchor point.
+- getOpacity(): Gets opacity.
+- setOpacity(): Sets opacity.
+- getBlendMode(): Gets blend mode.
+- setBlendMode(): Sets blend mode.
+- getFillColor(): Gets fill color.
+- setFillColor(): Sets fill color.
+- getStrokeColor(): Gets stroke color.
+- setStrokeColor(): Sets stroke color.
+- getStrokeWidth(): Gets stroke width.
+- setStrokeWidth(): Sets stroke width.
+- getCornerRadius(): Gets corner radius.
+- setCornerRadius(): Sets corner radius.
+- getShadowOffset(): Gets shadow offset.
+- setShadowOffset(): Sets shadow offset.
+- getShadowBlur(): Gets shadow blur.
+- setShadowBlur(): Sets shadow blur.
+- getShadowColor(): Gets shadow color.
+- setShadowColor(): Sets shadow color.
+- getShadowOpacity(): Gets shadow opacity.
+- setShadowOpacity(): Sets shadow opacity.
+- getInnerShadow(): Gets inner shadow.
+- setInnerShadow(): Sets inner shadow.
+- getOuterGlow(): Gets outer glow.
+- setOuterGlow(): Sets outer glow.
+- getInnerGlow(): Gets inner glow.
+- setInnerGlow(): Sets inner glow.
+- getBevel(): Gets bevel.
+- setBevel(): Sets bevel.
+- getEmboss(): Gets emboss.
+- setEmboss(): Sets emboss.
+- getSatin(): Gets satin.
+- setSatin(): Sets satin.
+- getColorOverlay(): Gets color overlay.
+- setColorOverlay(): Sets color overlay.
+- getGradientOverlay(): Gets gradient overlay.
+- setGradientOverlay(): Sets gradient overlay.
+- getPatternOverlay(): Gets pattern overlay.
+- setPatternOverlay(): Sets pattern overlay.
+- getStroke(): Gets stroke.
+- setStroke(): Sets stroke.
+- getDropShadow(): Gets drop shadow.
+- setDropShadow(): Sets drop shadow.
+- resetLayerStyle(): Resets layer style.
+- copyLayerStyle(): Copies layer style.
+- pasteLayerStyle(): Pastes layer style.
+- clearLayerStyle(): Clears layer style.
+- getLayerEffects(): Gets layer effects.
+- setLayerEffects(): Sets layer effects.
+- enableLayerEffects(): Enables layer effects.
+- disableLayerEffects(): Disables layer effects.
+- getVisibleLayers(): Gets visible layers.
+- setVisibleLayers(): Sets visible layers.
+- lockLayer(): Locks a layer.
+- unlockLayer(): Unlocks a layer.
+- isLayerLocked(): Checks if layer is locked.
+- groupLayers(): Groups layers.
+- ungroupLayers(): Ungroups layers.
+- getLayerGroup(): Gets layer group.
+- setLayerGroup(): Sets layer group.
+- getLayerOrder(): Gets layer order.
+- setLayerOrder(): Sets layer order.
+- moveLayerUp(): Moves layer up.
+- moveLayerDown(): Moves layer down.
+- moveLayerToTop(): Moves layer to top.
+- moveLayerToBottom(): Moves layer to bottom.
+- duplicateLayer(): Duplicates a layer.
+- mergeLayers(): Merges layers.
+- flattenImage(): Flattens the image.
+- getCanvasSize(): Gets canvas size.
+- setCanvasSize(): Sets canvas size.
+- getImageBounds(): Gets image bounds.
+- setImageBounds(): Sets image bounds.
+- cropToBounds(): Crops to bounds.
+- trimTransparent(): Trims transparent pixels.
+- getDPI(): Gets DPI.
+- setDPI(): Sets DPI.
+- getColorProfile(): Gets color profile.
+- setColorProfile(): Sets color profile.
+- embedColorProfile(): Embeds color profile.
+- stripColorProfile(): Strips color profile.
+- getMetadata(): Gets metadata.
+- setMetadata(): Sets metadata.
+- clearMetadata(): Clears metadata.
+- getEXIF(): Gets EXIF data.
+- setEXIF(): Sets EXIF data.
+- getIPTC(): Gets IPTC data.
+- setIPTC(): Sets IPTC data.
+- getXMP(): Gets XMP data.
+- setXMP(): Sets XMP data.
+- getCopyright(): Gets copyright.
+- setCopyright(): Sets copyright.
+- getAuthor(): Gets author.
+- setAuthor(): Sets author.
+- getDescription(): Gets description.
+- setDescription(): Sets description.
+- getKeywords(): Gets keywords.
+- setKeywords(): Sets keywords.
+- addKeyword(): Adds a keyword.
+- removeKeyword(): Removes a keyword.
+- getRating(): Gets rating.
+- setRating(): Sets rating.
+- getLabel(): Gets label.
+- setLabel(): Sets label.
+- getGPS(): Gets GPS data.
+- setGPS(): Sets GPS data.
+- getTimestamp(): Gets timestamp.
+- setTimestamp(): Sets timestamp.
+- getCameraMake(): Gets camera make.
+- setCameraMake(): Sets camera make.
+- getCameraModel(): Gets camera model.
+- setCameraModel(): Sets camera model.
+- getLens(): Gets lens.
+- setLens(): Sets lens.
+- getFocalLengthEXIF(): Gets focal length from EXIF.
+- setFocalLengthEXIF(): Sets focal length in EXIF.
+- getApertureEXIF(): Gets aperture from EXIF.
+- setApertureEXIF(): Sets aperture in EXIF.
+- getShutterEXIF(): Gets shutter from EXIF.
+- setShutterEXIF(): Sets shutter in EXIF.
+- getISOEXIF(): Gets ISO from EXIF.
+- setISOEXIF(): Sets ISO in EXIF.
+- getFlash(): Gets flash info.
+- setFlash(): Sets flash info.
+- getOrientation(): Gets orientation.
+- setOrientation(): Sets orientation.
+- getSoftware(): Gets software.
+- setSoftware(): Sets software.
+- getProcessingSoftware(): Gets processing software.
+- setProcessingSoftware(): Sets processing software.
+- getDateTimeOriginal(): Gets original date/time.
+- setDateTimeOriginal(): Sets original date/time.
+- getDateTimeDigitized(): Gets digitized date/time.
+- setDateTimeDigitized(): Sets digitized date/time.
+- getDateTimeModified(): Gets modified date/time.
+- setDateTimeModified(): Sets modified date/time.
+- getGPSLatitude(): Gets GPS latitude.
+- setGPSLatitude(): Sets GPS latitude.
+- getGPSLongitude(): Gets GPS longitude.
+- setGPSLongitude(): Sets GPS longitude.
+- getGPSAltitude(): Gets GPS altitude.
+- setGPSAltitude(): Sets GPS altitude.
+- getGPSSpeed(): Gets GPS speed.
+- setGPSSpeed(): Sets GPS speed.
+- getGPSDirection(): Gets GPS direction.
+- setGPSDirection(): Sets GPS direction.
+- getGPSTimestamp(): Gets GPS timestamp.
+- setGPSTimestamp(): Sets GPS timestamp.
+- getImageUniqueID(): Gets image unique ID.
+- setImageUniqueID(): Sets image unique ID.
+- generateImageUniqueID(): Generates image unique ID.
+- getBodySerialNumber(): Gets body serial number.
+- setBodySerialNumber(): Sets body serial number.
+- getLensSerialNumber(): Gets lens serial number.
+- setLensSerialNumber(): Sets lens serial number.
+- getOwnerName(): Gets owner name.
+- setOwnerName(): Sets owner name.
+- getArtist(): Gets artist.
+- setArtist(): Sets artist.
+- getCopyrightNotice(): Gets copyright notice.
+- setCopyrightNotice(): Sets copyright notice.
+- getUserComment(): Gets user comment.
+- setUserComment(): Sets user comment.
+- getMakerNote(): Gets maker note.
+- setMakerNote(): Sets maker note.
+- getThumbnail(): Gets thumbnail.
+- setThumbnail(): Sets thumbnail.
+- generateThumbnail(): Generates thumbnail.
+- getPreview(): Gets preview.
+- setPreview(): Sets preview.
+- generatePreview(): Generates preview.
+- getFullImage(): Gets full image.
+- setFullImage(): Sets full image.
+- getRawData(): Gets raw data.
+- setRawData(): Sets raw data.
+- isRaw(): Checks if raw.
+- convertRaw(): Converts raw.
+- getRawSettings(): Gets raw settings.
+- setRawSettings(): Sets raw settings.
+- getDemosaic(): Gets demosaic method.
+- setDemosaic(): Sets demosaic method.
+- getNoiseReductionRaw(): Gets raw noise reduction.
+- setNoiseReductionRaw(): Sets raw noise reduction.
+- getSharpeningRaw(): Gets raw sharpening.
+- setSharpeningRaw(): Sets raw sharpening.
+- getLensCorrection(): Gets lens correction.
+- setLensCorrection(): Sets lens correction.
+- getChromaticAberrationCorrection(): Gets CA correction.
+- setChromaticAberrationCorrection(): Sets CA correction.
+- getVignettingCorrection(): Gets vignetting correction.
+- setVignettingCorrection(): Sets vignetting correction.
+- getDistortionCorrection(): Gets distortion correction.
+- setDistortionCorrection(): Sets distortion correction.
+- getPerspectiveCorrectionRaw(): Gets raw perspective correction.
+- setPerspectiveCorrectionRaw(): Sets raw perspective correction.
+- getHighlightRecovery(): Gets highlight recovery.
+- setHighlightRecovery(): Sets highlight recovery.
+- getShadowRecovery(): Gets shadow recovery.
+- setShadowRecovery(): Sets shadow recovery.
+- getClarityRaw(): Gets raw clarity.
+- setClarityRaw(): Sets raw clarity.
+- getVibranceRaw(): Gets raw vibrance.
+- setVibranceRaw(): Sets raw vibrance.
+- getSaturationRaw(): Gets raw saturation.
+- setSaturationRaw(): Sets raw saturation.
+- getContrastRaw(): Gets raw contrast.
+- setContrastRaw(): Sets raw contrast.
+- getExposureRaw(): Gets raw exposure.
+- setExposureRaw(): Sets raw exposure.
+- getWhiteBalanceRaw(): Gets raw white balance.
+- setWhiteBalanceRaw(): Sets raw white balance.
+- getTemperatureRaw(): Gets raw temperature.
+- setTemperatureRaw(): Sets raw temperature.
+- getTintRaw(): Gets raw tint.
+- setTintRaw(): Sets raw tint.
+- getColorProfileRaw(): Gets raw color profile.
+- setColorProfileRaw(): Sets raw color profile.
+- getOutputColorSpace(): Gets output color space.
+- setOutputColorSpace(): Sets output color space.
+- getBitDepth(): Gets bit depth.
+- setBitDepth(): Sets bit depth.
+- getCompression(): Gets compression.
+- setCompression(): Sets compression.
+- getQualitySetting(): Gets quality setting.
+- setQualitySetting(): Sets quality setting.
+- getProgressive(): Gets progressive.
+- setProgressive(): Sets progressive.
+- getOptimize(): Gets optimize.
+- setOptimize(): Sets optimize.
+- getInterlace(): Gets interlace.
+- setInterlace(): Sets interlace.
+- getAlpha(): Gets alpha.
+- setAlpha(): Sets alpha.
+- getTransparency(): Gets transparency.
+- setTransparency(): Sets transparency.
+- getBackgroundColor(): Gets background color.
+- setBackgroundColor(): Sets background color.
+- getMatte(): Gets matte.
+- setMatte(): Sets matte.
+- getClippingPath(): Gets clipping path.
+- setClippingPath(): Sets clipping path.
+- getLayered(): Gets layered.
+- setLayered(): Sets layered.
+- getAnimationFrames(): Gets animation frames.
+- setAnimationFrames(): Sets animation frames.
+- getFrameRate(): Gets frame rate.
+- setFrameRate(): Sets frame rate.
+- getDuration(): Gets duration.
+- setDuration(): Sets duration.
+- getLoop(): Gets loop.
+- setLoop(): Sets loop.
+- getPlaybackSpeed(): Gets playback speed.
+- setPlaybackSpeed(): Sets playback speed.
+- getAudio(): Gets audio.
+- setAudio(): Sets audio.
+- getAudioTrack(): Gets audio track.
+- setAudioTrack(): Sets audio track.
+- getVideoCodec(): Gets video codec.
+- setVideoCodec(): Sets video codec.
+- getAudioCodec(): Gets audio codec.
+- setAudioCodec(): Sets audio codec.
+- getBitrate(): Gets bitrate.
+- setBitrate(): Sets bitrate.
+- getKeyframeInterval(): Gets keyframe interval.
+- setKeyframeInterval(): Sets keyframe interval.
+- getProfile(): Gets profile.
+- setProfile(): Sets profile.
+- getLevel(): Gets level.
+- setLevel(): Sets level.
+- getPreset(): Gets preset.
+- setPreset(): Sets preset.
+- getCustomSettings(): Gets custom settings.
+- setCustomSettings(): Sets custom settings.
+- saveSettings(): Saves settings.
+- loadSettings(): Loads settings.
+- resetSettings(): Resets settings.
+- getDefaultSettings(): Gets default settings.
+- setDefaultSettings(): Sets default settings.
+- exportSettings(): Exports settings.
+- importSettings(): Imports settings.
+- getAvailablePresets(): Lists available presets.
+- applyPreset(): Applies a preset.
+- createPreset(): Creates a preset.
+- deletePreset(): Deletes a preset.
+- renamePreset(): Renames a preset.
+- getPresetName(): Gets preset name.
+- setPresetName(): Sets preset name.
+- getPresetDescription(): Gets preset description.
+- setPresetDescription(): Sets preset description.
+- getPresetThumbnail(): Gets preset thumbnail.
+- setPresetThumbnail(): Sets preset thumbnail.
+- getPresetCategory(): Gets preset category.
+- setPresetCategory(): Sets preset category.
+- getPresetTags(): Gets preset tags.
+- setPresetTags(): Sets preset tags.
+- addPresetTag(): Adds a preset tag.
+- removePresetTag(): Removes a preset tag.
+- searchPresets(): Searches presets.
+- filterPresets(): Filters presets.
+- sortPresets(): Sorts presets.
+- getRecentPresets(): Gets recent presets.
+- getFavoritePresets(): Gets favorite presets.
+- addToFavorites(): Adds to favorites.
+- removeFromFavorites(): Removes from favorites.
+- isFavorite(): Checks if favorite.
+- getUsageCount(): Gets usage count.
+- incrementUsageCount(): Increments usage count.
+- getLastUsed(): Gets last used.
+- setLastUsed(): Sets last used.
+- getCreatedDate(): Gets created date.
+- setCreatedDate(): Sets created date.
+- getModifiedDate(): Gets modified date.
+- setModifiedDate(): Sets modified date.
+- getAuthorPreset(): Gets preset author.
+- setAuthorPreset(): Sets preset author.
+- getVersionPreset(): Gets preset version.
+- setVersionPreset(): Sets preset version.
+- getCompatibility(): Gets compatibility.
+- setCompatibility(): Sets compatibility.
+- isCompatible(): Checks compatibility.
+- getDependencies(): Gets dependencies.
+- setDependencies(): Sets dependencies.
+- addDependency(): Adds a dependency.
+- removeDependency(): Removes a dependency.
+- resolveDependencies(): Resolves dependencies.
+- getMissingDependencies(): Gets missing dependencies.
+- downloadDependencies(): Downloads dependencies.
+- installDependencies(): Installs dependencies.
+- updateDependencies(): Updates dependencies.
+- checkForUpdates(): Checks for updates.
+- getAvailableUpdates(): Gets available updates.
+- applyUpdate(): Applies an update.
+- rollbackUpdate(): Rolls back an update.
+- getUpdateHistory(): Gets update history.
+- clearUpdateHistory(): Clears update history.
+- getBackup(): Gets backup.
+- createBackup(): Creates a backup.
+- restoreBackup(): Restores a backup.
+- deleteBackup(): Deletes a backup.
+- listBackups(): Lists backups.
+- getBackupDate(): Gets backup date.
+- getBackupSize(): Gets backup size.
+- getBackupDescription(): Gets backup description.
+- setBackupDescription(): Sets backup description.
+- compressBackup(): Compresses a backup.
+- decompressBackup(): Decompresses a backup.
+- verifyBackup(): Verifies a backup.
+- repairBackup(): Repairs a backup.
+- getBackupIntegrity(): Gets backup integrity.
+- setBackupIntegrity(): Sets backup integrity.
+- getEncryption(): Gets encryption.
+- setEncryption(): Sets encryption.
+- encryptBackup(): Encrypts a backup.
+- decryptBackup(): Decrypts a backup.
+- getPassword(): Gets password.
+- setPassword(): Sets password.
+- changePassword(): Changes password.
+- resetPassword(): Resets password.
+- getSecurity(): Gets security settings.
+- setSecurity(): Sets security settings.
+- enableSecurity(): Enables security.
+- disableSecurity(): Disables security.
+- getAccessControl(): Gets access control.
+- setAccessControl(): Sets access control.
+- addUser(): Adds a user.
+- removeUser(): Removes a user.
+- getUsers(): Lists users.
+- getUserPermissions(): Gets user permissions.
+- setUserPermissions(): Sets user permissions.
+- getRoles(): Lists roles.
+- addRole(): Adds a role.
+- removeRole(): Removes a role.
+- assignRole(): Assigns a role.
+- revokeRole(): Revokes a role.
+- getAuditLog(): Gets audit log.
+- clearAuditLog(): Clears audit log.
+- logEvent(): Logs an event.
+- getEventTypes(): Lists event types.
+- filterEvents(): Filters events.
+- exportAuditLog(): Exports audit log.
+- getCompliance(): Gets compliance.
+- setCompliance(): Sets compliance.
+- checkCompliance(): Checks compliance.
+- generateComplianceReport(): Generates compliance report.
+- getLicense(): Gets license.
+- setLicense(): Sets license.
+- validateLicense(): Validates license.
+- activateLicense(): Activates license.
+- deactivateLicense(): Deactivates license.
+- getLicenseStatus(): Gets license status.
+- getLicenseExpiry(): Gets license expiry.
+- renewLicense(): Renews license.
+- getTrial(): Gets trial.
+- startTrial(): Starts trial.
+- endTrial(): Ends trial.
+- getTrialStatus(): Gets trial status.
+- getTrialDaysLeft(): Gets trial days left.
+- convertTrial(): Converts trial.
+- getSubscription(): Gets subscription.
+- setSubscription(): Sets subscription.
+- cancelSubscription(): Cancels subscription.
+- renewSubscription(): Renews subscription.
+- getSubscriptionStatus(): Gets subscription status.
+- getBilling(): Gets billing.
+- setBilling(): Sets billing.
+- getInvoice(): Gets invoice.
+- listInvoices(): Lists invoices.
+- downloadInvoice(): Downloads invoice.
+- getPaymentMethod(): Gets payment method.
+- setPaymentMethod(): Sets payment method.
+- addPaymentMethod(): Adds payment method.
+- removePaymentMethod(): Removes payment method.
+- getUsage(): Gets usage.
+- setUsage(): Sets usage.
+- getQuota(): Gets quota.
+- setQuota(): Sets quota.
+- getRemainingQuota(): Gets remaining quota.
+- resetQuota(): Resets quota.
+- getOverage(): Gets overage.
+- setOverage(): Sets overage.
+- getAlerts(): Gets alerts.
+- setAlerts(): Sets alerts.
+- addAlert(): Adds an alert.
+- removeAlert(): Removes an alert.
+- getNotifications(): Gets notifications.
+- setNotifications(): Sets notifications.
+- sendNotification(): Sends a notification.
+- getEmailSettings(): Gets email settings.
+- setEmailSettings(): Sets email settings.
+- getSMSSettings(): Gets SMS settings.
+- setSMSSettings(): Sets SMS settings.
+- getPushSettings(): Gets push settings.
+- setPushSettings(): Sets push settings.
+- getWebhook(): Gets webhook.
+- setWebhook(): Sets webhook.
+- addWebhook(): Adds a webhook.
+- removeWebhook(): Removes a webhook.
+- testWebhook(): Tests a webhook.
+- getAPIKey(): Gets API key.
+- setAPIKey(): Sets API key.
+- generateAPIKey(): Generates API key.
+- revokeAPIKey(): Revokes API key.
+- getAPIKeys(): Lists API keys.
+- getRateLimit(): Gets rate limit.
+- setRateLimit(): Sets rate limit.
+- getRemainingCalls(): Gets remaining calls.
+- resetRateLimit(): Resets rate limit.
+- getAPIVersionInfo(): Gets API version info.
+- getChangelog(): Gets changelog.
+- getReleaseNotes(): Gets release notes.
+- getDocumentation(): Gets documentation.
+- getSupport(): Gets support.
+- contactSupport(): Contacts support.
+- getFAQ(): Gets FAQ.
+- getTutorials(): Gets tutorials.
+- getExamples(): Gets examples.
+- getSampleCode(): Gets sample code.
+- getCommunity(): Gets community.
+- getForum(): Gets forum.
+- postToForum(): Posts to forum.
+- getBlog(): Gets blog.
+- getNews(): Gets news.
+- getEvents(): Gets events.
+- registerForEvent(): Registers for event.
+- getWebinars(): Gets webinars.
+- joinWebinar(): Joins webinar.
+- getTraining(): Gets training.
+- enrollInTraining(): Enrolls in training.
+- getCertification(): Gets certification.
+- applyForCertification(): Applies for certification.
+- getPartners(): Gets partners.
+- becomePartner(): Becomes a partner.
+- getMarketplace(): Gets marketplace.
+- browseMarketplace(): Browses marketplace.
+- purchaseItem(): Purchases an item.
+- getCart(): Gets cart.
+- addToCart(): Adds to cart.
+- removeFromCart(): Removes from cart.
+- checkout(): Checks out.
+- getOrder(): Gets order.
+- listOrders(): Lists orders.
+- cancelOrder(): Cancels order.
+- getShipping(): Gets shipping.
+- setShipping(): Sets shipping.
+- trackShipment(): Tracks shipment.
+- getReturns(): Gets returns.
+- initiateReturn(): Initiates return.
+- getRefund(): Gets refund.
+- processRefund(): Processes refund.
+- getWarranty(): Gets warranty.
+- registerWarranty(): Registers warranty.
+- getSupportTicket(): Gets support ticket.
+- createSupportTicket(): Creates support ticket.
+- updateSupportTicket(): Updates support ticket.
+- closeSupportTicket(): Closes support ticket.
+- getKnowledgeBase(): Gets knowledge base.
+- searchKnowledgeBase(): Searches knowledge base.
+- getArticle(): Gets article.
+- rateArticle(): Rates article.
+- getFeedback(): Gets feedback.
+- submitFeedback(): Submits feedback.
+- getSurvey(): Gets survey.
+- submitSurvey(): Submits survey.
+- getAnalytics(): Gets analytics.
+- trackEvent(): Tracks event.
+- getMetrics(): Gets metrics.
+- getDashboard(): Gets dashboard.
+- customizeDashboard(): Customizes dashboard.
+- getReports(): Gets reports.
+- generateReport(): Generates report.
+- scheduleReport(): Schedules report.
+- exportReport(): Exports report.
+- getInsights(): Gets insights.
+- getRecommendations(): Gets recommendations.
+- applyRecommendation(): Applies recommendation.
+- getPredictions(): Gets predictions.
+- getForecast(): Gets forecast.
+- getTrends(): Gets trends.
+- getBenchmarks(): Gets benchmarks.
+- compareToBenchmark(): Compares to benchmark.
+- getGoals(): Gets goals.
+- setGoals(): Sets goals.
+- trackGoals(): Tracks goals.
+- getKPIs(): Gets KPIs.
+- setKPIs(): Sets KPIs.
+- getAlertsThreshold(): Gets alert threshold.
+- setAlertsThreshold(): Sets alert threshold.
+- getAnomalies(): Gets anomalies.
+- detectAnomalies(): Detects anomalies.
+- getRootCause(): Gets root cause.
+- analyzeRootCause(): Analyzes root cause.
+- getActions(): Gets actions.
+- recommendActions(): Recommends actions.
+- executeAction(): Executes action.
+- getAutomation(): Gets automation.
+- setAutomation(): Sets automation.
+- enableAutomation(): Enables automation.
+- disableAutomation(): Disables automation.
+- getWorkflows(): Gets workflows.
+- createWorkflow(): Creates workflow.
+- editWorkflow(): Edits workflow.
+- deleteWorkflow(): Deletes workflow.
+- runWorkflow(): Runs workflow.
+- getWorkflowStatus(): Gets workflow status.
+- pauseWorkflow(): Pauses workflow.
+- resumeWorkflow(): Resumes workflow.
+- getTriggers(): Gets triggers.
+- addTrigger(): Adds trigger.
+- removeTrigger(): Removes trigger.
+- getConditions(): Gets conditions.
+- addCondition(): Adds condition.
+- removeCondition(): Removes condition.
+- getActionsWorkflow(): Gets workflow actions.
+- addAction(): Adds action.
+- removeAction(): Removes action.
+- getIntegrations(): Gets integrations.
+- addIntegration(): Adds integration.
+- removeIntegration(): Removes integration.
+- testIntegration(): Tests integration.
+- getConnectors(): Gets connectors.
+- addConnector(): Adds connector.
+- removeConnector(): Removes connector.
+- getDataSources(): Gets data sources.
+- addDataSource(): Adds data source.
+- removeDataSource(): Removes data source.
+- syncDataSource(): Syncs data source.
+- getMappings(): Gets mappings.
+- setMappings(): Sets mappings.
+- getTransformations(): Gets transformations.
+- addTransformation(): Adds transformation.
+- removeTransformation(): Removes transformation.
+- getSchedules(): Gets schedules.
+- addSchedule(): Adds schedule.
+- removeSchedule(): Removes schedule.
+- getHistory(): Gets history.
+- clearHistory(): Clears history.
+- getLogs(): Gets logs.
+- clearLogs(): Clears logs.
+- getErrors(): Gets errors.
+- clearErrors(): Clears errors.
+- getWarnings(): Gets warnings.
+- clearWarnings(): Clears warnings.
+- getDebug(): Gets debug info.
+- setDebug(): Sets debug.
+- enableDebug(): Enables debug.
+- disableDebug(): Disables debug.
+- getTrace(): Gets trace.
+- setTrace(): Sets trace.
+- enableTrace(): Enables trace.
+- disableTrace(): Disables trace.
+- getProfile(): Gets profile.
+- setProfile(): Sets profile.
+- startProfiling(): Starts profiling.
+- stopProfiling(): Stops profiling.
+- getProfileResults(): Gets profile results.
+- exportProfile(): Exports profile.
+- getMemoryProfile(): Gets memory profile.
+- getCPUProfile(): Gets CPU profile.
+- getGPUProfile(): Gets GPU profile.
+- getNetworkProfile(): Gets network profile.
+- getDiskProfile(): Gets disk profile.
+- getBottlenecks(): Gets bottlenecks.
+- identifyBottlenecks(): Identifies bottlenecks.
+- getOptimizations(): Gets optimizations.
+- applyOptimizations(): Applies optimizations.
+- getPerformance(): Gets performance.
+- measurePerformance(): Measures performance.
+- getBenchmarksPerf(): Gets performance benchmarks.
+- runBenchmark(): Runs benchmark.
+- getScore(): Gets score.
+- compareScores(): Compares scores.
+- getRanking(): Gets ranking.
+- getLeaderboard(): Gets leaderboard.
+- submitScore(): Submits score.
+- getAchievements(): Gets achievements.
+- unlockAchievement(): Unlocks achievement.
+- getBadges(): Gets badges.
+- earnBadge(): Earns badge.
+- getRewards(): Gets rewards.
+- claimReward(): Claims reward.
+- getPoints(): Gets points.
+- addPoints(): Adds points.
+- redeemPoints(): Redeems points.
+- getLevel(): Gets level.
+- setLevel(): Sets level.
+- levelUp(): Levels up.
+- getExperience(): Gets experience.
+- addExperience(): Adds experience.
+- getSkills(): Gets skills.
+- addSkill(): Adds skill.
+- upgradeSkill(): Upgrades skill.
+- getInventory(): Gets inventory.
+- addItem(): Adds item.
+- removeItem(): Removes item.
+- useItem(): Uses item.
+- equipItem(): Equips item.
+- unequipItem(): Unequips item.
+- getEquipment(): Gets equipment.
+- setEquipment(): Sets equipment.
+- getStats(): Gets stats.
+- setStats(): Sets stats.
+- getAttributes(): Gets attributes.
+- setAttributes(): Sets attributes.
+- getModifiers(): Gets modifiers.
+- addModifier(): Adds modifier.
+- removeModifier(): Removes modifier.
+- getBuffs(): Gets buffs.
+- addBuff(): Adds buff.
+- removeBuff(): Removes buff.
+- getDebuffs(): Gets debuffs.
+- addDebuff(): Adds debuff.
+- removeDebuff(): Removes debuff.
+- getStatusEffects(): Gets status effects.
+- applyStatusEffect(): Applies status effect.
+- removeStatusEffect(): Removes status effect.
+- getHealth(): Gets health.
+- setHealth(): Sets health.
+- heal(): Heals.
+- damage(): Damages.
+- getMana(): Gets mana.
+- setMana(): Sets mana.
+- restoreMana(): Restores mana.
+- consumeMana(): Consumes mana.
+- getStamina(): Gets stamina.
+- setStamina(): Sets stamina.
+- restoreStamina(): Restores stamina.
+- consumeStamina(): Consumes stamina.
+- getEnergy(): Gets energy.
+- setEnergy(): Sets energy.
+- restoreEnergy(): Restores energy.
+- consumeEnergy(): Consumes energy.
+- getCooldowns(): Gets cooldowns.
+- setCooldown(): Sets cooldown.
+- resetCooldown(): Resets cooldown.
+- getAbilities(): Gets abilities.
+- useAbility(): Uses ability.
+- getSpells(): Gets spells.
+- castSpell(): Casts spell.
+- getSkillsCombat(): Gets combat skills.
+- useSkill(): Uses skill.
+- getWeapons(): Gets weapons.
+- equipWeapon(): Equips weapon.
+- attack(): Attacks.
+- defend(): Defends.
+- dodge(): Dodges.
+- block(): Blocks.
+- parry(): Parries.
+- counter(): Counters.
+- getCombatLog(): Gets combat log.
+- clearCombatLog(): Clears combat log.
+- getDamageDealt(): Gets damage dealt.
+- getDamageTaken(): Gets damage taken.
+- getHealingDone(): Gets healing done.
+- getHealingReceived(): Gets healing received.
+- getKills(): Gets kills.
+- getDeaths(): Gets deaths.
+- getAssists(): Gets assists.
+- getKDRatio(): Gets K/D ratio.
+- getWinRate(): Gets win rate.
+- getMatches(): Gets matches.
+- getWins(): Gets wins.
+- getLosses(): Gets losses.
+- getDraws(): Gets draws.
+- getRank(): Gets rank.
+- setRank(): Sets rank.
+- promote(): Promotes.
+- demote(): Demotes.
+- getElo(): Gets Elo.
+- setElo(): Sets Elo.
+- calculateElo(): Calculates Elo.
+- getMMR(): Gets MMR.
+- setMMR(): Sets MMR.
+- getDivision(): Gets division.
+- setDivision(): Sets division.
+- getTier(): Gets tier.
+- setTier(): Sets tier.
+- getSeason(): Gets season.
+- setSeason(): Sets season.
+- getSeasonRewards(): Gets season rewards.
+- claimSeasonRewards(): Claims season rewards.
+- getBattlePass(): Gets battle pass.
+- setBattlePass(): Sets battle pass.
+- getBattlePassLevel(): Gets battle pass level.
+- setBattlePassLevel(): Sets battle pass level.
+- getBattlePassRewards(): Gets battle pass rewards.
+- claimBattlePassReward(): Claims battle pass reward.
+- getChallenges(): Gets challenges.
+- completeChallenge(): Completes challenge.
+- getDailyChallenges(): Gets daily challenges.
+- getWeeklyChallenges(): Gets weekly challenges.
+- getSeasonChallenges(): Gets season challenges.
+- getEventChallenges(): Gets event challenges.
+- getLimitedTime(): Gets limited time.
+- startLimitedTime(): Starts limited time.
+- endLimitedTime(): Ends limited time.
+- getEvent(): Gets event.
+- joinEvent(): Joins event.
+- leaveEvent(): Leaves event.
+- getEventRewards(): Gets event rewards.
+- claimEventReward(): Claims event reward.
+- getLeaderboardEvent(): Gets event leaderboard.
+- getTournaments(): Gets tournaments.
+- joinTournament(): Joins tournament.
+- leaveTournament(): Leaves tournament.
+- getBracket(): Gets bracket.
+- getMatch(): Gets match.
+- startMatch(): Starts match.
+- endMatch(): Ends match.
+- getScoreMatch(): Gets match score.
+- setScoreMatch(): Sets match score.
+- getWinner(): Gets winner.
+- setWinner(): Sets winner.
+- getReplay(): Gets replay.
+- saveReplay(): Saves replay.
+- loadReplay(): Loads replay.
+- deleteReplay(): Deletes replay.
+- getSpectate(): Gets spectate.
+- startSpectate(): Starts spectate.
+- stopSpectate(): Stops spectate.
+- getChat(): Gets chat.
+- sendMessage(): Sends message.
+- getFriends(): Gets friends.
+- addFriend(): Adds friend.
+- removeFriend(): Removes friend.
+- getParty(): Gets party.
+- createParty(): Creates party.
+- joinParty(): Joins party.
+- leaveParty(): Leaves party.
+- inviteToParty(): Invites to party.
+- kickFromParty(): Kicks from party.
+- getGuild(): Gets guild.
+- createGuild(): Creates guild.
+- joinGuild(): Joins guild.
+- leaveGuild(): Leaves guild.
+- getGuildMembers(): Gets guild members.
+- promoteMember(): Promotes member.
+- demoteMember(): Demotes member.
+- getGuildRank(): Gets guild rank.
+- setGuildRank(): Sets guild rank.
+- getGuildPerks(): Gets guild perks.
+- unlockGuildPerk(): Unlocks guild perk.
+- getGuildWars(): Gets guild wars.
+- declareWar(): Declares war.
+- getAlliance(): Gets alliance.
+- formAlliance(): Forms alliance.
+- breakAlliance(): Breaks alliance.
+- getTrade(): Gets trade.
+- offerTrade(): Offers trade.
+- acceptTrade(): Accepts trade.
+- declineTrade(): Declines trade.
+- getAuction(): Gets auction.
+- listAuction(): Lists auction.
+- bidAuction(): Bids on auction.
+- buyoutAuction(): Buys out auction.
+- getMarket(): Gets market.
+- listMarket(): Lists market.
+- buyMarket(): Buys from market.
+- sellMarket(): Sells on market.
+- getCurrency(): Gets currency.
+- addCurrency(): Adds currency.
+- spendCurrency(): Spends currency.
+- getPremiumCurrency(): Gets premium currency.
+- addPremiumCurrency(): Adds premium currency.
+- spendPremiumCurrency(): Spends premium currency.
+- getStore(): Gets store.
+- browseStore(): Browses store.
+- purchaseStoreItem(): Purchases store item.
+- getBundles(): Gets bundles.
+- purchaseBundle(): Purchases bundle.
+- getSales(): Gets sales.
+- applyDiscount(): Applies discount.
+- getCoupons(): Gets coupons.
+- applyCoupon(): Applies coupon.
+- getGifts(): Gets gifts.
+- sendGift(): Sends gift.
+- receiveGift(): Receives gift.
+- getWishlist(): Gets wishlist.
+- addToWishlist(): Adds to wishlist.
+- removeFromWishlist(): Removes from wishlist.
+- getRecommendationsStore(): Gets store recommendations.
+- getPersonalized(): Gets personalized.
+- getSimilar(): Gets similar.
+- getPopular(): Gets popular.
+- getNew(): Gets new.
+- getTrending(): Gets trending.
+- getFeatured(): Gets featured.
+- getCategories(): Gets categories.
+- browseCategory(): Browses category.
+- getSearch(): Gets search.
+- searchStore(): Searches store.
+- getFilters(): Gets filters.
+- applyFilter(): Applies filter.
+- clearFilters(): Clears filters.
+- getSort(): Gets sort.
+- setSort(): Sets sort.
+- getPagination(): Gets pagination.
+- setPage(): Sets page.
+- getResultsPerPage(): Gets results per page.
+- setResultsPerPage(): Sets results per page.
+- getTotalResults(): Gets total results.
+- getHasMore(): Checks if has more.
+- loadMore(): Loads more.
+- getInfiniteScroll(): Gets infinite scroll.
+- enableInfiniteScroll(): Enables infinite scroll.
+- disableInfiniteScroll(): Disables infinite scroll.
+- getLazyLoad(): Gets lazy load.
+- enableLazyLoad(): Enables lazy load.
+- disableLazyLoad(): Disables lazy load.
+- getCache(): Gets cache.
+- clearCache(): Clears cache.
+- getCacheSize(): Gets cache size.
+- setCacheSize(): Sets cache size.
+- getCachePolicy(): Gets cache policy.
+- setCachePolicy(): Sets cache policy.
+- invalidateCache(): Invalidates cache.
+- refreshCache(): Refreshes cache.
+- getOffline(): Gets offline.
+- enableOffline(): Enables offline.
+- disableOffline(): Disables offline.
+- syncOffline(): Syncs offline.
+- getQueue(): Gets queue.
+- addToQueue(): Adds to queue.
+- removeFromQueue(): Removes from queue.
+- clearQueue(): Clears queue.
+- processQueue(): Processes queue.
+- getRetry(): Gets retry.
+- setRetry(): Sets retry.
+- getMaxRetries(): Gets max retries.
+- setMaxRetries(): Sets max retries.
+- getBackoff(): Gets backoff.
+- setBackoff(): Sets backoff.
+- getTimeout(): Gets timeout.
+- setTimeout(): Sets timeout.
+- getCircuitBreaker(): Gets circuit breaker.
+- openCircuit(): Opens circuit.
+- closeCircuit(): Closes circuit.
+- getHealthCheck(): Gets health check.
+- performHealthCheck(): Performs health check.
+- getStatusPage(): Gets status page.
+- updateStatus(): Updates status.
+- getIncidents(): Gets incidents.
+- createIncident(): Creates incident.
+- resolveIncident(): Resolves incident.
+- getMaintenance(): Gets maintenance.
+- scheduleMaintenance(): Schedules maintenance.
+- getUptime(): Gets uptime.
+- getDowntime(): Gets downtime.
+- getSLA(): Gets SLA.
+- checkSLA(): Checks SLA.
+- getAvailability(): Gets availability.
+- calculateAvailability(): Calculates availability.
+- getLatency(): Gets latency.
+- measureLatency(): Measures latency.
+- getThroughput(): Gets throughput.
+- measureThroughput(): Measures throughput.
+- getErrorRate(): Gets error rate.
+- calculateErrorRate(): Calculates error rate.
+- getSuccessRate(): Gets success rate.
+- calculateSuccessRate(): Calculates success rate.
+- getResponseTime(): Gets response time.
+- measureResponseTime(): Measures response time.
+- getP95(): Gets P95.
+- getP99(): Gets P99.
+- getAverage(): Gets average.
+- getMedian(): Gets median.
+- getMin(): Gets min.
+- getMax(): Gets max.
+- getStdDev(): Gets std dev.
+- getVariance(): Gets variance.
+- getPercentile(): Gets percentile.
+- calculatePercentile(): Calculates percentile.
+- getHistogramStats(): Gets histogram stats.
+- getDistribution(): Gets distribution.
+- getOutliers(): Gets outliers.
+- detectOutliers(): Detects outliers.
+- getCorrelation(): Gets correlation.
+- calculateCorrelation(): Calculates correlation.
+- getRegression(): Gets regression.
+- performRegression(): Performs regression.
+- getPrediction(): Gets prediction.
+- makePrediction(): Makes prediction.
+- getConfidence(): Gets confidence.
+- setConfidence(): Sets confidence.
+- getInterval(): Gets interval.
+- setInterval(): Sets interval.
+- getModel(): Gets model.
+- trainModel(): Trains model.
+- evaluateModel(): Evaluates model.
+- deployModel(): Deploys model.
+- getModelVersion(): Gets model version.
+- setModelVersion(): Sets model version.
+- getModelAccuracy(): Gets model accuracy.
+- setModelAccuracy(): Sets model accuracy.
+- getModelPrecision(): Gets model precision.
+- setModelPrecision(): Sets model precision.
+- getModelRecall(): Gets model recall.
+- setModelRecall(): Sets model recall.
+- getModelF1(): Gets model F1.
+- setModelF1(): Sets model F1.
+- getConfusionMatrix(): Gets confusion matrix.
+- calculateConfusionMatrix(): Calculates confusion matrix.
+- getROC(): Gets ROC.
+- calculateROC(): Calculates ROC.
+- getAUC(): Gets AUC.
+- calculateAUC(): Calculates AUC.
+- getFeatureImportance(): Gets feature importance.
+- calculateFeatureImportance(): Calculates feature importance.
+- getSHAP(): Gets SHAP.
+- calculateSHAP(): Calculates SHAP.
+- getLIME(): Gets LIME.
+- calculateLIME(): Calculates LIME.
+- getExplainability(): Gets explainability.
+- generateExplanation(): Generates explanation.
+- getBias(): Gets bias.
+- detectBias(): Detects bias.
+- mitigateBias(): Mitigates bias.
+- getFairness(): Gets fairness.
+- assessFairness(): Assesses fairness.
+- getPrivacy(): Gets privacy.
+- setPrivacy(): Sets privacy.
+- anonymize(): Anonymizes.
+- pseudonymize(): Pseudonymizes.
+- getDifferentialPrivacy(): Gets differential privacy.
+- applyDifferentialPrivacy(): Applies differential privacy.
+- getEncryptionData(): Gets data encryption.
+- encryptData(): Encrypts data.
+- decryptData(): Decrypts data.
+- getHash(): Gets hash.
+- hashData(): Hashes data.
+- getSalt(): Gets salt.
+- setSalt(): Sets salt.
+- getToken(): Gets token.
+- generateToken(): Generates token.
+- validateToken(): Validates token.
+- revokeToken(): Revokes token.
+- getSession(): Gets session.
+- createSession(): Creates session.
+- destroySession(): Destroys session.
+- getSessionTimeout(): Gets session timeout.
+- setSessionTimeout(): Sets session timeout.
+- refreshSession(): Refreshes session.
+- getCSRF(): Gets CSRF.
+- generateCSRF(): Generates CSRF.
+- validateCSRF(): Validates CSRF.
+- getXSS(): Gets XSS.
+- sanitizeXSS(): Sanitizes XSS.
+- getSQLInjection(): Gets SQL injection.
+- preventSQLInjection(): Prevents SQL injection.
+- getInputValidation(): Gets input validation.
+- validateInput(): Validates input.
+- getOutputEncoding(): Gets output encoding.
+- encodeOutput(): Encodes output.
+- getContentSecurityPolicy(): Gets CSP.
+- setContentSecurityPolicy(): Sets CSP.
+- getCORS(): Gets CORS.
+- setCORS(): Sets CORS.
+- getRateLimiting(): Gets rate limiting.
+- applyRateLimiting(): Applies rate limiting.
+- getThrottling(): Gets throttling.
+- applyThrottling(): Applies throttling.
+- getLoadBalancing(): Gets load balancing.
+- setLoadBalancing(): Sets load balancing.
+- getScaling(): Gets scaling.
+- setScaling(): Sets scaling.
+- getAutoScaling(): Gets auto scaling.
+- enableAutoScaling(): Enables auto scaling.
+- disableAutoScaling(): Disables auto scaling.
+- getReplicas(): Gets replicas.
+- setReplicas(): Sets replicas.
+- getPods(): Gets pods.
+- getContainers(): Gets containers.
+- getImages(): Gets images.
+- pullImage(): Pulls image.
+- pushImage(): Pushes image.
+- buildImage(): Builds image.
+- getDockerfile(): Gets Dockerfile.
+- setDockerfile(): Sets Dockerfile.
+- getCompose(): Gets compose.
+- setCompose(): Sets compose.
+- getKubernetes(): Gets Kubernetes.
+- setKubernetes(): Sets Kubernetes.
+- getHelm(): Gets Helm.
+- setHelm(): Sets Helm.
+- getTerraform(): Gets Terraform.
+- setTerraform(): Sets Terraform.
+- getAnsible(): Gets Ansible.
+- setAnsible(): Sets Ansible.
+- getCI(): Gets CI.
+- setCI(): Sets CI.
+- getCD(): Gets CD.
+- setCD(): Sets CD.
+- getPipeline(): Gets pipeline.
+- setPipeline(): Sets pipeline.
+- runPipeline(): Runs pipeline.
+- getPipelineStatus(): Gets pipeline status.
+- getStages(): Gets stages.
+- addStage(): Adds stage.
+- removeStage(): Removes stage.
+- getJobs(): Gets jobs.
+- addJobPipeline(): Adds job to pipeline.
+- removeJobPipeline(): Removes job from pipeline.
+- getArtifacts(): Gets artifacts.
+- uploadArtifact(): Uploads artifact.
+- downloadArtifact(): Downloads artifact.
+- getSecrets(): Gets secrets.
+- setSecret(): Sets secret.
+- getVariables(): Gets variables.
+- setVariable(): Sets variable.
+- getEnvironment(): Gets environment.
+- setEnvironmentPipeline(): Sets pipeline environment.
+- getBranch(): Gets branch.
+- setBranch(): Sets branch.
+- getCommit(): Gets commit.
+- setCommit(): Sets commit.
+- getTag(): Gets tag.
+- setTag(): Sets tag.
+- getRelease(): Gets release.
+- createRelease(): Creates release.
+- getChangelogRelease(): Gets release changelog.
+- setChangelogRelease(): Sets release changelog.
+- getVersionRelease(): Gets release version.
+- setVersionRelease(): Sets release version.
+- getAssets(): Gets assets.
+- uploadAsset(): Uploads asset.
+- downloadAsset(): Downloads asset.
+- getPrerelease(): Gets prerelease.
+- setPrerelease(): Sets prerelease.
+- getDraft(): Gets draft.
+- setDraft(): Sets draft.
+- publishRelease(): Publishes release.
+- getContributors(): Gets contributors.
+- addContributor(): Adds contributor.
+- getLicenseFile(): Gets license file.
+- setLicenseFile(): Sets license file.
+- getReadme(): Gets readme.
+- setReadme(): Sets readme.
+- getContributing(): Gets contributing.
+- setContributing(): Sets contributing.
+- getCodeOfConduct(): Gets code of conduct.
+- setCodeOfConduct(): Sets code of conduct.
+- getSecurityPolicy(): Gets security policy.
+- setSecurityPolicy(): Sets security policy.
+- getIssueTemplates(): Gets issue templates.
+- setIssueTemplates(): Sets issue templates.
+- getPullRequestTemplates(): Gets PR templates.
+- setPullRequestTemplates(): Sets PR templates.
+- getWorkflowsCI(): Gets CI workflows.
+- setWorkflowsCI(): Sets CI workflows.
+- getActions(): Gets actions.
+- setActions(): Sets actions.
+- getMarketplaceActions(): Gets marketplace actions.
+- useAction(): Uses action.
+- getRunners(): Gets runners.
+- addRunner(): Adds runner.
+- removeRunner(): Removes runner.
+- getSelfHosted(): Gets self-hosted.
+- setSelfHosted(): Sets self-hosted.
+- getLabels(): Gets labels.
+- addLabel(): Adds label.
+- removeLabel(): Removes label.
+- getMatrix(): Gets matrix.
+- setMatrix(): Sets matrix.
+- getStrategy(): Gets strategy.
+- setStrategy(): Sets strategy.
+- getFailFast(): Gets fail-fast.
+- setFailFast(): Sets fail-fast.
+- getMaxParallel(): Gets max parallel.
+- setMaxParallel(): Sets max parallel.
+- getTimeoutMinutes(): Gets timeout minutes.
+- setTimeoutMinutes(): Sets timeout minutes.
+- getContinueOnError(): Gets continue on error.
+- setContinueOnError(): Sets continue on error.
+- getIf(): Gets if condition.
+- setIf(): Sets if condition.
+- getNeeds(): Gets needs.
+- setNeeds(): Sets needs.
+- getOutputs(): Gets outputs.
+- setOutputs(): Sets outputs.
+- getEnv(): Gets env.
+- setEnv(): Sets env.
+- getWith(): Gets with.
+- setWith(): Sets with.
+- getUses(): Gets uses.
+- setUses(): Sets uses.
+- getRun(): Gets run.
+- setRun(): Sets run.
+- getShell(): Gets shell.
+- setShell(): Sets shell.
+- getWorkingDirectoryAction(): Gets working directory.
+- setWorkingDirectoryAction(): Sets working directory.
+- getSteps(): Gets steps.
+- addStep(): Adds step.
+- removeStep(): Removes step.
+- getName(): Gets name.
+- setName(): Sets name.
+- getId(): Gets ID.
+- setId(): Sets ID.
+- getOn(): Gets on.
+- setOn(): Sets on.
+- getPush(): Gets push.
+- setPush(): Sets push.
+- getPullRequest(): Gets pull request.
+- setPullRequest(): Sets pull request.
+- getSchedule(): Gets schedule.
+- setSchedule(): Sets schedule.
+- getWorkflowDispatch(): Gets workflow dispatch.
+- setWorkflowDispatch(): Sets workflow dispatch.
+- getRepositoryDispatch(): Gets repository dispatch.
+- setRepositoryDispatch(): Sets repository dispatch.
+- getInputs(): Gets inputs.
+- setInputs(): Sets inputs.
+- getSecretsAction(): Gets secrets.
+- setSecretsAction(): Sets secrets.
+- getPermissions(): Gets permissions.
+- setPermissions(): Sets permissions.
+- getConcurrency(): Gets concurrency.
+- setConcurrency(): Sets concurrency.
+- getCancelInProgress(): Gets cancel in progress.
+- setCancelInProgress(): Sets cancel in progress.
+- getGroup(): Gets group.
+- setGroup(): Sets group.
+- getJobsAction(): Gets jobs.
+- setJobsAction(): Sets jobs.
+- getRunsOn(): Gets runs-on.
+- setRunsOn(): Sets runs-on.
+- getContainer(): Gets container.
+- setContainer(): Sets container.
+- getServices(): Gets services.
+- setServices(): Sets services.
+- getVolumes(): Gets volumes.
+- setVolumes(): Sets volumes.
+- getPorts(): Gets ports.
+- setPorts(): Sets ports.
+- getOptions(): Gets options.
+- setOptions(): Sets options.
+- getCredentials(): Gets credentials.
+- setCredentials(): Sets credentials.
+- getEnvAction(): Gets env.
+- setEnvAction(): Sets env.
+- getDefaults(): Gets defaults.
+- setDefaults(): Sets defaults.
+- getRunName(): Gets run name.
+- setRunName(): Sets run name.
+- getDisplayTitle(): Gets display title.
+- setDisplayTitle(): Sets display title.
+- getEventName(): Gets event name.
+- setEventName(): Sets event name.
+- getSha(): Gets SHA.
+- setSha(): Sets SHA.
+- getRef(): Gets ref.
+- setRef(): Sets ref.
+- getWorkflow(): Gets workflow.
+- setWorkflow(): Sets workflow.
+- getJob(): Gets job.
+- setJob(): Sets job.
+- getRunId(): Gets run ID.
+- setRunId(): Sets run ID.
+- getRunNumber(): Gets run number.
+- setRunNumber(): Sets run number.
+- getRunAttempt(): Gets run attempt.
+- setRunAttempt(): Sets run attempt.
+- getActor(): Gets actor.
+- setActor(): Sets actor.
+- getTriggeringActor(): Gets triggering actor.
+- setTriggeringActor(): Sets triggering actor.
+- getRepository(): Gets repository.
+- setRepository(): Sets repository.
+- getEvent(): Gets event.
+- setEvent(): Sets event.
+- getServerUrl(): Gets server URL.
+- setServerUrl(): Sets server URL.
+- getApiUrl(): Gets API URL.
+- setApiUrl(): Sets API URL.
+- getGraphqlUrl(): Gets GraphQL URL.
+- setGraphqlUrl(): Sets GraphQL URL.
+- getToken(): Gets token.
+- setToken(): Sets token.
+- getWorkspace(): Gets workspace.
+- setWorkspace(): Sets workspace.
+- getAction(): Gets action.
+- setAction(): Sets action.
+- getActionPath(): Gets action path.
+- setActionPath(): Sets action path.
+- getActionRef(): Gets action ref.
+- setActionRef(): Sets action ref.
+- getActionRepository(): Gets action repository.
+- setActionRepository(): Sets action repository.
+- getBaseRef(): Gets base ref.
+- setBaseRef(): Sets base ref.
+- getHeadRef(): Gets head ref.
+- setHeadRef(): Sets head ref.
+- getEventPath(): Gets event path.
+- setEventPath(): Sets event path.
+- getPath(): Gets path.
+- setPath(): Sets path.
+- getEnvPath(): Gets env path.
+- setEnvPath(): Sets env path.
+- getState(): Gets state.
+- setState(): Sets state.
+- getStepSummary(): Gets step summary.
+- setStepSummary(): Sets step summary.
+- getDebugAction(): Gets debug.
+- setDebugAction(): Sets debug.
+- getRunnerDebug(): Gets runner debug.
+- setRunnerDebug(): Sets runner debug.
+- getRunnerOS(): Gets runner OS.
+- setRunnerOS(): Sets runner OS.
+- getRunnerArch(): Gets runner arch.
+- setRunnerArch(): Sets runner arch.
+- getRunnerName(): Gets runner name.
+- setRunnerName(): Sets runner name.
+- getRunnerTemp(): Gets runner temp.
+- setRunnerTemp(): Sets runner temp.
+- getRunnerToolCache(): Gets runner tool cache.
+- setRunnerToolCache(): Sets runner tool cache.
+- getGitHub(): Gets GitHub.
+- setGitHub(): Sets GitHub.
+- getContext(): Gets context.
+- setContext(): Sets context.
+- getPayload(): Gets payload.
+- setPayload(): Sets payload.
+- getIssue(): Gets issue.
+- setIssue(): Sets issue.
+- getPullRequestAction(): Gets pull request.
+- setPullRequestAction(): Sets pull request.
+- getComment(): Gets comment.
+- setComment(): Sets comment.
+- getReview(): Gets review.
+- setReview(): Sets review.
+- getCheckRun(): Gets check run.
+- setCheckRun(): Sets check run.
+- getCheckSuite(): Gets check suite.
+- setCheckSuite(): Sets check suite.
+- getDeployment(): Gets deployment.
+- setDeployment(): Sets deployment.
+- getDeploymentStatus(): Gets deployment status.
+- setDeploymentStatus(): Sets deployment status.
+- getPage(): Gets page.
+- setPage(): Sets page.
+- getReleaseAction(): Gets release.
+- setReleaseAction(): Sets release.
+- getPackage(): Gets package.
+- setPackage(): Sets package.
+- getRegistryPackage(): Gets registry package.
+- setRegistryPackage(): Sets registry package.
+- getMilestone(): Gets milestone.
+- setMilestone(): Sets milestone.
+- getProject(): Gets project.
+- setProject(): Sets project.
+- getProjectCard(): Gets project card.
+- setProjectCard(): Sets project card.
+- getProjectColumn(): Gets project column.
+- setProjectColumn(): Sets project column.
+- getLabel(): Gets label.
+- setLabel(): Sets label.
+- getAssignee(): Gets assignee.
+- setAssignee(): Sets assignee.
+- getRequestedReviewer(): Gets requested reviewer.
+- setRequestedReviewer(): Sets requested reviewer.
+- getTeam(): Gets team.
+- setTeam(): Sets team.
+- getOrganization(): Gets organization.
+- setOrganization(): Sets organization.
+- getEnterprise(): Gets enterprise.
+- setEnterprise(): Sets enterprise.
+- getInstallation(): Gets installation.
+- setInstallation(): Sets installation.
+- getSender(): Gets sender.
+- setSender(): Sets sender.
+- getRepositoryOwner(): Gets repository owner.
+- setRepositoryOwner(): Sets repository owner.
+- getFork(): Gets fork.
+- setFork(): Sets fork.
+- getPrivate(): Gets private.
+- setPrivate(): Sets private.
+- getPublic(): Gets public.
+- setPublic(): Sets public.
+- getArchived(): Gets archived.
+- setArchived(): Sets archived.
+- getDisabled(): Gets disabled.
+- setDisabled(): Sets disabled.
+- getVisibility(): Gets visibility.
+- setVisibility(): Sets visibility.
+- getDefaultBranch(): Gets default branch.
+- setDefaultBranch(): Sets default branch.
+- getLanguage(): Gets language.
+- setLanguage(): Sets language.
+- getTopics(): Gets topics.
+- setTopics(): Sets topics.
+- getHomepage(): Gets homepage.
+- setHomepage(): Sets homepage.
+- getDescription(): Gets description.
+- setDescription(): Sets description.
+- getSize(): Gets size.
+- setSize(): Sets size.
+- getStargazersCount(): Gets stargazers count.
+- setStargazersCount(): Sets stargazers count.
+- getWatchersCount(): Gets watchers count.
+- setWatchersCount(): Sets watchers count.
+- getForksCount(): Gets forks count.
+- setForksCount(): Sets forks count.
+- getOpenIssuesCount(): Gets open issues count.
+- setOpenIssuesCount(): Sets open issues count.
+- getLicenseInfo(): Gets license info.
+- setLicenseInfo(): Sets license info.
+- getAllowForking(): Gets allow forking.
+- setAllowForking(): Sets allow forking.
+- getIsTemplate(): Gets is template.
+- setIsTemplate(): Sets is template.
+- getWebCommitSignoffRequired(): Gets web commit signoff required.
+- setWebCommitSignoffRequired(): Sets web commit signoff required.
+- getHasIssues(): Gets has issues.
+- setHasIssues(): Sets has issues.
+- getHasProjects(): Gets has projects.
+- setHasProjects(): Sets has projects.
+- getHasWiki(): Gets has wiki.
+- setHasWiki(): Sets has wiki.
+- getHasPages(): Gets has pages.
+- setHasPages(): Sets has pages.
+- getHasDownloads(): Gets has downloads.
+- setHasDownloads(): Sets has downloads.
+- getHasDiscussions(): Gets has discussions.
+- setHasDiscussions(): Sets has discussions.
+- getArchivedAt(): Gets archived at.
+- setArchivedAt(): Sets archived at.
+- getPushedAt(): Gets pushed at.
+- setPushedAt(): Sets pushed at.
+- getCreatedAt(): Gets created at.
+- setCreatedAt(): Sets created at.
+- getUpdatedAt(): Gets updated at.
+- setUpdatedAt(): Sets updated at.
+- getPermissionsRepo(): Gets permissions.
+- setPermissionsRepo(): Sets permissions.
+- getRoleName(): Gets role name.
+- setRoleName(): Sets role name.
+- getTempCloneToken(): Gets temp clone token.
+- setTempCloneToken(): Sets temp clone token.
+- getSecurityAndAnalysis(): Gets security and analysis.
+- setSecurityAndAnalysis(): Sets security and analysis.
+- getAdvancedSecurity(): Gets advanced security.
+- setAdvancedSecurity(): Sets advanced security.
+- getSecretScanning(): Gets secret scanning.
+- setSecretScanning(): Sets secret scanning.
+- getSecretScanningPushProtection(): Gets secret scanning push protection.
+- setSecretScanningPushProtection(): Sets secret scanning push protection.
+- getDependabotSecurityUpdates(): Gets dependabot security updates.
+- setDependabotSecurityUpdates(): Sets dependabot security updates.
+- getCodeSecurity(): Gets code security.
+- setCodeSecurity(): Sets code security.
+- getSecretScanningValidityChecks(): Gets secret scanning validity checks.
+- setSecretScanningValidityChecks(): Sets secret scanning validity checks.
+- getCustomProperties(): Gets custom properties.
+- setCustomProperties(): Sets custom properties.
+- getTemplateRepository(): Gets template repository.
+- setTemplateRepository(): Sets template repository.
+- getNetworkCount(): Gets network count.
+- setNetworkCount(): Sets network count.
+- getSubscribersCount(): Gets subscribers count.
+- setSubscribersCount(): Sets subscribers count.
+
+### Constants
+SHADER_TYPE_ADVANCED = 'lux_advanced'
+SHADER_TYPE_ANISOTROPIC = 'lux_anisotropic'
+SHADER_TYPE_AXALTA_PAINT = 'dupont_paint'
+SHADER_TYPE_BAKED_PLASTIC = 'lux_baked_plastic'
+SHADER_TYPE_BRUSHED = 'lux_brushed2'
+SHADER_TYPE_BRUSHED_RADIAL = 'lux_brushed_solid'
+SHADER_TYPE_BUBBLES = 'lux_bubbles'
+SHADER_TYPE_BUMP_ADD = 'lux_bumpmap_add'
+SHADER_TYPE_BUMP_TO_ROUGHNESS = 'lux_bump2roughness'
+SHADER_TYPE_CAMOUFLAGE = 'lux_camouflage'
+SHADER_TYPE_CELLULAR = 'lux_worley'
+SHADER_TYPE_COLOR_ADJUST = 'lux_color_adjust'
+SHADER_TYPE_COLOR_COMPOSITE = 'lux_color_blend'
+SHADER_TYPE_COLOR_FADE = 'animation_color'
+SHADER_TYPE_COLOR_GRADIENT = 'lux_color_gradient'
+SHADER_TYPE_COLOR_INVERT = 'lux_color_invert'
+SHADER_TYPE_COLOR_KEY_MASK = 'lux_color_distance'
+SHADER_TYPE_COLOR_TO_NUMBER = 'convert_rgba_to_float'
+SHADER_TYPE_CONTOUR = 'lux_contour_tex'
+SHADER_TYPE_CURVATURE = 'lux_curvature'
+SHADER_TYPE_CURVE_COLOR_RANDOMIZE = 'lux_curve_randomize'
+SHADER_TYPE_CURVE_FADE = 'animation_curve'
+SHADER_TYPE_CUTAWAY = 'lux_cutaway'
+SHADER_TYPE_DIELECTRIC = 'lux_glass'
+SHADER_TYPE_DIFFUSE = 'lux_diffuse'
+SHADER_TYPE_DISPLACE = 'lux_displace'
+SHADER_TYPE_EMISSIVE = 'lux_emissive'
+SHADER_TYPE_FIBER_WEAVE = 'lux_carbon'
+SHADER_TYPE_FLAKES = 'lux_flakes'
+SHADER_TYPE_FLAT = 'lux_constant'
+SHADER_TYPE_FUZZ = 'lux_fuzz'
+SHADER_TYPE_GEM = 'lux_gem'
+SHADER_TYPE_GENERAL = 'lux_general'
+SHADER_TYPE_GENERIC = 'lux_generic'
+SHADER_TYPE_GLASS = 'lux_window_glass'
+SHADER_TYPE_GLASS_SOLID = 'lux_glass_simple'
+SHADER_TYPE_GRANITE = 'lux_granite'
+SHADER_TYPE_GROUND = 'lux_ground'
+SHADER_TYPE_IES_LIGHT = 'lux_ies_light'
+SHADER_TYPE_LEATHER = 'lux_leather_tex'
+SHADER_TYPE_LIQUID = 'lux_liquid'
+SHADER_TYPE_MAPPING_2D = 'mapping2d'
+SHADER_TYPE_MAPPING_WARP = 'lux_mapping_warp'
+SHADER_TYPE_MARBLE = 'lux_marble'
+SHADER_TYPE_MATCAP = 'matcap'
+SHADER_TYPE_MEASURED = '__measured'
+SHADER_TYPE_MESH = 'lux_mesh'
+SHADER_TYPE_MESH_CIRCULAR = 'lux_lattice_circular'
+SHADER_TYPE_MESH_LIGHT = 'lux_mesh_light'
+SHADER_TYPE_MESH_POLYGON = 'lux_lattice_polygon'
+SHADER_TYPE_METAL = 'lux_metal'
+SHADER_TYPE_METALLIC_PAINT = 'metallic_paint'
+SHADER_TYPE_MOLD_TECH_PLASTIC = 'lux_moldtech_plastic'
+SHADER_TYPE_NOISE_FRACTAL = 'lux_fractal_noise'
+SHADER_TYPE_NOISE_TEXTURE = 'lux_noise'
+SHADER_TYPE_OCCLUSION = 'lux_occlusion_tex'
+SHADER_TYPE_PAINT = 'lux_paint'
+SHADER_TYPE_PLASTIC = 'lux_plastic_simple'
+SHADER_TYPE_PLASTIC_CLOUDY = 'lux_cloudy_plastic'
+SHADER_TYPE_PLASTIC_FIBER = 'lux_textile_fiber'
+SHADER_TYPE_PLASTIC_TRANSPARENT = 'lux_plastic'
+SHADER_TYPE_POINT_LIGHT = 'lux_point_light'
+SHADER_TYPE_RAY_MASK = 'lux_ray_mask'
+SHADER_TYPE_REALCLOTH = 'lux_real_cloth'
+SHADER_TYPE_ROUNDED_EDGES = 'lux_rounded'
+SHADER_TYPE_SCATTERING_MEDIUM = 'lux_scattering_medium'
+SHADER_TYPE_SCRATCHES = 'lux_scratches_worley'
+SHADER_TYPE_SPOTLIGHT = 'lux_spotlight'
+SHADER_TYPE_SPOTS = 'lux_spots'
+SHADER_TYPE_TEXTURE_MAP = '__texture'
+SHADER_TYPE_THIN_FILM = 'lux_thinfilm'
+SHADER_TYPE_TILED_UV = 'lux_tiled_texturemap'
+SHADER_TYPE_TOON = 'lux_toon'
+SHADER_TYPE_TRANSLUCENT = 'lux_translucent'
+SHADER_TYPE_TRANSLUCENT_ADVANCED = 'lux_translucent2'
+SHADER_TYPE_TRANSLUCENT_MEDIUM = 'lux_translucent_mc'
+SHADER_TYPE_TRI_PLANAR = 'triplanar'
+SHADER_TYPE_VELVET = 'lux_velvet'
+SHADER_TYPE_VERTEX_COLOR = 'lux_vertex_color'
+SHADER_TYPE_VIDEO_MAP = 'sequence_rgba'
+SHADER_TYPE_VOLUME_MAP = 'lux_volume'
+SHADER_TYPE_WEAVE = 'lux_weave2'
+SHADER_TYPE_WIREFRAME = 'show_wireframe'
+SHADER_TYPE_WOOD = 'lux_wood'
+SHADER_TYPE_WOOD_ADVANCED = 'lux_wood2'
+SHADER_TYPE_XRAY = 'lux_xray'
+
+UNIT_CM = 1
+UNIT_FT = 3
+UNIT_IN = 2
+UNIT_M = 4
+UNIT_MM = 0
+
+CAMERA_TYPE_ORTHOGRAPHIC = 65536
+CAMERA_TYPE_PANORAMA = 4096
+CAMERA_TYPE_PERSPECTIVE = 16384
+CAMERA_TYPE_PERSPECTIVE_STEREO = 32768
+CAMERA_TYPE_SHIFT = 8192
+PANORAMA_TYPE_CUBEMAP = 1
+PANORAMA_TYPE_SPHERICAL = 0
+VIEW_BACK = 2
+VIEW_BOTTOM = 6
+VIEW_FRONT = 1
+VIEW_ISOMETRIC = 7
+VIEW_LEFT = 3
+VIEW_RIGHT = 4
+VIEW_TOP = 5
+XR_CENTER_CAMERA = 4
+XR_CENTER_CAMERA_PIVOT = 5
+XR_CENTER_ENVIRONMENT = 1
+XR_CENTER_OBJECT = 2
+XR_TYPE_CUSTOM = 5
+XR_TYPE_HEMISPHERICAL = 3
+XR_TYPE_SPHERICAL = 2
+XR_TYPE_TUMBLE = 4
+XR_TYPE_TURNTABLE = 1
+
+CMF_KIND_COLOR_CMYK = 4
+CMF_KIND_COLOR_HEX = 6
+CMF_KIND_COLOR_LAB = 5
+CMF_KIND_COLOR_NAME = 2
+
+### Supported File Formats
+Supported Import File Formats:
+1. OBJ (.obj)
+2. FBX (.fbx)
+3. GLB/glTF (.glb, .gltf)
+4. STL (.stl)
+5. USD (.usd, .usda, .usdc, .usdz)
+Supported Export File Formats:
+1. OBJ (.obj)
+2. FBX (.fbx)
+3. GLB/glTF (.glb, .gltf)
+4. STL (.stl)
+5. USD (.usd, .usda, .usdc, .usdz)
+6. 3MF (.3mf)
+### Supported File Formats ###
+#### Supported Import File Formats:
+#### Supported Export File Formats:

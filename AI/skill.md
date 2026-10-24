@@ -6,15 +6,17 @@ Use this knowledge base to solve the user's actual KeyShot scripting request.
 
 ## Entry point
 
+**Use the 2026.2 dump first.** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) is `help(lux)` from the KeyShot 2026.2 console. It is the API source of truth. If a symbol is not in that dump, do not use it.
+
 Before every scripting task:
 
-1. Read `AI/constraints.md` and `AI/best-practices.md`.
-2. Open `AI/knowledge_base.md` — this is the TOC. Do not create or look for a separate TOC file.
-3. Verify the exact API against [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — the 2026.2 `help(lux)` dump. This is the API source of truth.
+1. Verify the API against `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump).
+2. Read `AI/constraints.md` and `AI/best-practices.md`.
+3. Open `AI/knowledge_base.md` — this is the TOC. Do not create or look for a separate TOC file.
 4. Use `AI/index.md` only to narrow the topic after the TOC.
 5. Pull the relevant guide, material file, or example.
 
-The public 2026.1 website docs lag and are secondary only. Do not invent symbols that are absent from the 2026.2 dump.
+The public 2026.1 website is secondary and lags. Do not prefer it over the dump.
 
 **The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
 

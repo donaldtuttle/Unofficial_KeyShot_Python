@@ -49,3 +49,38 @@ Run KeyShot operations inside the licensed KeyShot runtime. An ordinary interpre
 The current user's external-library prohibition is mandatory. Historical file-I/O examples do not override authorization requirements. Unsupported historical calls remain source data and need correction before reuse. Full scripts are required when supportable; fabrication cannot satisfy that requirement.
 
 Continue with `AI/best-practices.md` and the 2026.2 dump at `lux/KeyShot_lux_API.md`.
+
+## Headless error handling
+
+`lux.isHeadless()` is the mode check. GUI calls throw or fail in headless. Do not call them there.
+
+GUI-only (guard or skip):
+- `lux.getInputDialog` and the `DIALOG_*` constants
+- `lux.getMessageBox`
+- `lux.getBrowserDialog`
+- `lux.getInputText`, `lux.getInputInt`, `lux.getInputDouble`, `lux.getInputFile`, `lux.getInputFolder`, `lux.getInputItem`
+- Any call that opens a dialog when a path is omitted (`saveScene`, `saveSceneAs` without a path throws in headless)
+
+Required pattern:
+
+```python
+if lux.isHeadless():
+    # Headless: require explicit config. Do not open a dialog.
+    opts = config  # paths, names, numbers supplied by the caller
+    if not opts:
+        raise RuntimeError("Headless run needs explicit config; no dialog available.")
+else:
+    opts = lux.getInputDialog(title="...", values=values)
+    if not opts:
+        print("Cancelled.")
+        return
+```
+
+Rules:
+- Check `lux.isHeadless()` before any GUI call.
+- In headless, require explicit arguments. Do not invent a fallback dialog.
+- In GUI, check cancellation (`if not opts`).
+- Always pass an explicit path to save, export, or render in headless. An omitted path throws.
+- Report the mode in the output so a failure is diagnosable.
+- Do not use third-party GUI toolkits in either mode.
+

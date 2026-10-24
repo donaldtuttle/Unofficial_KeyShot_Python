@@ -2,37 +2,42 @@
 
 Unofficial KeyShot Python libraries, documentation, examples, and an agnostic AI agent setup.
 
-**Current target: KeyShot Studio 2026.x** (prefer 2026.2 when available; Python 3.13 64-bit).
+The point of this repo is that the **public website lags**. What you get from KeyShot itself is more current.
 
-Official source of truth:
+## Source of truth — 2026.2 `help(lux)`
+
+**[`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md)**
+
+Captured from `help(lux)` in the KeyShot Studio **2026.2** scripting console. This is the runtime API as KeyShot exposes it — not a website scrape, not a 2023–2024 dump.
+
+- Prefer this over the public 2026.1 docs.
+- If a symbol is not in this dump, do not invent it.
+- OpenPBR and Planar Light parameters are not library constants. Reach them by inspecting the material graph (get nodes → get parameters).
+
+That is the whole idea of an *unofficial* KeyShot Python repo: current API from KeyShot, not from a lagging website.
+
+## Secondary (lags 2026.2)
+
+Public website docs are useful background only. They are not current for 2026.2:
+
 - GUI scripting: https://media.keyshot.com/scripting/doc/2026.1/
 - Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
 - Manual overview: https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html
-- Prefer 2026.2 docs when available at the standard path.
 
-The large `lux/` and `luxmath/` markdown dumps in this repo are historical (primarily 2023–2024 era). They remain useful for reference but are not regenerated for every release. Prefer the official 2026 docs above for current signatures.
+## Repository layout
 
-## Key 2026 Changes Relevant to Scripting
+- [`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md) — **2026.2 source of truth**
+- `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.2 lux dump)
+- `Scripts/` — example scripts
+- `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.2 dump.
 
-- Python 3.13.
-- `lux.SceneNode.getMetadata()` — returns CAD metadata for the node as a dictionary. Enables scripts that act on engineer annotations (apply materials, move parts, render thumbnails, etc. based on metadata).
-- `lux.renderAnimation()` available and preferred in headless. Starts the render engine once and processes the full animation (~3× faster than per-frame).
-- Continued improvements to material graphs, multi-materials, CMF metadata, export (USD, 3MF, etc.), and render passes.
-- 2026.2 adds additional animation scripting (create/edit/delete object and camera keyframe animations); specific new function names are not yet listed in public notes.
+## Using the AI agent
 
-## Repository Layout
-
-- `lux/`, `luxmath/`, `lux_headless/`, `luxmath_headless/` — historical API dumps.
-- `Scripts/` — example scripts (still valid patterns).
-- `AI/` — agnostic KeyShot Python agent (converted from prior KSPA knowledge). Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.).
-
-## Using the AI Agent
-
-See `AI/README.md`. The agent is intentionally model-agnostic: one system prompt + one knowledge base file. No vendor lock-in.
+See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No vendor lock-in. The agent treats the 2026.2 dump as the API source of truth.
 
 ## Contributing
 
-PRs welcome for new examples, 2026-specific patterns, or improvements to the AI knowledge base. Keep the unofficial nature clear.
+PRs welcome for new examples, 2026.2 patterns, or AI knowledge improvements. When KeyShot changes the scripting API, refresh `lux/KeyShot_lux_API.md` from a new `help(lux)` capture first.
 
 ## License
 

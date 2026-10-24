@@ -10,9 +10,8 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - [Best practices](best-practices.md)
 - [Skill](skill.md) — agent skill definition
 - [2026 mode comparison](reference/mode-comparison.md)
-- [Materials](materials/) — per-shader parameter docs
+- [Materials](materials/) — per-shader parameter docs + runnable examples
 - [KPSA knowledge](kpsa_knowledge/) — QuickReference, matrix, GUI, material graph guides
-- [Examples](examples/) — runnable scripts (OpenPBR converter)
 
 ## Official live docs (prefer for signatures)
 
@@ -26,9 +25,10 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - API ownership and evidence → constraints + best-practices + official docs
 - Cameras → QuickReference + official docs
 - Scene nodes → QuickReference
-- Materials and duplication → materials/ + MaterialGraph guides
+- Materials and duplication → materials/ + [Material_Graph_Duplication.txt](materials/Material_Graph_Duplication.txt)
 - Material graphs, parameters and edges → materials/ + ShaderNodeTypes doc
-- OpenPBR conversion → [examples/openpbr_material_converter.py](examples/openpbr_material_converter.py)
+- OpenPBR conversion → [materials/openpbr_material_converter.py](materials/openpbr_material_converter.py)
+- Scene inspection / diagnostics → [materials/inspector/](materials/inspector/) (KeyShot Information Inspector v1.2.0)
 - Transformations → TransformationMatrix doc
 - GUI dialogs → API_GUI_Guide + constraints
 - Rendering / Import-export / Headless / Animation → QuickReference + official docs

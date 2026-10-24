@@ -4,7 +4,16 @@
 
 Use this knowledge base to solve the user's actual KeyShot scripting request.
 
-Before every scripting task, read `AI/constraints.md` and `AI/best-practices.md`. **The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
+## Entry point
+
+Before every scripting task:
+
+1. Read `AI/constraints.md` and `AI/best-practices.md`.
+2. Open `AI/knowledge_base.md` — this is the TOC. Do not create or look for a separate TOC file.
+3. Use `AI/index.md` only to narrow the topic after the TOC.
+4. Pull the relevant guide, material file, or example.
+
+**The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
 
 Identify the intended result, API area, KeyShot build, and GUI/headless mode. Infer ordinary choices from context; ask only when a missing choice materially changes the operation. Read the relevant knowledge topic and exact source evidence. Review historical examples as candidates against current corrections, not authorities.
 

@@ -1,12 +1,12 @@
 # KeyShot Python Scripting API Reference (Thin Layer)
 
-**Target:** KeyShot 2026.1 (Python 3.13)
+**Target:** KeyShot 2026.x (prefer 2026.2 when available; Python 3.13)
 
 Large embedded API dumps have been replaced with live official documentation. Always prefer:
 
 - Official scripting docs: https://media.keyshot.com/scripting/doc/2026.1/
 - Headless docs: https://media.keyshot.com/scripting/headless_doc/2026.1/
-- Repo clean reference (once established in Unofficial_KeyShot_Python)
+- Prefer 2026.2 docs when available.
 
 ## Thin 2026 Notes
 
@@ -31,4 +31,4 @@ See `AI/constraints.md` for hard rules.
 See `AI/kpsa_knowledge/` for elevated best practices, GUI, material graph, and transform guides.  
 See `AI/materials/` for shader node types and per-material parameters.
 
-Do not invent API functions. Validate against the official 2026.1 docs.
+Do not invent API functions. Validate against the official 2026 docs.

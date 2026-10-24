@@ -1,6 +1,6 @@
 # KeyShot Studio 2026 Scripting Updates (Unofficial Notes)
 
-Target: 2026.1 (Python 3.13).
+Target: 2026.x (prefer 2026.2 when available; Python 3.13).
 
 ## New / Notable
 
@@ -15,6 +15,8 @@ Target: 2026.1 (Python 3.13).
 
 - Python version: 3.13 64-bit.
 
+- **2026.2** adds additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not yet listed in public notes.
+
 ## Still Core
 
 SceneNode traversal and transforms (luxmath), MaterialGraph manipulation, MultiMaterial, MaterialMetadata / CMF, RenderOptions + passes, Env / ImageStyle / Studio, import/export, headless queue and network options.
@@ -24,5 +26,6 @@ SceneNode traversal and transforms (luxmath), MaterialGraph manipulation, MultiM
 - https://media.keyshot.com/scripting/doc/2026.1/
 - https://media.keyshot.com/scripting/headless_doc/2026.1/
 - https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html
+- Prefer 2026.2 docs when available.
 
 The historical API markdown dumps in this repository pre-date 2026. Use the official pages for exact current signatures.

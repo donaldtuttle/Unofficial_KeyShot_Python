@@ -1,16 +1,23 @@
-# KeyShot Python Scripting Assistant Knowledge Backup
+# KeyShot Python Scripting Assistant Knowledge
 
-Created: 2026-10-23
+Elevated KPSA guides for the agnostic agent (KeyShot Studio 2026).
 
-This directory contains the full accessible knowledge files used by the KeyShot Python Scripting Assistant, updated for KeyShot Studio 2026.1.
+## Contents (actual files)
 
-## Contents
+- `KeyShotPython_Scripting_QuickReference_Documentation.txt` — quick reference patterns
+- `KeyShotPythonScripting_API_BestPractices_Guide.txt` — best practices
+- `KeyShotPythonScripting_API_GUI_GuideDocumentation.txt` — GUI dialog patterns
+- `KeyShotPythonScripting_API_Documentation.txt` — thin pointer to official docs
+- `KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt` — material graph copy patterns
+- `KeyShotPythonScripting_TransformationMatrix_Documentation.txt` — matrix / transform patterns
+- `KS_CustomInputDialog_GUI.txt` — custom input dialog examples
+- `KPSA_Quick_Guide.txt`
+- `KSPA_PreloadKnowledge.txt`
+- `KSPA_UserInput.txt`
+- `KeyShot_2026_Lux_API_Reference.txt` — thin pointer (full signatures live in official docs)
 
-- `KeyShot_2026_Lux_API_Reference.txt` — 2026 Lux API reference (pydoc-style)
-- `KS_MaterialScripts.txt` — material graph scripts and patterns
-- `KS_ScriptDoc.txt`, `KS_QuickRef.txt`, `KS_Python_Guide.txt`, `KS_TOC.txt`
-- `KSPA_BestPractices.txt`, `KSPA_PreloadKnowledge.txt`, `KSPA_UserInput.txt`, `KPSA_Quick_Guide.txt`
-- `KS_CameraScripts.txt`, `KS_ColorColorway.txt`, `KS_CustomInputDialog_GUI.txt`, `KS_TransformMatrix.txt`
-- `MANIFEST.md` / `MANIFEST.json` — inventory with hashes
+These files are mandatory knowledge for the agnostic agent in the parent `AI/` folder.
 
-These files are mandatory knowledge for the agnostic agent in the parent AI/ folder.
+Prefer official live docs for current signatures:
+- https://media.keyshot.com/scripting/doc/2026.1/
+- https://media.keyshot.com/scripting/headless_doc/2026.1/

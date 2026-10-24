@@ -1,0 +1,17 @@
+```python
+KeyShot 2023.2 GUI Scripting Documentation
+built-in module lux
+
+KeyShot Python Custom Input Dialog (GUI only)
+For this you must use lux.getInputDialog(). The GUI script examples below provide
+patterns for creating dialogs that collect user input for scripts.
+
+Example pattern:
+values = [
+    ("string", lux.DIALOG_TEXT, "Input string:", "hello"),
+    ("int", lux.DIALOG_INTEGER, "Input int:", 42, (10, 50)),
+    (lux.DIALOG_LABEL, "Freestanding label text."),
+    ("item", lux.DIALOG_ITEM, "Select item:", 2, [1, 2, 3])
+]
+opts = lux.getInputDialog(title = "This is the title", values = values)
+```

@@ -550,4 +550,32 @@ Library Constants
     FOLDER_TEXTURES = 4
 Differences in Classes and Functions
 
+In headless mode, KeyShot scripting still provides access to essential classes and functions for scene manipulation, such as those related to materials, cameras, rendering, and scene nodes. However, there are specific considerations and functionalities unique to headless mode:
+GUI-Dependent Features: Functions and classes that require user interaction through the GUI, such as custom input dialogs (lux.getInputDialog()), are not available or functional in headless mode. Scripts designed for headless operation should avoid relying on any form of GUI feedback or input.
+Automation and Batch Processing: Headless mode emphasizes automation. Functions for importing files, setting render options, triggering renders, and exporting results are fully supported and often used in automated workflows. This includes batch rendering, where multiple scenes or variations of a scene can be rendered sequentially without user intervention.
+External File Handling: Headless mode might offer more explicit control over handling external files, such as specifying paths for importing and exporting data. This is crucial for automated workflows and integration with other software tools in a production pipeline.
+Command-Line Arguments: 
+While not a direct part of the lux library, headless operation often leverages command-line arguments for specifying script files to run, providing parameters to scripts, and controlling KeyShot's startup behavior. This allows for dynamic script execution based on external inputs.
+Performance and Resource Management: 
+Headless mode may provide functions or options focused on optimizing performance and resource usage, given that it's often used on high-performance computing resources or for background processing tasks. This can include controls over memory usage, CPU threading, and GPU usage for rendering.
+Consistent Core Functionality:
+Despite these differences, the core functionality provided by lux and luxmath for scene construction, material application, camera control, and rendering settings is consistent between GUI and headless modes. Scripts can generally be developed in the GUI version of KeyShot and then executed in headless mode with minor adjustments, primarily related to user interaction and file path handling.
+Guidelines for Making Scripts Headless Compliant
+Avoid GUI Functions: Do not use functions that require GUI interaction, such as lux.getInputDialog() for custom input dialogs or any other function that prompts the user for input through the KeyShot interface.
+Use Command-Line Arguments: 
+For scripts that require input parameters, consider using command-line arguments to pass values into the script at runtime. This approach allows for dynamic script execution based on external inputs without needing GUI interaction.
+Automate Render Settings and Execution: 
+Utilize KeyShot's scripting capabilities to set all necessary render options programmatically. This includes setting camera parameters, environment settings, output resolutions, and render modes. Make sure the script triggers rendering and saves the output automatically.
+Error Handling: 
+Implement comprehensive error handling within the script to manage any issues that arise during execution. Since there's no GUI to display errors interactively, consider logging errors to a file or the console output for debugging purposes.
+File Paths and External Resources: 
+Handle file paths and external resources carefully, ensuring that paths are defined relative to the script location or passed as arguments, considering that the script may run in different environments or paths than when developed.
+Output and Feedback: 
+Since headless mode lacks GUI feedback, design your script to provide appropriate console output or log files to inform users of progress, completion status, and any errors or warnings.
+Testing in Both Environments: 
+Test your script extensively in both GUI and headless modes to ensure it behaves as expected. This helps identify any GUI-dependent operations or other issues that might only manifest in one mode.
+Headless:
+The lux library for KeyShot, when operated in headless mode (without the graphical user interface, GUI), offers functionality focused on scripting for automation, batch processing, and server-based rendering tasks. While the core functionality between GUI and headless modes remains consistent, focusing on scene manipulation, rendering, and camera control, there are some differences in available classes and functions to accommodate the non-interactive, command-line nature of headless operation.
+Opts:
+
 [Content continues]

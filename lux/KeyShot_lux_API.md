@@ -1,3 +1,15 @@
+# KeyShot lux API — 2026.2 runtime source of truth
+
+**Source:** `help(lux)` captured in the KeyShot Studio 2026.2 scripting console.  
+**This file is the API source of truth** for what exists in the 2026.2 runtime. Prefer it over the public 2026.1 website docs, which lag and omit or invent symbols.
+
+Notes on the raw dump:
+- The help() banner inside still says “KeyShot 2023.2” and “Python3.11”. That banner is stale; the capture is from 2026.2.
+- OpenPBR and Planar Light are not library constants. Reach them by inspecting the material graph (get nodes → get parameters).
+- These do not exist as usable API and are not in this dump: `lux.CAMERA_MODE_ORBIT`, `lux.CAMERA_MODE_PATH`, `lux.getAnimations`, `lux.getNodeAnimations`, `lux.getActiveCamera`, `lux.getMaterial`, `lux.getMaterials`.
+
+---
+
 # Keyshot Python3.11 Lux
 
 ```python

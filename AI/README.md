@@ -1,6 +1,6 @@
 # KeyShot Python Agent (Agnostic)
 
-Portable, model-agnostic agent setup for KeyShot Studio 2026.1 (Python 3.13).
+Portable, model-agnostic agent setup for KeyShot Studio 2026.x (prefer 2026.2 when available; Python 3.13).
 
 ## Mandatory Knowledge (include all of this)
 
@@ -10,7 +10,7 @@ Portable, model-agnostic agent setup for KeyShot Studio 2026.1 (Python 3.13).
 - `kpsa_knowledge/` — elevated KPSA guides (best practices, GUI, transforms, quick ref, thin API pointer).
 - `materials/` — shader node types, parameters, and individual material files.
 
-Treat every file under these as authoritative context. Do not invent API methods, parameter names, or node types. Prefer live official 2026.1 docs for full signatures.
+Treat every file under these as authoritative context. Do not invent API methods, parameter names, or node types. Prefer live official 2026 docs for full signatures.
 
 ## How to Use
 

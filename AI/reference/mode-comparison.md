@@ -11,17 +11,17 @@ Primary sources (2026.1; 2026.2 public lux pages not yet available at the standa
 - Headless lux: https://media.keyshot.com/scripting/headless_doc/2026.1/lux.html
 - luxmath: https://media.keyshot.com/scripting/doc/2026.1/luxmath.html
 
-## Supplied-only discrepancies (not promoted)
+## Corrections (user-verified false)
 
-These entries appear in supplied/historical indexes but are not corroborated as library-level constants or functions in the available 2026 reference. Do not treat them as usable API.
+The following were previously flagged as supplied-only discrepancies. They are **false** and do not exist as usable API:
 
-- `lux.CAMERA_MODE_ORBIT`
-- `lux.CAMERA_MODE_PATH`
-- `lux.getAnimations`
-- `lux.getNodeAnimations`
+- `lux.CAMERA_MODE_ORBIT` — does not exist
+- `lux.CAMERA_MODE_PATH` — does not exist
+- `lux.getAnimations` — does not exist
+- `lux.getNodeAnimations` — does not exist
+- `SHADER_TYPE_OPENPBR` / `SHADER_TYPE_PLANAR_LIGHT` — not library constants. OpenPBR and Planar Light parameters are only reachable by inspecting the material graph (get nodes → get parameters).
 
-**Removed from discrepancy list (user correction):**
-- `SHADER_TYPE_OPENPBR` and `SHADER_TYPE_PLANAR_LIGHT` are **not** library constants. OpenPBR and Planar Light parameters are only reachable by inspecting the material graph (get nodes → get parameters). They do not exist as `SHADER_TYPE_*` values in the library.
+Do not treat any of the above as usable API.
 
 ## GUI-page-only declarations
 

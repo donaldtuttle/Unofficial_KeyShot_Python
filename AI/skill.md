@@ -18,6 +18,21 @@ Before every scripting task:
 
 The public 2026.1 website is secondary and lags. Do not prefer it over the dump.
 
+## Verification step (required before delivery)
+
+Before returning a script, verify every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump).
+
+For each call, check:
+
+1. The symbol exists in the dump (function, method, or constant).
+2. It is called on the correct owner (module vs node, graph, edge, parameter).
+3. Arguments match the dump (names, types, required vs optional).
+4. GUI-only calls are guarded with `if not lux.isHeadless()` when the task may run headless.
+
+If a symbol is absent from the dump, do not use it. Name the missing symbol and offer a documented alternative or say it is unsupported.
+
+Do not treat the public 2026.1 website, historical scripts, or model memory as verification.
+
 **The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
 
 Identify the intended result, API area, KeyShot build, and GUI/headless mode. Infer ordinary choices from context; ask only when a missing choice materially changes the operation. Read the relevant knowledge topic and exact source evidence. Review historical examples as candidates against current corrections, not authorities.

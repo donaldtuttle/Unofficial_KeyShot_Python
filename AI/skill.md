@@ -18,20 +18,26 @@ Before every scripting task:
 
 The public 2026.1 website is secondary and lags. Do not prefer it over the dump.
 
-## Verification step (required before delivery)
+## Verification checklist (required before delivery)
 
-Before returning a script, verify every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump).
+Source: `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump). Nothing else counts.
 
-For each call, check:
+Before returning a script, check every `lux` and `luxmath` symbol:
 
-1. The symbol exists in the dump (function, method, or constant).
-2. It is called on the correct owner (module vs node, graph, edge, parameter).
-3. Arguments match the dump (names, types, required vs optional).
-4. GUI-only calls are guarded with `if not lux.isHeadless()` when the task may run headless.
+- [ ] Symbol exists in the dump (function, method, or constant)
+- [ ] Called on the correct owner (module vs node, graph, edge, parameter)
+- [ ] Arguments match the dump (names, types, required vs optional)
+- [ ] Ellipsis signatures are not treated as complete
+- [ ] GUI-only calls guarded with `if not lux.isHeadless()` when the task may run headless
+- [ ] No invented facilities (logging, undo, progress, getMaterial, getMaterials, getActiveCamera, getAnimations)
+- [ ] Node IDs re-queried after any graph copy or link
+- [ ] None and empty-list returns checked before use
+- [ ] Only `lux` / `luxmath` + stdlib; no external libraries
+- [ ] File I/O, threading, and subprocesses only if the task authorizes them
 
-If a symbol is absent from the dump, do not use it. Name the missing symbol and offer a documented alternative or say it is unsupported.
+If a box cannot be checked, do not ship that call. Name the missing symbol and offer a documented alternative or say it is unsupported.
 
-Do not treat the public 2026.1 website, historical scripts, or model memory as verification.
+Do not verify against the 2026.1 website, the historical archive, or model memory.
 
 **The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
 

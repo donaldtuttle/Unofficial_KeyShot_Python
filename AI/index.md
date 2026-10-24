@@ -18,6 +18,7 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - GUI: https://media.keyshot.com/scripting/doc/2026.1/
 - Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
 - Manual: https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html
+- Prefer 2026.2 docs when available.
 
 ## Topics (pointers to existing kpsa_knowledge / materials)
 

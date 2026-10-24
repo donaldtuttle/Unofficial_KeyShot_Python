@@ -47,7 +47,7 @@ Before returning a script, check every `lux` and `luxmath` symbol:
 - [ ] No invented facilities (logging, undo, progress, getMaterial, getMaterials, getActiveCamera, getAnimations)
 - [ ] Node IDs re-queried after any graph copy or link
 - [ ] None and empty-list returns checked before use
-- [ ] Only `lux` / `luxmath` + stdlib; no external libraries
+- [ ] Only `lux` / `luxmath` + stdlib; no external libraries unless the user explicitly asks
 - [ ] File I/O, threading, and subprocesses only if the task authorizes them
 - [ ] Headless: no GUI calls; explicit paths; `lux.isHeadless()` checked
 
@@ -76,7 +76,7 @@ else:
 
 Always follow `AI/constraints.md`. These override any other guidance:
 
-- Use only `lux` / `luxmath` + Python standard library. No external libraries or third-party packages.
+- Use only `lux` / `luxmath` + Python standard library. No external libraries or third-party packages, unless the user gives explicit instructions to do so.
 - Scripts must be valid inside KeyShot’s isolated environment.
 - No `open()`, file I/O, threading, or external modules unless the task expressly authorizes them.
 - Node IDs are dynamic and unstable. Prefer names. After any material graph copy or link, re-query and verify edges and parameters.

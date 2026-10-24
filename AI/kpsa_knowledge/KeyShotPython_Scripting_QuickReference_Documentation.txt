@@ -285,5 +285,138 @@ lux.setKeepAspectRatio(keep): Sets whether to keep the aspect ratio of the camer
 lux.sync(): Forces a synchronization of the scene, ensuring all operations are up to date.
 lux.unpause(): Resumes the current headless render if it was paused.
 ### lux Library Constatnts:
+The lux library in KeyShot's Python environment provides a comprehensive set of constants that are used across various functions and classes to specify options, settings, and behaviors in a standardized manner. Here is a detailed list of constants available in the lux library, as extracted from the provided documentation:
+## Constants
+## KeyShot GUI### :
+    DIALOG_CHECK = 4
+    DIALOG_DOUBLE = 2
+    DIALOG_FILE = 5
+    DIALOG_FOLDER = 6
+    DIALOG_INTEGER = 1
+    DIALOG_ITEM = 3
+    DIALOG_LABEL = 7
+    DIALOG_TEXT = 0
+### Export Options### :
+    EXPORT_3MF = 5
+    EXPORT_BAKING = 4
+    EXPORT_FBX = 1
+    EXPORT_GLTF = 2
+    EXPORT_OBJ = 0
+    EXPORT_OUTPUT_GEOMETRY_SHADERS = 1
+    EXPORT_OUTPUT_TEXTURES = 0
+    EXPORT_SINGLE_COLOR = 0
+    EXPORT_STL = 4
+    EXPORT_SUB_DIV_ADAPTIVE = 2
+    EXPORT_SUB_DIV_EDGE_LENGTH = 1
+    EXPORT_SUB_DIV_NORMAL = 1
+    EXPORT_SUB_DIV_POLYCOUNT = 0
+    EXPORT_USD = 6
+    EXPORT_VERTEX_COLOR = 1
+### Image Style### :  
+    IMAGE_STYLE_BASIC = 0
+    IMAGE_STYLE_PHOTOGRAPHIC = 1
+### Veiwer Options### :
+    KSP_VIEWER_SHOW_LOGO = 1
+    KSP_VIEWER_SHOW_WATERMARK = 2
+### Message Window### :
+    MESSAGE_BOX_CRITICAL = 3
+    MESSAGE_BOX_INFO = 1
+    MESSAGE_BOX_WARNING = 2
+Meta:
+    META_DATA_SIMPLE = 1
+    META_DATA_XMP = 0
+### Thumbnail Models### :
+    MODEL_ID_CLOTH_DRAPE = 'ClothDrape_100x200_mm'
+    MODEL_ID_CRYSTAL = 'Crystal'
+    MODEL_ID_LIQUID_GLASS = 'LiquidGlass_60_mm'
+    MODEL_ID_LUXION_SPHERE = 'LuxionSphere'
+    MODEL_ID_MATERIAL_DISC_100_MM = 'MaterialDisc_100_mm'
+    MODEL_ID_MATERIAL_DISC_1_M = 'MaterialDisc_1_m'
+    MODEL_ID_MATERIAL_DISC_25_MM = 'MaterialDisc_25_mm'
+    MODEL_ID_MATERIAL_DISC_TOON_100_MM = 'MaterialDiscToon_100_mm'
+    MODEL_ID_SPHERE_CUTAWAY_100_MM = 'SphereCutaway_100_mm'
+### NODE### s:
+    NODE_TYPE_ANIMATION = 3
+    NODE_TYPE_CAMERA = 6
+    NODE_TYPE_GROUP = 1
+    NODE_TYPE_MODEL = 5
+    NODE_TYPE_MODEL_SET = 4
+    NODE_TYPE_OBJECT = 2
+Parameter Types Constants
+Identifiers for different parameter types, e.g., PARAMETER_TYPE_BOOLEAN = 1, PARAMETER_TYPE_COLOR = 13, etc.
+### All Parameters### :
+    PARAMETER_TYPE_ANIMATIONCURVE = 17
+    PARAMETER_TYPE_AXALTACOLOR = 18
+    PARAMETER_TYPE_BOOLEAN = 1
+    PARAMETER_TYPE_COLOR = 13
+    PARAMETER_TYPE_COLORALPHA = 14
+    PARAMETER_TYPE_COLORGRADIENT = 16
+    PARAMETER_TYPE_DOUBLE = 7
+    PARAMETER_TYPE_DOUBLE3 = 8
+    PARAMETER_TYPE_FLOAT = 4
+    PARAMETER_TYPE_FLOAT2 = 5
+    PARAMETER_TYPE_FLOAT3 = 6
+    PARAMETER_TYPE_FLOATARRAY = 15
+    PARAMETER_TYPE_INTEGER = 2
+    PARAMETER_TYPE_INTEGERLIST = 3
+    PARAMETER_TYPE_MATRIX = 12
+    PARAMETER_TYPE_SHADERBUMP = 65539
+    PARAMETER_TYPE_SHADERGEOMETRY = 65540
+    PARAMETER_TYPE_SHADERLABEL = 65538
+    PARAMETER_TYPE_SHADERSURFACE = 65537
+    PARAMETER_TYPE_SHADERUV = 65541
+    PARAMETER_TYPE_STRING = 9
+    PARAMETER_TYPE_STRINGLIST = 10
+    PARAMETER_TYPE_WEAVEPATTERN = 19
+### Render Settings and Options### :
+    RENDER_ENGINE_INTERIOR = 1
+    RENDER_ENGINE_INTERIOR_GPU = 4
+    RENDER_ENGINE_PRODUCT = 0
+    RENDER_ENGINE_PRODUCT_GPU = 3
+    RENDER_MODE_ADVANCED = 0
+    RENDER_MODE_SAMPLES = 2
+    RENDER_MODE_TIME = 1
+    RENDER_OUTPUT_EXR = 2
+    RENDER_OUTPUT_JPEG = 0
+    RENDER_OUTPUT_PNG = 5
+    RENDER_OUTPUT_PSD16 = 8
+    RENDER_OUTPUT_PSD32 = 7
+    RENDER_OUTPUT_PSD8 = 6
+    RENDER_OUTPUT_TIFF32 = 3
+    RENDER_OUTPUT_TIFF8 = 1
+Save Constants:
+Options for excluding certain data when saving KeyShot scenes, e.g., SAVE_EXCLUDE_ANIMATIONS = 128, SAVE_EXCLUDE_CAMERAS = 8, etc.
+### Save### :
+    SAVE_EXCLUDE_ANIMATIONS = 128
+    SAVE_EXCLUDE_CAMERAS = 8
+    SAVE_EXCLUDE_CONFIGURATOR = 1
+    SAVE_EXCLUDE_ENVIRONMENTS = 16
+    SAVE_EXCLUDE_GEOMETRY = 4
+    SAVE_EXCLUDE_IMAGE_STYLES = 32
+    SAVE_EXCLUDE_NURBS = 64
+    SAVE_EXCLUDE_STUDIOS = 2
+Shader Nodes Constants:
+Identifiers for different shader types, e.g., SHADER_TYPE_ADVANCED, SHADER_TYPE_ANISOTROPIC, SHADER_TYPE_AXALTA_PAINT, etc.
+### Shader NODE### s:
+    SHADER_TYPE_ADVANCED = 'lux_advanced'
+    SHADER_TYPE_ANISOTROPIC = 'lux_anisotropic'
+    SHADER_TYPE_AXALTA_PAINT = 'dupont_paint'
+    SHADER_TYPE_BAKED_PLASTIC = 'lux_baked_plastic'
+    SHADER_TYPE_BRUSHED = 'lux_brushed2'
+    SHADER_TYPE_BRUSHED_RADIAL = 'lux_brushed_solid'
+    SHADER_TYPE_BUBBLES = 'lux_bubbles'
+    SHADER_TYPE_BUMP_ADD = 'lux_bumpmap_add'
+    SHADER_TYPE_BUMP_TO_ROUGHNESS = 'lux_bump2roughness'
+    SHADER_TYPE_CAMOUFLAGE = 'lux_camouflage'
+    SHADER_TYPE_CELLULAR = 'lux_worley'
+    SHADER_TYPE_COLOR_ADJUST = 'lux_color_adjust'
+    SHADER_TYPE_COLOR_COMPOSITE = 'lux_color_blend'
+    SHADER_TYPE_COLOR_FADE = 'animation_color'
+    SHADER_TYPE_COLOR_GRADIENT = 'lux_color_gradient'
+    SHADER_TYPE_COLOR_INVERT = 'lux_color_invert'
+    SHADER_TYPE_COLOR_KEY_MASK = 'lux_color_distance'
+    SHADER_TYPE_COLOR_TO_NUMBER = 'convert_rgba_to_float'
+    SHADER_TYPE_CONTOUR = 'lux_contour_tex'
+    SHADER_TYPE_CURVATURE = 'lux_curvature'
 
 [Content continues]

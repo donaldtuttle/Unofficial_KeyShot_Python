@@ -34,10 +34,15 @@ Before returning a script, check every `lux` and `luxmath` symbol:
 - [ ] None and empty-list returns checked before use
 - [ ] Only `lux` / `luxmath` + stdlib; no external libraries
 - [ ] File I/O, threading, and subprocesses only if the task authorizes them
+- [ ] Headless: no GUI calls; explicit paths; `lux.isHeadless()` checked
 
 If a box cannot be checked, do not ship that call. Name the missing symbol and offer a documented alternative or say it is unsupported.
 
 Do not verify against the 2026.1 website, the historical archive, or model memory.
+
+## Headless error handling
+
+Check `lux.isHeadless()` before any dialog. In headless, require explicit config and raise if it is missing. In GUI, check cancellation. Never omit a path on save, export, or render in headless — that throws. Do not use third-party GUI toolkits.
 
 **The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
 

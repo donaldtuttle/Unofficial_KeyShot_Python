@@ -1,16 +1,38 @@
 # KeyShot Python Knowledge Base
 
-**This file is the TOC.** Do not create or look for a separate TOC.
+**This file is the TOC.** Do not create or look for a separate TOC. There is no `KeyShotPythonScripting_ToC.txt`.
 
 **Version:** KeyShot Studio 2026.2  
 **API source of truth:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.2 console. Prefer this over the public 2026.1 website.  
 **Agent:** Agnostic LLM. Always start with `AI/constraints.md`.
+
+## Knowledge overview
+
+The assistant is backed by these documents. Query by topic, then verify against the 2026.2 dump.
+
+| Topic | File |
+| --- | --- |
+| Hard rules | [constraints.md](constraints.md) |
+| Best practices | [best-practices.md](best-practices.md) |
+| Glossary | [glossary.md](glossary.md) |
+| System prompt | [system_prompt.md](system_prompt.md) |
+| Topic index | [index.md](index.md) |
+| API source of truth | [2026.2 help(lux) dump](../lux/KeyShot_lux_API.md) |
+| Quick reference | [kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt](kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt) |
+| GUI / headless | [kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt](kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt) |
+| Material graph copy | [kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt](kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) |
+| Transforms | [kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt](kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt) |
+| Shader types | [materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt) |
+| Maintained examples | [Scripts/examples/](../Scripts/examples/) |
+
+File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.txt`. Materials are individual `Material *.txt` files, not a nested zip.
 
 ## Table of Contents
 
 ### Constraints (mandatory — read first)
 - [Hard Rules](constraints.md) — node IDs, dialog tuples, matrices, API limits, verification patterns
 - [Best Practices](best-practices.md)
+- [Glossary](glossary.md)
 
 ### System
 - [System Prompt](system_prompt.md)
@@ -22,7 +44,7 @@
 - [2026.2 help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the runtime
 
 ### KPSA Knowledge (`AI/kpsa_knowledge/`)
-- [Best Practices Guide](kpsa_knowledge/KeyShotPythonScripting_API_BestPractices_Guide.txt) — elevated constraints, material verification, GUI, transforms, scene node differences
+- [Best Practices Guide](kpsa_knowledge/KeyShotPythonScripting_API_BestPractices_Guide.txt)
 - [GUI Input Dialog Guide](kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt)
 - [Transformation Matrix Guide](kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt)
 - [Quick Reference](kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt)
@@ -31,13 +53,15 @@
 
 ### Materials (`AI/materials/`)
 - [Shader Node Types & Parameters](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)
-- Individual `Material *.txt` parameter and usage files (Advanced, Metal, Plastic, etc.)
+- Individual `Material *.txt` parameter and usage files
 - [Material Graph Duplication](materials/Material_Graph_Duplication.txt)
 - [OpenPBR Converter](materials/openpbr_material_converter.py)
 
-### Examples (`AI/examples/`)
+### Examples
 - [OpenPBR Converter](examples/openpbr_material_converter.py)
-- [Information Inspector](examples/inspector/) — KeyShot Information Inspector v1.2.0
+- [Information Inspector](examples/inspector/)
+- [Maintained scripts](../Scripts/examples/) — verified patterns
+- [Historical archive](../Scripts/archive/HISTORICAL_SCRIPTS.md) — not current API
 
 ### Secondary (lags 2026.2)
 - Public 2026.1 scripting: https://media.keyshot.com/scripting/doc/2026.1/

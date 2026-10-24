@@ -1,0 +1,26 @@
+Help on built-in module lux:
+NAME
+    lux - The module contains various classes and functions to use for manipulating the scene and rendering images.
+CLASSES
+    builtins.object
+        ColorParameter
+        Colorway
+        Env
+        ImageStyle
+        MaterialGraph
+        MaterialMetadata
+        MultiMaterial
+        RenderOptions
+        SceneNode
+        ShaderEdge
+        ShaderNode
+        ShaderParameter
+        Studio
+        ThumbnailRenderOptions
+
+[Full 2026.1 Lux API pydoc reference - see KeyShot 2026.1 scripting documentation for complete signatures]
+
+This file is the 2026.1 Lux API reference from the KPSA knowledge backup.
+SceneNode.getMetadata() is available.
+renderAnimation() is available in headless.
+Python 3.13.

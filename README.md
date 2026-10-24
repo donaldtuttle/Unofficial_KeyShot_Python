@@ -1,53 +1,37 @@
-# Unofficial_KeyShot_Python
-Unofficial KeyShot Python Libraries and Documentation 
-# KeyShot Python API Documentation
+# Unofficial KeyShot Python
 
-Welcome to the KeyShot Python API Documentation repository. This resource is created to provide comprehensive guides, detailed documentation, and practical script examples for users of KeyShot's Python API. Whether you're automating tasks in KeyShot, extending its functionalities, or integrating KeyShot into your digital pipeline, this repository aims to be your go-to reference.
+Unofficial KeyShot Python libraries, documentation, examples, and an agnostic AI agent setup.
 
-## Table of Contents
+**Current target: KeyShot Studio 2026.1** (Python 3.13 64-bit).
 
-- [Introduction](#introduction)
-- [lux Library Documentation](#lux-library-documentation)
-- [luxmath Library Documentation](#luxmath-library-documentation)
-- [Headless Mode Documentation](#headless-mode-documentation)
-  - [lux Headless](#lux-headless)
-  - [luxmath Headless](#luxmath-headless)
-- [Example Scripts](#example-scripts)
-- [Contributing](#contributing)
-- [License](#license)
+Official source of truth:
+- GUI scripting: https://media.keyshot.com/scripting/doc/2026.1/
+- Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
+- Manual overview: https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html
 
-## Introduction
+The large `lux/` and `luxmath/` markdown dumps in this repo are historical (primarily 2023–2024 era). They remain useful for reference but are not regenerated for every release. Prefer the official 2026.1 docs above for current signatures.
 
-KeyShot by Luxion is a leading real-time 3D rendering and animation software. The KeyShot Python API allows for scripting and automation of various KeyShot functionalities, enhancing productivity and enabling advanced customizations. This repository documents the `lux` and `luxmath` libraries, provides insights into running KeyShot in headless mode, and shares useful script examples.
+## Key 2026 Changes Relevant to Scripting
 
-## lux Library Documentation
+- Python 3.13.
+- `lux.SceneNode.getMetadata()` — returns CAD metadata for the node as a dictionary. Enables scripts that act on engineer annotations (apply materials, move parts, render thumbnails, etc. based on metadata).
+- `lux.renderAnimation()` available and preferred in headless. Starts the render engine once and processes the full animation (~3× faster than per-frame).
+- Continued improvements to material graphs, multi-materials, CMF metadata, export (USD, 3MF, etc.), and render passes.
 
-The `lux` library is KeyShot's primary interface for scripting, offering functions to control scenes, materials, cameras, rendering, and more. [Explore the lux library documentation.](lux/KeyShot_lux_API.md)
+## Repository Layout
 
-## luxmath Library Documentation
+- `lux/`, `luxmath/`, `lux_headless/`, `luxmath_headless/` — historical API dumps.
+- `Scripts/` — example scripts (still valid patterns).
+- `AI/` — agnostic KeyShot Python agent (converted from prior KSPA knowledge). Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.).
 
-For mathematical operations, the `luxmath` library provides Vector and Matrix classes, essential for transformations and other calculations in scripts. [Learn more about luxmath.](luxmath/KeyShot_luxmath_API.md)
+## Using the AI Agent
 
-## Headless Mode Documentation
-
-Running KeyShot in headless mode enables automation and integration into pipelines without the GUI. This section covers the essentials for both `lux` and `luxmath` libraries in headless operation.
-
-### lux Headless
-
-Documentation specific to using the `lux` library without the KeyShot interface. [Dive into lux headless mode.](lux_headless/KeyShot_headless_lux_API.md)
-
-### luxmath Headless
-
-Similar to the `luxmath` library, but focused on headless applications. [Discover luxmath in headless mode.](luxmath_headless/KeyShot_headless_luxmath_API.md)
-
-## Example Scripts
-
-A collection of scripts demonstrating the practical application of KeyShot's Python API for common tasks and advanced customizations. [Browse example scripts.](Scripts/)
+See `AI/README.md`. The agent is intentionally model-agnostic: one system prompt + one knowledge base file. No vendor lock-in.
 
 ## Contributing
 
-Contributions to this repository are welcome! Whether it's improving documentation, adding new scripts, or reporting issues, your input helps make this resource better for everyone. [Find out how to contribute.](CONTRIBUTING.md)
+PRs welcome for new examples, 2026-specific patterns, or improvements to the AI knowledge base. Keep the unofficial nature clear.
 
 ## License
 
-This project is licensed under [MIT License](LICENSE) - see the LICENSE file for details.
+MIT — see LICENSE.

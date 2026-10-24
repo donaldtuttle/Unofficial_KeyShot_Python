@@ -32,3 +32,7 @@ KeyShot operations require the real runtime. “Syntax verified” does not mean
 | [materials/save_submaterials_to_library.py](materials/save_submaterials_to_library.py) | Save multi-material sub-materials to the library. |
 
 Also see `AI/materials/` for the OpenPBR converter and material-graph duplication note, and `AI/examples/inspector/` for the Information Inspector.
+
+## Historical archive (not authoritative)
+
+[`Scripts/archive/HISTORICAL_SCRIPTS.md`](../archive/HISTORICAL_SCRIPTS.md) holds older script notes. Recover a pattern from it, then verify every call against the 2026.2 dump before reuse. Do not treat it as current API.

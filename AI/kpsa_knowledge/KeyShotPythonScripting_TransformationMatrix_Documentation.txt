@@ -221,4 +221,131 @@ dup.applyTransform(transform_matrix)
 
 #### Spiral Pattern Duplicator Script
 
-[Content continues — remaining sections staged next]
+This script duplicates a selected model and arranges the duplicates in a spiral pattern. It includes options for spiral direction (clockwise or counterclockwise) and random rotation of duplicates.
+
+**Script Overview:**
+
+```python
+import os
+import sys
+import math
+from random import uniform, randint, choice
+
+def create_spiral_matrix(i, spacing, angle_increment, direction, clockwise):
+    angle_increment = -angle_increment if clockwise else angle_increment
+    angle_rad = i * angle_increment * (math.pi / 180.0)
+    if direction in ["X", "-X"]:
+        x_offset = i * spacing if direction == "X" else -i * spacing
+        y_offset = math.sin(angle_rad) * spacing * i
+        z_offset = math.cos(angle_rad) * spacing * i
+    elif direction in ["Y", "-Y"]:
+        x_offset = math.sin(angle_rad) * spacing * i
+        y_offset = i * spacing if direction == "Y" else -i * spacing
+        z_offset = math.cos(angle_rad) * spacing * i
+    elif direction in ["Z", "-Z"]:
+        x_offset = math.sin(angle_rad) * spacing * i
+        y_offset = math.cos(angle_rad) * spacing * i
+        z_offset = i * spacing if direction == "Z" else -i * spacing
+
+    return luxmath.Matrix().makeIdentity().translate(luxmath.Vector(x_offset, y_offset, z_offset))
+
+def main():
+    objTxt = []
+    objRef = []
+    root = lux.getSceneTree()
+    types = (lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_MODEL)
+    for n in root.find("", types=types, depth=3):
+        if n != root:
+            objTxt.append(n.getName())
+            objRef.append(n)
+
+    if len(objTxt) == 0:
+        raise Exception("No objects in the scene!")
+
+    opts = {
+        "object": inputItem("Object:", 0, objTxt),
+        "dups": inputInt("#Duplicates:", 4, (1, 4096)),
+        "spacing": inputInt("Spacing Between Duplicates:", 1.0, (0.1, 100.0)),
+        "angle": inputInt("Angle Increment (degrees):", 10.0, (0.1, 360.0)),
+        "direction": inputItem("Spiral Direction:", 0, ["X", "Y", "Z", "-X", "-Y", "-Z"]),
+        "clockwise": inputBool("Clockwise:", True),
+        "random_rotate": inputBool("Randomly Rotate Duplicates:", False)
+    }
+
+    obj = objRef[opts["object"][0]]
+    amount = opts["dups"]
+    spacing = opts["spacing"]
+    angle_increment = opts["angle"]
+    direction = opts["direction"][1]
+    clockwise = opts["clockwise"]
+    random_rotate = opts["random_rotate"]
+
+    dups = obj.duplicate(amount=amount)
+    if len(dups) == 0:
+        raise Exception("No duplicates could be created!")
+
+    for i, dup in enumerate(dups, start=1):
+        transform_matrix = create_spiral_matrix(i, spacing, angle_increment, direction, clockwise)
+        dup.applyTransform(transform_matrix)
+
+        if random_rotate:
+            rotation_axis = randaxis()
+            rotation_angle = uniform(0, 360)
+            rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(rotation_axis, rotation_angle)
+            dup.applyTransform(rotation_matrix)
+
+main()
+```
+
+#### Voxel-Based Island Script
+
+This script generates a voxel-based island environment using a 32x32 grid. It demonstrates how to use KeyShot’s Python API to navigate the scene tree, duplicate models, and apply transformations.
+
+**Script Overview:**
+
+```python
+import lux
+import luxmath
+import math
+import random
+
+def create_voxel_matrix(x, y, z, spacing):
+    return luxmath.Matrix().makeIdentity().translate(luxmath.Vector(x * spacing, y * spacing, z * spacing))
+
+def generate_island_height(x, z, width, depth):
+    center_x, center_z = width // 2, depth // 2
+    distance_from_center = math.sqrt((x - center_x) ** 2 + (z - center_z) ** 2)
+    max_distance = math.sqrt(center_x ** 2 + center_z ** 2)
+    distance_factor = 1 - (distance_from_center / max_distance)
+    max_height = 50
+    noise = random.uniform(-5, 5)
+    height = max_height * (distance_factor ** 2) + noise
+    return max(0, int(height))
+
+def is_surface_voxel(x, y, z, height_map, width, depth):
+    if y >= height_map[x][z] or y < 0:
+        return False
+    neighbors = [(x - 1, z), (x + 1, z), (x, z - 1), (x, z + 1), (x, z)]
+    for nx, nz in neighbors:
+        if nx < 0 or nx >= width or nz < 0 or nz >= depth:
+            continue
+        if y >= height_map[nx][nz]:
+            return True
+    return False
+
+def build_voxel_world(models, dimensions, spacing):
+    width, height, depth = dimensions
+    height_map = [[generate_island_height(x, z, width, depth) for z in range(depth)] for x in range(width)]
+    
+    max_height = max(max(row) for row in height_map)
+    
+    for x in range(width):
+        for z in range(depth):
+            for y in range(height):
+                if is_surface_voxel(x, y, z, height_map, width, depth):
+                    if y == height_map[x][z]:
+                        model = models.get("CubeGrass", None)
+                    elif y > height_map[x][z] * 0.7:
+                        model = models.get("CubeDirt", None)
+
+[Content continues]

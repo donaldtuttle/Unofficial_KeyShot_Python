@@ -1,0 +1,34 @@
+# KeyShot Python Scripting API Reference (Thin Layer)
+
+**Target:** KeyShot 2026.1 (Python 3.13)
+
+Large embedded API dumps have been replaced with live official documentation. Always prefer:
+
+- Official scripting docs: https://media.keyshot.com/scripting/doc/2026.1/
+- Headless docs: https://media.keyshot.com/scripting/headless_doc/2026.1/
+- Repo clean reference (once established in Unofficial_KeyShot_Python)
+
+## Thin 2026 Notes
+
+- `SceneNode.getMetadata()` is available.
+- `lux.renderAnimation()` is supported in headless mode.
+- Python 3.13.
+- Node IDs remain dynamic and session-unstable. Prefer names and re-verify after graph operations.
+- No `lux.getActiveCamera()` — use `lux.getCamera()`.
+- No `lux.getMaterial()` / `lux.getMaterials()` — use `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`.
+
+## Common Patterns (see also constraints.md)
+
+- Material graph access: `graph = lux.getMaterialGraph("name"); if graph: ...`
+- Dialog: complete tuples, non-empty TEXT defaults, `if opts:`.
+- Matrices: `luxmath.Matrix().makeIdentity()` then translate/rotate/scale.
+- Batches: `lux.beginUndoSession()` / `lux.endUndoSession()`.
+- Always check `None` and non-empty returns.
+
+## References
+
+See `AI/constraints.md` for hard rules.  
+See `AI/kpsa_knowledge/` for elevated best practices, GUI, material graph, and transform guides.  
+See `AI/materials/` for shader node types and per-material parameters.
+
+Do not invent API functions. Validate against the official 2026.1 docs.

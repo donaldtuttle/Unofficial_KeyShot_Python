@@ -399,4 +399,73 @@ verify_and_adjust_edges(source_graph, copied_graph)
 # Example usage
 duplicate_and_verify_material("original-material")
 
+This code is modular, follows good practices, and retains the manual verification steps necessary to ensure correctness in a complex environment like KeyShot. By using this hybrid approach, you can satisfy modularity requirements while keeping the custom manual handling where it matters most.
+
+
+Manual vs Modular Python: Understanding the Hybrid Approach for KeyShot Scripting
+
+When scripting in KeyShot, there’s a clear need to balance between using modular code for maintainability and employing manual verification for precision. Large Language Models (LLMs) typically recommend modularity for good reasons like reusability, separation of concerns, and reliability, but in certain KeyShot workflows, especially those involving complex material manipulations, a manual approach may be required to ensure the highest quality output. Here’s how you can reconcile these approaches effectively:
+
+Why Modular Approaches Are Usually Recommended:
+
+1. Reusability:
+• Functions and classes allow components to be reused in multiple scenarios, reducing redundancy.
+2. Separation of Concerns:
+• Each function or class serves a specific purpose, which improves readability and makes the code easier to understand and debug.
+3. Testing and Reliability:
+• Smaller, focused modules can be individually tested, ensuring that each part works reliably before integration.
+
+Why Manual Verification is Crucial in KeyShot Scripting:
+
+KeyShot’s material and scene complexities often require hands-on intervention to ensure accurate reproduction of visual elements, especially when dealing with material graphs and transformations.
+
+1. Complex Relationships:
+• Material graphs in KeyShot are complex, involving many interconnected nodes and unique parameter dependencies. Directly replicating a graph with a function like lux.createMultiMaterial() could overlook custom behaviors or dependencies between nodes. Manual checks ensure every node and connection behaves as expected, especially for custom procedural setups or specialized workflows.
+2. Precision and Customization:
+• Generic modular functions might apply standard settings across nodes, but in scenarios involving different material types and dependencies, each element may require specific adjustments. Manual verification allows you to customize each node and parameter beyond the capabilities of a generic function.
+3. Quality Assurance:
+• Automated processes, while efficient, may introduce subtle issues not immediately visible. Manual verification ensures all aspects of a material or transformation have been correctly applied, avoiding problems that could lead to incorrect renders or visual inconsistencies.
+
+How to Bridge Manual Verification with Modular Design:
+
+To balance modularity and manual verification, you can take a hybrid approach:
+
+1. Create Modular Verification Functions:
+• Instead of embedding verification code everywhere, write reusable helper functions that perform specific verification tasks. This retains modularity while allowing for detailed manual checks where needed.
+• Example Function:
+
+def verify_node_parameters(source_node, target_node):
+for param in source_node.getParameters():
+new_param = target_node.getParameter(param.getName())
+if new_param:
+if new_param.getValue() != param.getValue():
+new_param.setValue(param.getValue())
+print(f"Parameter '{param.getName()}' adjusted to match the source.")
+else:
+print(f"Warning: Parameter '{param.getName()}' not found in target node.")
+
+This function ensures that parameters from a source node match those in a target node, making it easy to verify specific aspects of a material graph.
+
+2. Combine Automation with Manual Checks:
+• Use functions like lux.createMultiMaterial() for initial automation but follow it with detailed verification. This keeps the process efficient but adds a layer of quality control.
+• Example Function:
+
+def duplicate_material_graph(source_graph, target_graph, verify=True):
+# Automatically duplicate using lux.createMultiMaterial()
+# ...
+
+if verify:
+# Perform manual validation and correction
+verify_edge_connections(source_graph, target_graph, node_mapping)
+
+
+3. Design Modules with Manual Override Options:
+• When writing modular functions, allow for manual overrides or additional verification steps as needed. This can be achieved with parameters like verify=True or manual_override=True to indicate when extra verification is required.
+
+Explaining the Need for Manual Steps to an LLM or “Best Practices” System:
+
+• Highlight Complexity and Specificity:
+• KeyShot material graphs often contain many unique, intricate dependencies that cannot be captured through generic automation. While LLMs favor modularity for the average case, the complexity in graphics scripting requires detailed handling of edge cases.
+• Risk Mitigation:
+
 [Content continues]

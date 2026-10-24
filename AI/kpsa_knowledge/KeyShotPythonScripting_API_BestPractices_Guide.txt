@@ -653,4 +653,235 @@ KeyShot Python Scripting: Common Errors and Solutions
 ##GUI Considerations:
 Non-Empty Default Values for lux.getInputDialog():
 
-[Content continues]
+When using lux.getInputDialog() to create custom input dialogs in KeyShot, ensure that all fields, especially those of type lux.DIALOG_TEXT, have non-empty default values. This requirement prevents runtime errors related to uninitialized or empty fields in the dialog.
+Common Errors:
+Empty Item Tuple Exception:
+
+Error Message: Exception: Items of item tuple must be specified!
+Cause: This error occurs when a tuple expected by a function like lux.getInputDialog() is incomplete or improperly formatted, particularly for selection items (lux.DIALOG_ITEM).
+Solution: Ensure that all tuples defining dialog items are complete and correctly formatted. For selection items (lux.DIALOG_ITEM), include all required elements: the label, item type, description, default selection, and a list of options.
+Type Mismatch Error:
+
+Error Message: TypeError: argument 1 must be str, not list
+Cause: This error is typically raised when a function expects a string argument, but a list (or another non-string type) is provided instead.
+Solution: Carefully review function calls to ensure that all arguments are of the expected type. For functions expecting a string, do not pass lists or other composite types without first converting or extracting the appropriate string value.
+Implementation Tips:
+Debugging: Use print statements or logging to debug argument types and values passed into functions. This can help identify where type mismatches occur.
+Type Checking: Implement explicit type checks or use Python's type hinting to make your code clearer and catch type-related errors early.
+Consistent Formatting: When dealing with functions that require tuples (like lux.getInputDialog()), double-check the consistency and completeness of your tuples to prevent formatting-related exceptions.
+Example:
+Here is an example illustrating how to correctly define a field in lux.getInputDialog() with a non-empty default value:
+
+# Define input fields for the dialog
+values = [
+    ("name", lux.DIALOG_TEXT, "Model Name:", "DefaultModelName"),  # Non-empty default value
+    # Other fields as needed
+]
+
+# Create the dialog
+opts = lux.getInputDialog(title="Model Import Settings",
+                          desc="Configure settings for importing models.",
+                          values=values)
+
+### GUI Scripting
+
+### Scripting: Custom input dialog
+Custom input dialog (GUI only)
+In scripts it is especially preferable to show a single dialog when multiple inputs are needed. For this you can use lux.getInputDialog(). The scripts provided by Luxion will use this.
+
+As an example, if we wanted to write a video encoding script the following dialog might suffice:
+
+>>> values = [("folder", lux.DIALOG_FOLDER, "Folder with frames:", None), \
+              ("fmt", lux.DIALOG_TEXT, "Frame file format:", "frame.%d.jpg"), \
+              ("start", lux.DIALOG_INTEGER, "Start frame:", 1, (1, 4096)), \
+              ("end", lux.DIALOG_INTEGER, "End frame:", 10, (1, 4096)), \
+              ("fps", lux.DIALOG_INTEGER, "FPS:", 10, (1, 1024)), \
+              ("name", lux.DIALOG_TEXT, "Video name:", "video.mp4")]
+>>> opts = lux.getInputDialog(title = "Encode Video", \ # Shows the dialog.
+                              desc = "Put a description here.", \
+                              values = values)
+>>> opts
+{'end': 10, 'fps': 10, 'fmt': 'frame.%d.jpg', 'name': 'video.mp4', 'start': 1, 'folder': ''}
+If you click “OK” without changing any values then you will get the Python dictionary above. Each key is associated with the value from the dialog.
+
+Note
+
+The “\” characters above indicates a continuation of the line, so it is not split into several lines, but understood as one line.
+
+For scripts that are run often it is convenient to have KeyShot remember the last values for when the dialog is displayed again, and that is accomplished by using a unique value for the id option:
+
+>>> opts = lux.getInputDialog(title = "Encode Video", \
+                              desc = "Put a description here.", \
+                              values = values, \
+                              id = "something_unique_goes_here")
+If the unique value is already used by some other script then you will get undesired results. However, keep in mind that your script must use the same unique value each time to retrieve your values.
+
+
+**GUI Constraints and Restrictions**: KeyShot doesn't support external libraries, hence when crafting a GUI in KeyShot ALWAYS use GUI-based scripting functionalities that KeyShot offers.
+
+### Scripting: Custom input dialog script examples.
+
+### 1. Importing Models in Batch
+
+This example demonstrates how to use a GUI dialog to select multiple model files for batch import into KeyShot. It utilizes the `lux.getInputDialog()` for user input and `lux.importFile()` for importing models.
+
+```python
+import lux
+import os
+
+def batch_import_models():
+    # Ask user to select model files for import
+    file_paths = lux.getInputDialog(title="Batch Import Models",
+                                    desc="Select model files to import",
+                                    values=[("model_files", lux.DIALOG_FILE, "Model files:", None, True)])
+    if file_paths:
+        for file_path in file_paths["model_files"]:
+            lux.importFile(file_path)
+
+batch_import_models()
+```
+
+### 2. Assigning Textures to Multi-Materials in Batch
+
+This script demonstrates how to assign diffuse textures to sub-materials of multi-materials in batch, using a GUI dialog for specifying a folder containing texture files.
+
+```python
+import lux
+import os
+
+def batch_assign_textures():
+    folder_path = lux.getInputDialog(title="Batch Assign Textures",
+                                      desc="Select the folder containing textures",
+                                      values=[("texture_folder", lux.DIALOG_FOLDER, "Texture folder:", None)])
+    if folder_path:
+        texture_folder = folder_path["texture_folder"]
+        for texture_file in os.listdir(texture_folder):
+            # Logic to match texture files to multi-materials and assign them accordingly
+            # This is a placeholder for the actual implementation
+            print(f"Assigning {texture_file} to a multi-material")
+
+batch_assign_textures()
+```
+
+### 3. Renaming Materials to Avoid Clashing
+
+This script provides a GUI to rename materials in a KeyShot scene to avoid name clashes. It uses a find-and-replace approach.
+
+```python
+import lux
+
+def rename_materials():
+    rename_opts = lux.getInputDialog(title="Rename Materials",
+                                     desc="Specify find and replace terms for material names",
+                                     values=[("find", lux.DIALOG_TEXT, "Find:", ""),
+                                             ("replace", lux.DIALOG_TEXT, "Replace with:", "")])
+    if rename_opts:
+        find_term = rename_opts["find"]
+        replace_term = rename_opts["replace"]
+        # Logic to iterate through materials and rename them
+        # Placeholder for the actual implementation
+        print(f"Renaming materials: replacing {find_term} with {replace_term}")
+
+rename_materials()
+```
+
+### 4. Retrieving Camera Information
+
+This example showcases how to create a GUI dialog that displays information about the currently active camera.
+
+```python
+import lux
+
+def get_camera_info():
+    camera = lux.getActiveCamera()
+    # Assuming camera information retrieval functions exist
+    # Placeholder for actual camera info retrieval and display logic
+    camera_info = f"Camera Name: {camera.name}, Position: {camera.position}, FOV: {camera.fov}"
+    lux.messageBox("Camera Information", camera_info)
+
+get_camera_info()
+```
+
+### 5. Getting Scene Material Parameters
+
+This script uses a GUI to select a material from the scene and display its parameters.
+
+```python
+import lux
+
+def get_material_parameters():
+    material_name = lux.getInputDialog(title="Get Material Parameters",
+                                       desc="Enter the name of the material",
+                                       values=[("material_name", lux.DIALOG_TEXT, "Material Name:", "")])
+    if material_name:
+        material = lux.getMaterial(material_name["material_name"])
+        # Placeholder for logic to retrieve and display material parameters
+        print(f"Parameters for {material.name}: ...")
+
+get_material_parameters()
+```
+
+Common Errors:
+The lux.getInputDialog() function cannot be empty. This means whenever you define a field of type lux.DIALOG_TEXT, you need to ensure that the default value (the fourth element in the tuple for that field) is a non-empty string.
+
+
+##Material Graph
+
+KeyShot Scripting: Handling Material Graphs
+When working with material graphs in KeyShot via Python scripting, it's crucial to utilize the correct functions provided by the lux module for accessing and manipulating materials. The MaterialGraph class encapsulates a graph of material nodes constituting a material in the scene, enabling manipulation of material parameters, addition/removal of material nodes, and their association with input and output edges.
+
+Accessing Material Graphs and Handling Errors
+Function to Use:
+
+To get a material graph, use lux.getMaterialGraph(name), where name is the name of the material.
+Common Errors:
+
+AttributeError: module 'lux' has no attribute 'getMaterial'. Did you mean: 'MultiMaterial'?
+AttributeError: module 'lux' has no attribute 'getMaterials'. Did you mean: 'getCameras'?
+Solutions:
+
+These errors typically occur when attempting to access materials or their properties using incorrect or non-existent lux module functions.
+Use lux.getMaterialGraph(name) to access the material graph of a specific material by its name.
+To obtain information about materials used in the scene, or to manipulate materials directly, consider using the following functions correctly:
+lux.getSceneMaterials(): Retrieves currently used materials in the scene.
+lux.getName(): Retrieves the name of a node, which can be useful when working with materials and model sets.
+lux.getMaterialNodes(): Retrieves a list of material root nodes within a material graph. For multi-materials, it returns individual sub-material roots; for regular materials, it returns a list with a single item equivalent to getRoot().
+Correcting Misused Functions
+Incorrect Use: Attempting to use lux.getMaterial() or lux.getMaterials() directly, which are not valid functions and can lead to AttributeError.
+Correction: Utilize the correct functions for your intended operations, such as lux.getSceneMaterials() for retrieving materials or lux.getMaterialGraph(name) for accessing a material's graph.
+Implementation Tips
+Review KeyShot Python API Documentation: Always refer to the most current KeyShot Python API documentation to understand available functions and their proper usage.
+Debugging: Use print statements to debug the names and types of variables, especially when passing them as arguments to functions, to ensure they match the expected values.
+By adhering to these guidelines and utilizing the correct functions for accessing and manipulating material graphs in KeyShot, you can avoid common errors and enhance your scripting workflow.
+
+##Camera
+KeyShot Scripting: Correcting Camera Access Error
+Error Encounter:
+
+AttributeError: AttributeError: module 'lux' has no attribute 'getActiveCamera'
+This error indicates an attempt to use a non-existent function getActiveCamera in the lux module to retrieve the currently active camera.
+Cause:
+
+The error arises from a misunderstanding or incorrect reference to the available KeyShot Python API functions for camera manipulation.
+Correct Usage:
+
+The correct function to use for getting the active camera's information is lux.getCamera(), not lux.getActiveCamera.
+Solution:
+
+Review KeyShot Python API Documentation: Always consult the latest KeyShot Python API documentation to understand the correct naming and usage of functions related to camera operations.
+Code Adjustment: Replace any incorrect usage of lux.getActiveCamera with lux.getCamera() in your scripts. This function retrieves the current camera settings, including its name, type, and parameters.
+
+Example Correct Usage:
+# Correctly getting the active camera's information
+camera_info = lux.getCamera()
+print("Active Camera:", camera_info)
+
+Additional Tips:
+
+Understanding Camera Functions: Familiarize yourself with other camera-related functions in the KeyShot Python API to fully leverage camera manipulation in your scripts. Functions such as lux.setCamera(), lux.saveCamera(), and lux.setStandardView() can be particularly useful.
+Error Checking: Implement try-except blocks around your camera function calls to catch and handle potential errors gracefully, improving script robustness.
+By adhering to the correct usage of lux.getCamera() for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
+
+Final Thoughts
+
+By following this comprehensive guide, you will ensure that your Python scripts for KeyShot are robust, efficient, and maintainable. Emphasizing error handling, modularity, and user feedback will help you develop scripts that integrate seamlessly with KeyShot workflows. This guide is designed to assist both AI-assisted script development and manual KeyShot scripting. By following these best practices, script writers can create efficient, error-free, and maintainable Python scripts that optimize the KeyShot experience.

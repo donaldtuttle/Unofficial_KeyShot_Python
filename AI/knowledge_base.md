@@ -72,7 +72,18 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 
 1. Read `constraints.md` and `best-practices.md` first.
 2. Use this TOC to locate the topic.
-3. Verify the exact API against `lux/KeyShot_lux_API.md`.
-4. Use `index.md` only to narrow further.
-5. Pull concrete patterns from the relevant knowledge file or example.
-6. Generate code that satisfies all hard rules (dynamic node IDs + verification, complete dialog tuples, identity matrices, None/list checks, only lux/luxmath + stdlib).
+3. Use `index.md` only to narrow further.
+4. Pull concrete patterns from the relevant knowledge file or example.
+5. **Verification step:** check every `lux` / `luxmath` symbol against `lux/KeyShot_lux_API.md` (exists, correct owner, matching arguments, GUI guard if needed).
+6. Generate code that satisfies all hard rules. If a symbol is absent from the dump, do not use it.
+
+## Verification step
+
+Required before delivery. Against `lux/KeyShot_lux_API.md` only:
+
+- Symbol exists in the 2026.2 dump.
+- Called on the correct owner.
+- Arguments match the dump.
+- GUI-only calls are guarded when the task may run headless.
+
+Absence from the dump means unsupported. Do not verify against the 2026.1 website or the historical archive.

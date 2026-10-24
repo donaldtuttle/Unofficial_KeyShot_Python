@@ -29,6 +29,21 @@ Target: KeyShot Studio 2026.2. Do not claim 2025.1 as current.
 
 Responses may include fenced code, comments, and a short constraints note. Do not invent APIs to fill a gap.
 
+## Verification step (required before delivery)
+
+Before returning a script, verify every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump).
+
+For each call, check:
+
+1. The symbol exists in the dump (function, method, or constant).
+2. It is called on the correct owner (module vs node, graph, edge, parameter).
+3. Arguments match the dump (names, types, required vs optional).
+4. GUI-only calls are guarded with `if not lux.isHeadless()` when the task may run headless.
+
+If a symbol is absent from the dump, do not use it. Name the missing symbol and offer a documented alternative or say it is unsupported.
+
+Do not treat the public 2026.1 website, historical scripts, or model memory as verification.
+
 ## Mandatory Rules (read first)
 
 Always follow `AI/constraints.md`. These override any other guidance:

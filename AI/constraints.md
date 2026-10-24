@@ -1,187 +1,49 @@
-# KeyShot Python Scripting Constraints and Hard Rules
+# Mandatory AI constraints
 
-**Target:** KeyShot 2026.1 (Python 3.13)  
-**Agent scope:** Agnostic — works with any LLM. Use only `lux` / `luxmath` + Python standard library.
+**Source:** private KeyShot-Python-AI-Knowledge `knowledge/ai-constraints/README.md` (reviewed 2026-10-23)
 
-These rules are mandatory. Violate them and scripts will fail at runtime or produce incorrect results. Prefer live official docs over embedded dumps:
+Read this document before every KeyShot scripting task. General Python experience is not evidence that a KeyShot operation exists or works. Retrieve the relevant supplied documentation, verify the exact API, and honor the user's constraints before writing code.
 
-- Official scripting: https://media.keyshot.com/scripting/doc/2026.1/
-- Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
-- Repo reference (once established): point to the single clean location in Unofficial_KeyShot_Python.
+## Libraries and execution environment
 
-## Python / API Environment
+**The AI MUST NOT use non-standard or external libraries.** This applies to generated scripts, workarounds, helper modules and GUI code. Do not use or recommend NumPy, pandas, SciPy, Pillow, OpenCV, requests, PySide, PyQt, package installation or an external service as an assumed dependency. Do not disguise a dependency behind a helper or dynamic import.
 
-- Use **only** the KeyShot `lux` and `luxmath` API plus the Python standard library.
-- No external UI libraries (Tkinter, PyQt, etc.) and no assumption of third-party packages.
-- Prefer KeyShot-specific functions (`lux.getMaterialGraph()`, `lux.setCamera()`, `lux.getCamera()`, etc.) for scene and material work.
-- Scripts run inside KeyShot’s isolated Python environment. Anything that touches `lux` must be valid inside KeyShot. External IDEs may write logic; mock `lux` when developing outside.
-- Execution is synchronous / single-threaded. Use KeyShot’s internal queue for batch and render work (`lux.beginUndoSession()` / `lux.endUndoSession()` for batches).
+Use KeyShot's built-in `lux` and `luxmath` for KeyShot operations. Python language constructs are allowed. Use a standard-library module only when needed for the requested task and available in KeyShot's embedded Python. An import working in an external IDE does not establish that availability. Do not expand a scene task into unrelated Python work. Do not import a helper absent from the delivered script/package.
 
-Key 2026 notes (thin redundancy):
-- `SceneNode.getMetadata()` available.
-- `lux.renderAnimation()` supported in headless.
-- Python 3.13.
+Do not add file reads/writes, file logging, network access, threads, subprocesses or background workers merely as conveniences. A request to import, export, render or save authorizes the necessary operation at the requested destination; it does not authorize unrelated logs, hidden files, extra scene saves or package installation. Prefer console feedback when file logging was not requested.
 
-## Data Handling
+Run KeyShot operations inside the licensed KeyShot runtime. An ordinary interpreter, IDE, stub or mock does not supply working `lux`/`luxmath`. Do not suggest installing them with a package manager. Match the target build and embedded Python version. Check GUI/headless restrictions for each call.
 
-- Wrap a single string in a list when the function expects a list.
-- Always check for `None` before calling methods on returned objects.
-- Always check that API-returned lists are non-empty before indexing.
-- Avoid mutable default arguments. Use `None` and initialize inside the function.
-- Explicit type conversion when mixing strings, numbers, and lists.
-- Safe dictionary access on option dicts. Use documented keys.
-- Validate field types and ranges. Provide defaults for empty GUI fields.
+## Evidence before implementation
 
-## Material Graph and Node IDs (Highest Priority)
+- **AI-01 — Retrieve first.** Read these constraints, best practices, the relevant topic, exact API entries, full source passage and applicable findings. Model memory and generic Python patterns are not KeyShot evidence.
+- **AI-02 — Respect API ownership.** Distinguish module functions from methods of scene nodes, graphs, shader nodes, edges, parameters and other objects. Verify the receiver.
+- **AI-03 — Verify the full call.** Check argument names, required values, types, units, ranges, defaults, return representation, version and mode. Ellipsis signatures and prose-derived parameters remain incomplete. Do not invent overloads or attributes.
+- **AI-04 — No invented facilities.** Do not invent logging, progress, cancellation, transaction, undo, camera, cloning, shader or material facilities. A plausible name or successful mock does not establish a feature.
+- **AI-05 — Show uncertainty.** Identify unsupported steps and retrieve evidence or propose a focused runtime observation. Do not hide gaps behind `getattr`, broad exceptions, repeated guessed calls or fabricated fallbacks.
+- **AI-06 — Preserve corrections.** Apply curated findings and user-requested removals to historical sources. Repetition does not validate an archived error. Absence from an index alone is not proof of impossibility.
 
-- Node IDs are dynamically generated and can change across sessions. **Do not treat them as stable identifiers.**
-- Prefer node names. Assign unique names when needed.
-- When connecting edges, use both material/node identifiers as required by the API.
-- After linking or duplicating a material, **verify the result** (re-query the graph or check via an ID).
-- `lux.createMultiMaterial()` creates a copy with unique node IDs. On complex graphs, still perform manual edge and parameter verification.
-- Changes to a material graph affect the specific instance unless you explicitly update all instances / sub-materials.
-- Use `lux.getMaterialGraph(name)` and the graph methods. Do not invent functions such as `lux.getMaterial()` or `lux.getMaterials()`.
+## Preconditions, scene state and side effects
 
-### Shader Node Graphing and Material Graph Operations
+- **AI-07 — Validate before changing.** Resolve exact targets, scene state, materials, shader types, input types/ranges, paths and naming collisions before mutations. Handle documented missing-object and cancellation results. Do not stringify every invalid value to suppress type errors.
+- **AI-08 — Respect dependencies.** Obtain the correct graph and nodes before parameters or edges. Check multi-material state only for operations that need it. Verify historical ordering against documentation instead of inferring universal API rules from an example.
+- **AI-09 — Preserve material relationships.** Distinguish object/material duplication, linking, multi-material creation, shader copying and graph rebuilding. Do not force every duplicate through multi-material creation. Check parameter type and pure status; preserve connections and texture references.
+- **AI-10 — Transform explicitly.** Establish node kind, coordinate space, pivot, units, order and relative/absolute intent. Do not transform parent and child accidentally. Verify matrix operations rather than copying another 3D library's syntax.
+- **AI-11 — Use KeyShot GUI controls.** Use documented native dialogs for GUI tasks. Prefer one complete input dialog, validate field-specific tuple formats and ranges, handle cancellation, and use a stable unique ID for intended persistence. Do not use third-party toolkits or GUI calls in headless mode.
+- **AI-12 — Protect the user's work.** Default risky examples to dry-run and collect preconditions before setters. Avoid unrequested overwrites, deletion, resets or cleanup. Exceptions and dry-run do not provide rollback. Do not silently choose output folders or change scene/camera state to simplify an example.
+- **AI-13 — Preserve temporal and visual intent.** Retain requested frame rate, inclusive ranges, duration, sequence names, motion and transform behavior. A symbol check cannot establish the rendered result.
 
-- Node type matching is required when duplicating or creating nodes (`node.getType()`).
-- Parameter type matching is required (`param.getType()`, `param.getValue()` / `setValue()`).
-- Edge reconnection after duplication or copy must be verified. Do not assume edges are preserved.
-- Clean unused nodes. Keep material graphs organized.
-- Common errors: wrong node type, missing edges, parameter type mismatch, relying on dynamic IDs.
+## Deliverables and user interaction
 
-**Concrete pattern (hybrid modular + verification):**
+- **AI-14 — Complete means complete.** Deliver the full supported script with explicit imports, configuration, defined helpers, checks, comments and invocation. No `...`, TODOs, pseudocode, hypothetical calls or omitted core operations in code presented as ready. A requested teaching fragment may remain clearly labelled.
+- **AI-15 — Accuracy comes first.** If a required operation is unsupported or unverified, identify the missing evidence and supportable alternatives. Do not fabricate a complete script or guarantee runtime success.
+- **AI-16 — Respect the mode.** Material-template automation should support headless use and OS portability where documented functionality permits. A GUI-specific request is an explicit exception to headless design. Do not silently replace one workflow with the other.
+- **AI-17 — Explain use and diagnosis.** State prerequisites, configuration, expected changes, invocation and failure diagnosis. Cite sources and include useful error context. Respect the user's experience; ask only when a missing choice changes correctness or scope.
+- **AI-18 — Separate test evidence.** Distinguish syntax, declaration, static, mock, GUI, headless and visual/behavioral checks. Never call parsing, mocks or source presence runtime testing. Record exact build, mode and scene for real tests.
+- **AI-19 — Preserve information.** Keep full supplied documents, examples, filenames, duplicate mappings and hashes available. Record corrections separately. Do not substitute summaries for detailed sources or call an automated scan a complete semantic audit.
 
-```python
-import lux
+## Source basis
 
-def duplicate_material(material_name):
-    copied_material_name = f"{material_name}_Copy"
-    return lux.createMultiMaterial(name=copied_material_name, mat=material_name)
+The current user's external-library prohibition is mandatory. Historical file-I/O examples do not override authorization requirements. Unsupported historical calls remain source data and need correction before reuse. Full scripts are required when supportable; fabrication cannot satisfy that requirement.
 
-def verify_node_parameters(source_node, target_node):
-    for param in source_node.getParameters():
-        new_param = target_node.getParameter(param.getName())
-        if new_param and new_param.getValue() != param.getValue():
-            new_param.setValue(param.getValue())
-
-def verify_and_adjust_edges(source_graph, target_graph):
-    node_mapping = {node.getName(): target_graph.getNodeByName(f"{node.getName()}_Copy")
-                    for node in source_graph.getNodes()}
-    for node in source_graph.getNodes():
-        for edge in node.getOutputEdges():
-            src = node_mapping.get(edge.getSourceNode().getName())
-            tgt = node_mapping.get(edge.getTargetNode().getName())
-            if src and tgt and not target_graph.hasEdge(src, tgt, edge.getID()):
-                target_graph.newEdge(src, tgt, edge.getID())
-
-def duplicate_and_verify_material(material_name):
-    copied = duplicate_material(material_name)
-    source_graph = lux.getMaterialGraph(name=material_name)
-    copied_graph = lux.getMaterialGraph(name=copied)
-    if not source_graph or not copied_graph:
-        lux.logError("Graph missing after copy")
-        return
-    for source_node in source_graph.getNodes():
-        target_node = copied_graph.getNodeByName(f"{source_node.getName()}_Copy")
-        if target_node:
-            verify_node_parameters(source_node, target_node)
-    verify_and_adjust_edges(source_graph, copied_graph)
-```
-
-Always re-query after copy. Prefer names over IDs.
-
-## GUI Input Dialog Constraints
-
-- GUI dialogs use `lux.getInputDialog()` **only**. Not headless compatible.
-- Field definitions are tuples. The tuple structure must be complete and correct for the dialog type.
-- Common tuple patterns:
-  - Text: `("key", lux.DIALOG_TEXT, "label:", "default")` — **non-empty default required**.
-  - Integer: `("key", lux.DIALOG_INTEGER, "label:", default, (min, max))` — range is a tuple.
-  - Double: similar with range.
-  - Item/selection: `("key", lux.DIALOG_ITEM, "label:", default_index, [options])` — must include the options list.
-  - File / Folder: appropriate `DIALOG_FILE` / `DIALOG_FOLDER` form.
-- Empty fields, missing parameters, or incomplete tuples cause runtime errors ("Items of item tuple must be specified!"). Always provide defaults and validate the returned `opts` dict.
-- Check `if opts:` before using results (user may cancel).
-
-**Correct example:**
-
-```python
-values = [
-    ("name", lux.DIALOG_TEXT, "Model Name:", "DefaultModelName"),  # non-empty default
-    ("count", lux.DIALOG_INTEGER, "Count:", 1, (1, 100)),
-    ("mode", lux.DIALOG_ITEM, "Mode:", 0, ["Fast", "Quality"])
-]
-opts = lux.getInputDialog(title="Settings", values=values)
-if opts:
-    # safe access
-    name = opts.get("name", "DefaultModelName")
-else:
-    lux.logInfo("Dialog cancelled")
-```
-
-## Transforms and Matrices
-
-- Start from identity: `luxmath.Matrix().makeIdentity()`.
-- Order of operations matters. Absolute vs relative is meaningful (**absolute only on object nodes**).
-- Pattern matrices (spiral, grid, circle, etc.) are built from identity + translate/rotate/scale.
-- Bounding boxes differ by model / part / group / model set.
-- Groups and models do not support absolute transforms; objects do.
-
-**Example:**
-
-```python
-import luxmath
-import math
-
-matrix = luxmath.Matrix().makeIdentity().translate(luxmath.Vector(1.0, 0.0, 0.0))
-# or for spiral:
-angle_rad = index * angle_increment * (math.pi / 180.0)
-offset = luxmath.Vector(math.cos(angle_rad), 0, math.sin(angle_rad)) * spacing
-spiral = luxmath.Matrix().makeIdentity().translate(offset)
-```
-
-## Common API Misperceptions (Explicit Corrections)
-
-- `lux.getSceneInfo()` does **not** return full scene data. Use specific getters (`getSceneMaterials`, `getCameras`, etc.).
-- Studios reference current materials; they do not store independent material state.
-- Node IDs are **not** stable across sessions.
-- Material graph changes affect the specific instance unless updated everywhere.
-- There is **no** `lux.getActiveCamera()`. Use `lux.getCamera()`.
-- There is **no** `lux.getMaterial()` / `lux.getMaterials()`. Use `getMaterialGraph(name)` and `getSceneMaterials()`.
-
-## Custom Functions
-
-- Do **not** override KeyShot methods. Wrap them.
-- Pattern: helper that calls `lux.getMaterialGraph`, finds a node, and calls the Lux method (`setColor`, `setValue`, etc.) rather than replacing the API.
-
-## Scene Nodes vs Material Nodes
-
-- Duplicating a scene tree node creates a new instance with its properties.
-- Duplicating a material requires `lux.createMultiMaterial()` for independence and unique node IDs, plus post-copy edge/parameter verification.
-- Absolute transforms only on object nodes. Groups/models aggregate children and do not support absolute.
-
-## General Scripting
-
-- Modular functions, consistent naming, docstrings.
-- Check return values (import, render, etc.).
-- Log or print for debugging (`lux.logError()`, `lux.logInfo()`).
-- Check file paths exist before use.
-- Structure for modularity. Test in small increments. Use descriptive names.
-- Keep material graphs clean (delete unused nodes, logical connections).
-- Automate routine tasks (library save, batch parameter updates, render output paths).
-- Wrap critical API calls in try/except and check return values.
-- Use `lux.beginUndoSession()` / `lux.endUndoSession()` for batches.
-
-## Scripting Examples
-
-New, fully comprehensive scripting examples live in the dedicated examples directory (not the old names). Reference those files only when pointing to concrete scripts:
-
-- Materials: Complete conversion of KeyShot materials to OpenPBR.
-- Camera: Gather all camera information, save to portable format (`.meta` / `.xml`), and re-apply later. Same pattern for other scene data.
-
-Do not reference, list, or link any old example script names from previous knowledge files.
-
----
-
-*These constraints are the single source of hard rules. Mirror them in system prompt, knowledge base, and relevant kpsa_knowledge / materials files. Update TOC only after content is solid.*
+Continue with `AI/best-practices.md` and official 2026.1 docs.

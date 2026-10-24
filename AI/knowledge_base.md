@@ -1,6 +1,6 @@
 # KeyShot Python Knowledge Base
 
-**Version:** 2026.1 (Python 3.13)  
+**Version:** 2026.x (prefer 2026.2 when available; Python 3.13)  
 **Agent:** Agnostic LLM. Always start with `AI/constraints.md`.
 
 ## Table of Contents
@@ -16,16 +16,17 @@
 - [GUI Input Dialog Guide](kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt)
 - [Transformation Matrix Guide](kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt)
 - [Quick Reference](kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt)
-- [API Reference (thin)](kpsa_knowledge/KeyShotPythonScripting_API_Documentation.txt) — pointers to official 2026.1 docs
+- [API Reference (thin)](kpsa_knowledge/KeyShotPythonScripting_API_Documentation.txt) — pointers to official 2026 docs
+- [Material Graph Copy Guide](kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt)
 
 ### Materials (`AI/materials/`)
 - [Shader Node Types & Parameters](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)
-- [Material Graph Copy Guide](materials/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt)
 - Individual `Material *.txt` parameter and usage files (Advanced, Metal, Plastic, etc.)
 
 ### Official Live Docs (preferred over any embedded dump)
 - Scripting: https://media.keyshot.com/scripting/doc/2026.1/
 - Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
+- Prefer 2026.2 docs when available at the standard path.
 
 ## Agent Workflow
 
@@ -37,8 +38,4 @@
 
 ## Scripting Examples
 
-Reference the new examples directory only (OpenPBR material conversion, camera metadata .meta/.xml round-trip, etc.). Do not use or list old example names.
-
----
-
-*TOC anchors and links are provisional. Finalize after all files are confirmed solid. Do not link broken references.*
+Use patterns from the guides and official docs. Do not invent example names or link to non-existent directories.

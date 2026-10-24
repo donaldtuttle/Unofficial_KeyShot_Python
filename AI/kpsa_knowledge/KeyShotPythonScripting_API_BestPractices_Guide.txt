@@ -315,5 +315,88 @@ How to Bridge Manual Verification with Modular Design:
 You can address the LLM’s emphasis on modularity while explaining why manual steps are still needed:
 
 1. Modular Verification Functions:
+• Create modular helper functions that perform specific aspects of the manual verification and correction. For example, you can write functions like:
+• verify_node_parameters(source_node, target_node)
+• verify_edge_connections(source_graph, target_graph, node_mapping)
+These functions would provide modularity while still allowing you to perform detailed manual verification. You can then use these helper functions wherever verification is necessary, achieving code reuse and maintainability.
+
+
+def verify_node_parameters(source_node, target_node):
+for param in source_node.getParameters():
+new_param = target_node.getParameter(param.getName())
+if new_param:
+if new_param.getValue() != param.getValue():
+new_param.setValue(param.getValue())
+print(f"Parameter '{param.getName()}' adjusted to match the source.")
+else:
+print(f"Warning: Parameter '{param.getName()}' not found in target node.")
+
+2. Combining Automation and Manual Checks:
+• Use modular functions for the initial duplication and automated parts of the process, such as using lux.createMultiMaterial() to handle node copying.
+• Afterward, use modularized manual verification functions to validate and correct any discrepancies. This hybrid approach keeps the code modular while ensuring manual precision.
+3. Separate Responsibilities While Allowing Manual Overrides:
+• Design modules that have a primary role of attempting duplication automatically but with built-in hooks or overrides for manual interventions.
+• For example, a function like duplicate_material_graph() could accept additional parameters like a verify flag to determine if manual verification should be triggered after the automated step.
+
+
+def duplicate_material_graph(source_graph, target_graph, verify=True):
+# Automatically duplicate using lux.createMultiMaterial()
+# ...
+
+if verify:
+# Perform manual validation and correction
+verify_edge_connections(source_graph, target_graph, node_mapping)
+
+
+Explaining This to an LLM or a “Best Practices” System:
+
+To explain why manual approaches are used:
+
+• Highlight Complexity and Specificity: Explain that KeyShot material graphs are complex entities, where each node and parameter might require specific handling that cannot be generalized effectively. LLMs often focus on the average case, whereas in graphics scripting, the edge cases are the ones that usually cause problems.
+• Point Out Risk Mitigation: Stress that manual verification serves as a critical risk mitigation step. The consequences of missing a parameter or incorrectly duplicating a node might not manifest until rendering time, which could lead to extensive rework. Manual checks act as preventative measures to ensure correctness.
+• Emphasize Hybrid Workflow Benefits: The hybrid approach—automating what can be automated, and verifying manually where necessary—offers the best of both worlds: it maximizes efficiency while ensuring high-quality, reliable results.
+
+Practical Example of a Hybrid Modular Design:
+
+import lux
+
+# Automated duplication function
+def duplicate_material(material_name):
+print(f"Creating a copy of material '{material_name}'...")
+copied_material_name = f"{material_name}_Copy"
+multi_material_copy = lux.createMultiMaterial(name=copied_material_name, mat=material_name)
+return multi_material_copy
+
+# Modular function for verifying and adjusting edges
+def verify_and_adjust_edges(source_graph, target_graph):
+node_mapping = {node.getName(): target_graph.getNodeByName(f"{node.getName()}_Copy") for node in source_graph.getNodes()}
+for node in source_graph.getNodes():
+for edge in node.getOutputEdges():
+source_node = node_mapping.get(edge.getSourceNode().getName())
+target_node = node_mapping.get(edge.getTargetNode().getName())
+if source_node and target_node and not target_graph.hasEdge(source_node, target_node, edge.getID()):
+target_graph.newEdge(source_node, target_node, edge.getID())
+print(f"Verified and added missing edge between '{source_node.getName()}' and '{target_node.getName()}'.")
+
+# Main function that uses both automated and manual verification
+def duplicate_and_verify_material(material_name):
+# Step 1: Automatically create a copy
+copied_material = duplicate_material(material_name)
+
+# Step 2: Get material graphs
+source_graph = lux.getMaterialGraph(name=material_name)
+copied_graph = lux.getMaterialGraph(name=copied_material)
+
+# Step 3: Perform manual verification for node parameters and edges
+for source_node in source_graph.getNodes():
+target_node = copied_graph.getNodeByName(f"{source_node.getName()}_Copy")
+if target_node:
+verify_node_parameters(source_node, target_node)
+
+# Step 4: Verify and adjust edges
+verify_and_adjust_edges(source_graph, copied_graph)
+
+# Example usage
+duplicate_and_verify_material("original-material")
 
 [Content continues]

@@ -6,7 +6,6 @@ Portable, model-agnostic agent setup for KeyShot Studio 2026.2.
 
 [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` captured in the KeyShot 2026.2 scripting console. This is what exists in the runtime. Prefer it over the public 2026.1 website, which lags.
 
-The help() banner inside the dump still says “KeyShot 2023.2” / “Python3.11”. That banner is stale. The capture is from 2026.2.
 
 ## Mandatory Knowledge (include all of this)
 

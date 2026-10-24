@@ -77,13 +77,23 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 5. **Verification step:** check every `lux` / `luxmath` symbol against `lux/KeyShot_lux_API.md` (exists, correct owner, matching arguments, GUI guard if needed).
 6. Generate code that satisfies all hard rules. If a symbol is absent from the dump, do not use it.
 
-## Verification step
+## Verification checklist
 
-Required before delivery. Against `lux/KeyShot_lux_API.md` only:
+Source: `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump). Nothing else counts.
 
-- Symbol exists in the 2026.2 dump.
-- Called on the correct owner.
-- Arguments match the dump.
-- GUI-only calls are guarded when the task may run headless.
+Before delivery, check every `lux` and `luxmath` symbol:
 
-Absence from the dump means unsupported. Do not verify against the 2026.1 website or the historical archive.
+- [ ] Symbol exists in the dump (function, method, or constant)
+- [ ] Called on the correct owner (module vs node, graph, edge, parameter)
+- [ ] Arguments match the dump (names, types, required vs optional)
+- [ ] Ellipsis signatures are not treated as complete
+- [ ] GUI-only calls guarded with `if not lux.isHeadless()` when the task may run headless
+- [ ] No invented facilities (logging, undo, progress, getMaterial, getMaterials, getActiveCamera, getAnimations)
+- [ ] Node IDs re-queried after any graph copy or link
+- [ ] None and empty-list returns checked before use
+- [ ] Only `lux` / `luxmath` + stdlib; no external libraries
+- [ ] File I/O, threading, and subprocesses only if the task authorizes them
+
+If a box cannot be checked, do not ship that call. Name the missing symbol and offer a documented alternative or say it is unsupported.
+
+Do not verify against the 2026.1 website, the historical archive, or model memory.

@@ -1,34 +1,26 @@
 # KeyShot Python Scripting API Reference (Thin Layer)
 
-**Target:** KeyShot 2026.x (prefer 2026.2 when available; Python 3.13)
+**Target:** KeyShot Studio 2026.2
 
-Large embedded API dumps have been replaced with live official documentation. Always prefer:
+**API source of truth:** `lux/KeyShot_lux_API.md` — `help(lux)` from the 2026.2 console. This file is a pointer only. If it disagrees with the dump, the dump is correct.
 
-- Official scripting docs: https://media.keyshot.com/scripting/doc/2026.1/
-- Headless docs: https://media.keyshot.com/scripting/headless_doc/2026.1/
-- Prefer 2026.2 docs when available.
+Do not prefer the public 2026.1 website over the dump. It lags.
 
-## Thin 2026 Notes
+## Thin notes
 
-- `SceneNode.getMetadata()` is available.
-- `lux.renderAnimation()` is supported in headless mode.
-- Python 3.13.
-- Node IDs remain dynamic and session-unstable. Prefer names and re-verify after graph operations.
-- No `lux.getActiveCamera()` — use `lux.getCamera()`.
+- `SceneNode.getMetadata()` is in the 2026.2 dump.
+- `lux.renderAnimation()` is in the dump and is the preferred animation render path.
+- Node IDs are dynamic and session-unstable. Prefer names and re-query after graph operations.
+- No `lux.getActiveCamera()` — use `lux.getCamera()` / `lux.getCameras()`.
 - No `lux.getMaterial()` / `lux.getMaterials()` — use `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`.
+- No `lux.beginUndoSession()` / `lux.endUndoSession()` in the 2026.2 dump. Do not use them.
+- No `lux.getAnimations()` / `lux.getNodeAnimations()`.
 
-## Common Patterns (see also constraints.md)
+## Common patterns
 
-- Material graph access: `graph = lux.getMaterialGraph("name"); if graph: ...`
-- Dialog: complete tuples, non-empty TEXT defaults, `if opts:`.
-- Matrices: `luxmath.Matrix().makeIdentity()` then translate/rotate/scale.
-- Batches: `lux.beginUndoSession()` / `lux.endUndoSession()`.
-- Always check `None` and non-empty returns.
+- Material graph: `graph = lux.getMaterialGraph(name="name"); if graph: ...`
+- Dialog: complete tuples, check cancellation, GUI only (`if not lux.isHeadless()`).
+- Matrices: start from identity, then translate / rotate / scale.
+- Always check `None` and empty lists before use.
 
-## References
-
-See `AI/constraints.md` for hard rules.  
-See `AI/kpsa_knowledge/` for elevated best practices, GUI, material graph, and transform guides.  
-See `AI/materials/` for shader node types and per-material parameters.
-
-Do not invent API functions. Validate against the official 2026 docs.
+See `AI/constraints.md` for hard rules.

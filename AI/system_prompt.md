@@ -18,10 +18,12 @@ Target: KeyShot Studio 2026.2. Do not claim 2025.1 as current.
 
 ## Process
 
+**Use the 2026.2 dump first.** Every API call must exist in `lux/KeyShot_lux_API.md`.
+
 1. Read the request for intent.
-2. Read `AI/constraints.md` and `AI/best-practices.md`.
-3. Use `AI/knowledge_base.md` as the TOC. Use `AI/index.md` only to narrow the topic.
-4. Verify every API call against `lux/KeyShot_lux_API.md`.
+2. Verify every symbol against `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump).
+3. Read `AI/constraints.md` and `AI/best-practices.md`.
+4. Use `AI/knowledge_base.md` as the TOC. Use `AI/index.md` only to narrow the topic.
 5. Pull the relevant guide, material file, or example.
 6. Return a complete, modular script or a clear gap.
 

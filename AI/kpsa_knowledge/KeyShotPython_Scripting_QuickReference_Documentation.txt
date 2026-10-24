@@ -623,5 +623,63 @@ This script duplicates a selected object and scatters the duplicates randomly ac
 Key Functions and Classes:
 lux.getSceneTree().find(): Searches the scene tree to select objects.
 lux.getInputDialog(), inputItem(), inputInt(), inputBool(): Collect user inputs through GUI or command-line prompts.
+luxmath.Vector(), luxmath.Matrix(): Used for generating random transformations and applying them to duplicates.
+obj.duplicate(), dup.applyTransform(): Duplicates the selected object and applies random transformations.
+Modules Used:
+random: Generates random numbers for translations and rotations.
+luxmath: KeyShot's module for mathematical operations related to vectors and matrices.
+### Saves the Scenes Materials and Multi-Material Sub-Materials to the Material Library### 
+This script saves all scene materials and the sub-materials of multi-materials to a specified material library, avoiding duplicates. It is particularly useful for managing and organizing scene materials efficiently within KeyShot.
+lux.getSceneMaterials(): Retrieves all materials from the current scene.
+lux.saveMaterial(): Saves a specific material to the KeyShot material library.
+os, platform: Utilized for setting the library path dynamically based on the operating system.
+### Save Sub-Materials of Multi-Materials (PC and Apple Compatible)### 
+Designed to be compatible with both Windows and macOS, this script focuses on saving sub-materials of multi-materials without saving the multi-materials themselves. It ensures no duplicate sub-materials are saved to the material library.
+lux.getMaterialGraph(), material_graph.getMaterialNodes(): Identifies and processes sub-materials within multi-materials.
+lux.saveMaterial(): Saves the sub-materials to the designated library path.
+platform.system(): Checks the operating system to set the appropriate library path.
+### Import CAD File, Create New Model Set, and Name After File### 
+Automates the process of importing a CAD file, creating a new model set in KeyShot, and naming the model set after the imported file. It simplifies the importation and organization of CAD models within KeyShot projects.
+lux.getInputDialog(): Displays a dialog for selecting the CAD file to import.
+lux.importFile(): Imports the selected CAD file.
+os.path.splitext(), os.path.basename(): Extracts the filename to use as the model set name.
+lux.newModelSet(): Creates a new model set named after the imported file.
+Enables users to batch rename model sets in KeyShot using a GUI. It offers fields to input a new name for each model set, incorporating a prefix, suffix, and separator based on user preferences.
+lux.getSceneTree(), node.isModelSet(): Iterates through model sets in the scene.
+lux.getInputDialog(): Captures new naming specifications from the user.
+model_set.setName(): Applies the new names to each model set.
+### Import CAD File and Create Model Set Named After File### 
+Streamlines the workflow of importing a CAD file and organizing it within KeyShot by automatically creating a model set named after the file. It demonstrates an efficient way to manage and categorize imported CAD models.
+lux.getInputDialog(): Opens a dialog for file selection.
+lux.importFile(): Imports the CAD file into KeyShot.
+lux.newModelSet(): Creates a new model set with the imported file's name.
+luxmath:
+The luxmath module in KeyShot's Python environment provides mathematical functionality, particularly focusing on operations involving vectors and matrices, which are essential for 3D transformations, camera positioning, and other spatial calculations in KeyShot scenes. Below is an overview of how luxmath works, including descriptions of its primary classes and their functionalities:
+luxmath Classes:
+luxmath consists of two main classes: Vector and Matrix. These classes are designed to handle 3D vectors and 4x4 matrices, respectively, allowing for a variety of mathematical operations that are common in 3D graphics and scene manipulation.
+Vector:
+Purpose: Represents a 3D vector with x, y, and z components. It's used for operations like translations, rotations (when specifying an axis), and scaling.
+Construction: 
+Can be instantiated with either a single value (applied to all three components), three individual values for x, y, and z, or a tuple/list of three values.
+python
+Copy code
+vec = luxmath.Vector(1, 2, 3) # x=1, y=2, z=3
+Operations:
+Addition, subtraction with other vectors.
+Multiplication, division by a scalar.
+Normalization to get a unit vector.
+Dot and cross product calculations.
+Length calculation, and more.
+Matrix
+Purpose: Encapsulates a 4x4 matrix, commonly used for affine transformations including translation, rotation, and scaling in 3D space.
+Can be created as an identity matrix or from a 16-element list/tuple representing the 4x4 matrix components.
+mat = luxmath.Matrix().makeIdentity() # Creates an identity matrix
+Matrix multiplication (combining transformations).
+Inversion (useful for calculating the inverse of a transformation).
+Transpose.
+Determinant calculation.
+Specific transformations like translation, rotation (around an axis or with a quaternion), and scaling.
+Conversion to and from transformation components (translate, rotate, scale).
+Working with luxmath
 
 [Content continues]

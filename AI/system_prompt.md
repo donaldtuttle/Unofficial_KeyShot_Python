@@ -45,10 +45,28 @@ Before returning a script, check every `lux` and `luxmath` symbol:
 - [ ] None and empty-list returns checked before use
 - [ ] Only `lux` / `luxmath` + stdlib; no external libraries
 - [ ] File I/O, threading, and subprocesses only if the task authorizes them
+- [ ] Headless: no GUI calls; explicit paths; `lux.isHeadless()` checked
 
 If a box cannot be checked, do not ship that call. Name the missing symbol and offer a documented alternative or say it is unsupported.
 
 Do not verify against the 2026.1 website, the historical archive, or model memory.
+
+
+## Headless error handling
+
+Check `lux.isHeadless()` before any dialog. In headless, require explicit config and raise if it is missing. In GUI, check cancellation. Never omit a path on save, export, or render in headless — that throws.
+
+```python
+if lux.isHeadless():
+    if not config:
+        raise RuntimeError("Headless run needs explicit config; no dialog available.")
+    opts = config
+else:
+    opts = lux.getInputDialog(title="...", values=values)
+    if not opts:
+        print("Cancelled.")
+        return
+```
 
 ## Mandatory Rules (read first)
 

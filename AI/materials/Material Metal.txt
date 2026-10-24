@@ -4,19 +4,41 @@
   - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
   - **coated** (PARAMETER_TYPE_BOOLEAN): Determines if the material is coated, affecting its reflective properties. (Value: False)
   - **color** (PARAMETER_TYPE_COLOR): The color of the material. (Value: (0.3025, 0.3025, 0.3025, 1.0))
-  - **displacement** (PARAMETER_TYPE_TEXTURE): Defines the displacement map for the material. (Value: Pure Parameter)
-  - **displacement_height** (PARAMETER_TYPE_FLOAT): Sets the height of the displacement effect. (Value: 0.0)
-  - **fresnel** (PARAMETER_TYPE_FLOAT): Controls the Fresnel effect strength. (Value: 1.0)
-  - **ior** (PARAMETER_TYPE_FLOAT): Index of refraction for the material. (Value: 1.5)
-  - **label** (PARAMETER_TYPE_TEXTURE): Texture applied as a label on the material. (Value: Pure Parameter)
-  - **label_blend** (PARAMETER_TYPE_FLOAT): Blending factor for the label texture. (Value: 1.0)
-  - **label_color** (PARAMETER_TYPE_COLOR): Color of the label. (Value: (1.0, 1.0, 1.0, 1.0))
-  - **metal_color** (PARAMETER_TYPE_COLOR): Base metal color. (Value: (0.3025, 0.3025, 0.3025, 1.0))
-  - **roughness** (PARAMETER_TYPE_FLOAT): Surface roughness controlling reflection sharpness. (Value: 0.2)
-  - **roughness_map** (PARAMETER_TYPE_TEXTURE): Texture map for roughness variation. (Value: Pure Parameter)
-  - **specular** (PARAMETER_TYPE_FLOAT): Specular reflection intensity. (Value: 1.0)
-  - **specular_color** (PARAMETER_TYPE_COLOR): Color of specular reflections. (Value: (1.0, 1.0, 1.0, 1.0))
-  - **use_label** (PARAMETER_TYPE_BOOLEAN): Enables or disables the label. (Value: False)
-  - **use_roughness_map** (PARAMETER_TYPE_BOOLEAN): Enables roughness map. (Value: False)
-  
-Note: This is a truncated update. Full source is 6647 chars from AI_KeyShot_Knowledge.zip. Full content includes complete parameter list and descriptions for lux_metal shader.
+  - **film_extinction** (PARAMETER_TYPE_FLOAT): Extinction coefficient for thin film interference. (Value: 0.0)
+  - **film_ior** (PARAMETER_TYPE_FLOAT): Index of Refraction for thin film interference. (Value: 2.0)
+  - **film_thickness** (PARAMETER_TYPE_FLOAT): Thickness of thin film interference. (Value: 100.0)
+  - **glossy_samples** (PARAMETER_TYPE_INTEGER): Number of samples used for glossy reflections. (Value: 9)
+  - **metal_preset** (PARAMETER_TYPE_INTEGER): Preset value for metal type. (Value: 1)
+  - **metal_type** (PARAMETER_TYPE_INTEGER): Type of metal, affecting its overall appearance. (Value: 0)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **roughness** (PARAMETER_TYPE_FLOAT): Controls the sharpness of reflections. (Value: 0.0)
+  - **spectral_ior** (PARAMETER_TYPE_ARRAY): Array defining the spectral Index of Refraction. (Value: [])
+
+## Parameters for shader node in material'Metal':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- coated (Type: 1)
+- color (Type: 14)
+- film_extinction (Type: 4)
+- film_ior (Type: 4)
+- film_thickness (Type: 4)
+- glossy_samples (Type: 2)
+- metal_preset (Type: 2)
+- metal_type (Type: 2)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- roughness (Type: 4)
+- spectral_ior (Type: 15)
+
+## The Metal material type is a simple material that simulates metals.
+The color of the metal can be controlled by the color parameter, or by using a metal preset.
+The roughness controls how sharp the reflections are.
+The coated parameter adds a clear coat on top of the metal.
+The thin film parameters (film_ior, film_thickness, film_extinction) can be used to simulate thin film interference effects on the metal surface.
+The spectral_ior can be used for more accurate spectral rendering of the metal.
+For all the metal presets, even if anodized is enabled or not, the color can depend on the viewing angle (just as with the color of real-world metals). You will notice slight color tints at grazing angles, especially for Gold and Aluminum.

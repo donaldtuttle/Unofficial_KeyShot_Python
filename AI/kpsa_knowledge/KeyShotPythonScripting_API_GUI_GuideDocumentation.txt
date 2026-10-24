@@ -1,0 +1,238 @@
+### KeyShot GUI Scripting Guide & Documentation
+
+**Updated.** Hard constraints: Use only `lux.getInputDialog()`. Not headless. Tuples must be complete (DIALOG_ITEM needs options list; DIALOG_TEXT needs non-empty default; ranges are tuples). Always check `if opts:` (user may cancel). See `../constraints.md`.
+
+## Table of Contents
+
+1. [KeyShot GUI Scripting Guide & Documentation](#keyshot-gui-scripting-guide--documentation)
+
+2. [KeyShot Python Custom Input Dialog (GUI only)](#keyshot-python-custom-input-dialog-gui-only)
+   - [2.1 Overview of lux.getInputDialog()](#21-overview-of-luxgetinputdialog)
+   - [2.2 GUI Example](#22-gui-example)
+
+3. [Importing Models in Batch](#importing-models-in-batch)
+
+4. [Assigning Textures to Multi-Materials in Batch](#assigning-textures-to-multi-materials-in-batch)
+
+5. [Renaming Materials to Avoid Clashing Names](#renaming-materials-to-avoid-clashing-names)
+
+6. [Retrieving Camera Information](#retrieving-camera-information)
+
+7. [Getting Scene Material Parameters](#getting-scene-material-parameters)
+
+8. [Import Automation](#import-automation)
+
+9. [Common Errors](#common-errors)
+   - [9.1 lux.getInputDialog() Requirement](#91-luxgetinputdialog-requirement)
+
+10. [Example: Video Encoding Script](#example-video-encoding-script)
+   - [10.1 Using Unique ID in Input Dialogs](#101-using-unique-id-in-input-dialogs)
+
+
+##KeyShot Python Custom Input Dialog (GUI only)
+For this you must use lux.getInputDialog(). The GUI script examples below provided by Luxion will use this.
+
+Custom input dialog (GUI only) NOT Headless Compliant
+
+In scripts it is especially preferable to show a single dialog when multiple inputs are needed. For this you can use lux.getInputDialog(). The scripts provided by Luxion will use this.
+
+**GUI Example**:
+
+```python
+import lux
+
+def create_input_dialog():
+    # Define the input fields for the dialog
+    values = [
+        ("name", lux.DIALOG_TEXT, "Enter your name:", "John Doe"),  # Provide a non-empty default value
+        ("age", lux.DIALOG_INTEGER, "Enter your age:", 30, (1, 100)),  # The last tuple defines the range (min, max)
+        ("file", lux.DIALOG_FILE, "Select a file:", None),
+        ("folder", lux.DIALOG_FOLDER, "Select a folder:", None)
+    ]
+    
+    # Show the dialog and get the user's input
+    opts = lux.getInputDialog(
+        title="User Information",
+        desc="Please fill in the information below:",
+        values=values,
+        id="user_info_dialog"  # Unique identifier to remember the last values entered
+    )
+    
+    # Check if the user clicked OK and opts is not None
+    if opts:
+        print("User's Input:")
+        for key, value in opts.items():
+            print(f"{key}: {value}")
+    else:
+        print("User cancelled the dialog.")
+
+# Call the function to show the dialog
+create_input_dialog()
+```
+
+
+**Importing Models in Batch**:
+
+This example demonstrates how to use a GUI dialog to select multiple model files for batch import into KeyShot. It utilizes the `lux.getInputDialog()` for user input and `lux.importFile()` for importing models.
+
+```python
+import lux
+import os
+
+def batch_import_models():
+    # Ask user to select model files for import
+    file_paths = lux.getInputDialog(title="Batch Import Models",
+                                    desc="Select model files to import",
+                                    values=[("model_files", lux.DIALOG_FILE, "Model files:", None, True)])
+    if file_paths:
+        for file_path in file_paths["model_files"]:
+            lux.importFile(file_path)
+
+batch_import_models()
+```
+
+**Assigning Textures to Multi-Materials in Batch***:
+
+This script demonstrates how to assign diffuse textures to sub-materials of multi-materials in batch, using a GUI dialog for specifying a folder containing texture files.
+
+```python
+import lux
+import os
+
+def batch_assign_textures():
+    folder_path = lux.getInputDialog(title="Batch Assign Textures",
+                                      desc="Select the folder containing textures",
+                                      values=[("texture_folder", lux.DIALOG_FOLDER, "Texture folder:", None)])
+    if folder_path:
+        texture_folder = folder_path["texture_folder"]
+        for texture_file in os.listdir(texture_folder):
+            # Logic to match texture files to multi-materials and assign them accordingly
+            # This is a placeholder for the actual implementation
+            print(f"Assigning {texture_file} to a multi-material")
+
+batch_assign_textures()
+```
+
+
+**Renaming Materials to Avoid Clashing Names**:
+
+This script provides a GUI to rename materials in a KeyShot scene to avoid name clashes. It uses a find-and-replace approach.
+
+```python
+import lux
+
+def rename_materials():
+    rename_opts = lux.getInputDialog(title="Rename Materials",
+                                     desc="Specify find and replace terms for material names",
+                                     values=[("find", lux.DIALOG_TEXT, "Find:", ""),
+                                             ("replace", lux.DIALOG_TEXT, "Replace with:", "")])
+    if rename_opts:
+        find_term = rename_opts["find"]
+        replace_term = rename_opts["replace"]
+        # Logic to iterate through materials and rename them
+        # Placeholder for the actual implementation
+        print(f"Renaming materials: replacing {find_term} with {replace_term}")
+
+rename_materials()
+```
+
+
+**Retrieving Camera Information**:
+
+This example showcases how to create a GUI dialog that displays information about the currently active camera.
+
+```python
+import lux
+
+def get_camera_info():
+    camera = lux.getActiveCamera()
+    # Assuming camera information retrieval functions exist
+    # Placeholder for actual camera info retrieval and display logic
+    camera_info = f"Camera Name: {camera.name}, Position: {camera.position}, FOV: {camera.fov}"
+    lux.messageBox("Camera Information", camera_info)
+
+get_camera_info()
+```
+
+
+**Getting Scene Material Parameters**:
+
+This script uses a GUI to select a material from the scene and display its parameters.
+
+```python
+import lux
+
+def get_material_parameters():
+    material_name = lux.getInputDialog(title="Get Material Parameters",
+                                       desc="Enter the name of the material",
+                                       values=[("material_name", lux.DIALOG_TEXT, "Material Name:", "")])
+    if material_name:
+        material = lux.getMaterial(material_name["material_name"])
+        # Placeholder for logic to retrieve and display material parameters
+        print(f"Parameters for {material.name}: ...")
+
+get_material_parameters()
+```
+
+**Import Automation**:
+
+import lux
+import os
+
+def main():
+    # Display a file selection dialog
+    values = [("file_path", lux.DIALOG_FILE, "Select a file to import:", None)]
+    opts = lux.getInputDialog(title="Import File and Create Model Set",
+                              desc="Please select a model file to import.",
+                              values=values,
+                              id="import_file_model_set")
+
+    # Check if the user has selected a file
+    if opts is not None and "file_path" in opts and opts["file_path"]:
+        file_path = opts["file_path"]
+
+        # Import the file
+        lux.importFile(path=file_path)
+
+        # Extract the filename without extension to use as the model set name
+        model_set_name = os.path.splitext(os.path.basename(file_path))[0]
+
+        # Create a new model set with the extracted name
+        lux.newModelSet(name=model_set_name)
+
+# Run the main function
+main()
+
+
+
+**Common Errors**:
+The lux.getInputDialog() function cannot be empty. This means whenever you define a field of type lux.DIALOG_TEXT, you need to ensure that the default value (the fourth element in the tuple for that field) is a non-empty string.
+
+
+As an example, if we wanted to write a video encoding script the following dialog might suffice:
+
+>>> values = [("folder", lux.DIALOG_FOLDER, "Folder with frames:", None), \
+              ("fmt", lux.DIALOG_TEXT, "Frame file format:", "frame.%d.jpg"), \
+              ("start", lux.DIALOG_INTEGER, "Start frame:", 1, (1, 4096)), \
+              ("end", lux.DIALOG_INTEGER, "End frame:", 10, (1, 4096)), \
+              ("fps", lux.DIALOG_INTEGER, "FPS:", 10, (1, 1024)), \
+              ("name", lux.DIALOG_TEXT, "Video name:", "video.mp4")]
+>>> opts = lux.getInputDialog(title = "Encode Video", \ # Shows the dialog.
+                              desc = "Put a description here.", \
+                              values = values)
+>>> opts
+{'end': 10, 'fps': 10, 'fmt': 'frame.%d.jpg', 'name': 'video.mp4', 'start': 1, 'folder': ''}
+If you click “OK” without changing any values then you will get the Python dictionary above. Each key is associated with the value from the dialog.
+
+Note
+
+The “\” characters above indicates a continuation of the line, so it is not split into several lines, but understood as one line.
+
+For scripts that are run often it is convenient to have KeyShot remember the last values for when the dialog is displayed again, and that is accomplished by using a unique value for the id option:
+
+>>> opts = lux.getInputDialog(title = "Encode Video", \
+                              desc = "Put a description here.", \
+                              values = values, \
+                              id = "something_unique_goes_here")
+If the unique value is already used by some other script then you will get undesired results. However, keep in mind that your script must use the same unique value each time to retrieve your values.
+```

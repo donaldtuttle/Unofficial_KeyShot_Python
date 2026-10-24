@@ -12,6 +12,7 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - [2026 mode comparison](reference/mode-comparison.md)
 - [Materials](materials/) — per-shader parameter docs
 - [KPSA knowledge](kpsa_knowledge/) — QuickReference, matrix, GUI, material graph guides
+- [Examples](examples/) — runnable scripts (OpenPBR converter)
 
 ## Official live docs (prefer for signatures)
 
@@ -27,6 +28,7 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - Scene nodes → QuickReference
 - Materials and duplication → materials/ + MaterialGraph guides
 - Material graphs, parameters and edges → materials/ + ShaderNodeTypes doc
+- OpenPBR conversion → [examples/openpbr_material_converter.py](examples/openpbr_material_converter.py)
 - Transformations → TransformationMatrix doc
 - GUI dialogs → API_GUI_Guide + constraints
 - Rendering / Import-export / Headless / Animation → QuickReference + official docs

@@ -149,5 +149,70 @@ lux.getImportOptions() (Headless): Retrieves current import options.
 lux.getKeyShotDisplayVersion() (Headless): Gets the display version of KeyShot.
 lux.getKeyShotFolder() (Headless): Returns the KeyShot folder path.
 lux.getKeyShotVersion() (Headless): Retrieves the full KeyShot version.
+lux.getLibraryBackplates(), getLibraryColors(), getLibraryEnvironments(), getLibraryMaterials(), getLibraryTextures() (Headless): Retrieves lists of library items.
+lux.getLightingPreset() (Headless): Gets the current lighting preset.
+lux.getMaterialMapping() (Headless): Returns material mapping information.
+lux.getMaterialTemplates() (Headless): Lists available material templates.
+lux.getMetaData() (Headless): Retrieves metadata of the scene.
+lux.getModelSets() (Headless): Returns model sets in the scene.
+lux.getMultiMaterial() (Headless): Retrieves a multi-material.
+lux.getOS() (Headless): Identifies the operating system.
+lux.getObjectMaterial() (Headless): Gets the material applied to objects.
+lux.getObjects() (Headless): Retrieves objects in the scene.
+lux.getRenderEngine() (Headless): Determines the render engine in use.
+lux.getSceneInfo() (Headless): Provides detailed information about the scene.
+lux.getSceneMaterials() (Headless): Retrieves materials used in the scene.
+lux.getSphericalCamera() (Headless): Fetches spherical camera settings.
+lux.getSystemInfo() (Headless): Provides system information.
+lux.isHeadless(): Checks if KeyShot is running in headless mode.
+lux.setRenderEngine(engine): Sets the render engine to use for the scene.
+lux.setSphericalCamera(azimuth, incl, twist): Sets spherical information of the active camera.
+lux.setStandardView(view): Sets the standard view of the currently active camera.
+lux.setAdvancedRendering(samples): Enables rendering in advanced mode with specified samples.
+lux.setAntiAliasing(level): Sets the anti-aliasing level.
+lux.setBackgroundRendering(ext): Enables rendering in an external background process.
+lux.setCausticsQuality(quality): Sets the caustics quality.
+lux.setDofQuality(quality): Sets the depth-of-field quality.
+lux.setGlobalIllumination(quality): Sets the global illumination quality.
+lux.setActiveEnvironment(name): Sets the active environment of the scene.
+lux.setActiveImageStyle(name): Sets the active image style of the scene.
+lux.setCurrentSubMaterial(node): Sets the sub-material to the specified node.
+lux.setMultiMaterial(enable): Controls multi-material features of the material graph.
+lux.setSceneUnit(unit, keep): Sets the scene unit and optionally rescales the scene.
+lux.setMaterial(mat, link): Sets the material of a node, with the option to link to the material or create a duplicate.
+lux.setName(name): Sets the name of a node.
+lux.setRenderLayer(name): Associates a node with a render layer, creating it if the name is non-existent.
+lux.applyMaterialMapping(mapping): Applies a material mapping to objects.
+lux.createColorway(): Creates a new colorway.
+lux.createMultiMaterial(): Creates a new multi-material.
+lux.exportFile(filePath, options): Exports the current scene or parts of it.
+lux.getFileDialog(): Opens a file dialog window.
+lux.getInputDialog(): Displays an input dialog to the user.
+lux.getMessageWindow(): Shows a message window to the user.
+lux.getThumbnailRenderOptions(): Retrieves thumbnail render options.
+lux.renderImage(filePath, options): Initiates the rendering process with specified options.
+lux.renderPreview(filePath, options): Renders a preview image with specified options.
+lux.showRenderDialog(): Shows the render dialog.
+lux.startAnimationRender(filePath, options): Starts rendering an animation with specified options.
+lux.updateEnvironmentLighting(): Updates the lighting of the current environment.
+lux.useLibraryMaterial(materialName, objectName): Applies a material from the library to an object.
+lux.viewSetCamera(cameraName): Sets the active view to a specified camera.
+Additionally, here are a few more general functions that are worth noting for completeness, which facilitate script execution, interaction with the KeyShot user interface, and scene configuration:
+lux.setAnimationFrame(frame): Sets the current frame in an animation timeline.
+lux.setAnimationTime(time): Sets the current time in seconds in an animation timeline.
+lux.showMessage(title, message, type): Displays a custom message window.
+lux.startBatchRender(): Starts batch rendering based on pre-configured batch settings.
+lux.startRealtimeRender(): Starts a realtime render in the KeyShot Real-time View.
+lux.stopAnimationRender(): Stops the currently running animation render.
+lux.syncExec(function): Synchronously executes a function, ensuring that script execution waits until the function has completed.
+### Headless-Specific Functions### -
+Headless lux.get Functions:
+lux.getExternalFiles(): Lists external files associated with the scene.
+lux.getImportOptions(): Retrieves current import options.
+lux.getKeyShotDisplayVersion(): Gets the display version of KeyShot.
+lux.getKeyShotFolder(): Returns the KeyShot folder path.
+lux.getKeyShotVersion(): Retrieves the full KeyShot version.
+lux.getLibraryBackplates(): Retrieves lists of library backplates.
+lux.getLibraryColors(): Retrieves lists of library colors.
 
 [Content continues]

@@ -93,6 +93,7 @@ Before delivery, check every `lux` and `luxmath` symbol:
 - [ ] None and empty-list returns checked before use
 - [ ] Only `lux` / `luxmath` + stdlib; no external libraries
 - [ ] File I/O, threading, and subprocesses only if the task authorizes them
+- [ ] Headless: no GUI calls; explicit paths; `lux.isHeadless()` checked
 
 If a box cannot be checked, do not ship that call. Name the missing symbol and offer a documented alternative or say it is unsupported.
 

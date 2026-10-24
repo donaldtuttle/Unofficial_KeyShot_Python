@@ -44,10 +44,22 @@ Color
 The Color option provides a quick preset metal appearance with control over Color and Roughness. 
 
 Color
-This setting is visible when Metal Type is set to Color. It controls the color of the metal.
+This setting is visible when Metal Type is set to Color. This controls the color of reflected light on the metal surface. Select the color box to display the Color Picker and select the desired color.
 
 Roughness
-This controls the sharpness of the reflections. When this is set to 0, a material will appear perfectly smooth and polished. When the value is increased, the material will appear more rough as light is diffused across the surface.
+This adds microscopic levels of imperfections to the surface of the material when the values are increased. When this is set to 0, a material will appear perfectly smooth and polished. When the value is increased, the material will appear more rough as light is diffused across the surface.
+You can also add a roughness texture by clicking the  texture icon next to the roughness setting. Click the texture thumbnail to view and adjust the texture settings or right-click and select Delete to remove it.
+Some of the Library materials have a slider icon  next to the Roughness setting, in these cases extra adjustment controls have been added for finer tuning of the roughness.
+
+Samples
+A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.
+
+Measured
+Metal Presets
+The Measured option includes 13 scientifically accurate metal presets including Aluminum, Brass, Chromium, Copper, Gold, Iron Magnesium, Nickel, Niobium, Platinum, Silver, Titanium, and Zinc, along with the ability to load Complex IOR files (.ior, .nk, .csv). All metal presets and Custom IOR files provide the additional ability to add an anodized coating with control of Film Refractive Index, Film Extinction Coefficient, and Film Thickness.
+
+Roughness
+This adds microscopic levels of imperfections to the surface of the material when the values are increased. When this is set to 0, a material will appear perfectly smooth and polished. When the value is increased, the material will appear more rough as light is diffused across the surface.
 
 Samples
 A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.

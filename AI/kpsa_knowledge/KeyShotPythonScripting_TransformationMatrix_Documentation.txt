@@ -1,0 +1,111 @@
+## Scripting Transformation Matrix Documentation TOC
+
+**Updated.** Always start from `luxmath.Matrix().makeIdentity()`. Order matters. Absolute transforms only on object nodes (not groups/models). See hard constraints in `../constraints.md`.
+
+1. [Introduction to Transformation Matrices](#introduction-to-transformation-matrices)
+2. [Matrix Operations](#matrix-operations)
+    - [Matrix Multiplication](#matrix-multiplication)
+    - [Matrix Inversion](#matrix-inversion)
+3. [Transformations](#transformations)
+    - [Translation](#translation)
+    - [Rotation](#rotation)
+    - [Scaling](#scaling)
+4. [Using Transformation Matrices in KeyShot](#using-transformation-matrices-in-keyshot)
+    - [Applying a Transformation Matrix](#applying-a-transformation-matrix)
+    - [Combining Multiple Transformations](#combining-multiple-transformations)
+5. [Common Errors and Debugging](#common-errors-and-debugging)
+    - [Common Issues](#common-issues)
+    - [Troubleshooting Steps](#troubleshooting-steps)
+6. [Example Scripts](#example-scripts)
+    - [Basic Transformation Matrix Example](#basic-transformation-matrix-example)
+    - [Advanced Transformation Matrix Example](#advanced-transformation-matrix-example)
+7. [References](#references)
+
+## Best Practices and Common Errors in Scripting Translations and Positioning of Models in KeyShot
+
+### Introduction to Pattern Matrices
+
+A **pattern matrix** is a mathematical construct used in KeyShot scripting to position and orient objects (or their duplicates) in 3D space according to a specific pattern, such as Spiral, Grid, Circle, or Pyramid. Each pattern has a unique matrix that defines how objects are arranged. Understanding how these matrices are constructed and applied in scripts is crucial for creating dynamic and visually appealing scenes.
+
+### Matrix Basics
+
+A **transformation matrix** in 3D graphics is a 4x4 matrix that represents translation (movement), rotation, scaling, or a combination of these transformations. In KeyShot, these matrices are used to move (translate) objects into specific positions based on the pattern selected by the user.
+
+#### Identity Matrix
+
+Every transformation begins with an identity matrix, a special kind of matrix that doesn't alter the object when applied. It looks like this:
+
+```plaintext
+Identity Matrix = [
+ [1  0  0  0]
+ [0  1  0  0]
+ [0  0  1  0]
+ [0  0  0  1]
+]
+```
+
+In your script, create this matrix using:
+
+```python
+luxmath.Matrix().makeIdentity()
+```
+
+#### Translation
+
+Translation refers to moving an object from one place to another in 3D space. It's controlled by the x, y, and z offsets. In the script, the translation is applied to the identity matrix using:
+
+```python
+translate(offset)
+```
+
+This shifts the object by the specified `offset` vector, which contains the x, y, and z translation values.
+
+### Pattern Matrix Construction
+
+Each pattern (Spiral, Grid, Circle, Pyramid, etc.) has its own logic for calculating offsets, which determine where each object will be placed in 3D space. These offsets are then used to create a transformation matrix that is applied to each duplicate, positioning it correctly.
+
+### Examples of Pattern Matrix Calculations
+
+#### 1. Spiral Pattern Matrix
+
+```python
+def create_spiral_matrix(i, spacing, angle_increment, height_increment, direction, clockwise):
+    angle_increment = -angle_increment if clockwise else angle_increment
+    angle_rad = i * angle_increment * (math.pi / 180.0)
+    x_offset = math.sin(angle_rad) * spacing * i
+    y_offset = math.cos(angle_rad) * spacing * i + i * height_increment
+    z_offset = i * spacing
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Angle Calculation**: Converts the angle increment into radians and calculates the object's position along the spiral.
+- **Offset Calculation**: Uses sine and cosine functions to produce the spiral effect.
+- **Matrix Construction**: Applies the calculated offset to position the object in the spiral pattern.
+
+#### 2. Grid Pattern Matrix
+
+```python
+def create_grid_matrix(i, spacing, rows, cols, direction):
+    row = i // cols
+    col = i % cols
+    x_offset = col * spacing
+    z_offset = row * spacing
+    y_offset = 0
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Row and Column Calculation**: Determines the object's position within the grid using integer division and modulus operations.
+- **Offset Calculation**: Positions objects in a grid layout.
+- **Matrix Construction**: Translates the object into the grid pattern based on the calculated offsets.
+
+#### 3. Circle Pattern Matrix
+
+```python
+def create_circle_matrix(i, radius, num_duplicates, direction, clockwise):
+    angle_increment = -2 * math.pi / num_duplicates if clockwise else 2 * math.pi / num_duplicates
+
+[Content continues — full guide staged in subsequent commits]

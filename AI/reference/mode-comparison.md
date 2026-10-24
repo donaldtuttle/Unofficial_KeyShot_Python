@@ -1,19 +1,20 @@
 # 2026 declaration and mode comparison
 
-**Target:** KeyShot Studio 2026.2 (prefer over 2026.1 when available)
+**Target:** KeyShot Studio 2026.2
 
-**Source note:** private KeyShot-Python-AI-Knowledge `reference/keyshot-2026/MODE-COMPARISON.md` (cleaned 2026-10-24)
+**API source of truth:** [`lux/KeyShot_lux_API.md`](../../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.2 console. Prefer this over the public 2026.1 website.
 
-The full declaration comparison contains **688 GUI** and **644 headless** lux declarations from the 2026.1 pages. All headless declarations also occur in the GUI page. The 44 GUI-page-only declarations are listed below. Presence is documentation evidence, not a runtime test; absence does not establish impossibility.
+This file is a secondary comparison of the public 2026.1 website pages. It is not current for 2026.2. The website lags and can omit or invent symbols.
 
-## Official sources
+The 2026.1 website comparison contains **688 GUI** and **644 headless** lux declarations. All headless declarations also occur in the GUI page. The 44 GUI-page-only declarations are listed below. Presence on the website is documentation evidence, not a runtime test. Absence from this list does not establish impossibility in 2026.2 — check the dump.
 
-Primary sources (2026.1; 2026.2 public lux pages not yet available at the standard path):
+## Secondary sources (2026.1 website, lags)
+
 - GUI lux: https://media.keyshot.com/scripting/doc/2026.1/lux.html
 - Headless lux: https://media.keyshot.com/scripting/headless_doc/2026.1/lux.html
 - luxmath: https://media.keyshot.com/scripting/doc/2026.1/luxmath.html
 
-Prefer 2026.2 docs when available.
+Do not prefer these over the 2026.2 dump.
 
 ## Agent knowledge base
 
@@ -25,10 +26,11 @@ Read these before generating scripts. They override this file for hard rules and
 - [Index](../index.md) — topic pointers
 - [System prompt](../system_prompt.md)
 - [Skill](../skill.md)
+- [2026.2 API dump](../../lux/KeyShot_lux_API.md) — source of truth
 
-## GUI-page-only declarations
+## GUI-page-only declarations (2026.1 website)
 
-These appear only on the GUI lux page (not in the headless page):
+These appear only on the 2026.1 GUI lux page (not in the 2026.1 headless page). Confirm against the 2026.2 dump before use:
 
 - `lux.DIALOG_CHECK`
 - `lux.DIALOG_DOUBLE`
@@ -77,6 +79,6 @@ These appear only on the GUI lux page (not in the headless page):
 
 ## Notes
 
-- 2026.2 release notes mention additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not listed in the public notes.
-- Prefer official 2026.2 lux reference when it becomes available.
+- 2026.2 release notes mention additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not listed in the public notes. Check the 2026.2 dump.
 - OpenPBR and Planar Light parameters are reachable only by inspecting the material graph (get nodes → get parameters). They are not library constants.
+- These do not exist as usable API and are not in the 2026.2 dump: `lux.CAMERA_MODE_ORBIT`, `lux.CAMERA_MODE_PATH`, `lux.getAnimations`, `lux.getNodeAnimations`, `lux.getActiveCamera`, `lux.getMaterial`, `lux.getMaterials`.

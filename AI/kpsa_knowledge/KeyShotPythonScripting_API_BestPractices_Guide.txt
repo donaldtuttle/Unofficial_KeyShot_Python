@@ -467,5 +467,114 @@ Explaining the Need for Manual Steps to an LLM or “Best Practices” System:
 • Highlight Complexity and Specificity:
 • KeyShot material graphs often contain many unique, intricate dependencies that cannot be captured through generic automation. While LLMs favor modularity for the average case, the complexity in graphics scripting requires detailed handling of edge cases.
 • Risk Mitigation:
+• Stress the importance of manual verification as a risk mitigation step. Inaccurate material or node duplication could lead to visual artifacts or incorrect rendering, requiring substantial rework. Manual checks prevent these issues by ensuring each element is correctly handled before proceeding.
+• Emphasize Hybrid Workflow Benefits:
+• Combining modular functions with manual verification offers efficiency while maintaining precision. This hybrid approach ensures scripts are reusable and maintainable while also delivering reliable results, which is crucial in a creative environment like KeyShot.
+
+Practical Example of Hybrid Modular Design:
+
+import lux
+
+# Automated duplication function
+def duplicate_material(material_name):
+print(f"Creating a copy of material '{material_name}'...")
+copied_material_name = f"{material_name}_Copy"
+multi_material_copy = lux.createMultiMaterial(name=copied_material_name, mat=material_name)
+return multi_material_copy
+
+# Modular function for verifying and adjusting edges
+def verify_and_adjust_edges(source_graph, target_graph):
+node_mapping = {node.getName(): target_graph.getNodeByName(f"{node.getName()}_Copy") for node in source_graph.getNodes()}
+for node in source_graph.getNodes():
+for edge in node.getOutputEdges():
+source_node = node_mapping.get(edge.getSourceNode().getName())
+target_node = node_mapping.get(edge.getTargetNode().getName())
+if source_node and target_node and not target_graph.hasEdge(source_node, target_node, edge.getID()):
+target_graph.newEdge(source_node, target_node, edge.getID())
+print(f"Verified and added missing edge between '{source_node.getName()}' and '{target_node.getName()}'.")
+
+# Main function that uses both automated and manual verification
+def duplicate_and_verify_material(material_name):
+# Step 1: Automatically create a copy
+copied_material = duplicate_material(material_name)
+
+# Step 2: Get material graphs
+source_graph = lux.getMaterialGraph(name=material_name)
+copied_graph = lux.getMaterialGraph(name=copied_material)
+
+# Step 3: Perform manual verification for node parameters and edges
+for source_node in source_graph.getNodes():
+target_node = copied_graph.getNodeByName(f"{source_node.getName()}_Copy")
+if target_node:
+verify_node_parameters(source_node, target_node)
+
+# Step 4: Verify and adjust edges
+verify_and_adjust_edges(source_graph, copied_graph)
+
+# Example usage
+duplicate_and_verify_material("original-material")
+
+Summary:
+
+• Modular Verification Functions allow you to compartmentalize checks, ensuring you maintain modularity while verifying specific components.
+• Combining Automation and Manual Verification ensures that you take advantage of automation’s speed and manual validation’s accuracy.
+• Hybrid Approach: This practice provides an effective way to reconcile modular best practices with the need for precision, especially in creative environments like KeyShot where visual quality is paramount.
+
+This approach leverages both automation and manual precision, making sure that your KeyShot scripting maintains modularity for maintainability while also ensuring that the intricacies of material and node relationships are accurately managed.
+
+
+Additional Best Practices:
+
+	1.	Input Validation for Custom Dialogs
+	•	Validate user inputs to ensure they meet the expected format, especially when using lux.getInputDialog(). This can prevent user mistakes from causing runtime errors.
+Example:
+
+opts = lux.getInputDialog(title="Object Duplicator", values=values)
+if opts["spacing"] <= 0:
+    lux.logError("Invalid spacing value, must be greater than zero.")
+    return
+
+
+	2.	Batch Processing for Scene Optimizations
+	•	Use batch operations to minimize performance bottlenecks, especially when manipulating multiple objects or materials in large scenes.
+Example:
+
+lux.beginUndoSession()
+for model in object_models:
+    model.applyTransform(transform_matrix)
+lux.endUndoSession()
+
+
+	3.	Efficient Scene Resource Management
+	•	Free up resources such as unused objects or materials to optimize scene performance. This is especially important for memory management in complex scenes.
+Example:
+
+for model in unused_models:
+    lux.deleteObject(model)
+
+
+
+Testing and Debugging:
+
+	1.	Use Logging to Debug
+	•	Utilize lux.logInfo() or custom log files for debugging complex scripts. This practice helps track issues across sessions.
+Example:
+
+try:
+    model.duplicate(amount=1)
+except TypeError as e:
+    with open("error_log.txt", "a") as log_file:
+        log_file.write(f"TypeError: {str(e)}\n")
+    lux.logError(f"TypeError encountered: {e}")
+
+Performance Optimizations:
+
+	1.	Scene Tree Operations
+	•	Limit operations on the scene tree to avoid performance issues. Batch transformations or material applications can significantly reduce execution time.
+Example:
+
+lux.beginUndoSession()  # Start a batch process
+for model in models:
+    model.applyTransform(transform_matrix)
 
 [Content continues]

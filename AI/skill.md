@@ -14,6 +14,6 @@ For a supportable task, provide a complete executable-intended script with expli
 
 Explain how to run the script, how it works, and how to debug it. Cite exact source symbols or versioned official links. Report syntax, API declaration, static, mock, GUI, headless and visual/behavioral checks separately. Never promise runtime success from static checks.
 
-Official docs:
+Official docs (prefer 2026.2 when available):
 - https://media.keyshot.com/scripting/doc/2026.1/
 - https://media.keyshot.com/scripting/headless_doc/2026.1/

@@ -1,3 +1,11 @@
+# Dump wins
+
+This guide can contradict the 2026.2 dump. Before using any call here, verify it against lux/KeyShot_lux_API.md. The dump is the API source of truth.
+
+Known contradiction: lux.beginUndoSession() / lux.endUndoSession() appear in this guide and are not in the 2026.2 dump. Do not use them.
+
+---
+
 ### KeyShot Python Scripting Comprehensive Guide
 
 **Updated for KeyShot 2026.1.** This guide consolidates best practices, common error handling, and recommendations. 

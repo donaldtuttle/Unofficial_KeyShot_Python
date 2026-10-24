@@ -1,6 +1,12 @@
 # Manifest — Files Ready for Unofficial_KeyShot_Python / AI/
 
 **Generated:** 2026-10-24  
+**Last material sync:** 2026-10-24 (full Metal, Generic PBR, General from private source)  
+**Canonical source for future updates:** private repo `donaldtuttle/KeyShot-Python-AI-Knowledge`  
+  - Sources under `sources/originals/SRC-*/`  
+  - See `sources/README.md` for inventory and source IDs  
+  - Audits, reviews, knowledge, and reference live there
+
 **Target structure:**
 - `AI/constraints.md` (new, dedicated hard rules)
 - `AI/system_prompt.md`
@@ -24,7 +30,7 @@
 ### Materials (`AI/materials/`)
 - ShaderNodeTypes&Parameters_Documentation.txt: Constraints note added (type matching, unstable IDs).
 - MaterialGraph_CopyOfaCopy_Guide.txt: Header elevated with verification rules.
-- All individual `Material *.txt` files copied as-is (parameter details preserved; elevate per-file if needed later).
+- Individual `Material *.txt` files: Metal, Generic PBR, and General now full verbatim from private source (SRC-612125cb6917, SRC-91f7c1cb3682, SRC-e5ee9a7c0cfe). Others as previously pushed.
 
 ### What was avoided
 - No old scripting example names retained or linked.
@@ -35,7 +41,7 @@
 ## Next Steps (when ready)
 1. Place new comprehensive scripting examples into the examples directory.
 2. Finalize TOC anchors in knowledge_base.md and any internal file TOCs.
-3. Zip the AI/ folder for handoff into the repo.
+3. For future bulk updates, pull from private `KeyShot-Python-AI-Knowledge` sources/ and audits/ rather than older zips.
 4. Optionally elevate remaining individual Material *.txt files with a one-line constraints pointer if desired.
 
 Files are on disk under `/workspace/artifacts/AI/` and ready for review / zip.

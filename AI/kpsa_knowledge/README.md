@@ -1,6 +1,6 @@
 # KeyShot Python Scripting Assistant Knowledge
 
-Elevated KPSA guides for the agnostic agent (KeyShot Studio 2026).
+Elevated KPSA guides for the agnostic agent (KeyShot Studio 2026.x; prefer 2026.2 when available).
 
 ## Contents (actual files)
 
@@ -11,13 +11,10 @@ Elevated KPSA guides for the agnostic agent (KeyShot Studio 2026).
 - `KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt` — material graph copy patterns
 - `KeyShotPythonScripting_TransformationMatrix_Documentation.txt` — matrix / transform patterns
 - `KS_CustomInputDialog_GUI.txt` — custom input dialog examples
-- `KPSA_Quick_Guide.txt`
-- `KSPA_PreloadKnowledge.txt`
-- `KSPA_UserInput.txt`
-- `KeyShot_2026_Lux_API_Reference.txt` — thin pointer (full signatures live in official docs)
 
 These files are mandatory knowledge for the agnostic agent in the parent `AI/` folder.
 
 Prefer official live docs for current signatures:
 - https://media.keyshot.com/scripting/doc/2026.1/
 - https://media.keyshot.com/scripting/headless_doc/2026.1/
+- Prefer 2026.2 docs when available.

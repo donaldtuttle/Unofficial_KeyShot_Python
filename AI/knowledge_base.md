@@ -2,59 +2,34 @@
 
 Baseline: KeyShot Studio 2026.1, Python 3.13 64-bit.
 
-**Material Graph / Shader Node Authority:**
-The complete list of material shader types, geometry nodes, texture nodes, and every parameter (with types) is in the `materials/` folder:
+## Mandatory Knowledge Sources (use these)
+
+**Full KPSA backup** is in `kpsa_knowledge/`:
+- KeyShot_2026_Lux_API_Reference.txt — primary 2026 Lux API reference
+- KS_MaterialScripts.txt — material graph scripts and patterns
+- KS_ScriptDoc.txt, KS_QuickRef.txt, KS_Python_Guide.txt, KS_TOC.txt
+- KSPA_BestPractices.txt, KSPA_PreloadKnowledge.txt, KSPA_UserInput.txt, KPSA_Quick_Guide.txt
+- KS_CameraScripts.txt, KS_ColorColorway.txt, KS_CustomInputDialog_GUI.txt, KS_TransformMatrix.txt
+
+**Material shader parameters** are in `materials/`:
 - KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt
+- All individual Material [Type].txt files
 - KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt
-- Individual Material [Type].txt files (Advanced, Anisotropic, Area Light, Cutaway, Dielectric, Diffuse, Emissive, Flat, Gem, General, Generic, Generic PBR, Glass, Glass Solid, Ground, IES Light, Liquid, Measured, Metal, Metallic Paint, Multi-Layer Optics, Paint, Plastic, Plastic Cloudy, Plastic Transparent, Point Light, RealCloth, Scattering Medium, Spotlight, Thin Film, Toon, Translucent, Translucent Medium, Velvet, Wireframe, Xray, etc.)
 
-Always consult those files for exact parameter names and types when creating or modifying material graphs. Do not guess parameter names.
+Treat these as authoritative. Do not invent parameter names, node types, or API methods.
 
-Official API docs: https://media.keyshot.com/scripting/doc/2026.1/ and headless counterpart.
-
-## Core Modules
-
-- `lux` — scene, materials, cameras, rendering, environments, studios, metadata.
-- `luxmath` — Vector and Matrix (4×4) for transforms.
+Official docs remain available at:
+- https://media.keyshot.com/scripting/doc/2026.1/
+- https://media.keyshot.com/scripting/headless_doc/2026.1/
 
 ## Important 2026 Features
 
 - `node.getMetadata()` on `lux.SceneNode` → dictionary of CAD metadata.
-- `lux.renderAnimation(...)` in headless (preferred, ~3× faster).
+- `lux.renderAnimation(...)` in headless (preferred path, ~3× faster).
 - Python 3.13.
 
-## Scene Nodes
+## Core Patterns
 
-```python
-root = lux.getSceneTree()
-for node in root.find(name="Something"):
-    meta = node.getMetadata()
-    node.hide()
-    node.setMaterial("Matte White", link=False)
-    M = luxmath.Matrix().makeIdentity().translate(luxmath.Vector((1,0,0)))
-    node.applyTransform(M)
-```
+Scene traversal, transforms via luxmath.Matrix/Vector, material graph access via lux.getMaterialGraph(), RenderOptions, multi-materials, and headless automation are covered in the kpsa_knowledge/ files.
 
-## Rendering
-
-```python
-opts = lux.getRenderOptions()
-opts.setAdvancedRendering(samples=256)
-lux.renderImage("/out/frame.png", width=1920, height=1080, opts=opts)
-lux.renderAnimation("/out/frames", frameFiles="frame.%04d.png", width=1920, height=1080, fps=30, opts=opts)
-```
-
-## Materials & Graphs
-
-Use the materials/ docs for parameter names.
-
-```python
-graph = lux.getMaterialGraph("MyMat")
-root_node = graph.getRoot()
-param = root_node.getParameter("color")  # confirm exact name in materials/ docs
-param.setValue((1, 0, 0))
-```
-
-## When Uncertain
-
-Point to official 2026.1 docs or the materials/ parameter lists. Suggest `help(lux.SomeClass)` inside the console.
+When generating or reviewing scripts, consult the relevant knowledge file first.

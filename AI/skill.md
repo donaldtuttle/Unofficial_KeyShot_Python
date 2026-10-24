@@ -36,7 +36,7 @@ Before returning a script, check every `lux` and `luxmath` symbol:
 - [ ] No invented facilities (logging, undo, progress, getMaterial, getMaterials, getActiveCamera, getAnimations)
 - [ ] Node IDs re-queried after any graph copy or link
 - [ ] None and empty-list returns checked before use
-- [ ] Only `lux` / `luxmath` + stdlib; no external libraries
+- [ ] Only `lux` / `luxmath` + stdlib; no external libraries unless the user explicitly asks
 - [ ] File I/O, threading, and subprocesses only if the task authorizes them
 - [ ] Headless: no GUI calls; explicit paths; `lux.isHeadless()` checked
 
@@ -48,7 +48,7 @@ Do not verify against the 2026.1 website, the historical archive, or model memor
 
 Check `lux.isHeadless()` before any dialog. In headless, require explicit config and raise if it is missing. In GUI, check cancellation. Never omit a path on save, export, or render in headless — that throws. Do not use third-party GUI toolkits.
 
-**The AI MUST NOT use non-standard or external libraries.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation.
+**The AI MUST NOT use non-standard or external libraries, unless the user gives explicit instructions to do so.** Use built-in `lux`/`luxmath` and only task-necessary standard-library modules available in KeyShot's embedded runtime. No third-party packages, external GUI frameworks or installation workarounds. Do not add file I/O, file logging, threading or external processes unless the task expressly requires or authorizes the operation. External libraries usually fail in KeyShot; warn if the user asks for one.
 
 Identify the intended result, API area, KeyShot build, and GUI/headless mode. Infer ordinary choices from context; ask only when a missing choice materially changes the operation. Read the relevant knowledge topic and exact source evidence. Review historical examples as candidates against current corrections, not authorities.
 

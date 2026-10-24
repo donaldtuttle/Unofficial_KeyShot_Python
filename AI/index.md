@@ -2,7 +2,7 @@
 
 **Source:** private KeyShot-Python-AI-Knowledge `knowledge/index.md` (reviewed 2026-10-23)
 
-For every scripting task, first read `AI/constraints.md` and `AI/best-practices.md`. Then retrieve the relevant topic, exact API entries, and applicable findings. **The AI MUST NOT use non-standard or external libraries.**
+For every scripting task, first read `AI/constraints.md` and `AI/best-practices.md`. Then retrieve the relevant topic, exact API entries, and applicable findings. **The AI MUST NOT use non-standard or external libraries, unless the user gives explicit instructions to do so.**
 
 ## API source of truth
 

@@ -214,5 +214,76 @@ lux.getKeyShotFolder(): Returns the KeyShot folder path.
 lux.getKeyShotVersion(): Retrieves the full KeyShot version.
 lux.getLibraryBackplates(): Retrieves lists of library backplates.
 lux.getLibraryColors(): Retrieves lists of library colors.
+lux.getLibraryEnvironments(): Retrieves lists of library environments.
+lux.getLibraryMaterials(): Retrieves lists of library materials.
+lux.getLibraryTextures(): Retrieves lists of library textures.
+lux.getLightingPreset(): Gets the current lighting preset.
+lux.getMaterialMapping(): Returns material mapping information.
+lux.getMaterialTemplates(): Lists available material templates.
+lux.getMetaData(): Retrieves metadata of the scene.
+lux.getModelSets(): Returns model sets in the scene.
+lux.getMultiMaterial(): Retrieves a multi-material.
+lux.getOS(): Identifies the operating system.
+lux.getObjectMaterial(): Gets the material applied to objects.
+lux.getObjects(): Retrieves objects in the scene.
+lux.getRenderEngine(): Determines the render engine in use.
+lux.getSceneInfo(): Provides detailed information about the scene.
+lux.getSceneMaterials(): Retrieves materials used in the scene.
+lux.getSphericalCamera(): Fetches spherical camera settings.
+lux.getSystemInfo(): Provides system information.
+Headless lux.set Functions:
+lux.setActiveImageStyle(name): Sets the active image style.
+lux.setActiveStudio(name): Sets the active studio.
+lux.setAnimationFrame(frame): Sets the current animation frame.
+lux.setAnimationTime(seconds): Sets the current animation time in seconds.
+lux.setCamera(camera): Sets the active camera.
+lux.setCameraDirection(direction): Sets the camera direction.
+lux.setCameraDistance(distance): Sets the camera distance.
+lux.setCameraFieldOfView(fov): Sets the camera field of view.
+lux.setCameraFocalLength(length): Sets the camera focal length.
+lux.setCameraLookAt(point): Sets the camera look-at point.
+lux.setCameraOrthographic(enable): Enables or disables orthographic camera mode.
+lux.setCameraPanoramic(enable): Enables or disables panoramic camera mode.
+lux.setCameraPerspective(enable): Enables or disables perspective camera mode.
+lux.setCameraPosition(position): Sets the camera position.
+lux.setCameraShift(shift): Sets the camera shift.
+lux.setCameraUp(up): Sets the camera up vector.
+lux.setLightingPreset(preset): Sets the lighting preset.
+lux.setLockResolution(lock): Locks or unlocks the resolution.
+lux.setMaterialTemplate(template): Applies a material template.
+lux.setModelSets(sets): Sets the model sets.
+lux.setObjectMaterial(obj, mat): Sets the material for an object.
+lux.setRenderEngine(engine): Sets the render engine.
+lux.setSphericalCamera(azimuth, inclination, twist): Sets spherical camera settings.
+lux.setStandardView(view): Sets a standard camera view.
+lux.clearGeometry(): Clears all geometry from the scene.
+lux.createSceneMaterial(materialType, properties): Creates a new material in the scene of the specified type with given properties.
+lux.deleteMaterial(materialName): Deletes the specified material from the scene.
+lux.enablePerformanceMode(enable): Enables or disables performance mode.
+lux.encodeVideo(inputFolder, outputFile, startFrame, endFrame, fps, format): Encodes a sequence of images into a video file.
+lux.findMaterialMetadata(materialName): Finds metadata for the specified material.
+lux.hasContents(): Checks if the current scene has any content.
+lux.importMaterials(materialFile): Imports materials from a specified file.
+lux.isCameraUnsaved(cameraName): Checks if the specified camera has unsaved changes.
+lux.isPaused(): Checks if the headless render is paused.
+lux.isPerformanceModeEnabled(): Checks if performance mode is enabled.
+lux.isSceneChanged(): Checks if the current scene has been changed since the last save.
+lux.loadMaterials(materialFile): Loads materials from a specified file.
+lux.openFile(filePath): Opens a KeyShot scene file.
+lux.openPackage(packagePath): Opens a KeyShot package file.
+lux.pause(): Pauses the current headless render.
+lux.prettyPrint(object): Pretty prints the representation of an object, useful for debugging.
+lux.processQueue(): Processes the internal KeyShot queue, allowing for batch operations.
+lux.renderCMF(filePath, options): Renders a Color Material Finish (CMF) document.
+lux.saveCamera(cameraName, filePath): Saves the specified camera settings to a file.
+lux.saveFile(filePath, options): Saves the current scene to a file with specified options.
+lux.saveMaterial(materialName, filePath): Saves the specified material to a file.
+lux.saveMaterialMetadata(materialName, filePath): Saves metadata for the specified material to a file.
+lux.saveMaterialPackage(materialName, packagePath): Saves the specified material to a package file.
+lux.savePackage(packagePath, options): Saves the current scene to a package file with specified options.
+lux.setKeepAspectRatio(keep): Sets whether to keep the aspect ratio of the camera.
+lux.sync(): Forces a synchronization of the scene, ensuring all operations are up to date.
+lux.unpause(): Resumes the current headless render if it was paused.
+### lux Library Constatnts:
 
 [Content continues]

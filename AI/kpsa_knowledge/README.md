@@ -1,20 +1,21 @@
 # KeyShot Python Scripting Assistant Knowledge
 
-Elevated KPSA guides for the agnostic agent (KeyShot Studio 2026.x; prefer 2026.2 when available).
+Elevated guides for the agnostic agent. KeyShot Studio 2026.2.
 
-## Contents (actual files)
+**API source of truth:** [`lux/KeyShot_lux_API.md`](../../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.2 console. Prefer this over any guide in this folder and over the public website. Guides can contradict the dump. The dump wins.
 
-- `KeyShotPython_Scripting_QuickReference_Documentation.txt` — quick reference patterns
-- `KeyShotPythonScripting_API_BestPractices_Guide.txt` — best practices
-- `KeyShotPythonScripting_API_GUI_GuideDocumentation.txt` — GUI dialog patterns
-- `KeyShotPythonScripting_API_Documentation.txt` — thin pointer to official docs
-- `KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt` — material graph copy patterns
-- `KeyShotPythonScripting_TransformationMatrix_Documentation.txt` — matrix / transform patterns
-- `KS_CustomInputDialog_GUI.txt` — custom input dialog examples
+## Contents
 
-These files are mandatory knowledge for the agnostic agent in the parent `AI/` folder.
+- [Quick reference](KeyShotPython_Scripting_QuickReference_Documentation.txt) — patterns
+- [Best practices guide](KeyShotPythonScripting_API_BestPractices_Guide.txt) — elevated patterns; verify every call against the dump
+- [GUI dialog guide](KeyShotPythonScripting_API_GUI_GuideDocumentation.txt) — dialog tuples
+- [Thin API pointer](KeyShotPythonScripting_API_Documentation.txt) — pointers only; dump is authoritative
+- [Material graph copy](KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt)
+- [Transformation matrix](KeyShotPythonScripting_TransformationMatrix_Documentation.txt)
+- [Custom input dialog](KS_CustomInputDialog_GUI.txt) — GUI only
 
-Prefer official live docs for current signatures:
+These files are supporting knowledge. They are not the API source of truth.
+
+Public 2026.1 website (secondary, lags):
 - https://media.keyshot.com/scripting/doc/2026.1/
 - https://media.keyshot.com/scripting/headless_doc/2026.1/
-- Prefer 2026.2 docs when available.

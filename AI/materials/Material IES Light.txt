@@ -1,0 +1,56 @@
+### Material: IES Light
+  - **SHADER_TYPE**: lux_ies_light
+  - **color** (PARAMETER_TYPE_COLOR): The color of the IES light. (Value: (1.0, 1.0, 1.0))
+  - **file** (PARAMETER_TYPE_TEXTURE): File path to the IES profile. (Value: C:/Users/Public/Documents/KeyShot/Textures/IES Profiles/IES Spot Light/keyshot_spot_15.ies)
+  - **length** (PARAMETER_TYPE_FLOAT): Length of the IES light source. (Value: 0.0)
+  - **light axis** (PARAMETER_TYPE_INTEGER): Axis of the light direction. (Value: 4)
+  - **multiplier** (PARAMETER_TYPE_FLOAT): Multiplier to adjust the intensity of the IES profile. (Value: 1.0)
+  - **radius** (PARAMETER_TYPE_FLOAT): Radius of the IES light source. (Value: 0.0)
+  - **shape** (PARAMETER_TYPE_INTEGER): Shape of the IES light source. (Value: 0)
+  - **width** (PARAMETER_TYPE_FLOAT): Width of the IES light source. (Value: 0.0)
+
+## Parameters for shader node in material'IES Light':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- color (Type: 13)
+- file (Type: 9)
+- length (Type: 4)
+- light axis (Type: 2)
+- multiplier (Type: 4)
+- radius (Type: 4)
+- shape (Type: 2)
+- width (Type: 4)
+
+## When using IES Light, you will need to load an IES profile by clicking on the folder icon in the editor. As soon as you load the profile you will see the shape of the IES profile in the material preview. You will also see the shape in form of a mesh in the Real-time View.
+
+File
+This displays the name and location of the IES profile being used. Click the folder icon to change to a different IES profile.
+
+Color
+Here, you can choose the color the light will cast. Use the Kelvin scale to select accurate lighting temperatures.
+
+Multiplier
+Adjust the intensity of the light with this slider.
+
+Note
+The luminous flux (luminous power of the light) is embedded in the IES file itself as a value in Lumen. The Multiplier adjusts this value. For the most accurate result, the Multiplier should be left at a value of 1. Values between 0 and 1 can be used to simulate the behavior of a dimmer.
+
+Shape
+You can use the default shape from the IES file or customize the shape by selecting either Spherical or Rectangular in the shape setting for the IES light material.
+
+Spherical, Radius
+If you select Spherical the beam be round and you can adjust the radius to control the softness of shadows cast from this light. A large radius gives soft shadows, while a small radius results in harder shadows with crisply defined, sharp edges.
+
+Rectangular
+If you select Rectangular the beam width and length can be controlled
+
+Note
+The effect of radius depends on the size of models. Larger models may require a higher radius value for a similar effect.
+
+Light Axis
+Here you can control the axis of your IES Light source.
+
+Tip
+If you have imported a scene where the axis orientation is different from the one in your light sources, you don’t have to rotate them – just choose the appropriate up-axis.

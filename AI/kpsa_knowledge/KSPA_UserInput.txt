@@ -1,0 +1,5 @@
+[KSPA User Input knowledge file from the KPSA backup]
+
+This file contains user input patterns and examples used by the KeyShot Python Scripting Assistant.
+
+[Full 20KB content to be completed in next batch]

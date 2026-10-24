@@ -1,0 +1,53 @@
+### Material: Emissive
+  - **SHADER_TYPE**: lux_emissive
+  - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
+  - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **color** (PARAMETER_TYPE_COLOR): The color of the emissive material. (Value: (0.3025, 0.3025, 0.3025, 1.0))
+  - **intensity** (PARAMETER_TYPE_FLOAT): Intensity of the emissive material. (Value: 1.0)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **twosided** (BOOLEAN): Determines if the material is emissive on both sides. (Value: True)
+  - **use_color_map_alpha** (BOOLEAN): Uses the alpha channel of the color map for transparency. (Value: True)
+  - **visible in reflections** (BOOLEAN): Determines if the material is visible in reflections. (Value: True)
+  - **visible in shadows** (BOOLEAN): Determines if the material casts shadows. (Value: True)
+  - **visible to the eye** (BOOLEAN): Determines if the material is visible to the camera. (Value: True)
+
+## Parameters for shader node in material'Emissive':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- alpha (Type: 4)
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- color (Type: 14)
+- intensity (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- twosided (Type: 1)
+- use_color_map_alpha (Type: 1)
+- visible in reflections (Type: 1)
+- visible in shadows (Type: 1)
+- visible to the eye (Type: 1)
+
+##  The Emissive material type can be used for small light sources such as LEDs, lamps or even illuminated screen displays. It is not meant to illuminate scenes as a main light source. The emissive material will need “Global illumination” enabled in “lighting” to illuminate other geometry in the Real-time view. It will also need ground illumination to illuminate the ground plane as shown. Color textures can be mapped to the material and any colors included in the texture will be emitted as light. When using emissive materials, it is a good idea to enable “Bloom” in the Image Style settings. This will create the glowing effect shown in the image.
+
+Intensity
+This will control the intensity of the light that is emitted.
+
+Color
+This will control the color of the light emitted from the material.
+
+Advanced
+Visible to Camera
+Hide the emissive material from the camera, but the emissive material will still emit light.
+
+Visible in Reflections
+Hide the emissive material from any specular reflections. The effect of the emissive will only be seen on the diffuse component of materials.
+
+Two-Sided
+This will cause the emissive light to display on both side of the surface.
+
+Use Color Map Alpha
+This will allow you to use the alpha channel in the color map.

@@ -2,7 +2,7 @@
 
 **Source:** private KeyShot-Python-AI-Knowledge `knowledge/best-practices/README.md` (reviewed 2026-10-23)
 
-Read `AI/constraints.md` before implementation. **The AI MUST NOT use non-standard or external libraries.** KeyShot scripting knowledge must come from the retrieved reference and relevant supplied examples, with errors corrected explicitly. General Python knowledge cannot substitute for KeyShot evidence.
+Read `AI/constraints.md` before implementation. **The AI MUST NOT use non-standard or external libraries.** KeyShot scripting knowledge must come from the 2026.2 `help(lux)` dump ([`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md)) and relevant supplied examples, with errors corrected explicitly. General Python knowledge cannot substitute for KeyShot evidence. The public 2026.1 website is secondary and lags.
 
 ## 1. Structure and readability
 
@@ -10,7 +10,7 @@ Use descriptive snake_case names for functions/variables and PascalCase for clas
 
 ## 2. Script creation process
 
-Establish the intended result, build, GUI/headless mode, target scene elements, units, scope and output destination. Retrieve exact declarations and the full applicable source passages. List material assumptions and unresolved behavior. Plan preflight, requested changes and verification before implementation. Preserve requested functionality when repairing a script, and explain deliberate behavior changes.
+Establish the intended result, build, GUI/headless mode, target scene elements, units, scope and output destination. Retrieve exact declarations from the 2026.2 dump and the full applicable source passages. List material assumptions and unresolved behavior. Plan preflight, requested changes and verification before implementation. Preserve requested functionality when repairing a script, and explain deliberate behavior changes.
 
 ## 3. Error handling and debugging
 
@@ -22,7 +22,7 @@ Use documented native KeyShot dialogs for interactive GUI tasks. Prefer one dial
 
 ## 5. Common errors and their diagnosis
 
-An empty-item-tuple error calls for checking the selection item's complete tuple and choices; it is not evidence that every text field always requires a nonempty default. A string/list mismatch calls for selecting or constructing the correct value, not blindly converting the whole list. A missing graph/node/parameter requires a contextual stop or skip policy. An attribute error calls for checking API ownership and version, not guessing a similar name. Treat incomplete examples and broken indentation as documentation issues before presenting code as executable.
+An empty-item-tuple error calls for checking the selection item's complete tuple and choices; it is not evidence that every text field always requires a nonempty default. A string/list mismatch calls for selecting or constructing the correct value, not blindly converting the whole list. A missing graph/node/parameter requires a contextual stop or skip policy. An attribute error calls for checking API ownership and version against the 2026.2 dump, not guessing a similar name. Treat incomplete examples and broken indentation as documentation issues before presenting code as executable.
 
 ## 6. Performance and batching
 
@@ -46,7 +46,7 @@ Use context managers for task-authorized ordinary file I/O. Validate paths, perm
 
 ## 11. Documentation and provenance
 
-State target build/mode, configuration, side effects, imports, invocation, expected result and troubleshooting steps. Explain complex transforms and graph relationships in comments. Cite exact source symbols and line spans or versioned official references. Keep originals, source hashes and correction reasons; record behavior changes.
+State target build/mode, configuration, side effects, imports, invocation, expected result and troubleshooting steps. Explain complex transforms and graph relationships in comments. Cite exact source symbols from the 2026.2 dump. Keep originals, source hashes and correction reasons; record behavior changes.
 
 ## 12. KeyShot modules and transformations
 
@@ -66,6 +66,6 @@ Separate initialization, input, target resolution, preflight, mutation and repor
 
 ## 16. Complete examples and safe adaptation
 
-Deliver full supported scripts with defined helpers and no omitted core operations. Label fragments as fragments. Validate each borrowed call, parameter, constant and return shape from the full historical example; preserve its useful intent without inheriting its errors. Retain original timing, frame rate, ranges, naming and visual behavior when correcting examples. Refuse to fabricate a missing operation to satisfy a full-script requirement.
+Deliver full supported scripts with defined helpers and no omitted core operations. Label fragments as fragments. Validate each borrowed call, parameter, constant and return shape from the full historical example and the 2026.2 dump; preserve its useful intent without inheriting its errors. Retain original timing, frame rate, ranges, naming and visual behavior when correcting examples. Refuse to fabricate a missing operation to satisfy a full-script requirement.
 
-Official docs: https://media.keyshot.com/scripting/doc/2026.1/
+API source of truth: [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) (2026.2 `help(lux)`). Public 2026.1 website is secondary only.

@@ -230,4 +230,90 @@ finally:
     lux.logInfo("Script terminated, cleaning up resources.")
     # Clean-up code here
 
+16. Best Practice Examples
+
+1. Scene Initialization Example
+
+def initialize_scene():
+    lux.setCamera('Main Camera')  # Reset to default camera
+    lux.setEnvironment("Default Environment")  # Ensure default environment
+
+2. Material Graph Manipulation Example
+
+graph = lux.getMaterialGraph("MyMaterial")
+if graph:
+    diffuse = graph.getParameter("diffuse")
+    if diffuse:
+        diffuse.setValue((0.1, 0.2, 0.3))
+
+Additional Common Errors:
+
+	1.	Empty Item Tuple Exception (lux.getInputDialog)
+	•	Error: Exception: Items of item tuple must be specified!
+	•	Cause: Incomplete or improperly formatted tuple in lux.getInputDialog().
+	•	Solution: Ensure all fields in dialog items are complete and non-empty, especially lux.DIALOG_ITEM fields.
+Example:
+
+values = [
+    ("name", lux.DIALOG_TEXT, "Model Name:", "DefaultName")  # Provide non-empty default
+]
+lux.getInputDialog(title="Model Import", values=values)
+
+
+	2.	Type Mismatch Error
+	•	Error: TypeError: argument 1 must be str, not list
+	•	Cause: Passing a list or other non-string data type to a function expecting a string.
+	•	Solution: Ensure the function argument types match what is expected, such as using str() to convert non-string arguments to strings where necessary.
+Example:
+
+# Correct usage of string argument
+lux.logInfo("Processing object ID: " + str(object_id))
+
+
+
+Best Practices for Material Graph Manipulation:
+
+	1.	Handling Material Graphs Safely
+	•	Always use lux.getMaterialGraph(name) to access the material graph.
+	•	Check for node existence using defensive programming before modifying nodes.
+Example:
+
+graph = lux.getMaterialGraph("MaterialName")
+if graph:
+    diffuse_node = graph.getParameter("diffuse")
+    if diffuse_node:
+        diffuse_node.setValue((1.0, 0.5, 0.0))  # Set color
+else:
+    lux.logError("Material graph not found.")
+
+Manual vs Modular Python an AI
+
+In the context of LLM (Large Language Model) recommendations, there’s a strong emphasis on using modular code for good reasons like reusability, maintainability, and separation of concerns. However, in scripting environments like KeyShot, especially for complex material duplication tasks, the need for manual verification might conflict with standard modularization practices. Here’s how you can reconcile these two viewpoints and make them understand the necessity of a manual approach in your case:
+
+Why Modular Approaches Are Usually Recommended:
+
+1. Reusability: Modular code—broken down into functions and classes—allows each piece to be reused in multiple contexts. This reduces redundancy and makes maintaining and updating code easier.
+2. Separation of Concerns: Each module handles a specific responsibility, improving code readability and making it easier to debug.
+3. Testing and Reliability: Smaller modules can be independently tested, allowing for a more reliable and less error-prone system.
+
+Why a Manual Approach Is Important Here:
+
+In your KeyShot scripting task, manual verification serves a unique purpose that might not be apparent from a purely modular perspective. Here are key reasons why manual, hands-on verification is essential, even within a modular framework:
+
+1. Complexity of Relationships:
+• KeyShot material graphs are often highly complex, with multiple nodes, unique relationships, and parameter dependencies. Relying solely on modular functions that assume the duplication is always straightforward may oversimplify what is actually required.
+• lux.createMultiMaterial() provides a fast, broad duplication, but in intricate graphs, nodes and connections can have special behaviors (such as custom procedural setups or edge cases that require tailored handling). Manual checks allow you to handle these scenarios specifically.
+2. Need for Precision and Customization:
+• Modular functions generally implement generic behavior that applies to most cases, but in tasks like duplicating materials, each node and parameter may require specific attention depending on the material type.
+• Manual validation (duplicate_node(), duplicate_parameters(), etc.) gives you the control to make context-specific adjustments that aren’t feasible within a generic module.
+3. Quality Assurance:
+• The main benefit of a manual setup here is quality assurance. Even if you use a modular function to perform a task like lux.createMultiMaterial(), verifying the output through manual checks ensures that all relationships and parameter settings are accurately preserved.
+• This step is crucial to avoid subtle bugs or inconsistencies that might lead to incorrect rendering, visual artifacts, or unexpected material behaviors.
+
+How to Bridge Manual Verification with Modular Design:
+
+You can address the LLM’s emphasis on modularity while explaining why manual steps are still needed:
+
+1. Modular Verification Functions:
+
 [Content continues]

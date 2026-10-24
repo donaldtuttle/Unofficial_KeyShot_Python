@@ -28,7 +28,8 @@ Public website docs are useful background only. They are not current for 2026.2:
 
 - [`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md) — **2026.2 source of truth**
 - `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.2 lux dump)
-- `Scripts/` — example scripts
+- `Scripts/` — older example notes
+- [`Scripts/examples/`](Scripts/examples/) — maintained 2026.2 example scripts (materials, information, transforms, rendering, GUI, animation)
 - `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.2 dump.
 
 ## Using the AI agent

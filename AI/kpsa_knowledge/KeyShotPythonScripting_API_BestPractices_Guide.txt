@@ -1,0 +1,104 @@
+### KeyShot Python Scripting Comprehensive Guide
+
+**Updated for KeyShot 2026.1.** This guide consolidates best practices, common error handling, and recommendations. 
+
+**Mandatory:** Always follow the hard constraints in `../constraints.md` (or `AI/constraints.md` in the repo). Those rules override anything here. Key elevations:
+
+- Node IDs are dynamic — prefer names, verify after every material graph copy or link.
+- `lux.getMaterialGraph(name)` only. No invented getters.
+- GUI tuples must be complete; TEXT non-empty default; always `if opts:`.
+- Matrices from identity. Absolute transforms only on object nodes.
+- Only `lux`/`luxmath` + stdlib. Check None, empty lists, return values.
+
+Prefer live official docs: https://media.keyshot.com/scripting/doc/2026.1/
+
+## Table of Contents
+
+1. [Structure and Readability](#1-structure-and-readability)
+2. [Script Creation Process](#2-script-creation-process)
+3. [Error Handling and Debugging](#3-error-handling-and-debugging)
+4. [User Interaction and Feedback](#4-user-interaction-and-feedback)
+5. [Common Errors and Solutions](#5-common-errors-and-solutions)
+6. [Performance Optimization](#6-performance-optimization)
+7. [Handling Material Graphs](#7-handling-material-graphs)
+8. [Camera Operations](#8-camera-operations)
+9. [Testing and Debugging](#9-testing-and-debugging)
+10. [Resource Management](#10-resource-management)
+11. [Documentation](#11-documentation)
+12. [Special Considerations for KeyShot Modules](#12-special-considerations-for-keyshot-modules)
+13. [Key Highlights](#13-key-highlights)
+14. [Modularity and Reusability](#14-modularity-and-reusability)
+15. [Scripting Workflow Management](#15-scripting-workflow-management)
+16. [Best Practice Examples](#16-best-practice-examples)
+
+1. Structure and Readability
+
+	•	Consistent Naming Conventions: Use snake_case for function and variable names, and PascalCase for class names to follow Python and KeyShot conventions.
+	•	Use Built-in Constants: Prefer using predefined constants from the lux and luxmath modules (e.g., node types, material properties) over hardcoding values.
+	•	PEP 8 Adherence: Follow Python’s PEP 8 style guide for consistent formatting, including indentation, spacing, and line lengths.
+	•	Modularization: Break down complex tasks into smaller, reusable functions or classes for better readability and maintainability.
+
+Example:
+
+def create_spiral_matrix(index, spacing, angle_increment, direction):
+    """
+    Creates a transformation matrix for arranging objects in a spiral pattern.
+    Args:
+        index (int): The index of the object.
+        spacing (float): The distance between objects.
+        angle_increment (float): The angle increment in degrees.
+        direction (str): The direction of the spiral ('clockwise' or 'counterclockwise').
+    Returns:
+        luxmath.Matrix: The transformation matrix.
+    """
+    angle_rad = index * angle_increment * (math.pi / 180.0)
+    offset = luxmath.Vector(math.cos(angle_rad), 0, math.sin(angle_rad)) * spacing
+    return luxmath.Matrix().makeIdentity().translate(offset)
+
+2. Script Creation Process
+
+	•	Document Assumptions: State assumptions about the environment, scene, and objects (e.g., object types, scale).
+	•	Acknowledge Limitations: Document any known limitations (e.g., KeyShot version compatibility) and provide potential workarounds.
+
+3. Error Handling and Debugging
+
+	•	Use Try-Except Blocks: Handle critical operations (e.g., file imports, transformations) with try-except blocks.
+	•	Type Checking: Implement type checking, particularly for user inputs collected via lux.getInputDialog(). Use isinstance() to validate types.
+	•	Error Logging: Use lux.logError() for error logging, and supplement with custom log files to keep an external record of errors across script executions.
+
+Example:
+
+try:
+    model.duplicate(amount=1)
+except TypeError as e:
+    with open("error_log.txt", "a") as log_file:
+        log_file.write(f"TypeError: {str(e)}\n")
+    lux.logError(f"TypeError encountered: {e}")
+
+4. User Interaction and Feedback
+
+	•	Input Collection: Use lux.getInputDialog() to gather user inputs. Provide default values and tooltips for enhanced user experience.
+
+Example:
+
+values = [
+    ("spacing", lux.DIALOG_DOUBLE, "Spacing Between Objects:", 1.0, (0.1, 100.0), "Distance between objects in 3D space"),
+]
+opts = lux.getInputDialog(title="Object Duplicator", values=values)
+
+# Validate input
+if opts["spacing"] <= 0:
+    lux.logError("Invalid spacing value, must be greater than zero.")
+    return
+
+	•	User Feedback: Provide real-time feedback during long-running operations using progress bars and status updates. Implement cancel functionality with lux.isUserCancelled().
+
+Example:
+
+progress_bar = lux.getProgressBar("Processing")
+progress_bar.start()
+for i, task in enumerate(tasks):
+    progress_bar.setProgress(int((i / len(tasks)) * 100))
+    if lux.isUserCancelled():
+
+[Content continues — remaining sections staged next]

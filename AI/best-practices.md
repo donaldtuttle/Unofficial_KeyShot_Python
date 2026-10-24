@@ -2,7 +2,7 @@
 
 **Source:** private KeyShot-Python-AI-Knowledge `knowledge/best-practices/README.md` (reviewed 2026-10-23)
 
-Read `AI/constraints.md` before implementation. **The AI MUST NOT use non-standard or external libraries.** KeyShot scripting knowledge must come from the 2026.2 `help(lux)` dump ([`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md)) and relevant supplied examples, with errors corrected explicitly. General Python knowledge cannot substitute for KeyShot evidence. The public 2026.1 website is secondary and lags.
+Read `AI/constraints.md` before implementation. **The AI MUST NOT use non-standard or external libraries, unless the user gives explicit instructions to do so.** KeyShot scripting knowledge must come from the 2026.2 `help(lux)` dump ([`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md)) and relevant supplied examples, with errors corrected explicitly. General Python knowledge cannot substitute for KeyShot evidence. The public 2026.1 website is secondary and lags.
 
 ## 1. Structure and readability
 

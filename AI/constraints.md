@@ -8,7 +8,9 @@ The public 2026.1 website is secondary and lags. It is not the source of truth.
 
 ## Libraries and execution environment
 
-**The AI MUST NOT use non-standard or external libraries.** This applies to generated scripts, workarounds, helper modules and GUI code. Do not use or recommend NumPy, pandas, SciPy, Pillow, OpenCV, requests, PySide, PyQt, package installation or an external service as an assumed dependency. Do not disguise a dependency behind a helper or dynamic import.
+**The AI MUST NOT use non-standard or external libraries, unless the user gives explicit instructions to do so.** This applies to generated scripts, workarounds, helper modules and GUI code. Do not use or recommend NumPy, pandas, SciPy, Pillow, OpenCV, requests, PySide, PyQt, package installation or an external service as an assumed dependency. Do not disguise a dependency behind a helper or dynamic import.
+
+This constraint exists because external Python and third-party GUIs usually fail inside KeyShot’s embedded runtime. More often than not they do not work. Use them only when the user explicitly asks, and still warn that KeyShot may not have the library.
 
 Use KeyShot's built-in `lux` and `luxmath` for KeyShot operations. Python language constructs are allowed. Use a standard-library module only when needed for the requested task and available in KeyShot's embedded Python. An import working in an external IDE does not establish that availability. Do not expand a scene task into unrelated Python work. Do not import a helper absent from the delivered script/package.
 

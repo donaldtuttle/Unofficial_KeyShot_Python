@@ -1,5 +1,0 @@
-The purpose of this guide is to train an LLM or a custom GPT on KeyShot Python scripting, emphasizing the distinctions between KeyShot’s specific Python API and general Python practices. The focus is on ensuring the model can assist users in writing and debugging scripts for automating tasks in KeyShot, particularly around material duplication, node management, and scene graph manipulation.
-
-[Full content from KPSA_Quick_Guide.txt - 21KB]
-
-This is the KPSA Quick Guide from the knowledge backup. It covers KeyShot Python scripting fundamentals, material graph patterns, node management, and best practices for LLM/agent use.

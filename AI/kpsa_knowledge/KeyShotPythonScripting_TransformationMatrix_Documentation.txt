@@ -107,5 +107,118 @@ def create_grid_matrix(i, spacing, rows, cols, direction):
 ```python
 def create_circle_matrix(i, radius, num_duplicates, direction, clockwise):
     angle_increment = -2 * math.pi / num_duplicates if clockwise else 2 * math.pi / num_duplicates
+    angle = i * angle_increment
+    x_offset = math.cos(angle) * radius
+    y_offset = math.sin(angle) * radius
+    z_offset = 0
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
 
-[Content continues — full guide staged in subsequent commits]
+**Explanation:**
+- **Angle Calculation**: Distributes the angle evenly around the circle.
+- **Offset Calculation**: Positions objects along the circle's circumference.
+- **Matrix Construction**: Translates each object to its position on the circle.
+
+#### 4. Pyramid Pattern Matrix
+
+```python
+def create_pyramid_matrix(i, spacing, base_width, direction):
+    layer = int((1 + math.sqrt(1 + 8 * i)) // 2)
+    index_in_layer = i - layer * (layer - 1) // 2
+    layer_width = max(base_width - layer + 1, 1)
+    row = index_in_layer // layer_width
+    col = index_in_layer % layer_width
+    x_offset = (col - (layer_width - 1) / 2) * spacing
+    y_offset = layer * spacing
+    z_offset = (row - (layer_width - 1) / 2) * spacing
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Layer Calculation**: Determines the height of the object within the pyramid.
+- **Row and Column Calculation**: Arranges objects in a grid within each layer.
+- **Offset Calculation**: Positions the object based on its layer and grid position.
+- **Matrix Construction**: Translates the object to its correct position within the pyramid.
+
+### Summary of Pattern Matrix Operations
+
+1. **Identity Matrix**: All transformations begin with an identity matrix.
+2. **Offset Calculation**: Each pattern uses specific logic to calculate x, y, and z offsets.
+3. **Translation**: These offsets are used to create a translation matrix that positions each object.
+4. **Pattern-Specific Logic**: Each pattern has unique logic for spatial arrangements.
+
+### Scene Tree Management in KeyShot
+
+Understanding the scene tree in KeyShot is crucial for effectively scripting the translation and positioning of models and parts.
+
+#### Scene Tree Overview
+
+The scene tree is a hierarchical structure that organizes all the elements in a 3D scene. It includes models, groups, objects, and other elements. Each element is a node, and nodes can have different types, such as `MODEL`, `OBJECT`, or `GROUP`.
+
+#### Key Functions and Concepts
+
+1. **Getting the Scene Tree**:
+    - Use the following command to access the root of the scene tree:
+    ```python
+    root = lux.getSceneTree()
+    ```
+    - This returns the root node of the scene tree, enabling access and manipulation of all elements in the scene.
+
+2. **Finding Objects in the Scene**:
+    - To locate specific types of nodes within the scene tree:
+    ```python
+    types = (lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_MODEL)
+    for n in root.find("", types=types, depth=3):
+        if n != root:
+            objTxt.append(n.getName())
+            objRef.append(n)
+    ```
+    - This script searches for nodes of specified types up to a depth of 3 levels and stores them for later use.
+
+3. **Duplicating Objects**:
+    - Duplicates of objects can be created using:
+    ```python
+    dups = obj.duplicate(amount=amount)
+    ```
+    - This creates the specified number of duplicates, which can be individually transformed.
+
+4. **Transforming Objects**:
+    - After duplication, transform each duplicate using the selected pattern:
+    ```python
+    for i, dup in enumerate(dups, start=1):
+        transform_matrix = ...  # Create the transformation matrix based on the pattern
+        dup.applyTransform(transform_matrix)
+    ```
+    - The transformation matrix is calculated based on the selected pattern and applied to position the object.
+
+### Additional Transformations
+
+In some scenarios, additional transformations such as random rotation or scattering may be applied:
+
+```python
+# Apply Y-axis rotation
+rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(luxmath.Vector(0, 1, 0), math.radians(y_rotation))
+transform_matrix = transform_matrix.mul(rotation_matrix)
+
+# Apply scatter
+scatter_transform = scatter_matrix(scatter_x, scatter_y, scatter_z)
+transform_matrix = transform_matrix.mul(scatter_transform)
+
+dup.applyTransform(transform_matrix)
+```
+
+### Summary of Scene Tree Management
+
+1. **Scene Tree Access**: Begin by accessing the root of the scene tree.
+2. **Node Identification**: Identify specific nodes (models, objects, groups) using the `find` method.
+3. **Duplication**: Duplicate nodes based on user input.
+4. **Transformation**: Apply calculated transformations to position objects according to the selected pattern.
+5. **Additional Transformations**: Apply any extra transformations (rotation, scatter) as needed.
+
+### Case Studies and Examples
+
+#### Spiral Pattern Duplicator Script
+
+[Content continues — remaining sections staged next]

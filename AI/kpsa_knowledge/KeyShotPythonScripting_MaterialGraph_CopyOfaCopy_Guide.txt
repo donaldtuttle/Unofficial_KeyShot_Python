@@ -1,0 +1,76 @@
+### KeyShotPythonScripting MaterialGraph Copy Of A Copy Guide
+
+## Table of Contents
+
+1. [Debugging in KeyShot](#debugging-in-keyshot)
+   - [1.1 KeyShot Debugging Environment Limitations](#11-keyshot-debugging-environment-limitations)
+     - [1.1.1 No Native Interactive Debugger](#111-no-native-interactive-debugger)
+     - [1.1.2 Script Running Context](#112-script-running-context)
+   - [1.2 Practical Alternatives for Debugging in KeyShot](#12-practical-alternatives-for-debugging-in-keyshot)
+     - [1.2.1 Logging](#121-logging)
+     - [1.2.2 Conditional Logging as Breakpoints](#122-conditional-logging-as-breakpoints)
+     - [1.2.3 Step-by-Step Execution with User Input](#123-step-by-step-execution-with-user-input)
+   - [1.3 Implementation Example for Debugging](#13-implementation-example-for-debugging)
+     - [1.3.1 Logging Scene Information](#131-logging-scene-information)
+     - [1.3.2 Transforming Nodes with Logging](#132-transforming-nodes-with-logging)
+   - [1.4 Challenges with Real Breakpoints](#14-challenges-with-real-breakpoints)
+     - [1.4.1 No Interactive Debugger](#141-no-interactive-debugger)
+     - [1.4.2 Manual Inspection with Logging and Print Statements](#142-manual-inspection-with-logging-and-print-statements)
+   - [1.5 Using Python Tools for External Debugging](#15-using-python-tools-for-external-debugging)
+     - [1.5.1 Pdb Debugger](#151-pdb-debugger)
+   - [1.6 Summary for Debugging Documentation](#16-summary-for-debugging-documentation)
+     - [1.6.1 No Native Debugger in KeyShot](#161-no-native-debugger-in-keyshot)
+     - [1.6.2 Alternatives for Effective Debugging](#162-alternatives-for-effective-debugging)
+     - [1.6.3 Implementation Guidance](#163-implementation-guidance)
+     - [1.6.4 Challenges and Limitations](#164-challenges-and-limitations)
+   - [1.7 Best Practices for Debugging KeyShot Scripts](#17-best-practices-for-debugging-keyshot-scripts)
+     - [1.7.1 Use Logging Extensively to Trace Script Execution](#171-use-logging-extensively-to-trace-script-execution)
+     - [1.7.2 Simulate Breakpoints with Conditional Logging](#172-simulate-breakpoints-with-conditional-logging)
+     - [1.7.3 Manual Stepping Using Input for Line-by-Line Execution](#173-manual-stepping-using-input-for-line-by-line-execution)
+     - [1.7.4 Create Debug Functions for Scene and Material Inspection](#174-create-debug-functions-for-scene-and-material-inspection)
+     - [1.7.5 Centralize Logging Configuration](#175-centralize-logging-configuration)
+     - [1.7.6 Document Logging Intent in Your Script](#176-document-logging-intent-in-your-script)
+     - [1.7.7 Error Handling and Logging Exceptions](#177-error-handling-and-logging-exceptions)
+   - [1.8 Example Scenarios for Using Logs in Debugging](#18-example-scenarios-for-using-logs-in-debugging)
+     - [1.8.1 Incorrect Material Assignment](#181-incorrect-material-assignment)
+     - [1.8.2 Hierarchy Mismatch](#182-hierarchy-mismatch)
+     - [1.8.3 API Function Errors](#183-api-function-errors)
+   - [1.9 Conclusion for Debugging Best Practices in KeyShot](#19-conclusion-for-debugging-best-practices-in-keyshot)
+
+
+Let’s dive deeper into how KeyShot’s API allows for “copying” materials and material graphs, especially focusing on using functions like lux.createMultiMaterial() to create duplicates.
+
+Manual Copy of Material Graphs Using KeyShot API
+
+# AUTHOR: LUX DT ChatGPT
+# VERSION: 1.3.6
+# PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge 
+# from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material 
+# as a sub-material into an existing Multi-Material in KeyShot.
+```python
+import lux
+
+def add_copied_material_to_multimaterial(material_name, multi_material_name):
+    """
+    Duplicates the material specified by `material_name`, converts it to a Multi-Material, and adds it as a sub-material to
+    the existing Multi-Material `multi_material_name`.
+
+    Parameters:
+    - material_name (str): Name of the original material to be duplicated.
+    - multi_material_name (str): Name of the Multi-Material to which the duplicated material will be added.
+    """
+    try:
+        # Step 1: Create a new Multi-Material (Copy of the Original)
+        # This step clones the original material and gives it a new name.
+        copied_material_name = f"{material_name}_Copy"
+        clone_multi_material = lux.createMultiMaterial(name=copied_material_name, mat=material_name)
+
+        if clone_multi_material is None:
+            raise ValueError(f"Failed to create a copy of the material '{material_name}'")
+
+        print(f"Material '{copied_material_name}' copied successfully using lux.createMultiMaterial().")
+
+        # Step 2: Enable the copied material as a Multi-Material container
+        # Once the material is copied, get the material graph and enable it for multi-material capabilities.
+
+[Content continues — full guide staged next]

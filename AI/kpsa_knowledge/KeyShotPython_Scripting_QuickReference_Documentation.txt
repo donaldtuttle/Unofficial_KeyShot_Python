@@ -577,5 +577,51 @@ Test your script extensively in both GUI and headless modes to ensure it behaves
 Headless:
 The lux library for KeyShot, when operated in headless mode (without the graphical user interface, GUI), offers functionality focused on scripting for automation, batch processing, and server-based rendering tasks. While the core functionality between GUI and headless modes remains consistent, focusing on scene manipulation, rendering, and camera control, there are some differences in available classes and functions to accommodate the non-interactive, command-line nature of headless operation.
 Opts:
+In KeyShot scripting, the opts variable often refers to a set of options or settings that can be configured for various operations, such as rendering, importing files, and exporting data. These options are typically stored in a Python dictionary or an object that allows for the customization of behavior and parameters of a given function. Below are examples of some commonly used opts in different contexts within KeyShot scripting:
+Rendering Options:
+When configuring render settings, opts may include parameters to control aspects of the rendering process, such as resolution, quality, and format. Here's an example of setting up render options:
+Import Options:
+For importing geometry or scenes into KeyShot, opts can specify how the import process behaves, such as whether to center the geometry, scale it, or how to handle existing materials:
+Image Render Options:
+For image rendering, opts can include detailed settings about the output image, such as file format, DPI, and whether to include alpha channels:
+### Script Examples Reference:###  Analyze .py as .txt
+'Scripting_Examples.txt' contains the following Scripts.
+### Batch Rename ModelSets GUI### 
+Summary:
+This script provides a GUI for batch renaming model sets in KeyShot. It allows users to specify a prefix, name, suffix, and separator for each model set's new name. The script iterates through all model sets in the scene and presents a dialog for renaming each one individually.
+Key Functions:
+lux.getSceneTree(): Retrieves the root of the scene tree.
+node.isModelSet(): Checks if a node is a model set.
+lux.getInputDialog(): Displays a dialog box for user input.
+model_set.setName(): Sets a new name for a model set.
+Duplicate and Randomly Scatter Objects
+The script duplicates a selected object and scatters the duplicates randomly within the scene. It's headless compliant, meaning it can run in both GUI and headless modes of KeyShot. The script allows specifying the number of duplicates, axes for translation, and whether to rotate the duplicates.
+lux.getSceneTree().find(): Finds objects in the scene tree.
+lux.getInputDialog(): Captures user input for various parameters in GUI mode.
+luxmath.Vector(), luxmath.Matrix(): Used for creating vectors and matrices for transformations.
+obj.duplicate(), dup.applyTransform(): Duplicates objects and applies transformation matrices.
+Classes/Modules:
+luxmath.Vector: Represents vectors for transformations.
+luxmath.Matrix: Handles matrices for object transformations.
+### Render Ambient Occlusion### 
+This script renders an ambient occlusion image of the current scene. It prompts the user to specify output parameters such as folder path, image name, dimensions, and maximum render time. It temporarily changes the environment and materials to ensure an accurate occlusion render and then restores them.
+lux.getSceneInfo(): Retrieves information about the current scene.
+lux.getActiveEnvironment(), env.setLightingEnvironment(): Gets and sets the scene's lighting environment.
+lux.getMaterialMapping(), lux.applyMaterialMapping(): Gets and reapplies material mappings to restore original scene state.
+lux.getRenderOptions(), lux.renderImage(): Configures render options and initiates the rendering process.
+### Get Scene Materials### 
+This script lists all materials currently used in the KeyShot scene by printing their names. It demonstrates a simple way to access and display scene information, particularly useful for auditing or documentation purposes.
+lux.getSceneMaterials(): Retrieves a list of all materials present in the current scene.
+Saves Multi-Material Sub-Materials to Library (PC and Apple Compatible)
+Designed for both Windows and macOS systems, this script saves all sub-materials of multi-materials in the current KeyShot scene to a specified material library, excluding duplicates. It identifies multi-materials by examining their material graph and iterates through each to save sub-materials individually.
+lux.getSceneTree(), node.getChildren(): Accesses the scene tree to find all nodes.
+lux.getMaterialGraph(), material_graph.getMaterialNodes(): Retrieves the material graph for a given material name, identifying sub-materials.
+lux.saveMaterial(): Saves a specified material to the library.
+platform.system(): Determines the operating system to set the library path accordingly.
+### Duplicate and Randomly Scatter Objects (Headless Compliant)### 
+This script duplicates a selected object and scatters the duplicates randomly across the scene. It supports both GUI and headless modes, allowing users to specify the number of duplicates, translation axes, and rotation. The script uses randomization to place duplicates within the scene's bounding box.
+Key Functions and Classes:
+lux.getSceneTree().find(): Searches the scene tree to select objects.
+lux.getInputDialog(), inputItem(), inputInt(), inputBool(): Collect user inputs through GUI or command-line prompts.
 
 [Content continues]

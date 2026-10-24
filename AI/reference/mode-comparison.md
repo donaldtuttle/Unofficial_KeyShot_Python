@@ -2,7 +2,7 @@
 
 **Target:** KeyShot Studio 2026.2 (prefer over 2026.1 when available)
 
-**Source note:** private KeyShot-Python-AI-Knowledge `reference/keyshot-2026/MODE-COMPARISON.md` (corrected 2026-10-24)
+**Source note:** private KeyShot-Python-AI-Knowledge `reference/keyshot-2026/MODE-COMPARISON.md` (cleaned 2026-10-24)
 
 The full declaration comparison contains **688 GUI** and **644 headless** lux declarations from the 2026.1 pages. All headless declarations also occur in the GUI page. The 44 GUI-page-only declarations are listed below. Presence is documentation evidence, not a runtime test; absence does not establish impossibility.
 
@@ -11,19 +11,9 @@ Primary sources (2026.1; 2026.2 public lux pages not yet available at the standa
 - Headless lux: https://media.keyshot.com/scripting/headless_doc/2026.1/lux.html
 - luxmath: https://media.keyshot.com/scripting/doc/2026.1/luxmath.html
 
-## Corrections (user-verified false)
-
-The following were previously flagged as supplied-only discrepancies. They are **false** and do not exist as usable API:
-
-- `lux.CAMERA_MODE_ORBIT` — does not exist
-- `lux.CAMERA_MODE_PATH` — does not exist
-- `lux.getAnimations` — does not exist
-- `lux.getNodeAnimations` — does not exist
-- `SHADER_TYPE_OPENPBR` / `SHADER_TYPE_PLANAR_LIGHT` — not library constants. OpenPBR and Planar Light parameters are only reachable by inspecting the material graph (get nodes → get parameters).
-
-Do not treat any of the above as usable API.
-
 ## GUI-page-only declarations
+
+These appear only on the GUI lux page (not in the headless page):
 
 - `lux.DIALOG_CHECK`
 - `lux.DIALOG_DOUBLE`
@@ -74,3 +64,4 @@ Do not treat any of the above as usable API.
 
 - 2026.2 release notes mention additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not listed in the public notes.
 - Prefer official 2026.2 lux reference when it becomes available.
+- OpenPBR and Planar Light parameters are reachable only by inspecting the material graph (get nodes → get parameters). They are not library constants.

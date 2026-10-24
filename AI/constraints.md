@@ -2,7 +2,9 @@
 
 **Source:** private KeyShot-Python-AI-Knowledge `knowledge/ai-constraints/README.md` (reviewed 2026-10-23)
 
-Read this document before every KeyShot scripting task. General Python experience is not evidence that a KeyShot operation exists or works. Retrieve the relevant supplied documentation, verify the exact API, and honor the user's constraints before writing code.
+Read this document before every KeyShot scripting task. General Python experience is not evidence that a KeyShot operation exists or works. Retrieve the relevant supplied documentation, verify the exact API against [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) (2026.2 `help(lux)` dump), and honor the user's constraints before writing code.
+
+The public 2026.1 website is secondary and lags. It is not the source of truth.
 
 ## Libraries and execution environment
 
@@ -16,9 +18,9 @@ Run KeyShot operations inside the licensed KeyShot runtime. An ordinary interpre
 
 ## Evidence before implementation
 
-- **AI-01 — Retrieve first.** Read these constraints, best practices, the relevant topic, exact API entries, full source passage and applicable findings. Model memory and generic Python patterns are not KeyShot evidence.
+- **AI-01 — Retrieve first.** Read these constraints, best practices, the relevant topic, exact API entries from the 2026.2 dump, full source passage and applicable findings. Model memory and generic Python patterns are not KeyShot evidence.
 - **AI-02 — Respect API ownership.** Distinguish module functions from methods of scene nodes, graphs, shader nodes, edges, parameters and other objects. Verify the receiver.
-- **AI-03 — Verify the full call.** Check argument names, required values, types, units, ranges, defaults, return representation, version and mode. Ellipsis signatures and prose-derived parameters remain incomplete. Do not invent overloads or attributes.
+- **AI-03 — Verify the full call.** Check argument names, required values, types, units, ranges, defaults, return representation, version and mode against the 2026.2 dump. Ellipsis signatures and prose-derived parameters remain incomplete. Do not invent overloads or attributes.
 - **AI-04 — No invented facilities.** Do not invent logging, progress, cancellation, transaction, undo, camera, cloning, shader or material facilities. A plausible name or successful mock does not establish a feature.
 - **AI-05 — Show uncertainty.** Identify unsupported steps and retrieve evidence or propose a focused runtime observation. Do not hide gaps behind `getattr`, broad exceptions, repeated guessed calls or fabricated fallbacks.
 - **AI-06 — Preserve corrections.** Apply curated findings and user-requested removals to historical sources. Repetition does not validate an archived error. Absence from an index alone is not proof of impossibility.
@@ -46,4 +48,4 @@ Run KeyShot operations inside the licensed KeyShot runtime. An ordinary interpre
 
 The current user's external-library prohibition is mandatory. Historical file-I/O examples do not override authorization requirements. Unsupported historical calls remain source data and need correction before reuse. Full scripts are required when supportable; fabrication cannot satisfy that requirement.
 
-Continue with `AI/best-practices.md` and official 2026.1 docs.
+Continue with `AI/best-practices.md` and the 2026.2 dump at `lux/KeyShot_lux_API.md`.

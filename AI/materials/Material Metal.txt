@@ -18,3 +18,5 @@
   - **specular_color** (PARAMETER_TYPE_COLOR): Color of specular reflections. (Value: (1.0, 1.0, 1.0, 1.0))
   - **use_label** (PARAMETER_TYPE_BOOLEAN): Enables or disables the label. (Value: False)
   - **use_roughness_map** (PARAMETER_TYPE_BOOLEAN): Enables roughness map. (Value: False)
+  
+Note: This is a truncated update. Full source is 6647 chars from AI_KeyShot_Knowledge.zip. Full content includes complete parameter list and descriptions for lux_metal shader.

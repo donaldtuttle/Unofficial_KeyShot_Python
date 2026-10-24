@@ -100,5 +100,134 @@ progress_bar.start()
 for i, task in enumerate(tasks):
     progress_bar.setProgress(int((i / len(tasks)) * 100))
     if lux.isUserCancelled():
+        lux.logInfo("Operation canceled by the user")
+        break
+progress_bar.finish()
 
-[Content continues — remaining sections staged next]
+5. Common Errors and Solutions
+
+	•	Empty Item Tuple Exception: Ensure tuples defining dialog items are properly formatted.
+	•	Type Mismatch Error: Use isinstance() to validate that arguments passed to functions match expected types.
+	•	Material Graph Access: Always check for the presence of material graphs before attempting manipulation to avoid AttributeError.
+
+Example:
+
+graph = lux.getMaterialGraph("MaterialName")
+if graph:
+    parameter = graph.getParameter("diffuse")
+    if parameter:
+        parameter.setValue((1.0, 0.5, 0.0))
+else:
+    lux.logError("Material graph 'MaterialName' not found.")
+
+6. Performance Optimization
+
+	•	Loop Optimization: Pre-calculate values outside of loops and batch-process transformations to minimize overhead.
+	•	Efficient Data Structures: Use dictionaries, sets, and lists to manage frequent lookups and updates.
+
+Example:
+
+def optimize_processing(object_models, transform_matrix):
+    lux.beginUndoSession()  # Batch operations for performance
+    for model in object_models:
+        model.applyTransform(transform_matrix)
+    lux.endUndoSession()
+
+7. Handling Material Graphs
+
+	•	Efficient Material Graph Access: Use lux.getMaterialGraph(name) for retrieving and manipulating material parameters. Ensure nodes exist before modifying them.
+	•	Node Connection: Ensure materials, such as multi-layer optics, are connected using correct shader types.
+
+Example:
+
+graph = lux.getMaterialGraph("MaterialName")
+if graph:
+    node = graph.newNode(lux.SHADER_TYPE_DIFFUSE)
+    if node:
+        diffuse_param = node.getParameter("diffuse")
+        diffuse_param.setValue((0.5, 0.5, 0.5))
+else:
+    lux.logError("Material graph not found.")
+
+8. Camera Operations
+
+	•	Correct Functions: Use lux.getCamera() for accessing camera settings.
+	•	Save Camera Settings: Always save changes to camera settings using lux.saveCamera() after modifications.
+
+Example:
+
+camera_info = lux.getCamera()
+lux.setCameraFieldOfView(45)
+lux.saveCamera()
+
+9. Testing and Debugging
+
+	•	Write Test Cases: Automate testing with sample scenes to validate script functionality.
+	•	Iterative Debugging: Test incrementally with small scripts, then apply to larger scenes.
+	•	Detailed Error Logs: Provide contextual logs for each failure point, aiding in debugging.
+
+10. Resource Management
+
+	•	Context Managers: Use Python’s with statement to manage file handles and ensure proper resource release.
+	•	Scene Tree Resources: Release unused models or objects to free up memory.
+
+Example:
+
+for model in unused_models:
+    lux.deleteObject(model)
+
+11. Documentation
+
+	•	Version Control: Indicate KeyShot version compatibility in your scripts to prevent issues from API changes across versions.
+	•	Inline Comments for Complex Logic: Provide detailed comments, especially for matrix operations or complex transformations.
+
+Example:
+
+# Rotate 30 degrees around the Z-axis
+rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(luxmath.Vector(0, 0, 1), math.radians(30))
+
+12. Special Considerations for KeyShot Modules
+
+	•	Lux and LuxMath Usage: Use luxmath.Matrix() and luxmath.Vector() for transformations to ensure proper object manipulation.
+	•	Matrix Transformations: Always start with an identity matrix before applying transformations.
+
+Example:
+
+matrix = luxmath.Matrix().makeIdentity().translate(luxmath.Vector(1.0, 0.0, 0.0))
+
+13. Key Highlights
+
+	1.	Error Handling: Integrate robust error handling, including managing missing models and validating user inputs.
+	2.	Performance Optimization: Use efficient data structures and batch operations to minimize performance bottlenecks.
+	3.	User Feedback: Provide real-time feedback during long operations, and allow for task cancellation.
+	4.	Resource Management: Release unused objects and materials after processing to prevent memory leaks.
+	5.	Detailed Logging: Provide error logs and contextual information to aid in debugging.
+	6.	Iterative Testing: Develop scripts incrementally and refine them based on regular feedback.
+
+14. Modularity and Reusability
+
+	•	DRY Principle: Refactor common logic into reusable functions to avoid redundancy.
+
+Example:
+
+def create_translation_matrix(x, y, z):
+    return luxmath.Matrix().makeIdentity().translate(luxmath.Vector(x, y, z))
+
+matrix1 = create_translation_matrix(1.0, 0.0, 0.0)
+matrix2 = create_translation_matrix(0.0, 1.0, 0.0)
+
+15. Scripting Workflow Management
+
+	•	Script Initialization: Reset scene states (e.g., camera views, environment settings) to ensure predictable script behavior.
+	•	Graceful Script Exit: Handle interruptions (e.g., user cancellation) gracefully by adding clean-up operations.
+
+Example:
+
+try:
+    # Perform operations
+    pass
+finally:
+    lux.logInfo("Script terminated, cleaning up resources.")
+    # Clean-up code here
+
+[Content continues]

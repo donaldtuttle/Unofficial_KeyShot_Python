@@ -1,0 +1,72 @@
+### Material: Translucent
+  - **SHADER_TYPE**: lux_translucent
+  - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
+  - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **diffuse** (PARAMETER_TYPE_COLOR): The main color of the material. (Value: (0.5, 0.5, 0.5))
+  - **global illumination** (BOOLEAN): Determines if global illumination effects are calculated. (Value: False)
+  - **ior** (PARAMETER_TYPE_FLOAT): Index of Refraction; affects the bending of light. (Value: 1.5)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **roughness** (PARAMETER_TYPE_FLOAT): Controls the sharpness of reflections. (Value: 0.0)
+  - **samples** (PARAMETER_TYPE_INTEGER): Number of samples used for the material's appearance. (Value: 25)
+  - **specular_color** (PARAMETER_TYPE_COLOR): Color of specular reflections. (Value: (1.0, 1.0, 1.0))
+  - **specularity** (PARAMETER_TYPE_FLOAT): Degree of specularity. (Value: 1.0)
+  - **texture_color** (PARAMETER_TYPE_COLOR): Color of the texture. (Value: (1.0, 1.0, 1.0, 1.0))
+  - **translucency** (PARAMETER_TYPE_FLOAT): Degree of translucency. (Value: 1.0)
+  - **transmission** (PARAMETER_TYPE_COLOR): Color of transmission through the material. (Value: (0.2, 0.2, 0.2))
+
+## Parameters for shader node in material'Translucent':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- alpha (Type: 4)
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- diffuse (Type: 13)
+- global illumination (Type: 1)
+- ior (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- roughness (Type: 4)
+- samples (Type: 2)
+- specular_color (Type: 13)
+- specularity (Type: 4)
+- texture_color (Type: 14)
+- translucency (Type: 4)
+- transmission (Type: 13)
+
+## The Translucent material type provides control over subsurface scattering properties that are found in many skin, plastic and other materials.
+
+Surface Color
+This controls the diffuse color of the outer surface of the material. Consider this the overall color of the material. Something to be aware of with this unique material type is that you will not see the translucent effect of the subsurface color if the surface color is completely black.
+
+Subsurface Color
+This setting controls the color that light will take on as it passes through the material. Your own skin is a great example of the subsurface scattering effect. When a bright light shines through the thin parts of an ear or the thin skin between fingers, the light is colored by what lies beneath the surface and comes back more red.
+
+While the light is passing through the surface, it is bounced around in many random directions. This creates the soft translucent effect rather than the direct refraction effect of glass and similar materials.
+
+For plastic materials, you will often set this color to something very similar to the surface color, but perhaps a a bit brighter.
+
+Translucency
+This controls how deep light penetrates into and through the surface depending on the units set under Edit > Set Scene Units. The higher your translucency value, the more of the subsurface color you will see coming through the surface. Higher translucency values will also create a softer looking material.
+
+Texture
+This affects the Surface Color setting. This color multiplies and blends the surface color. For instance, when the Surface Color is yellow and the Texture Color is blue, the result will be green. When set to white, it will not affect the surface color. 
+
+Specular
+This controls the intensity of the reflections on the surface. This works together with the Refractive Index setting to further increase or decrease the strength of the reflections on the surface.
+
+Roughness
+Increasing roughness will spread and distribute reflections over the surface and create a more matte surface.
+
+Advanced
+Refractive Index
+This controls how much light will bend or refract as it hits and passes through parts that have this type of material. The default of 1.4 is a good starting point, but you can increase the value to create a more dramatic refraction within the surface.
+
+Samples
+A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.
+
+Global Illumination
+This options enables Global Illumination for the material independent of the general Lighting setting for Global Illumination.

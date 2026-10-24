@@ -1,0 +1,123 @@
+### Material PARAMETER_TYPE: General
+  - **SHADER_TYPE**: lux_general
+  - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
+  - **ambient** (PARAMETER_TYPE_COLOR): Ambient color of the material. (Value: (0.0, 0.0, 0.0))
+  - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **diffuse** (PARAMETER_TYPE_COLOR): Base color of the material. (Value: (1.0, 0.0, 0.0))
+  - **indirect_multiplier** (PARAMETER_TYPE_FLOAT): Multiplier for indirect illumination. (Value: 1.0)
+  - **normalmap** (PARAMETER_TYPE_TEXTURE): Normal map used for the material. (Value: None)
+  - **normalmap_angle** (PARAMETER_TYPE_FLOAT): Angle for the normal map. (Value: 0.0)
+  - **normalmap_height** (PARAMETER_TYPE_FLOAT): Height for the normal map. (Value: 0.0)
+  - **normalmap_shift_u** (PARAMETER_TYPE_FLOAT): Horizontal shift for the normal map. (Value: 0.0)
+  - **normalmap_shift_v** (PARAMETER_TYPE_FLOAT): Vertical shift for the normal map. (Value: 0.0)
+  - **normalmap_tile_u** (PARAMETER_TYPE_FLOAT): Horizontal tiling for the normal map. (Value: 1.0)
+  - **normalmap_tile_v** (PARAMETER_TYPE_FLOAT): Vertical tiling for the normal map. (Value: 1.0)
+  - **normalmap_wrapmode_u** (PARAMETER_TYPE_INTEGER): Wrap mode for the horizontal tiling of the normal map. (Value: 1)
+  - **normalmap_wrapmode_v** (PARAMETER_TYPE_INTEGER): Wrap mode for the vertical tiling of the normal map. (Value: 1)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the opacity map used for the material. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for the opacity map. (Value: 2)
+  - **reflectivity** (PARAMETER_TYPE_FLOAT): Reflectivity of the material. (Value: 1.0)
+  - **shadow_modulate** (PARAMETER_TYPE_BOOLEAN): Modulates the shadows. (Value: False)
+  - **specular** (PARAMETER_TYPE_COLOR): Specular color of the material. (Value: (1.0, 1.0, 1.0))
+  - **specular_angle** (PARAMETER_TYPE_FLOAT): Angle for the specular reflection. (Value: 0.0)
+  - **specular_shift_u** (PARAMETER_TYPE_FLOAT): Horizontal shift for the specular reflection. (Value: 0.0)
+  - **specular_shift_v** (PARAMETER_TYPE_FLOAT): Vertical shift for the specular reflection. (Value: 0.0)
+  - **specular_tile_u** (PARAMETER_TYPE_FLOAT): Horizontal tiling for the specular reflection. (Value: 1.0)
+  - **specular_tile_v** (PARAMETER_TYPE_FLOAT): Vertical tiling for the specular reflection. (Value: 1.0)
+  - **specular_wrapmode_u** (PARAMETER_TYPE_INTEGER): Wrap mode for the horizontal tiling of the specular reflection. (Value: 1)
+  - **specular_wrapmode_v** (PARAMETER_TYPE_INTEGER): Wrap mode for the vertical tiling of the specular reflection. (Value: 1)
+  - **specularmap** (PARAMETER_TYPE_TEXTURE): Defines the specular map used for the material. (Value: None)
+  - **texture** (PARAMETER_TYPE_TEXTURE): Texture used for the material. (Value: None)
+  - **texture_angle** (PARAMETER_TYPE_FLOAT): Angle for the texture. (Value: 0.0)
+  - **texture_modulate** (PARAMETER_TYPE_BOOLEAN): Modulates the texture. (Value: False)
+  - **texture_shift_u** (PARAMETER_TYPE_FLOAT): Horizontal shift for the texture. (Value: 0.0)
+  - **texture_shift_v** (PARAMETER_TYPE_FLOAT): Vertical shift for the texture. (Value: 0.0)
+  - **texture_tile_u** (PARAMETER_TYPE_FLOAT): Horizontal tiling for the texture. (Value: 1.0)
+  - **texture_tile_v** (PARAMETER_TYPE_FLOAT): Vertical tiling for the texture. (Value: 1.0)
+  - **texture_wrapmode_u** (PARAMETER_TYPE_INTEGER): Wrap mode for the horizontal tiling of the texture. (Value: 1)
+  - **texture_wrapmode_v** (PARAMETER_TYPE_INTEGER): Wrap mode for the vertical tiling of the texture. (Value: 1)
+
+## Parameters for shader node in material 'General (Legacy)':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+### Shader Nodes
+#### Node: lux_const_color
+- **blend_color** (PARAMETER_TYPE_BOOLEAN): Blends the color. (Value: False)
+- **brightness** (PARAMETER_TYPE_FLOAT): Brightness of the color. (Value: 1.0)
+- **bump_height** (PARAMETER_TYPE_FLOAT): Height of the bump. (Value: 1.0)
+- **contrast** (PARAMETER_TYPE_FLOAT): Contrast of the color. (Value: 1.0)
+- **default_color** (PARAMETER_TYPE_COLOR): Default color. (Value: (0.0, 0.0, 0.0))
+- **normal** (PARAMETER_TYPE_BOOLEAN): Normal parameter. (Value: False)
+- **sync** (PARAMETER_TYPE_BOOLEAN): Synchronizes the color. (Value: True)
+- **texture** (PARAMETER_TYPE_TEXTURE): Texture file path. (Value: C:/Users/Public/Documents/KeyShot/Textures/Color Maps/asphalt.jpg)
+- **texture_space** (PARAMETER_TYPE_INTEGER): Texture space parameter. (Value: 1)
+- **texture_use_profile** (PARAMETER_TYPE_BOOLEAN): Uses the texture profile. (Value: True)
+- **transform_obj_to_uv** (PARAMETER_TYPE_MATRIX): Transformation matrix for the object to UV. (Value: <luxmath.Matrix>)
+```
+| 1.00  0.00  0.00  0.00 |
+| 0.00  1.00  0.00  0.00 |
+| 0.00  0.00  1.00  0.00 |
+| 0.00  0.00  0.00  1.00 |
+```
+- **uv_angle** (PARAMETER_TYPE_FLOAT): Angle for UV mapping. (Value: 0.0)
+- **uv_camera_map_locked** (PARAMETER_TYPE_BOOLEAN): Locks the UV camera mapping. (Value: False)
+- **uv_depth** (PARAMETER_TYPE_FLOAT): Depth for UV mapping. (Value: 1.0)
+- **uv_diameter** (PARAMETER_TYPE_FLOAT): Diameter for UV mapping. (Value: 2.0)
+- **uv_dpi** (PARAMETER_TYPE_FLOAT): DPI for UV mapping. (Value: 26.009599685668945)
+- **uv_flip_u** (PARAMETER_TYPE_BOOLEAN): Flips UV horizontally. (Value: False)
+- **uv_flip_v** (PARAMETER_TYPE_BOOLEAN): Flips UV vertically. (Value: False)
+- **uv_lock_aspect** (PARAMETER_TYPE_BOOLEAN): Locks the UV aspect ratio. (Value: False)
+- **uv_mapping** (PARAMETER_TYPE_INTEGER): UV mapping mode. (Value: 1)
+- **uv_repeat_u** (PARAMETER_TYPE_BOOLEAN): Repeats UV horizontally. (Value: True)
+- **uv_repeat_v** (PARAMETER_TYPE_BOOLEAN): Repeats UV vertically. (Value: True)
+- **uv_scale_mode** (PARAMETER_TYPE_INTEGER): UV scale mode. (Value: 0)
+- **uv_scale_u** (PARAMETER_TYPE_FLOAT): UV scale horizontal. (Value: 1.0)
+- **uv_scale_v** (PARAMETER_TYPE_FLOAT): UV scale vertical. (Value: 1.0)
+- **uv_shader** (PARAMETER_TYPE_TEXTURE): UV shader parameter. (Value: Pure Parameter)
+- **uv_shift_u** (PARAMETER_TYPE_FLOAT): UV shift horizontal. (Value: 0.0)
+- **uv_shift_v** (PARAMETER_TYPE_FLOAT): UV shift vertical. (Value: 0.0)
+- **uv_two_sided** (PARAMETER_TYPE_BOOLEAN): Enables two-sided UV mapping. (Value: True)
+
+#### Node: Texture Map
+- **blend_color** (PARAMETER_TYPE_BOOLEAN): Blends the color. (Value: False)
+- **brightness** (PARAMETER_TYPE_FLOAT): Brightness of the color. (Value: 5.0)
+- **bump_height** (PARAMETER_TYPE_FLOAT): Height of the bump. (Value: 1.0)
+- **contrast** (PARAMETER_TYPE_FLOAT): Contrast of the color. (Value: 0.03)
+- **default_color** (PARAMETER_TYPE_COLOR): Default color. (Value: (0.0, 0.0, 0.0))
+- **normal** (PARAMETER_TYPE_BOOLEAN): Normal parameter. (Value: False)
+- **sync** (PARAMETER_TYPE_BOOLEAN): Synchronizes the color. (Value: True)
+- **texture** (PARAMETER_TYPE_TEXTURE): Texture file path. (Value: C:/Users/Public/Documents/KeyShot/Textures/Color Maps/asphalt.jpg)
+- **texture_space** (PARAMETER_TYPE_INTEGER): Texture space parameter. (Value: 1)
+- **texture_use_profile** (PARAMETER_TYPE_BOOLEAN): Uses the texture profile. (Value: False)
+- **transform_obj_to_uv** (PARAMETER_TYPE_MATRIX): Transformation matrix for the object to UV. (Value: <luxmath.Matrix>)
+```
+| 1.00  0.00  0.00  0.00 |
+| 0.00  1.00  0.00  0.00 |
+| 0.00  0.00  1.00  0.00 |
+| 0.00  0.00  0.00  1.00 |
+```
+- **uv_angle** (PARAMETER_TYPE_FLOAT): Angle for UV mapping. (Value: 0.0)
+- **uv_camera_map_locked** (PARAMETER_TYPE_BOOLEAN): Locks the UV camera mapping. (Value: False)
+- **uv_depth** (PARAMETER_TYPE_FLOAT): Depth for UV mapping. (Value: 1.0)
+- **uv_diameter** (PARAMETER_TYPE_FLOAT): Diameter for UV mapping. (Value: 2.0)
+- **uv_dpi** (PARAMETER_TYPE_FLOAT): DPI for UV mapping. (Value: 26.009599685668945)
+- **uv_flip_u** (PARAMETER_TYPE_BOOLEAN): Flips UV horizontally. (Value: False)
+- **uv_flip_v** (PARAMETER_TYPE_BOOLEAN): Flips UV vertically. (Value: False)
+- **uv_lock_aspect** (PARAMETER_TYPE_BOOLEAN): Locks the UV aspect ratio. (Value: False)
+- **uv_mapping** (PARAMETER_TYPE_INTEGER): UV mapping mode. (Value: 1)
+- **uv_repeat_u** (PARAMETER_TYPE_BOOLEAN): Repeats UV horizontally. (Value: True)
+- **uv_repeat_v** (PARAMETER_TYPE_BOOLEAN): Repeats UV vertically. (Value: True)
+- **uv_scale_mode** (PARAMETER_TYPE_INTEGER): UV scale mode. (Value: 0)
+- **uv_scale_u** (PARAMETER_TYPE_FLOAT): UV scale horizontal. (Value: 1.0)
+- **uv_scale_v** (PARAMETER_TYPE_FLOAT): UV scale vertical. (Value: 1.0)
+- **uv_shader** (PARAMETER_TYPE_TEXTURE): UV shader parameter. (Value: Pure Parameter)
+- **uv_shift_u** (PARAMETER_TYPE_FLOAT): UV shift horizontal. (Value: 0.0)
+- **uv_shift_v** (PARAMETER_TYPE_FLOAT): UV shift vertical. (Value: 0.0)
+- **uv_two_sided** (PARAMETER_TYPE_BOOLEAN): Enables two-sided UV mapping. (Value: True)
+
+### Additional Nodes
+#### Node: lux_const_color
+- Same parameters as above.

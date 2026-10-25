@@ -46,19 +46,18 @@ The AI constraints govern **new scripts written or revised by an AI assistant**.
 
 Newer versions will gradually replace outdated examples. Preserve useful historical versions and their provenance rather than rewriting, deleting, or labeling working examples defective solely for differences in style or contract.
 
-## Featured community script: KeyShot Information Inspector v1.2.0
-
-The [KeyShot Information Inspector](AI/examples/inspector/KeyShot_Inspector_1_2.py) is a GUI-only diagnostic tool with 74 selectable report operations across 12 categories. It can inspect scene structure, materials and shader graphs, cameras, environments, image styles, studios, rendering information and more. The author has tested the supplied v1.2.0 release in KeyShot.
-
-- [Inspector Python script](AI/examples/inspector/KeyShot_Inspector_1_2.py) — open the file and choose **Download raw file** to save the `.py`
-- [Quick start and safety notes](AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt)
-- [Complete user guide](AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt)
-
-Run it from KeyShot's **Scripts** interface. Standard inspection does not alter scene contents, but can write requested reports and a crash trace. Optional inventories of **all** saved cameras, environments and image styles temporarily switch the active item and attempt to restore it. Use that option on a saved copy of a scene.
-
 ## Using the AI agent
 
 See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No vendor lock-in. The agent treats the 2026.3 beta dump as the API source of truth.
+
+## Selected script examples
+
+The repository also includes scripts I've shared with the KeyShot community. These are examples of what can be built with the API, not the primary purpose of this knowledge base:
+
+- **[KeyShot Information Inspector v1.2.0](AI/examples/inspector/KeyShot_Inspector_1_2.py):** A GUI diagnostic utility with 74 selectable report operations across 12 categories, tested in KeyShot by the author. See the [quick start and safety notes](AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt) and [complete user guide](AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt).
+- **[Material-to-OpenPBR Converter](AI/examples/openpbr_material_converter.py):** A material conversion example using shader parameters and material graph connections.
+
+The Inspector can write report/trace files, and its optional all-saved-item inspections temporarily change active camera, environment, or image-style selections. The converter modifies materials. Review each script's scope and test scene-changing operations on a saved copy. Other [reference scripts](Scripts/examples/) remain available throughout the repository.
 
 ## Contributing
 

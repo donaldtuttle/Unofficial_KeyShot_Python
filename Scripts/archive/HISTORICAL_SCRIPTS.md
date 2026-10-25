@@ -4,11 +4,11 @@
 
 - Source: prior KeyShot Python script notes (mixed 2023–2024 era).
 - Heavily duplicated. Many scripts are variants of the same idea.
-- Contains calls that are not in the 2026.2 dump. Verify every symbol before reuse.
-- API source of truth remains `lux/KeyShot_lux_API.md` (2026.2 `help(lux)`).
+- Contains calls that are not in the 2026.3 beta dump. Verify every symbol before reuse.
+- API source of truth remains `lux/KeyShot_lux_API.md` (2026.3 beta `help(lux)`).
 - Maintained examples live in `Scripts/examples/`.
 
-Use this only to recover a pattern, then verify every call against the 2026.2 dump before reuse.
+Use this only to recover a pattern, then verify every call against the 2026.3 beta dump before reuse.
 
 ---
 

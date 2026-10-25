@@ -1,0 +1,37 @@
+name: Package KPSA skills
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "AI/**"
+      - "Scripts/**"
+      - "lux/**"
+      - "luxmath/**"
+      - "lux_headless/**"
+      - "luxmath_headless/**"
+      - "tools/package_kpsa_skills.py"
+      - ".github/workflows/package-kpsa-skills.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build and verify all three packages
+        run: python tools/package_kpsa_skills.py
+      - name: Upload downloadable archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: KPSA-Skills-1.1.0
+          path: |
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          if-no-files-found: error

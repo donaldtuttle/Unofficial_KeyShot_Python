@@ -54,6 +54,7 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 - [Material Graph Copy Guide](kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt)
 
 ### Materials (`AI/materials/`)
+- [OpenPBR and Planar Light runtime parameters](materials/OpenPBR_and_Planar_Light.md) — 2026.3 beta capture
 - [Shader Node Types & Parameters](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)
 - Individual `Material *.txt` parameter and usage files
 - [Material Graph Duplication](materials/Material_Graph_Duplication.txt)

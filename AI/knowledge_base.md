@@ -92,7 +92,7 @@ Before delivery, check every `lux` and `luxmath` symbol:
 - [ ] Arguments match the dump (names, types, required vs optional)
 - [ ] Ellipsis signatures are not treated as complete
 - [ ] GUI-only calls guarded with `if not lux.isHeadless()` when the task may run headless
-- [ ] No invented facilities (logging, undo, progress, getMaterial, getMaterials, getActiveCamera, getAnimations)
+- [ ] No invented facilities (logging, undo, progress, or any symbol absent from the dump)
 - [ ] Node IDs re-queried after any graph copy or link
 - [ ] None and empty-list returns checked before use
 - [ ] Only `lux` / `luxmath` + stdlib; no external libraries unless the user explicitly asks

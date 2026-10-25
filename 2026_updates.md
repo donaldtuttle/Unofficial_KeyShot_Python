@@ -28,4 +28,4 @@ SceneNode traversal and transforms (luxmath), MaterialGraph manipulation, MultiM
 - https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html
 - Prefer the 2026.3 beta dump when available.
 
-The historical API markdown dumps in this repository pre-date 2026. Use the official pages for exact current signatures.
+Some API dumps and script references in this repository are historical. For KeyShot Studio **2026.3 beta**, the directly captured [`lux` dump](lux/KeyShot_lux_API.md) and [`luxmath` dump](lux/KeyShot_luxmath_API.md) take precedence over the public 2026.1 pages. Older examples may still work, but their API usage should be checked against the intended KeyShot build when reused or updated.

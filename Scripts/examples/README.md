@@ -2,11 +2,13 @@
 
 Maintained examples for KeyShot Studio 2026.3 beta.
 
-**API source of truth:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 beta console. Prefer this over the public website.
+**API source of truth:** [`lux/KeyShot_lux_API.md`](../../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 beta console. Prefer this over the public website.
 
 KeyShot operations require the real runtime. “Syntax verified” does not mean runtime verified.
 
-## From the maintained example set
+**Reference status:** The scripts here include older training examples and later revisions. They are retained as useful working/reference patterns, not certified as uniformly current or compliant with every rule in `AI/constraints.md`. Those rules apply when an AI creates or updates a script. Noncompliance with a newer instruction or style requirement is not automatically a functional defect in an older example. Validate documented API signatures and side effects before reuse, and confirm actual behavior in the target KeyShot build before claiming runtime verification. Updated scripts can replace earlier ones while the older versions remain available as historical references.
+
+## Collected reference examples
 
 | Script | Purpose |
 | --- | --- |

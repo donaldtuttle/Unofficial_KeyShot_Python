@@ -18,4 +18,4 @@ A [GitHub Actions workflow](../.github/workflows/package-kpsa-skills.yml) builds
 
 **Important:** the ZIPs bundle the current public Unofficial_KeyShot_Python source tree, **not** the separate original GPT backup stored in KeyShot-Python-AI-Knowledge. Live GitHub retrieval and local KeyShot MCP access require separate functioning tool connections and are not activated by packaging.
 
-**License discrepancy:** the repository README says MIT while the top-level LICENSE contains GPLv3. The packages preserve the original LICENSE; resolve the mismatch before public distribution.
+**License:** GPLv3. README and LICENSE agree. Packages preserve the original LICENSE.

@@ -1,8 +1,16 @@
-# Unofficial KeyShot Python
+# Unofficial KeyShot Python Knowledge Base
 
-Unofficial KeyShot Python libraries, documentation, examples, and an agnostic AI agent setup.
+Unofficial KeyShot Python API references, scripting documentation, material and shader information, examples, training resources, and platform-agnostic AI agent configurations.
 
-The point of this repo is that the **public website lags**. What you get from KeyShot itself is more current.
+This repository originally started as a collection of technical documentation, scripts, and reference materials I developed for my KeyShot Python training courses. Over time, it grew into a much larger knowledge base covering the lux and luxmath APIs, material and shader parameters, scripting workflows, practical examples, and information I’ve collected through years of working with KeyShot.
+
+One advantage of maintaining these resources is that the official KeyShot Python documentation available online doesn’t always reflect the latest releases. API information retrieved directly from KeyShot can provide more current references. However, this repository goes well beyond API documentation. It includes additional technical knowledge, examples, and training materials that aren’t necessarily available in the official documentation.
+
+I also used this knowledge base to develop my custom KeyShot Python Scripting GPT. With OpenAI transitioning from Custom GPTs to plugins, I wanted to preserve the complete collection rather than limit it to what a plugin can accommodate. Moving everything into GitHub allows me to maintain the original resources, continue expanding them, and make them publicly available.
+
+Moving forward, the goal is to maintain this as an evolving, AI-agnostic KeyShot Python resource. Alongside updated API references, documentation, and scripting examples, I’ll be developing and adding AI skills and agent configurations that can be used across different AI platforms.
+
+The idea is simple: preserve the knowledge, keep it current, and make it accessible to both people learning KeyShot Python and AI assistants helping them write scripts.
 
 ## Source of truth — 2026.3 beta `help(lux)`
 
@@ -12,8 +20,6 @@ Captured from `help(lux)` in the KeyShot Studio **2026.3 beta** scripting consol
 
 - Prefer this over the public 2026.1 docs.
 - If a symbol is not in this dump, do not invent it.
-
-That is the whole idea of an *unofficial* KeyShot Python repo: current API from KeyShot, not from a lagging website.
 
 ## Secondary (lags 2026.3 beta)
 

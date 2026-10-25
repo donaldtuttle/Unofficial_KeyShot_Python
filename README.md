@@ -8,7 +8,7 @@ The point of this repo is that the **public website lags**. What you get from Ke
 
 **[`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md)**
 
-Captured from `help(lux)` in the KeyShot Studio **2026.2** scripting console. This is the runtime API as KeyShot exposes it — not a website scrape, not a 2023–2024 dump.
+Captured from `help(lux)` in the KeyShot Studio **2026.3 beta** scripting console. This is the runtime API as KeyShot exposes it — not a website scrape, not a 2023–2024 dump.
 
 - Prefer this over the public 2026.1 docs.
 - If a symbol is not in this dump, do not invent it.
@@ -16,9 +16,9 @@ Captured from `help(lux)` in the KeyShot Studio **2026.2** scripting console. Th
 
 That is the whole idea of an *unofficial* KeyShot Python repo: current API from KeyShot, not from a lagging website.
 
-## Secondary (lags 2026.2)
+## Secondary (lags 2026.3 beta)
 
-Public website docs are useful background only. They are not current for 2026.2:
+Public website docs are useful background only. They are not current for 2026.3 beta:
 
 - GUI scripting: https://media.keyshot.com/scripting/doc/2026.1/
 - Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
@@ -26,10 +26,11 @@ Public website docs are useful background only. They are not current for 2026.2:
 
 ## Repository layout
 
-- [`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md) — **2026.2 source of truth**
-- `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.2 lux dump)
+- [`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md) — **2026.3 beta source of truth**
+- [`lux/KeyShot_luxmath_API.md`](lux/KeyShot_luxmath_API.md) — 2026.3 beta math dump
+- `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.3 beta lux dump)
 - `Scripts/` — older example notes
-- [`Scripts/examples/`](Scripts/examples/) — maintained 2026.2 example scripts (materials, information, transforms, rendering, GUI, animation)
+- [`Scripts/examples/`](Scripts/examples/) — maintained example scripts (materials, information, transforms, rendering, GUI, animation)
 - `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.3 beta dump.
 
 ## Using the AI agent

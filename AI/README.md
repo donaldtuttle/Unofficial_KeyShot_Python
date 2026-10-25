@@ -17,7 +17,7 @@ Portable, model-agnostic agent setup for KeyShot Studio 2026.3 beta.
 - `lux/KeyShot_lux_API.md` — 2026.3 beta API source of truth.
 - `lux/KeyShot_luxmath_API.md` — 2026.3 beta math source of truth.
 
-Treat every file under these as authoritative context. Do not invent API methods, parameter names, or node types. Verify against the 2026.3 beta dump.
+Treat the collection as reference context, not as a set of equally authoritative API declarations. The 2026.3 beta `lux` and `luxmath` dumps take precedence over older guides and example scripts. Existing reference scripts may predate the current AI delivery contract and may remain useful or functional even when they do not follow every newer AI rule. For newly generated or revised scripts, follow the constraints and verify every API call against the appropriate dump; do not invent API methods, parameter names, or node types.
 
 ## How to Use
 

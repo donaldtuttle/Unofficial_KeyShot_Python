@@ -6,7 +6,7 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 
 ## API source of truth
 
-- [2026.2 help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the 2026.2 runtime. Prefer this over the public 2026.1 website.
+- [2026.3 beta help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the 2026.3 beta runtime. Prefer this over the public 2026.1 website.
 
 ## Core agent files (flat)
 
@@ -19,7 +19,7 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - [KPSA knowledge](kpsa_knowledge/) — QuickReference, matrix, GUI, material graph guides
 - [Examples](examples/) — runnable scripts (OpenPBR converter, Information Inspector)
 
-## Secondary (lags 2026.2)
+## Secondary (lags 2026.3 beta)
 
 - GUI: https://media.keyshot.com/scripting/doc/2026.1/
 - Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/

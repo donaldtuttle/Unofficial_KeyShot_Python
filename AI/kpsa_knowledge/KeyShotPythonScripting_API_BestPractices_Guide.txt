@@ -801,11 +801,11 @@ This example showcases how to create a GUI dialog that displays information abou
 import lux
 
 def get_camera_info():
-    camera = lux.getActiveCamera()
-    # Assuming camera information retrieval functions exist
-    # Placeholder for actual camera info retrieval and display logic
-    camera_info = f"Camera Name: {camera.name}, Position: {camera.position}, FOV: {camera.fov}"
-    lux.messageBox("Camera Information", camera_info)
+    # Use documented camera accessors. Do not assume a rich camera object.
+    name = lux.getCamera()
+    pos = lux.getCameraPosition()
+    fov = lux.getCameraFieldOfView()
+    print("Camera:", name, "position:", pos, "fov:", fov)
 
 get_camera_info()
 ```
@@ -822,9 +822,11 @@ def get_material_parameters():
                                        desc="Enter the name of the material",
                                        values=[("material_name", lux.DIALOG_TEXT, "Material Name:", "")])
     if material_name:
-        material = lux.getMaterial(material_name["material_name"])
-        # Placeholder for logic to retrieve and display material parameters
-        print(f"Parameters for {material.name}: ...")
+        graph = lux.getMaterialGraph(name=material_name["material_name"])
+        if not graph:
+            print("Material not found")
+            return
+        print("Graph:", graph.getMaterialName())
 
 get_material_parameters()
 ```
@@ -842,54 +844,6 @@ Accessing Material Graphs and Handling Errors
 Function to Use:
 
 To get a material graph, use lux.getMaterialGraph(name), where name is the name of the material.
-Common Errors:
+Use lux.getMaterialGraph(name) for a material graph and lux.getSceneMaterials() for scene materials. A scene node uses node.getMaterial().
 
-AttributeError: module 'lux' has no attribute 'getMaterial'. Did you mean: 'MultiMaterial'?
-AttributeError: module 'lux' has no attribute 'getMaterials'. Did you mean: 'getCameras'?
-Solutions:
 
-These errors typically occur when attempting to access materials or their properties using incorrect or non-existent lux module functions.
-Use lux.getMaterialGraph(name) to access the material graph of a specific material by its name.
-To obtain information about materials used in the scene, or to manipulate materials directly, consider using the following functions correctly:
-lux.getSceneMaterials(): Retrieves currently used materials in the scene.
-lux.getName(): Retrieves the name of a node, which can be useful when working with materials and model sets.
-lux.getMaterialNodes(): Retrieves a list of material root nodes within a material graph. For multi-materials, it returns individual sub-material roots; for regular materials, it returns a list with a single item equivalent to getRoot().
-Correcting Misused Functions
-Incorrect Use: Attempting to use lux.getMaterial() or lux.getMaterials() directly, which are not valid functions and can lead to AttributeError.
-Correction: Utilize the correct functions for your intended operations, such as lux.getSceneMaterials() for retrieving materials or lux.getMaterialGraph(name) for accessing a material's graph.
-Implementation Tips
-Review KeyShot Python API Documentation: Always refer to the most current KeyShot Python API documentation to understand available functions and their proper usage.
-Debugging: Use print statements to debug the names and types of variables, especially when passing them as arguments to functions, to ensure they match the expected values.
-By adhering to these guidelines and utilizing the correct functions for accessing and manipulating material graphs in KeyShot, you can avoid common errors and enhance your scripting workflow.
-
-##Camera
-KeyShot Scripting: Correcting Camera Access Error
-Error Encounter:
-
-AttributeError: AttributeError: module 'lux' has no attribute 'getActiveCamera'
-This error indicates an attempt to use a non-existent function getActiveCamera in the lux module to retrieve the currently active camera.
-Cause:
-
-The error arises from a misunderstanding or incorrect reference to the available KeyShot Python API functions for camera manipulation.
-Correct Usage:
-
-The correct function to use for getting the active camera's information is lux.getCamera(), not lux.getActiveCamera.
-Solution:
-
-Review KeyShot Python API Documentation: Always consult the latest KeyShot Python API documentation to understand the correct naming and usage of functions related to camera operations.
-Code Adjustment: Replace any incorrect usage of lux.getActiveCamera with lux.getCamera() in your scripts. This function retrieves the current camera settings, including its name, type, and parameters.
-
-Example Correct Usage:
-# Correctly getting the active camera's information
-camera_info = lux.getCamera()
-print("Active Camera:", camera_info)
-
-Additional Tips:
-
-Understanding Camera Functions: Familiarize yourself with other camera-related functions in the KeyShot Python API to fully leverage camera manipulation in your scripts. Functions such as lux.setCamera(), lux.saveCamera(), and lux.setStandardView() can be particularly useful.
-Error Checking: Implement try-except blocks around your camera function calls to catch and handle potential errors gracefully, improving script robustness.
-By adhering to the correct usage of lux.getCamera() for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
-
-Final Thoughts
-
-By following this comprehensive guide, you will ensure that your Python scripts for KeyShot are robust, efficient, and maintainable. Emphasizing error handling, modularity, and user feedback will help you develop scripts that integrate seamlessly with KeyShot workflows. This guide is designed to assist both AI-assisted script development and manual KeyShot scripting. By following these best practices, script writers can create efficient, error-free, and maintainable Python scripts that optimize the KeyShot experience.

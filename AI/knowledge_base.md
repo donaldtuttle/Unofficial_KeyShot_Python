@@ -23,7 +23,7 @@ The assistant is backed by these documents. Query by topic, then verify against 
 | Material graph copy | [kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt](kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) |
 | Transforms | [kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt](kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt) |
 | Shader types | [materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt) |
-| Maintained examples | [Scripts/examples/](../Scripts/examples/) |
+| Collected script references | [Scripts/examples/](../Scripts/examples/) |
 
 File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.txt`. Materials are individual `Material *.txt` files, not a nested zip.
 
@@ -65,7 +65,7 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 ### Examples
 - [OpenPBR Converter](examples/openpbr_material_converter.py)
 - [Information Inspector](examples/inspector/)
-- [Maintained scripts](../Scripts/examples/) — verified patterns
+- [Script references](../Scripts/examples/) — examples of mixed provenance; verify API calls and runtime assumptions before reuse
 - [Historical archive](../Scripts/archive/HISTORICAL_SCRIPTS.md) — not current API
 
 ### Secondary (lags 2026.3 beta)

@@ -1,19 +1,19 @@
 # KeyShot Python Scripting API Reference (Thin Layer)
 
-**Target:** KeyShot Studio 2026.2
+**Target:** KeyShot Studio 2026.3 beta
 
-**API source of truth:** `lux/KeyShot_lux_API.md` — `help(lux)` from the 2026.2 console. This file is a pointer only. If it disagrees with the dump, the dump is correct.
+**API source of truth:** `lux/KeyShot_lux_API.md` — `help(lux)` from the 2026.3 beta console. This file is a pointer only. If it disagrees with the dump, the dump is correct.
 
 Do not prefer the public 2026.1 website over the dump. It lags.
 
 ## Thin notes
 
-- `SceneNode.getMetadata()` is in the 2026.2 dump.
+- `SceneNode.getMetadata()` is in the 2026.3 beta dump.
 - `lux.renderAnimation()` is in the dump and is the preferred animation render path.
 - Node IDs are dynamic and session-unstable. Prefer names and re-query after graph operations.
 - Cameras: `lux.getCamera()` and `lux.getCameras()`.
 - Materials: `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`. A scene node uses `node.getMaterial()`.
-- No undo session helpers in the 2026.2 dump.
+- No undo session helpers in the 2026.3 beta dump.
 
 ## Common patterns
 

@@ -27,7 +27,6 @@ Terms used in this knowledge base. Prefer the 2026.3 beta dump for exact symbols
 - `PARAMETER_TYPE_*` — Shader parameter kinds.
 - `DIALOG_*` — Input dialog field types. GUI only.
 
-OpenPBR and Planar Light are not library constants. Reach them by inspecting the material graph.
 
 ## Math
 

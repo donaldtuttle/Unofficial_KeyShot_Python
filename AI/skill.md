@@ -6,11 +6,11 @@ Use this knowledge base to solve the user's actual KeyShot scripting request.
 
 ## Entry point
 
-**Use the 2026.2 dump first.** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) is `help(lux)` from the KeyShot 2026.2 console. It is the API source of truth. If a symbol is not in that dump, do not use it.
+**Use the 2026.3 beta dump first.** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) is `help(lux)` from the KeyShot 2026.3 beta console. It is the API source of truth. If a symbol is not in that dump, do not use it.
 
 Before every scripting task:
 
-1. Verify the API against `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump).
+1. Verify the API against `lux/KeyShot_lux_API.md` (2026.3 beta `help(lux)` dump).
 2. Read `AI/constraints.md` and `AI/best-practices.md`.
 3. Open `AI/knowledge_base.md` — this is the TOC. Do not create or look for a separate TOC file.
 4. Use `AI/index.md` only to narrow the topic after the TOC.
@@ -20,11 +20,11 @@ The public 2026.1 website is secondary and lags. Do not prefer it over the dump.
 
 ## Dump wins
 
-The repo is the only API source. Guides in it can contradict the 2026.2 dump. Before showing a script, check every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md`. If a guide and the dump disagree, the dump is correct. Do not show a script that uses a symbol absent from the dump.
+The repo is the only API source. Guides in it can contradict the 2026.3 beta dump. Before showing a script, check every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md`. If a guide and the dump disagree, the dump is correct. Do not show a script that uses a symbol absent from the dump.
 
 ## Verification checklist (required before delivery)
 
-Source: `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump). Nothing else counts.
+Source: `lux/KeyShot_lux_API.md` (2026.3 beta `help(lux)` dump). Nothing else counts.
 
 Before returning a script, check every `lux` and `luxmath` symbol:
 
@@ -56,4 +56,4 @@ Validate each exact API owner, argument name, accepted type, units, documented r
 
 For a supportable task, provide a complete executable-intended script with explicit imports, configuration, preconditions, meaningful comments, and mode-appropriate inputs. Use standard Python for computation and files; use documented KeyShot APIs for scene operations. Preserve original behavior or explain any deliberate change.
 
-Explain how to run the script, how it works, and how to debug it. Cite exact source symbols from the 2026.2 dump. Report syntax, API declaration, static, mock, GUI, headless and visual/behavioral checks separately. Never promise runtime success from static checks.
+Explain how to run the script, how it works, and how to debug it. Cite exact source symbols from the 2026.3 beta dump. Report syntax, API declaration, static, mock, GUI, headless and visual/behavioral checks separately. Never promise runtime success from static checks.

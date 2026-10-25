@@ -81,4 +81,3 @@ These appear only on the 2026.1 GUI lux page (not in the 2026.1 headless page). 
 
 - 2026.2 release notes mention additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not listed in the public notes. Check the 2026.2 dump.
 - OpenPBR and Planar Light parameters are reachable only by inspecting the material graph (get nodes → get parameters). They are not library constants.
-- These do not exist as usable API and are not in the 2026.2 dump: `lux.CAMERA_MODE_ORBIT`, `lux.CAMERA_MODE_PATH`, `lux.getAnimations`, `lux.getNodeAnimations`, `lux.getActiveCamera`, `lux.getMaterial`, `lux.getMaterials`.

@@ -1,6 +1,6 @@
 # Dump wins
 
-This guide can contradict the 2026.2 dump. Before using any call here, verify it against lux/KeyShot_lux_API.md. The dump is the API source of truth.
+This guide can contradict the 2026.3 beta dump. Before using any call here, verify it against lux/KeyShot_lux_API.md. The dump is the API source of truth.
 
 Known contradiction: lux.beginUndoSession() / lux.endUndoSession() appear in this guide and are not in the 2026.3 beta dump. Use lux.setUndoEnabled if undo control is required. Do not use beginUndoSession.
 

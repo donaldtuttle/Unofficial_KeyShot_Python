@@ -145,7 +145,8 @@ This example showcases how to create a GUI dialog that displays information abou
 import lux
 
 def get_camera_info():
-    camera = lux.getActiveCamera()
+    name = lux.getCamera()
+    pos = lux.getCameraPosition()
     # Assuming camera information retrieval functions exist
     # Placeholder for actual camera info retrieval and display logic
     camera_info = f"Camera Name: {camera.name}, Position: {camera.position}, FOV: {camera.fov}"
@@ -167,7 +168,7 @@ def get_material_parameters():
                                        desc="Enter the name of the material",
                                        values=[("material_name", lux.DIALOG_TEXT, "Material Name:", "")])
     if material_name:
-        material = lux.getMaterial(material_name["material_name"])
+        graph = lux.getMaterialGraph(name=material_name["material_name"])
         # Placeholder for logic to retrieve and display material parameters
         print(f"Parameters for {material.name}: ...")
 

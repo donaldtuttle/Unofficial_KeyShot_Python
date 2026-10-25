@@ -6,7 +6,6 @@
 Notes on the raw dump:
 - Capture is from KeyShot Studio 2026.2 `help(lux)`. The internal help() banner previously said “KeyShot 2023.2”; it has been corrected here.
 - OpenPBR and Planar Light are not library constants. Reach them by inspecting the material graph (get nodes → get parameters).
-- These do not exist as usable API and are not in this dump: `lux.CAMERA_MODE_ORBIT`, `lux.CAMERA_MODE_PATH`, `lux.getAnimations`, `lux.getNodeAnimations`, `lux.getActiveCamera`, `lux.getMaterial`, `lux.getMaterials`.
 
 ---
 

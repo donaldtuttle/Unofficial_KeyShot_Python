@@ -228,7 +228,9 @@ All 74 options below use the labels and organization from the actual v1.2.0 regi
 
 **getAnimationInfo() / Time / Frame** — **Default ON**. Duration and total frame count, active timeline time and current frame. Sub-calls are traced separately. **Why use it:** Basic animation diagnosis without advancing the timeline.
 
+**getAnimations() - DISABLED native call (status only)** — *Individual only*. Reports whether native getAnimations() exists; DOES NOT call it due to prior crash reports. **Why use it:** API awareness without risking the process.
 
+**getNodeAnimations(node) - DISABLED native call (status only)** — *Individual only*. Reports whether native getNodeAnimations(node) exists; DOES NOT call it. **Why use it:** API awareness without risking native iteration.
 
 **Scene animation-node hierarchy (advanced opt-in)** — *Individual only*. Scene-tree nodes marked as animations, their IDs and parent nodes; requires advanced opt-in. **Why use it:** Find which objects own animation nodes; may be slow in large scenes.
 
@@ -330,6 +332,7 @@ Common annotations:
 | `[ERROR: ...]` / `[ERROR]` | A Python/API read error was recorded; inspect that subsection. |
 | `[TRUNCATED]` | The configured output or traversal limit was reached; increase cautiously or narrow the selection. |
 | `[SKIPPED SAFELY]` | A slow or advanced option is disabled until explicitly opted in. |
+| `[SKIPPED - NATIVE CRASH PRECAUTION]` | `getAnimations()` or `getNodeAnimations()` was intentionally **not executed**, regardless of checkbox selection. |
 | `POTENTIALLY UNUSED` | A material graph diagnostic candidate, **not** an instruction to delete a node. |
 | `N/A (Basic image style)` | KeyShot only supports Color/Curve getters for Photographic image styles. |
 | `REPORT END` | The script finished its selected report operations; shows counts, skip counts and recorded error markers. |
@@ -342,6 +345,7 @@ The inspector writes the TXT incrementally and calls `fsync()` after each comple
 
 - **Basic animation status** reads `getAnimationInfo()`, `getAnimationTime()` and `getAnimationFrame()` without changing the timeline. Each getter has its own checkpoint.
 - **Advanced animation hierarchy and current-frame bounds** require their separate checkbox. They traverse the scene tree but **do not advance to other frames**.
+- **`lux.getAnimations()` and `lux.getNodeAnimations()`** are documented by the 2026 API but **disabled in this script following reports of native KeyShot crashes**. Their checkboxes report *availability* only, not live data.
 - **Saved cameras:** the standard camera getters describe only the active camera. The **ALL saved cameras** report can inspect each saved camera when the user explicitly authorizes temporary switching. It checks for unsaved camera changes and attempts restoration after each camera. The corresponding all-saved environment and image-style reports work similarly. If KeyShot terminates natively, Python's `finally` block cannot guarantee restoration.
 - **Unsupported export requests:** no RGB conversion, camera quaternion computation, COLMAP export, material assignment/conversion, node deletion, geometry-node reconnecting, frame baking or render initiation.
 

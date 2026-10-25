@@ -1,6 +1,6 @@
 # Glossary — KeyShot Python scripting
 
-Terms used in this knowledge base. Prefer the 2026.2 dump for exact symbols.
+Terms used in this knowledge base. Prefer the 2026.3 beta dump for exact symbols.
 
 ## Scripting
 
@@ -15,7 +15,7 @@ Terms used in this knowledge base. Prefer the 2026.2 dump for exact symbols.
 
 ## API rules
 
-- **Source of truth** — `lux/KeyShot_lux_API.md`, from `help(lux)` in KeyShot 2026.2. Not the public website.
+- **Source of truth** — `lux/KeyShot_lux_API.md`, from `help(lux)` in KeyShot 2026.3 beta. Not the public website.
 - **Node IDs** — Session-specific and unstable. Prefer names. Re-query after copy or link.
 - **Pure parameter** — A parameter driven by a connection. Do not call `getValue()` on it.
 - **GUI-safe** — Calls that require the GUI. Guard with `if not lux.isHeadless()`.

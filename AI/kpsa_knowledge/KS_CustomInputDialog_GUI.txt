@@ -1,5 +1,5 @@
 ```python
-KeyShot 2026.2 GUI Scripting Documentation
+KeyShot 2026.3 beta GUI Scripting Documentation
 built-in module lux
 
 KeyShot Python Custom Input Dialog (GUI only)

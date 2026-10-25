@@ -1,6 +1,6 @@
 # 2026 declaration and mode comparison
 
-**Target:** KeyShot Studio 2026.2
+**Target:** KeyShot Studio 2026.3 beta
 
 **API source of truth:** [`lux/KeyShot_lux_API.md`](../../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 beta console. Prefer this over the public 2026.1 website.
 
@@ -26,7 +26,7 @@ Read these before generating scripts. They override this file for hard rules and
 - [Index](../index.md) — topic pointers
 - [System prompt](../system_prompt.md)
 - [Skill](../skill.md)
-- [2026.2 API dump](../../lux/KeyShot_lux_API.md) — source of truth
+- [2026.3 beta API dump](../../lux/KeyShot_lux_API.md) — source of truth
 
 ## GUI-page-only declarations (2026.1 website)
 

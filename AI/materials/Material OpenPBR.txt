@@ -80,4 +80,3 @@ OpenPBR node:
 - transmission_scatter_ani (PARAMETER_TYPE_FLOAT, 4)
 - transmission_weight (PARAMETER_TYPE_FLOAT, 4)
 
-These parameters are not a library catalog. Inspect the graph. Do not assume every OpenPBR material has the same node count.

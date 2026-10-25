@@ -11,10 +11,9 @@ Do not prefer the public 2026.1 website over the dump. It lags.
 - `SceneNode.getMetadata()` is in the 2026.2 dump.
 - `lux.renderAnimation()` is in the dump and is the preferred animation render path.
 - Node IDs are dynamic and session-unstable. Prefer names and re-query after graph operations.
-- No `lux.getActiveCamera()` — use `lux.getCamera()` / `lux.getCameras()`.
-- No `lux.getMaterial()` / `lux.getMaterials()` — use `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`.
-- No `lux.beginUndoSession()` / `lux.endUndoSession()` in the 2026.2 dump. Do not use them.
-- No `lux.getAnimations()` / `lux.getNodeAnimations()`.
+- Cameras: `lux.getCamera()` and `lux.getCameras()`.
+- Materials: `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`. A scene node uses `node.getMaterial()`.
+- No undo session helpers in the 2026.2 dump.
 
 ## Common patterns
 

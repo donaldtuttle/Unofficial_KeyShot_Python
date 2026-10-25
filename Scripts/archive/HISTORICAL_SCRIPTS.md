@@ -4,7 +4,7 @@
 
 - Source: prior KeyShot Python script notes (mixed 2023–2024 era).
 - Heavily duplicated. Many scripts are variants of the same idea.
-- Contains incorrect calls (for example `getMaterial` instead of `getMaterialGraph`).
+- Contains calls that are not in the 2026.2 dump. Verify every symbol before reuse.
 - API source of truth remains `lux/KeyShot_lux_API.md` (2026.2 `help(lux)`).
 - Maintained examples live in `Scripts/examples/`.
 

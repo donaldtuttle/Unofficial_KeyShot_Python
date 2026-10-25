@@ -80,7 +80,7 @@ def run():
         entries = {prefix + "/SKILL.md": entry(platform, name), prefix + "/SOURCE_MANIFEST.json": inventory}
         entries.update({prefix + "/references/repo/" + path: data for path, data in docs.items()})
         msg = ("Bundled complete Unofficial_KeyShot_Python AI/scripts/API snapshot. Connected GitHub and KeyShot MCP tools are optional, not included.\n"
-               "LICENSE note: repo README says MIT but LICENSE contains GPLv3 text. Clarify before public redistribution.\n")
+               "LICENSE: GPLv3. README and LICENSE agree.\n")
         if platform == "ChatGPT":
             manifest = {"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
                         "name": "keyshot-python-scripting-assistant", "version": VERSION,

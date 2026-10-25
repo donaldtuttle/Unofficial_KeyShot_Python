@@ -14,7 +14,7 @@ QUICK START
 
 ABOUT THE GUIDE
 ---------------
-Read KeyShot_Information_Inspector_v1_2_0_User_Guide.pdf for:
+Read KeyShot_Information_Inspector_v1_2_0_User_Guide.txt for:
 * What every one of the 74 selectable operations retrieves and why it is useful.
 * The difference between category mode and Individual Gets mode.
 * The optional all-saved-camera, environment and image-style inventories.
@@ -63,11 +63,8 @@ KeyShot_Inspector_1_2.py source.
 Offline regression tests exist, but native KeyShot crashes cannot be
 simulated or ruled out. The user should validate on their own 2026.x build.
 
-Files provided:
-- KeyShot_Inspector_1_2.py
-- KeyShot_Information_Inspector_v1_2_0_User_Guide.md
-- KeyShot_Information_Inspector_v1_2_0_User_Guide.docx
-- KeyShot_Information_Inspector_v1_2_0_User_Guide.pdf
-- KeyShot_Information_Inspector_v1_2_0_Forum_Post.md
-- README_KeyShot_Inspector_v1_2_0.txt
-- test_KeyShot_Information_Inspector_v1_2_0.py
+Files included in this GitHub folder:
+- KeyShot_Inspector_1_2.py (Python script)
+- KeyShot_Information_Inspector_v1_2_0_User_Guide.txt (full guide)
+- README_KeyShot_Inspector_v1_2_0.txt (quick start)
+- test_KeyShot_Information_Inspector_v1_2_0.py (offline tests)

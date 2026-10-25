@@ -41,6 +41,8 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 - [2026 Mode Comparison](reference/mode-comparison.md) — secondary; 2026.1 website comparison only
 
 ### API source of truth
+
+- [2026.3 beta help(luxmath) dump](../lux/KeyShot_luxmath_API.md)
 - [2026.2 help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the runtime
 
 ### KPSA Knowledge (`AI/kpsa_knowledge/`)

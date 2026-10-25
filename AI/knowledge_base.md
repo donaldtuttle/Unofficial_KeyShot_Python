@@ -2,13 +2,13 @@
 
 **This file is the TOC.** Do not create or look for a separate TOC. There is no `KeyShotPythonScripting_ToC.txt`.
 
-**Version:** KeyShot Studio 2026.2  
-**API source of truth:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.2 console. Prefer this over the public 2026.1 website.  
+**Version:** KeyShot Studio 2026.3 beta  
+**API source of truth:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 beta console. Prefer this over the public 2026.1 website.  
 **Agent:** Agnostic LLM. Always start with `AI/constraints.md`.
 
 ## Knowledge overview
 
-The assistant is backed by these documents. Query by topic, then verify against the 2026.2 dump.
+The assistant is backed by these documents. Query by topic, then verify against the 2026.3 beta dump.
 
 | Topic | File |
 | --- | --- |
@@ -66,7 +66,7 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 ### Secondary (lags 2026.2)
 - Public 2026.1 scripting: https://media.keyshot.com/scripting/doc/2026.1/
 - Public 2026.1 headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
-- Do not prefer these over the 2026.2 dump.
+- Do not prefer these over the 2026.3 beta dump.
 
 ## Agent Workflow
 
@@ -79,11 +79,11 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 
 ## Dump wins
 
-The repo is the only API source. Guides in it can contradict the 2026.2 dump. Before showing a script, check every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md`. If a guide and the dump disagree, the dump is correct. Do not show a script that uses a symbol absent from the dump.
+The repo is the only API source. Guides in it can contradict the 2026.3 beta dump. Before showing a script, check every `lux` and `luxmath` symbol against `lux/KeyShot_lux_API.md`. If a guide and the dump disagree, the dump is correct. Do not show a script that uses a symbol absent from the dump.
 
 ## Verification checklist
 
-Source: `lux/KeyShot_lux_API.md` (2026.2 `help(lux)` dump). Nothing else counts.
+Source: `lux/KeyShot_lux_API.md` (2026.3 beta `help(lux)` dump). Nothing else counts.
 
 Before delivery, check every `lux` and `luxmath` symbol:
 

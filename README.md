@@ -4,7 +4,7 @@ Unofficial KeyShot Python libraries, documentation, examples, and an agnostic AI
 
 The point of this repo is that the **public website lags**. What you get from KeyShot itself is more current.
 
-## Source of truth — 2026.2 `help(lux)`
+## Source of truth — 2026.3 beta `help(lux)`
 
 **[`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md)**
 
@@ -30,11 +30,11 @@ Public website docs are useful background only. They are not current for 2026.2:
 - `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.2 lux dump)
 - `Scripts/` — older example notes
 - [`Scripts/examples/`](Scripts/examples/) — maintained 2026.2 example scripts (materials, information, transforms, rendering, GUI, animation)
-- `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.2 dump.
+- `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.3 beta dump.
 
 ## Using the AI agent
 
-See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No vendor lock-in. The agent treats the 2026.2 dump as the API source of truth.
+See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No vendor lock-in. The agent treats the 2026.3 beta dump as the API source of truth.
 
 ## Contributing
 

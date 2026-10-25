@@ -1,8 +1,8 @@
 # Script catalog
 
-Maintained examples for KeyShot Studio 2026.2.
+Maintained examples for KeyShot Studio 2026.3 beta.
 
-**API source of truth:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.2 console. Prefer this over the public website.
+**API source of truth:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 beta console. Prefer this over the public website.
 
 KeyShot operations require the real runtime. “Syntax verified” does not mean runtime verified.
 
@@ -35,4 +35,4 @@ Also see `AI/materials/` for the OpenPBR converter and material-graph duplicatio
 
 ## Historical archive (not authoritative)
 
-[`Scripts/archive/HISTORICAL_SCRIPTS.md`](../archive/HISTORICAL_SCRIPTS.md) holds older script notes. Recover a pattern from it, then verify every call against the 2026.2 dump before reuse. Do not treat it as current API.
+[`Scripts/archive/HISTORICAL_SCRIPTS.md`](../archive/HISTORICAL_SCRIPTS.md) holds older script notes. Recover a pattern from it, then verify every call against the 2026.3 beta dump before reuse. Do not treat it as current API.

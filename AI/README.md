@@ -27,6 +27,12 @@ Treat every file under these as authoritative context. Do not invent API methods
 
 Works with any LLM (Grok, Claude, GPT, local models, custom agents). No vendor lock-in.
 
+## Reusable skill and provider adapters
+
+The **provider-agnostic core** is [`AI/skill.md`](skill.md). It defines the same KeyShot 2026.3 beta verification and safety contract regardless of host. The optional [MCP integration notes](integrations/keyshot-mcp.md) describe live scene access when a compatible local tool is actually connected.
+
+Platform-specific skill entry points live in [`AI/skills/`](skills/): **ChatGPT**, **Grok**, and **Claude**. They add only host-specific setup and tool-discovery behavior; none replaces or weakens `AI/skill.md`. A source repository link or a Markdown instruction does **not** itself install a skill, configure a GitHub connector, or start the KeyShot bridge. When packaging a skill outside this checkout, include the core and its referenced documentation.
+
 ## Maintenance
 
 When KeyShot ships scripting changes, refresh `lux/KeyShot_lux_API.md` from a new `help(lux)` capture first, then update the relevant files in `kpsa_knowledge/` and `materials/`.

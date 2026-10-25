@@ -36,7 +36,9 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 
 ### System
 - [System Prompt](system_prompt.md)
-- [Skill](skill.md)
+- [Skill](skill.md) — provider-agnostic core workflow
+- [Platform adapters](skills/README.md) — ChatGPT, Grok, Claude
+- [Optional KeyShot MCP](integrations/keyshot-mcp.md) — connected live tools, not automatically installed
 - [Topic Index](index.md) — detailed pointers after this TOC
 - [2026 Mode Comparison](reference/mode-comparison.md) — secondary; 2026.1 website comparison only
 

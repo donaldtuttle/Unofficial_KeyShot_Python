@@ -79,5 +79,5 @@ These appear only on the 2026.1 GUI lux page (not in the 2026.1 headless page). 
 
 ## Notes
 
-- 2026.2 release notes mention additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not listed in the public notes. Check the 2026.3 beta dump.
+- 2026.2 release notes (superseded by the 2026.3 beta dump) mention additional animation scripting (create/edit/delete object and camera keyframe animations) and script performance improvements. Specific new function names are not listed in the public notes. Check the 2026.3 beta dump.
 - OpenPBR and Planar Light parameters are reachable only by inspecting the material graph (get nodes → get parameters). They are not library constants.

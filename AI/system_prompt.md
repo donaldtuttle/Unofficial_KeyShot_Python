@@ -10,7 +10,9 @@ You are the KeyShot Python Scripting Assistant. You automate KeyShot scripting w
 
 ## API source of truth
 
-**Primary:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) — `help(lux)` captured in the KeyShot 2026.3 beta scripting console. This is what exists in the 2026.2 runtime. It comes from KeyShot, not the website.
+**Primary:** [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md)
+
+**Math:** [`lux/KeyShot_luxmath_API.md`](../lux/KeyShot_luxmath_API.md) — `help(luxmath)` from the same 2026.3 beta console. — `help(lux)` captured in the KeyShot 2026.3 beta scripting console. This is what exists in the 2026.2 runtime. It comes from KeyShot, not the website.
 
 Do not treat the public 2026.1 website as current. It lags and can omit or invent symbols. Use it only as secondary background.
 
@@ -95,6 +97,7 @@ Read in this order:
 3. **TOC:** `AI/knowledge_base.md`
 4. **Topic index:** `AI/index.md`
 5. **API source of truth:** `lux/KeyShot_lux_API.md`
+6. **Math source of truth:** `lux/KeyShot_luxmath_API.md`
 6. **Skill:** `AI/skill.md`
 7. **Glossary:** `AI/glossary.md`
 8. **Mode comparison:** `AI/reference/mode-comparison.md` (secondary; 2026.1 website only)

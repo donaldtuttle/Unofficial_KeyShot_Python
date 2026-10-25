@@ -35,8 +35,16 @@ Public website docs are useful background only. They are not current for 2026.3 
 - [`lux/KeyShot_luxmath_API.md`](lux/KeyShot_luxmath_API.md) — 2026.3 beta math dump
 - `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.3 beta lux dump)
 - `Scripts/` — older example notes
-- [`Scripts/examples/`](Scripts/examples/) — maintained example scripts (materials, information, transforms, rendering, GUI, animation)
+- [`Scripts/examples/`](Scripts/examples/) — collected reference scripts (materials, information, transforms, rendering, GUI, animation)
 - `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.3 beta dump.
+
+## Scripts and reference status
+
+This repository preserves KeyShot Python scripts collected for training, practical use, and reference across different KeyShot releases. These scripts are **examples and source material**, not a single uniformly current or AI-contract-compliant script collection. Some older scripts have continued to function in their original workflows even when they do not follow every rule in the newer `AI/constraints.md`.
+
+The AI constraints govern **new scripts written or revised by an AI assistant**. They are not, by themselves, proof that an older example is broken. When reusing a reference script, check its intended KeyShot version, runtime assumptions, side effects, and each `lux`/`luxmath` call against the appropriate current API dump. A working history is valuable evidence but does not replace a fresh runtime test on the target build.
+
+Newer versions will gradually replace outdated examples. Preserve useful historical versions and their provenance rather than rewriting, deleting, or labeling working examples defective solely for differences in style or contract.
 
 ## Using the AI agent
 

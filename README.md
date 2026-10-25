@@ -4,7 +4,7 @@ Unofficial KeyShot Python API references, scripting documentation, material and 
 
 This repository originally started as a collection of technical documentation, scripts, and reference materials I developed for my KeyShot Python training courses. Over time, it grew into a much larger knowledge base covering the lux and luxmath APIs, material and shader parameters, scripting workflows, practical examples, and information I’ve collected through years of working with KeyShot.
 
-One advantage of maintaining these resources is that the official KeyShot Python documentation available online doesn’t always reflect the latest releases. API information retrieved directly from KeyShot can provide more current references. However, this repository goes well beyond API documentation. It includes additional technical knowledge, examples, and training materials that aren’t necessarily available in the official documentation.
+One advantage of maintaining these resources is that the official KeyShot Python documentation available online doesn’t always reflect the latest releases. API information retrieved directly from KeyShot can provide more current references. However, this repository goes well beyond API documentation. It includes additional technical knowledge, examples, and training materials that aren’t necessarily available in the official documentation. A particularly important part of the collection is the **internal material and shader parameter reference**, which records scripting details that are usually discovered by inspecting actual material graphs in KeyShot.
 
 I also used this knowledge base to develop my custom KeyShot Python Scripting GPT. With OpenAI transitioning from Custom GPTs to plugins, I wanted to preserve the complete collection rather than limit it to what a plugin can accommodate. Moving everything into GitHub allows me to maintain the original resources, continue expanding them, and make them publicly available.
 
@@ -12,14 +12,41 @@ Moving forward, the goal is to maintain this as an evolving, AI-agnostic KeyShot
 
 The idea is simple: preserve the knowledge, keep it current, and make it accessible to both people learning KeyShot Python and AI assistants helping them write scripts.
 
-## Source of truth — 2026.3 beta `help(lux)`
+## API source of truth — KeyShot Studio 2026.3 beta
 
-**[`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md)**
+The primary references were captured directly from KeyShot's embedded Python scripting console, rather than copied from the public website:
 
-Captured from `help(lux)` in the KeyShot Studio **2026.3 beta** scripting console. This is the runtime API as KeyShot exposes it — not a website scrape, not a 2023–2024 dump.
+- **[`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md)** — the `help(lux)` dump documenting exposed scene, material graph, camera, environment, import/export, rendering, and other KeyShot Python APIs.
+- **[`lux/KeyShot_luxmath_API.md`](lux/KeyShot_luxmath_API.md)** — the `help(luxmath)` dump documenting the vector and matrix API used for transformations.
 
-- Prefer this over the public 2026.1 docs.
-- If a symbol is not in this dump, do not invent it.
+These captures are the **API source of truth for the recorded 2026.3 beta build**. Prefer them over the older public 2026.1 scripting pages and historical examples. An AI assistant must not invent a missing function, method, constant, or argument. When working with a different KeyShot build, check what that build actually exposes.
+
+## Why the material and shader parameters are here
+
+Knowing a `lux` function exists is only half the challenge of scripting materials. The public KeyShot Python documentation explains how to access material graphs, but does not provide a comprehensive per-shader inventory of the **exact internal parameter names, types, and observed values**. The names shown in KeyShot's Material Graph interface do not always match the identifiers a Python script must use.
+
+To discover those details, you normally have to inspect an actual material in KeyShot using `lux.getMaterialGraph()`, `MaterialGraph.getNodes()`, and `ShaderNode.getParameters()`. For example, this read-only KeyShot Python script lists the parameter names and types for materials used in the open scene:
+
+```python
+import lux
+
+for material_name in lux.getSceneMaterials() or []:
+    graph = lux.getMaterialGraph(name=material_name)
+    if graph is None:
+        continue
+    for node in graph.getNodes() or []:
+        print("Material:", material_name, "Node:", node.getName(), node.getType())
+        for parameter in node.getParameters() or []:
+            print("  ", parameter.getName(), parameter.getType())
+```
+
+**Preserving that hard-to-find information is one of the reasons this knowledge base exists.** Rather than requiring everyone to rediscover shader identifiers and parameter types in the scripting console, the repository brings together:
+
+- **[Individual material references](AI/materials/)** with material-specific parameters and usage notes.
+- **[Shader node types and parameters](AI/materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)** covering shader, texture, procedural, and geometry-node details.
+- **[OpenPBR and Planar Light runtime parameters](AI/materials/OpenPBR_and_Planar_Light.md)** captured from material graphs in KeyShot 2026.3 beta.
+
+This makes the collection useful both to people learning KeyShot Python and to **AI assistants that need concrete material and shader information instead of guessed parameter names**. The saved parameter lists are reference observations, not a guarantee that every material or KeyShot version exposes identical settings. For an actual script, verify the relevant graph and parameter types in the target scene.
 
 ## Secondary (lags 2026.3 beta)
 

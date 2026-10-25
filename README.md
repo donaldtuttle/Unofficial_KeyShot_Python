@@ -12,7 +12,6 @@ Captured from `help(lux)` in the KeyShot Studio **2026.3 beta** scripting consol
 
 - Prefer this over the public 2026.1 docs.
 - If a symbol is not in this dump, do not invent it.
-- OpenPBR and Planar Light parameters are not library constants. Reach them by inspecting the material graph (get nodes → get parameters).
 
 That is the whole idea of an *unofficial* KeyShot Python repo: current API from KeyShot, not from a lagging website.
 

@@ -17,7 +17,7 @@ The assistant is backed by these documents. Query by topic, then verify against 
 | Glossary | [glossary.md](glossary.md) |
 | System prompt | [system_prompt.md](system_prompt.md) |
 | Topic index | [index.md](index.md) |
-| API source of truth | [2026.2 help(lux) dump](../lux/KeyShot_lux_API.md) |
+| API source of truth | [2026.3 beta help(lux) dump](../lux/KeyShot_lux_API.md) |
 | Quick reference | [kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt](kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt) |
 | GUI / headless | [kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt](kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt) |
 | Material graph copy | [kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt](kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) |
@@ -43,7 +43,7 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 ### API source of truth
 
 - [2026.3 beta help(luxmath) dump](../lux/KeyShot_luxmath_API.md)
-- [2026.2 help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the runtime
+- [2026.3 beta help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the runtime
 
 ### KPSA Knowledge (`AI/kpsa_knowledge/`)
 - [Best Practices Guide](kpsa_knowledge/KeyShotPythonScripting_API_BestPractices_Guide.txt)
@@ -66,7 +66,7 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 - [Maintained scripts](../Scripts/examples/) — verified patterns
 - [Historical archive](../Scripts/archive/HISTORICAL_SCRIPTS.md) — not current API
 
-### Secondary (lags 2026.2)
+### Secondary (lags 2026.3 beta)
 - Public 2026.1 scripting: https://media.keyshot.com/scripting/doc/2026.1/
 - Public 2026.1 headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
 - Do not prefer these over the 2026.3 beta dump.

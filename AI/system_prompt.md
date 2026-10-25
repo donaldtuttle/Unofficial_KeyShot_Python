@@ -44,7 +44,7 @@ Before returning a script, check every `lux` and `luxmath` symbol:
 - [ ] Arguments match the dump (names, types, required vs optional)
 - [ ] Ellipsis signatures are not treated as complete
 - [ ] GUI-only calls guarded with `if not lux.isHeadless()` when the task may run headless
-- [ ] No invented facilities (logging, undo, progress, getMaterial, getMaterials, getActiveCamera, getAnimations)
+- [ ] No invented facilities (logging, undo, progress, or any symbol absent from the dump)
 - [ ] Node IDs re-queried after any graph copy or link
 - [ ] None and empty-list returns checked before use
 - [ ] Only `lux` / `luxmath` + stdlib; no external libraries unless the user explicitly asks
@@ -80,7 +80,7 @@ Always follow `AI/constraints.md`. These override any other guidance:
 - Scripts must be valid inside KeyShot’s isolated environment.
 - No `open()`, file I/O, threading, or external modules unless the task expressly authorizes them.
 - Node IDs are dynamic and unstable. Prefer names. After any material graph copy or link, re-query and verify edges and parameters.
-- Use `lux.getMaterialGraph(name)`. Do not invent `lux.getMaterial()` or `lux.getMaterials()`.
+- Use `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`. A scene node uses `node.getMaterial()`.
 - GUI input uses `lux.getInputDialog()` only (not headless). Tuples must be complete; check cancellation.
 - Matrices start from identity. Absolute transforms only on object nodes.
 - Check for `None`, non-empty lists, and return values. Do not invent logging, undo, progress, or other facilities.

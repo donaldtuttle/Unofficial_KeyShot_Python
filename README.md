@@ -39,7 +39,7 @@ See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No v
 
 ## Contributing
 
-PRs welcome for new examples, 2026.2 patterns, or AI knowledge improvements. When KeyShot changes the scripting API, refresh `lux/KeyShot_lux_API.md` from a new `help(lux)` capture first.
+PRs welcome for new examples, 2026.3 beta patterns, or AI knowledge improvements. When KeyShot changes the scripting API, refresh `lux/KeyShot_lux_API.md` from a new `help(lux)` capture first.
 
 ## License
 

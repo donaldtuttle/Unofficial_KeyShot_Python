@@ -13,7 +13,7 @@ Do not prefer the public 2026.1 website over the dump. It lags.
 - Node IDs are dynamic and session-unstable. Prefer names and re-query after graph operations.
 - Cameras: `lux.getCamera()` and `lux.getCameras()`.
 - Materials: `lux.getMaterialGraph(name)` and `lux.getSceneMaterials()`. A scene node uses `node.getMaterial()`.
-- No undo session helpers in the 2026.3 beta dump.
+- `lux.setUndoEnabled` is in the 2026.3 beta dump. `beginUndoSession` / `endUndoSession` are not.
 
 ## Common patterns
 

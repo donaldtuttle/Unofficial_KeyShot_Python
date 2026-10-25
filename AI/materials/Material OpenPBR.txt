@@ -3,6 +3,14 @@
   - **Constant**: lux.SHADER_TYPE_OPENPBR
   - **Source**: KeyShot Studio 2026.3 beta, getParameters() on a live material named "Mold-Tech-11030 Spray Dot OpenPBR"
 
+
+Node order in the 2026.3 beta capture of "Mold-Tech-11030 Spray Dot OpenPBR":
+
+1. Root — geometry, labels, surface
+2. Mapping node — triplanar-style texture and scale parameters
+3. Empty node — no exposed parameters
+4. OpenPBR node — base, coat, specular, fuzz, subsurface, thin film, transmission, emission
+
 Root node:
 - geometry (PARAMETER_TYPE_SHADERGEOMETRY, 65540)
 - labels (PARAMETER_TYPE_SHADERLABEL, 65538)

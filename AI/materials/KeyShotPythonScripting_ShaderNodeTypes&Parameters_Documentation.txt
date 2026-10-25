@@ -666,5 +666,4 @@
 SHADER_TYPE_OPENPBR = 'lux_openpbr'
 SHADER_TYPE_PLANAR_LIGHT = 'lux_arealight'
 
-Parameters are runtime captures from getParameters(), not a library catalog.
 See Material OpenPBR.txt and Material Planar Light.txt in this folder.

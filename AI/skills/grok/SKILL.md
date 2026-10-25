@@ -18,3 +18,7 @@ description: Use in Grok to create, debug, verify and explain KeyShot Studio 202
 ## Deployment
 
 This is an entry-point template, not an installed skill. Install or package it using the Grok host's supported skill location (for example `.grok/skills/keyshot-python/SKILL.md`), **and** keep the core/doc paths accessible, or rewrite references to the packaged locations. A Markdown skill does not create GitHub or MCP permissions.
+
+## Optional v1.3.1 standalone skill
+
+An independently prepared Grok private skill is documented in [RELEASE.md](RELEASE.md). It is a frozen Grok-specific artifact, not a replacement for the provider-agnostic [core](../../skill.md). Do not assume the release is available locally until it is imported and installed through the intended host. Avoid silently swapping the authoritative 2026.3 beta source rules.

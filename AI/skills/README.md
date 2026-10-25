@@ -15,3 +15,7 @@ These are **three small host adapters**, not three competing KeyShot knowledge b
 These files are **source templates**. Merely committing them under `AI/skills/` does not install or activate them in any chat app. A usable skill package must include the core instructions and source references or grant a genuine tool connection that can read the repository. Do not promise cloud access to a localhost KeyShot bridge.
 
 Recommended behavior everywhere: retrieve minimal relevant documents; validate every `lux`/`luxmath` call against the **2026.3 beta dumps**; use MCP tools only if present and connected; default to no scene mutation; distinguish verified evidence from untested assumptions. [Integration details](../integrations/keyshot-mcp.md).
+
+## Grok independent frozen release
+
+[Grok v1.3.1 release record and importer](grok/RELEASE.md) preserve its separate, statically verified skill without overriding this project's agnostic core or its three platform adapters. The original ZIP must be imported before its release source is present under `platform-releases/`.

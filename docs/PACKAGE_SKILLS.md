@@ -19,3 +19,7 @@ A [GitHub Actions workflow](../.github/workflows/package-kpsa-skills.yml) builds
 **Important:** the ZIPs bundle the current public Unofficial_KeyShot_Python source tree, **not** the separate original GPT backup stored in KeyShot-Python-AI-Knowledge. Live GitHub retrieval and local KeyShot MCP access require separate functioning tool connections and are not activated by packaging.
 
 **License:** GPLv3. README and LICENSE agree. Packages preserve the original LICENSE.
+
+## Separate Grok private release
+
+The independent `keyshot-script-writer` v1.3.1 package is documented in [AI/skills/grok/RELEASE.md](../AI/skills/grok/RELEASE.md). Its versioned source, when imported, belongs under `platform-releases/grok/v1.3.1/` and is **not automatically included** in the three agnostic-core derived ZIP builds. This preserves the user-approved standalone Grok release without expanding or changing ChatGPT/Claude packages.

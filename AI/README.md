@@ -14,7 +14,8 @@ Portable, model-agnostic agent setup for KeyShot Studio 2026.3 beta.
 - `knowledge_base.md` — TOC. This is the TOC.
 - `kpsa_knowledge/` — elevated KPSA guides (best practices, GUI, transforms, quick ref, thin API pointer).
 - `materials/` — shader node types, parameters, and individual material files.
-- `lux/KeyShot_lux_API.md` — 2026.2 API source of truth.
+- `lux/KeyShot_lux_API.md` — 2026.3 beta API source of truth.
+- `lux/KeyShot_luxmath_API.md` — 2026.3 beta math source of truth.
 
 Treat every file under these as authoritative context. Do not invent API methods, parameter names, or node types. Verify against the 2026.3 beta dump.
 

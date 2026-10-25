@@ -15,4 +15,3 @@ Light node:
 - opacitymap (PARAMETER_TYPE_COLORALPHA, 14)
 - opacitymap_mode (PARAMETER_TYPE_INTEGER, 2)
 
-These parameters are not a library catalog. Inspect the graph. Empty nodes in a capture had no exposed parameters at that moment.

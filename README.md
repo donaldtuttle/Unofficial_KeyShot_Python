@@ -43,4 +43,4 @@ PRs welcome for new examples, 2026.3 beta patterns, or AI knowledge improvements
 
 ## License
 
-MIT — see LICENSE.
+GPLv3 — see LICENSE.

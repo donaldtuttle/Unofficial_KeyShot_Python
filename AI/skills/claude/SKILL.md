@@ -18,3 +18,13 @@ description: Use in Claude to generate, review and debug KeyShot Studio 2026.3 b
 ## Deployment
 
 This is a source adapter. A compatible Claude Code host can load a project skill from a location such as `.claude/skills/keyshot-python/SKILL.md`; keep this repository and the linked core files in scope, or package them together with corrected relative links. Committing this file does not install the bridge or enable MCP.
+
+## Checker
+
+`tools/verify_symbols.py` and `tools/build_symbol_index.py` are the current checker. They include the allow-comment rule from the core skill.
+
+- `# kpsa: allow S-CODE -- reason` covers one POLICY code for the whole file.
+- Reason is required. The report lists every allow.
+- ERROR and PROBE cannot be silenced.
+- Add an allow only when the user has explicitly authorised that exception.
+

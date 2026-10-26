@@ -468,6 +468,11 @@ class CheckerTests(unittest.TestCase):
         bare = check("# kpsa: allow S-FILE-IO\nopen('x.txt')\n")
         self.assertIn("W-ALLOW", codes(bare))
         self.assertIn("S-FILE-IO", codes(bare))
+        blocked = check("# kpsa: allow E-UNDECLARED -- not a real function\n"
+                        "import lux\nlux.notARealFunction()\n")
+        self.assertIn("E-UNDECLARED", codes(blocked))
+        self.assertIn("W-ALLOW", codes(blocked))
+        self.assertEqual(blocked["exit_code"], 1)
 
     def test_headless_and_deprecation(self):
         r = check("import lux\nlux.saveFile()\nlux.getBrowserDialog(url='x')\n", policy=False)

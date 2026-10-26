@@ -28,7 +28,7 @@ def source_files():
                 found[path.relative_to(ROOT).as_posix()] = path.read_bytes()
     for path in ("README.md", "LICENSE", "2026_updates.md"):
         found[path] = (ROOT / path).read_bytes()
-    must = ("AI/skill.md", "AI/constraints.md", "AI/best-practices.md", "AI/knowledge_base.md", "AI/index.md", "AI/integrations/keyshot-mcp.md", "AI/materials/Material Metal.txt", "lux/KeyShot_lux_API.md", "lux/KeyShot_luxmath_API.md")
+    must = ("AI/skill.md", "AI/constraints.md", "AI/best-practices.md", "AI/knowledge_base.md", "AI/index.md", "AI/integrations/keyshot-mcp.md", "AI/materials/Material_Metal.txt", "lux/KeyShot_lux_API.md", "lux/KeyShot_luxmath_API.md")
     must += tuple("AI/skills/" + name + "/SKILL.md" for name in ("chatgpt", "grok", "claude"))
     for path in must:
         if path not in found:

@@ -1,0 +1,21 @@
+Scripting: Import file
+Import file (GUI and Headless)
+Importing models with scripting is easy:
+
+>>> lux.importFile("/path/to/your/file.obj")
+In this case we imported an OBJ file.
+
+By default no dialog will be shown with importing options, but it can be done using the showOpts option:
+
+>>> lux.importFile("/path/to/your/file.obj", showOpts = True)
+For more advanced importing, a Python dictionary can be supplied using the opts option. An example could be to disable snap-to-ground, and not adjusting environment and camera look-at on import:
+
+>>> opts = lux.getImportOptions()
+>>> opts["snap_to_ground"] = False
+>>> opts["adjust_environment"] = False
+>>> opts["adjust_camera_look_at"] = False
+>>> lux.importFile("/path/to/your/file.obj", opts = opts)
+When updating geometry you will want to set the following options before importing:
+
+>>> opts["import_type"] = 1
+>>> opts["merge"] = True

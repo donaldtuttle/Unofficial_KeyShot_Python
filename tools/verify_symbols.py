@@ -726,6 +726,13 @@ class Analyzer:
             if not m:
                 continue
             code, reason = m.group(1), (m.group(2) or "").strip()
+            if not code.startswith("S-"):
+                self.findings.append({
+                    "severity": "WARN", "line": i, "col": 1, "code": "W-ALLOW",
+                    "symbol": code,
+                    "message": "kpsa allow applies to POLICY codes only. ERROR and PROBE cannot be silenced.",
+                })
+                continue
             if not reason:
                 self.findings.append({
                     "severity": "WARN", "line": i, "col": 1, "code": "W-ALLOW",

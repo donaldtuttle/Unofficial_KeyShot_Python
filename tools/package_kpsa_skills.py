@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Package self-contained KPSA ChatGPT plugin and Grok/Claude skills."""
+"""Package self-contained KPSA ChatGPT plugin and Grok/Claude skills.
+
+Claude package is lean: only the files the skill needs, with safe paths and
+exactly one SKILL.md. ChatGPT and Grok keep the full snapshot.
+"""
 import hashlib
 import json
 import subprocess
@@ -11,6 +15,22 @@ OUT = ROOT / "dist"
 SOURCES = ("AI", "Scripts", "lux", "luxmath", "lux_headless", "luxmath_headless")
 PLATFORMS = {"ChatGPT": "keyshot-python-scripting", "Grok": "keyshot-python-grok", "Claude": "keyshot-python"}
 VERSION = "1.1.1"
+
+# Lean Claude package: only what the skill needs. Older dumps stay out so
+# "dump wins" is not undermined by historical luxmath/ or headless dumps.
+CLAUDE_INCLUDE_PREFIXES = (
+    "AI/constraints.md",
+    "AI/best-practices.md",
+    "AI/knowledge_base.md",
+    "AI/index.md",
+    "AI/skill.md",
+    "AI/kpsa_knowledge/",
+    "AI/materials/",
+    "AI/examples/",
+    "AI/integrations/keyshot-mcp.md",
+    "lux/KeyShot_lux_API.md",
+    "lux/KeyShot_luxmath_API.md",
+)
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
@@ -34,6 +54,34 @@ def source_files():
         if path not in found:
             raise RuntimeError("Missing required source: " + path)
     return found
+
+def claude_lean_docs(docs):
+    """Select only the files Claude needs. Reject unsafe path characters."""
+    selected = {}
+    for path, data in docs.items():
+        if any(path == p or path.startswith(p) for p in CLAUDE_INCLUDE_PREFIXES):
+            if " " in path or "&" in path:
+                raise RuntimeError("Unsafe path for Claude package: " + path)
+            selected[path] = data
+    # Required lean set
+    required = (
+        "AI/skill.md",
+        "AI/constraints.md",
+        "AI/best-practices.md",
+        "AI/knowledge_base.md",
+        "AI/index.md",
+        "AI/integrations/keyshot-mcp.md",
+        "lux/KeyShot_lux_API.md",
+        "lux/KeyShot_luxmath_API.md",
+    )
+    for path in required:
+        if path not in selected:
+            raise RuntimeError("Lean Claude package missing: " + path)
+    return selected
+
+def rewrite_skill_core(data: bytes) -> bytes:
+    """Rewrite skill.md references so claude.ai does not count a second SKILL.md."""
+    return data.replace(b"AI/skill.md", b"AI/skill_core.md").replace(b"skill.md", b"skill_core.md")
 
 def entry(platform, name):
     return f'''---
@@ -81,28 +129,22 @@ def run():
         repo_docs = docs
         package_meta = None
         if platform == "Claude":
-            # claude.ai rejects a skill ZIP with more than one SKILL.md (any case)
-            # and rejects paths containing spaces or '&'.
-            excluded = [{"path": path, "sha256": sha(data),
-                         "reason": "claude.ai and the Skills API reject a skill ZIP that contains more than one SKILL.md"}
-                        for path, data in docs.items() if path.endswith("/SKILL.md") and path != "AI/skills/claude/SKILL.md"]
-            repo_docs = {path: data for path, data in docs.items() if not path.endswith("/SKILL.md") and path != "SKILL.md"}
-            # Rewrite AI/skill.md -> AI/skill_core.md in bundled docs and entry point
-            # so claude.ai does not count skill.md as a second SKILL.md.
-            def rewrite_skill(data: bytes) -> bytes:
-                return data.replace(b"AI/skill.md", b"AI/skill_core.md").replace(b"skill.md", b"skill_core.md")
-            repo_docs = {path: rewrite_skill(data) if path.endswith((".md", ".txt")) else data for path, data in repo_docs.items()}
-            if "AI/skill.md" in repo_docs:
-                repo_docs["AI/skill_core.md"] = repo_docs.pop("AI/skill.md")
-            skill_bytes = rewrite_skill(skill_bytes)
+            # Lean set only. Exactly one SKILL.md. Safe paths. skill.md rewritten to skill_core.md.
+            lean = claude_lean_docs(docs)
+            repo_docs = {}
+            for path, data in lean.items():
+                if path == "AI/skill.md":
+                    repo_docs["AI/skill_core.md"] = rewrite_skill_core(data)
+                else:
+                    repo_docs[path] = rewrite_skill_core(data) if path.endswith((".md", ".txt")) else data
+            skill_bytes = rewrite_skill_core(skill_bytes)
             package_meta = {
                 "name": "keyshot-python",
                 "version": VERSION,
                 "entry_point": {"path": "SKILL.md", "copied_from": "AI/skills/claude/SKILL.md", "sha256": sha(skill_bytes),
-                                "note": "References to the core changed from AI/skill.md to AI/skill_core.md"},
-                "excluded": excluded,
-                "path_sanitizing": {"reason": "claude.ai rejects spaces, '&', and skill.md as a second SKILL.md",
-                                    "rule": "space -> '_', '&' -> '_and_'; AI/skill.md -> AI/skill_core.md"},
+                                "note": "Lean package. Core rewritten AI/skill.md -> AI/skill_core.md. Older dumps excluded."},
+                "content": sorted(repo_docs.keys()),
+                "rules": ["exactly one SKILL.md", "no spaces or & in paths", "lean content list"],
             }
         entries = {prefix + "/SKILL.md": skill_bytes, prefix + "/SOURCE_MANIFEST.json": inventory}
         entries.update({prefix + "/references/repo/" + path: data for path, data in repo_docs.items()})
@@ -110,6 +152,7 @@ def run():
             checker = (ROOT / "tools" / "verify_symbols.py").read_bytes()
             index_path = ROOT / "references" / "api" / "2026.3-beta" / "symbols.json"
             if not index_path.is_file():
+                index_path.parent.mkdir(parents=True, exist_ok=True)
                 subprocess.check_call([
                     "python3", str(ROOT / "tools" / "build_symbol_index.py"),
                     str(ROOT / "lux" / "KeyShot_lux_API.md"),
@@ -128,7 +171,7 @@ def run():
                 inv = json.loads(inventory)
                 inv["package"] = package_meta
                 entries[prefix + "/SOURCE_MANIFEST.json"] = (json.dumps(inv, indent=2) + "\n").encode()
-        msg = ("Bundled complete Unofficial_KeyShot_Python AI/scripts/API snapshot. Connected GitHub and KeyShot MCP tools are optional, not included.\n"
+        msg = ("Bundled Unofficial_KeyShot_Python references. Connected GitHub and KeyShot MCP tools are optional, not included.\n"
                "LICENSE: GPLv3. README and LICENSE agree.\n")
         if platform == "ChatGPT":
             manifest = {"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
@@ -150,17 +193,21 @@ def run():
                 add(z, arcname, data)
         with zipfile.ZipFile(path) as z:
             assert z.testzip() is None
-            checked = repo_docs if platform == "Claude" else docs
-            assert all(sha(z.read(prefix + "/references/repo/" + p)) == sha(d) for p, d in checked.items())
+            names = z.namelist()
+            skill_count = sum(1 for n in names if n.lower().endswith("skill.md"))
             if platform == "Claude":
-                assert sum(1 for n in z.namelist() if n.endswith("SKILL.md")) == 1
+                assert skill_count == 1, f"Claude package must contain exactly one skill.md, found {skill_count}"
+                unsafe = [n for n in names if " " in n or "&" in n]
+                assert not unsafe, f"Unsafe paths in Claude package: {unsafe}"
+                # Older dumps must not be present
+                assert not any("luxmath/" in n or "lux_headless/" in n or "luxmath_headless/" in n for n in names)
             assert z.read(prefix + "/SKILL.md").startswith(b"---\n")
             if platform == "Claude":
                 assert z.read(prefix + "/scripts/verify_symbols.py").startswith(b"#!/usr/bin/env python3")
                 assert b"schema_version" in z.read(prefix + "/references/api/2026.3-beta/symbols.json") or z.read(prefix + "/references/api/2026.3-beta/symbols.json").startswith(b"{")
             if platform == "ChatGPT":
                 assert json.loads(z.read("plugin.json"))["name"] == "keyshot-python-scripting-assistant"
-        print("PASS", filename, len(docs), "source files", path.stat().st_size, "bytes")
+        print("PASS", filename, len(repo_docs), "source files", path.stat().st_size, "bytes")
         built.append(path)
     (OUT / "SHA256SUMS.txt").write_text("".join(sha(p.read_bytes()) + "  " + p.name + "\n" for p in built))
 

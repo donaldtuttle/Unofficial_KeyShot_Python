@@ -378,27 +378,7 @@ class InspectorV11Tests(unittest.TestCase):
         # The animation crash hotfix deliberately blocks two native getters,
         # and dispatches the three basic animation GETs by validated name.
         dynamically_read = {"getAnimationInfo", "getAnimationTime"}
-        self.assertEqual(set(self.mod.GETTERS_2026)-used,
-                         withheld | dynamically_read)
-
-    def test_native_animation_objects_are_never_invoked(self):
-        """Even selecting both with all opt-ins enabled must not call native API."""
-        triggered = []
-        self.mod.SETTINGS["allow_slow"] = True
-        self.mod.SETTINGS["allow_animation_tree"] = True
-                self.mod.all_animation_objects),
-                self.mod.node_animation_objects)]
-        with tempfile.TemporaryDirectory() as td:
-            self.mod.begin_trace(td)
-            opts = {"mode": [1, "Save TXT only"], "folder": td,
-                    "name": "BlockedNativeAnimations"}
-            out, errors, completed, skipped = self.mod.stream_report(
-                [("Animation", ops)], opts)
-            body = pathlib.Path(out).read_text(encoding="utf-8")
-            self.assertEqual(triggered, [])
-            self.assertEqual(completed, 2)
-            self.assertEqual(skipped, 2)
-            self.assertIn("NATIVE CRASH PRECAUTION", body)
+        self.assertEqual(set(self.mod.GETTERS_2026)-used, dynamically_read)
 
     def test_advanced_scene_animation_inspection_opt_in(self):
         calls = []

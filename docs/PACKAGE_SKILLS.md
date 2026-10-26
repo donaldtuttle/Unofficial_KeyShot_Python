@@ -18,6 +18,9 @@ A [GitHub Actions workflow](../.github/workflows/package-kpsa-skills.yml) builds
 
 **Important:** the ZIPs bundle the current public Unofficial_KeyShot_Python source tree, **not** the separate original GPT backup stored in KeyShot-Python-AI-Knowledge. Live GitHub retrieval and local KeyShot MCP access require separate functioning tool connections and are not activated by packaging.
 
+
+The Claude ZIP also includes `scripts/verify_symbols.py` and `references/api/2026.3-beta/symbols.json`, built from the 2026.3 beta dumps. The Claude adapter runs those paths in a packaged install.
+
 **License:** GPLv3. README and LICENSE agree. Packages preserve the original LICENSE.
 
 ## Separate Grok private release

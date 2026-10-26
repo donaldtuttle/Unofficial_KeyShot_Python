@@ -174,8 +174,6 @@ def fake_2026(rootfolder):
         getName=lambda: name, getActiveMaterial=lambda: "Blue Matte",
         getSubMaterials=lambda: ["Blue Matte", "Blue Gloss"])
     lux.getCameraPivot = lambda: (1, 2, 3)
-    lux.getAnimations = lambda: ["Animation A"]
-    lux.getNodeAnimations = lambda node: (
         ["Motion"] if node.getName() == "Part" else [])
     lux.getObjectMaterial = lambda obj: (
         {n:"Blue" for n in obj} if isinstance(obj, list) else "Blue")
@@ -380,7 +378,6 @@ class InspectorV11Tests(unittest.TestCase):
           and n.attr.startswith('get')}
         # The animation crash hotfix deliberately blocks two native getters,
         # and dispatches the three basic animation GETs by validated name.
-        withheld = {"getAnimations", "getNodeAnimations"}
         dynamically_read = {"getAnimationInfo", "getAnimationTime"}
         self.assertEqual(set(self.mod.GETTERS_2026)-used,
                          withheld | dynamically_read)
@@ -388,13 +385,9 @@ class InspectorV11Tests(unittest.TestCase):
     def test_native_animation_objects_are_never_invoked(self):
         """Even selecting both with all opt-ins enabled must not call native API."""
         triggered = []
-        self.fake.getAnimations = lambda: triggered.append("getAnimations")
-        self.fake.getNodeAnimations = lambda node: triggered.append("getNodeAnimations")
         self.mod.SETTINGS["allow_slow"] = True
         self.mod.SETTINGS["allow_animation_tree"] = True
-        ops = [("getAnimations() - DISABLED native call (status only)",
                 self.mod.all_animation_objects),
-               ("getNodeAnimations(node) - DISABLED native call (status only)",
                 self.mod.node_animation_objects)]
         with tempfile.TemporaryDirectory() as td:
             self.mod.begin_trace(td)

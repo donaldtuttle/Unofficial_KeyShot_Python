@@ -174,7 +174,6 @@ def fake_2026(rootfolder):
         getName=lambda: name, getActiveMaterial=lambda: "Blue Matte",
         getSubMaterials=lambda: ["Blue Matte", "Blue Gloss"])
     lux.getCameraPivot = lambda: (1, 2, 3)
-        ["Motion"] if node.getName() == "Part" else [])
     lux.getObjectMaterial = lambda obj: (
         {n:"Blue" for n in obj} if isinstance(obj, list) else "Blue")
     lux.getSceneColor = lambda name, multi: types.SimpleNamespace(

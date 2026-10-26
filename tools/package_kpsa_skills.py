@@ -79,6 +79,18 @@ def run():
         prefix = "skills/" + name if platform == "ChatGPT" else name
         entries = {prefix + "/SKILL.md": entry(platform, name), prefix + "/SOURCE_MANIFEST.json": inventory}
         entries.update({prefix + "/references/repo/" + path: data for path, data in docs.items()})
+        if platform == "Claude":
+            checker = (ROOT / "tools" / "verify_symbols.py").read_bytes()
+            index_path = ROOT / "references" / "api" / "2026.3-beta" / "symbols.json"
+            if not index_path.is_file():
+                subprocess.check_call([
+                    "python3", str(ROOT / "tools" / "build_symbol_index.py"),
+                    str(ROOT / "lux" / "KeyShot_lux_API.md"),
+                    str(ROOT / "lux" / "KeyShot_luxmath_API.md"),
+                    "--build", "2026.3-beta", "-o", str(index_path),
+                ])
+            entries[prefix + "/scripts/verify_symbols.py"] = checker
+            entries[prefix + "/references/api/2026.3-beta/symbols.json"] = index_path.read_bytes()
         msg = ("Bundled complete Unofficial_KeyShot_Python AI/scripts/API snapshot. Connected GitHub and KeyShot MCP tools are optional, not included.\n"
                "LICENSE: GPLv3. README and LICENSE agree.\n")
         if platform == "ChatGPT":
@@ -103,6 +115,9 @@ def run():
             assert z.testzip() is None
             assert all(sha(z.read(prefix + "/references/repo/" + p)) == sha(d) for p, d in docs.items())
             assert z.read(prefix + "/SKILL.md").startswith(b"---\n")
+            if platform == "Claude":
+                assert z.read(prefix + "/scripts/verify_symbols.py").startswith(b"#!/usr/bin/env python3")
+                assert b"schema_version" in z.read(prefix + "/references/api/2026.3-beta/symbols.json") or z.read(prefix + "/references/api/2026.3-beta/symbols.json").startswith(b"{")
             if platform == "ChatGPT":
                 assert json.loads(z.read("plugin.json"))["name"] == "keyshot-python-scripting-assistant"
         print("PASS", filename, len(docs), "source files", path.stat().st_size, "bytes")

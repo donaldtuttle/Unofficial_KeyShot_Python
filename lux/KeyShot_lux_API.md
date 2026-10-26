@@ -5,7 +5,6 @@ Captured with `help(lux)` in the KeyShot 2026.3 beta scripting console.
 This is the API source of truth. Prefer it over guides and over the public website.
 
 Newly present relative to the 2026.2 dump:
-- `lux.getAnimations`, `lux.getNodeAnimations`, `lux.createAnimation`
 - `lux.CAMERA_MODE_ORBIT`, `lux.CAMERA_MODE_PATH`
 - `lux.SHADER_TYPE_OPENPBR`, `lux.SHADER_TYPE_PLANAR_LIGHT`
 - `lux.getCameraPivot`, `lux.setCameraPivot`

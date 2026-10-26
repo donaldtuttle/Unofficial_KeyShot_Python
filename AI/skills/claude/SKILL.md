@@ -9,6 +9,10 @@ description: Generate, review and debug KeyShot Python scripts. Use for lux, lux
 
 Also read [`AI/constraints.md`](../../constraints.md), [`AI/best-practices.md`](../../best-practices.md), [`AI/knowledge_base.md`](../../knowledge_base.md) and the 2026.3 beta dumps named in the core. Use relative paths to bundled files. Do not use network URLs for files that are in the package.
 
+## Where the files are
+
+The relative links above are written for this file's repository location, `AI/skills/claude/`. In an installed or packaged copy they may not resolve. Find the same files by their repository path instead: in the Claude ZIP they sit under `references/repo/` (for example `references/repo/AI/skill.md`); in a repository checkout they sit at the repository root.
+
 ## Run the checker
 
 When code execution is available and the checker is present, run it before delivering a script. Do not check symbols by eye if the checker can run.

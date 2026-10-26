@@ -43,7 +43,7 @@ for material_name in lux.getSceneMaterials() or []:
 **Preserving that hard-to-find information is one of the reasons this knowledge base exists.** Rather than requiring everyone to rediscover shader identifiers and parameter types in the scripting console, the repository brings together:
 
 - **[Individual material references](AI/materials/)** with material-specific parameters and usage notes.
-- **[Shader node types and parameters](AI/materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)** covering shader, texture, procedural, and geometry-node details.
+- **[Shader node types and parameters](AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt)** covering shader, texture, procedural, and geometry-node details.
 - **[OpenPBR and Planar Light runtime parameters](AI/materials/OpenPBR_and_Planar_Light.md)** captured from material graphs in KeyShot 2026.3 beta.
 
 This makes the collection useful both to people learning KeyShot Python and to **AI assistants that need concrete material and shader information instead of guessed parameter names**. The saved parameter lists are reference observations, not a guarantee that every material or KeyShot version exposes identical settings. For an actual script, verify the relevant graph and parameter types in the target scene.

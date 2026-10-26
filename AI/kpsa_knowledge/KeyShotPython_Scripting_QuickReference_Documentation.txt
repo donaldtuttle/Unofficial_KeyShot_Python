@@ -49,7 +49,6 @@ If this file and the dump disagree, the dump is correct. Do not use a symbol tha
 - `lux.getAnimationFrame`
 - `lux.getAnimationInfo`
 - `lux.getAnimationTime`
-- `lux.getAnimations`
 - `lux.getBrowserDialog`
 - `lux.getCamera`
 - `lux.getCameraDirection`
@@ -94,7 +93,6 @@ If this file and the dump disagree, the dump is correct. Do not use a symbol tha
 - `lux.getMetaData`
 - `lux.getModelSets`
 - `lux.getMultiMaterial`
-- `lux.getNodeAnimations`
 - `lux.getOS`
 - `lux.getObjectMaterial`
 - `lux.getObjects`

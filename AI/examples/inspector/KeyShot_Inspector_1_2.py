@@ -1508,13 +1508,10 @@ def material_library_metadata():
 def all_animation_objects():
     """Deliberately do not call KeyShot's native Animation-object iterator.
 
-    The supplied 2026 API documents getAnimations() as returning lux.Animation
     objects, but does not document that class. A native KeyShot crash was
     reported while running the Animation category; this call is a suspect
     and must remain disabled pending isolated in-KeyShot verification.
     """
-    available = callable(getattr(lux, "getAnimations", None))
-    return ("[SKIPPED - NATIVE CRASH PRECAUTION] lux.getAnimations() "
             "is {} in this KeyShot build, but was NOT executed. "
             "Use the read-only scene-tree animation inventory once basic "
             "animation status works, or investigate this native call "
@@ -1523,9 +1520,6 @@ def all_animation_objects():
 
 
 def node_animation_objects():
-    """Do not invoke getNodeAnimations() on arbitrary SceneNode objects."""
-    available = callable(getattr(lux, "getNodeAnimations", None))
-    return ("[SKIPPED - NATIVE CRASH PRECAUTION] lux.getNodeAnimations(node) "
             "is {} in this KeyShot build, but was NOT executed. "
             "Repeated invocation across scene nodes is disabled for "
             "this diagnostic release.").format(
@@ -1601,7 +1595,6 @@ def available_camera_only_notice():
 GETTERS_2026 = (
     "getActiveConfiguration", "getActiveEnvironment", "getActiveImageStyle",
     "getActiveStudio", "getAnimationFrame", "getAnimationInfo", "getAnimationTime",
-    "getAnimations", "getCamera", "getCameraDirection", "getCameraDistance",
     "getCameraFieldOfView", "getCameraFocalLength", "getCameraLens",
     "getCameraLookAt", "getCameraPivot", "getCameraPosition", "getCameraUp",
     "getCameras", "getColorway", "getColorways", "getEnvironments",
@@ -1611,7 +1604,6 @@ GETTERS_2026 = (
     "getLibraryEnvironments", "getLibraryMaterials", "getLibraryTextures",
     "getLightingPreset", "getLightingPresets", "getLockResolution",
     "getMaterialGraph", "getMaterialMapping", "getMaterialTemplates",
-    "getMetaData", "getModelSets", "getMultiMaterial", "getNodeAnimations",
     "getOS", "getObjectMaterial", "getObjects", "getRenderEngine",
     "getRenderLayers", "getRenderOptions", "getSceneColor", "getSceneColors",
     "getSceneInfo", "getSceneMaterials", "getSceneTree",
@@ -1625,7 +1617,6 @@ def api_getter_coverage():
         "KeyShot 2026 reference: {} information getters".format(len(GETTERS_2026)),
         "57 getters have reporting call sites; the two native animation-object "
         "getters are intentionally DISABLED after a reported KeyShot crash.",
-        "getAnimations()/getNodeAnimations() availability is listed without "
         "executing either function.",
         "Availability is checked on the runtime module; many getters require "
         "parameters, a loaded scene, or a selected object.",
@@ -1727,8 +1718,6 @@ CATEGORIES = [
     ]),
     ("animation", "Animation", [
         ("animation_status", "getAnimationInfo() / Time / Frame", animation_status, True),
-        ("all_anims", "getAnimations() - DISABLED native call (status only)", all_animation_objects, False),
-        ("node_anims", "getNodeAnimations(node) - DISABLED native call (status only)", node_animation_objects, False),
         ("animation_tree", "Scene animation-node hierarchy (advanced opt-in)", animation_nodes_hierarchy, False),
         ("current_boxes", "Animated parent world bounds (advanced opt-in)", animation_bounds_current_frame, False),
     ]),
@@ -1823,7 +1812,6 @@ def select_report_options():
     ]
     return lux.getInputDialog(
         title="KeyShot Information Inspector 1.2.0 - Expanded Information",
-        desc="Animation safety: getAnimations/getNodeAnimations are hard-blocked "
              "because a native KeyShot crash was reported. Advanced animation "
              "hierarchy/bounds require separate explicit opt-in. "
              "All saved cameras/environments/styles require temporary active-item "
@@ -1953,8 +1941,6 @@ def stream_report(chosen, opts):
             "Animated parent world bounds",
         )
         native_animation_blocked = (
-            "getAnimations() - DISABLED",
-            "getNodeAnimations(node) - DISABLED",
         )
         for category, operations in chosen:
             put("\n" + "=" * 76 + "\n" + category.upper()

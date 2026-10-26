@@ -1,0 +1,45 @@
+### Material: Glass Solid
+  - **SHADER_TYPE**: lux_glass_simple
+  - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **color** (PARAMETER_TYPE_COLOR): The color of the material. (Value: (0.3, 0.3, 0.3))
+  - **glossy_samples** (PARAMETER_TYPE_INTEGER): Number of samples used for glossy reflections. (Value: 16)
+  - **ior** (PARAMETER_TYPE_FLOAT): Index of Refraction; affects the bending of light. (Value: 1.5)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **roughness** (PARAMETER_TYPE_FLOAT): Controls the sharpness of reflections. (Value: 0.0)
+  - **transparency** (PARAMETER_TYPE_FLOAT): Defines the level of transparency. (Value: 500.0)
+
+## Parameters for shader node in material'Glass Solid':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- color (Type: 13)
+- glossy_samples (Type: 2)
+- ior (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- roughness (Type: 4)
+- transparency (Type: 4)
+
+## The Glass (Solid) Material Type provides a physically accurate glass material. Unlike the simpler glass material type, you will find that solid glass simulates the effect color in the glass accurately as it takes into account the thickness of your model.
+
+Color
+This controls the overall color of this material type. When light enters the surface, it will take on the color set here. The amount of color that you see in this material is highly dependent on the transparency setting as well. If you have set a color, but it looks too faint, skip down to the transparency section.
+
+Transparency Distance
+(Formerly Color Density) This slider controls the depth of the color selected in the Color setting, depending on the thickness of the part to which the material is applied. After setting a color in the Color setting, use Transparency Distance to make that color more or less saturated and prominent. A lower setting will show the color more in thin areas of the model, and a high setting will make the color faint in the thin areas.
+
+This physically accurate parameter simulates the effect you can observe by looking at the color of the shallow water at a beach versus the deep blue of a deep ocean. Without this you would see through to the bottom of the deepest ocean as easily as to the bottom of a swimming pool.
+
+Refractive Index
+This controls how much light will bend or “refract” as it passes through parts on your model that have this type of material. The default of 1.5 is accurate for simulating most types of glass, but you can increase the value to create a more dramatic refraction within the surface.
+
+Roughness
+Roughness on this type of material will spread out highlights on the surface similar to what you see on other, non-transparent, materials. However, it also spreads out the light that is transmitted through the material. This is used to create a frosted glass look. Expand this parameter and you will see a samples setting. This can be set to a low value to produce a more imperfect/noisy result or to a higher value to smooth out the noise/grain for a smoother frosted look
+
+Samples
+A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.

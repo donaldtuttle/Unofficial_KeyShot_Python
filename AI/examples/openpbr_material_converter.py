@@ -1,3 +1,4 @@
+# kpsa: allow S-HEADLESS-GUARD -- GUI-only tool
 """
 KeyShot OpenPBR Material Converter v0.5.0
 Converts supported KeyShot materials to OpenPBR (lux_openpbr)

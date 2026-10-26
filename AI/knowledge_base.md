@@ -22,10 +22,10 @@ The assistant is backed by these documents. Query by topic, then verify against 
 | GUI / headless | [kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt](kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt) |
 | Material graph copy | [kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt](kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) |
 | Transforms | [kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt](kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt) |
-| Shader types | [materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt) |
+| Shader types | [materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt](materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt) |
 | Collected script references | [Scripts/examples/](../Scripts/examples/) |
 
-File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.txt`. Materials are individual `Material *.txt` files, not a nested zip.
+File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.txt`. Materials are individual `Material_*.txt` files, not a nested zip.
 
 ## Table of Contents
 
@@ -57,8 +57,8 @@ File naming in `kpsa_knowledge/` follows `KeyShotPythonScripting_<Topic>_<Type>.
 
 ### Materials (`AI/materials/`)
 - [OpenPBR and Planar Light runtime parameters](materials/OpenPBR_and_Planar_Light.md) — 2026.3 beta capture
-- [Shader Node Types & Parameters](materials/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)
-- Individual `Material *.txt` parameter and usage files
+- [Shader Node Types & Parameters](materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt)
+- Individual `Material_*.txt` parameter and usage files
 - [Material Graph Duplication](materials/Material_Graph_Duplication.txt)
 - [OpenPBR Converter](materials/openpbr_material_converter.py)
 

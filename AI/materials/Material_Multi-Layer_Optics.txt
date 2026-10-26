@@ -1,0 +1,71 @@
+### Material: Multi-Layer Optics
+  - **SHADER_TYPE**: lux_multilayer_thinfilm
+  - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **color** (PARAMETER_TYPE_COLOR): The color of the multi-layer optics. (Value: (1.0, 1.0, 1.0))
+  - **color_density** (PARAMETER_TYPE_FLOAT): Density of the color layer. (Value: [Value not provided in the snippet])
+  - **dispersion** (BOOLEAN): Determines if dispersion is considered. (Value: False)
+  - **ior_out** (PARAMETER_TYPE_FLOAT): Index of Refraction outside the material; affects the bending of light at the material's surface. (Value: 1.0)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **specification** (PARAMETER_TYPE_DICTIONARY): Specifications for multi-layer optics dielectric materials. (Value: {"Multi-Layer Optics Dielectric ":{"abbe":55.0,"n":1.5},"layers":[{"material":"Multi-Layer Optics Dielectric "}]})
+
+
+## Parameters for shader node in material'Multi-Layer Optics':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- color (Type: 13)
+- color_density (Type: 4)
+- dispersion (Type: 1)
+- ior_out (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- specification (Type: 9)
+
+## The Multi-Layer Optics material enables you to create materials with multiple thin-film layers.
+
+Layer list
+Lists all layers of the material. Note that the first layer is the “base” layer (substrate).
+
+ Add layer
+You can either add a layer from a file, add a new dielectric layer or add a copy of an already defined layer.
+
+   Delete layer
+This will delete the current layer from the layer list, but the definition will still be available in the Layer Material drop-down.
+
+Layer properties
+These properties apply to the layer that is highlighted in the Layer list
+
+Layer Thickness Set the thickness of the layer. The thickness of first layer can not be set, as it is the main material (substrate) of the part.
+Layer material Select the material for the layer. The list contains all the materials you have had in the list, also ones from layers that have been deleted. The  next to the material drop-down will delete the specification of the current material and replace all instances.
+Material Name Here you can edit the name of the material, note that the name will change the name of the material not the layer.
+Refractive index This slider controls how much light will bend or refract as it passes through the material. The default of 1,5 is accurate for simulating most types of glass.
+Abbe Number The Abbe number controls dispersion of light as it is transmitted through the surface and produces a prismatic effect. A value of zero will disable the dispersion effect entirely. A low value will show heavy dispersion, and as you increase the value, the effect will become more subtle. A setting around 35-55 is a good starting point if a subtle dispersion effect is desired.
+
+Edit specification
+Allows you to enter/edit the entire material, including all layers in plain text.
+
+Encrypt Specification
+If you want to protect the specifications of your material, you can encrypt it. This will hide information about the layers in the material and the material can no longer be edited.
+
+When the material is encrypted you can Clear Specification. This will delete the specification of the the current material and let you start from scratch. Encrypted materials can not be un-encrypted!
+
+Color
+This option controls the overall color of this material type. When light enters the surface it will take on the color set here.
+
+Transparency Distance
+This slider controls the depth of the color selected in the Transmission setting, depending on the thickness of the part to which the material is applied. After setting a color in the Transmission setting, use Transparency Distance to make that color more or less saturated and prominent. A lower setting will show the color more in thin areas of the model, and a high setting will make the color faint in the thin areas.
+
+This physically accurate parameter simulates the effect you can observe by looking at the color of the shallow water at a beach versus the deep blue of a deep ocean. Without this you would see through to the bottom of the deepest ocean as easily as to the bottom of a swimming pool.
+
+Refractive Index Outside
+This slider is an advanced but powerful setting that allows you to accurately simulate the interface between two different refracting materials.
+
+Simulate Substrate Dispersion
+Enabling this will simulate caustics in the substrate if it is a transparent material.
+
+Refractive Index

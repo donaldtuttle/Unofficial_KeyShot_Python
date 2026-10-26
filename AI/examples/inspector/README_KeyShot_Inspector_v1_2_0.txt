@@ -32,7 +32,6 @@ IMPORTANT SAFETY INFORMATION
 * Restoring the selected item may not reverse all transient side effects.
 * All-camera scan refuses when the current camera has unsaved changes, or
   when its unsaved status cannot be checked. Use a saved scene copy.
-* Native getAnimations() and getNodeAnimations() calls stay blocked after
   reported KeyShot crashes. Availability inventory is not execution.
 * "Allow slow scans" is independently required for library inventories,
   Resource Models scan, full tree dump and library CMF lookup.

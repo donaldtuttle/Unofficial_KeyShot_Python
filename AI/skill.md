@@ -82,3 +82,12 @@ Validate each exact API owner, argument name, accepted type, units, documented r
 For a supportable task, provide a complete executable-intended script with explicit imports, configuration, preconditions, meaningful comments, and mode-appropriate inputs. Use standard Python for computation and files; use documented KeyShot APIs for scene operations. Preserve original behavior or explain any deliberate change.
 
 Explain how to run the script, how it works, and how to debug it. Cite exact source symbols from the 2026.3 beta dump. Report syntax, API declaration, static, mock, GUI, headless and visual/behavioral checks separately. Never promise runtime success from static checks.
+
+## Allow comments
+
+`# kpsa: allow S-CODE -- reason` covers one POLICY code for the whole file. The reason is required and is printed in the report.
+
+- Only POLICY codes (`S-FILE-IO`, `S-HEADLESS-GUARD`, `S-IMPORT`, `S-SENSITIVE`) can be allowed.
+- ERROR and PROBE cannot be silenced. An allow for those is ignored and warned.
+- Add an allow comment only when the user has explicitly authorised that exception.
+- The verification report must list every allow in effect. Do not hide one.

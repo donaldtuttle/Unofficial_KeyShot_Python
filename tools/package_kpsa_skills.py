@@ -9,8 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dist"
 SOURCES = ("AI", "Scripts", "lux", "luxmath", "lux_headless", "luxmath_headless")
-PLATFORMS = {"ChatGPT": "keyshot-python-scripting", "Grok": "keyshot-python-grok", "Claude": "keyshot-python-claude"}
-VERSION = "1.1.0"
+PLATFORMS = {"ChatGPT": "keyshot-python-scripting", "Grok": "keyshot-python-grok", "Claude": "keyshot-python"}
+VERSION = "1.1.1"
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
@@ -77,8 +77,13 @@ def run():
     for platform, name in PLATFORMS.items():
         filename = "KPSA_" + platform + ("_Plugin_" if platform == "ChatGPT" else "_Skill_") + VERSION + ".zip"
         prefix = "skills/" + name if platform == "ChatGPT" else name
-        entries = {prefix + "/SKILL.md": entry(platform, name), prefix + "/SOURCE_MANIFEST.json": inventory}
-        entries.update({prefix + "/references/repo/" + path: data for path, data in docs.items()})
+        skill_bytes = (ROOT / "AI" / "skills" / platform.lower() / "SKILL.md").read_bytes()
+        entries = {prefix + "/SKILL.md": skill_bytes, prefix + "/SOURCE_MANIFEST.json": inventory}
+        repo_docs = docs
+        if platform == "Claude":
+            # claude.ai rejects a skill ZIP with more than one SKILL.md.
+            repo_docs = {path: data for path, data in docs.items() if not path.endswith("/SKILL.md") and path != "SKILL.md"}
+        entries.update({prefix + "/references/repo/" + path: data for path, data in repo_docs.items()})
         if platform == "Claude":
             checker = (ROOT / "tools" / "verify_symbols.py").read_bytes()
             index_path = ROOT / "references" / "api" / "2026.3-beta" / "symbols.json"
@@ -113,7 +118,10 @@ def run():
                 add(z, arcname, data)
         with zipfile.ZipFile(path) as z:
             assert z.testzip() is None
-            assert all(sha(z.read(prefix + "/references/repo/" + p)) == sha(d) for p, d in docs.items())
+            checked = repo_docs if platform == "Claude" else docs
+            assert all(sha(z.read(prefix + "/references/repo/" + p)) == sha(d) for p, d in checked.items())
+            if platform == "Claude":
+                assert sum(1 for n in z.namelist() if n.endswith("SKILL.md")) == 1
             assert z.read(prefix + "/SKILL.md").startswith(b"---\n")
             if platform == "Claude":
                 assert z.read(prefix + "/scripts/verify_symbols.py").startswith(b"#!/usr/bin/env python3")

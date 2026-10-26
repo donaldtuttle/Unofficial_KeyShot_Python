@@ -8,9 +8,6 @@ on:
       - "AI/**"
       - "Scripts/**"
       - "lux/**"
-      - "luxmath/**"
-      - "lux_headless/**"
-      - "luxmath_headless/**"
       - "tools/package_kpsa_skills.py"
       - ".github/workflows/package-kpsa-skills.yml"
 
@@ -25,12 +22,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build and verify all three packages
+      - name: Build and verify packages from live repo
         run: python tools/package_kpsa_skills.py
       - name: Upload downloadable archives
         uses: actions/upload-artifact@v4
         with:
-          name: KPSA-Skills-1.1.0
+          name: KPSA-Skills-1.1.1
           path: |
             dist/*.zip
             dist/SHA256SUMS.txt

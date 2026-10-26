@@ -21,6 +21,9 @@ A [GitHub Actions workflow](../.github/workflows/package-kpsa-skills.yml) builds
 
 The Claude ZIP also includes `scripts/verify_symbols.py` and `references/api/2026.3-beta/symbols.json`, built from the 2026.3 beta dumps. The Claude adapter runs those paths in a packaged install.
 
+
+Download the current Claude package from [`releases/KPSA_Claude_Skill_1.1.1.zip`](../releases/KPSA_Claude_Skill_1.1.1.zip).
+
 **License:** GPLv3. README and LICENSE agree. Packages preserve the original LICENSE.
 
 ## Separate Grok private release

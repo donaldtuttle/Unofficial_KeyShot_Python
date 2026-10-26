@@ -17,11 +17,19 @@ The relative links above are written for this file's repository location, `AI/sk
 
 When code execution is available and the checker is present, run it before delivering a script. Do not check symbols by eye if the checker can run.
 
+In a repository checkout:
+
 ```
 python tools/verify_symbols.py script.py --index path/to/symbols.json
 ```
 
-If `tools/` is not in the package, look for `verify_symbols.py` and `symbols.json` by filename. If either is missing, say the checker was not run and use the manual checklist in the core. Do not claim a checker result you did not produce.
+In the Claude ZIP:
+
+```
+python scripts/verify_symbols.py script.py --index references/api/2026.3-beta/symbols.json
+```
+
+If neither pair is present, look for `verify_symbols.py` and `symbols.json` by filename. If either is missing, say the checker was not run and use the manual checklist in the core. Do not claim a checker result you did not produce.
 
 Handle ERROR, PROBE, WARN and POLICY as the core defines. Allow comments are in the core. Do not restate them here.
 
@@ -38,4 +46,4 @@ Handle ERROR, PROBE, WARN and POLICY as the core defines. Allow comments are in 
 
 Load this from `.claude/skills/keyshot-python/SKILL.md`. Keep the core and the dumps in scope, or package them with corrected relative links. Committing this file does not install a bridge or enable MCP.
 
-The Claude package must include `tools/verify_symbols.py` and a `symbols.json` built from the 2026.3 beta dumps, or the checker cannot run. `tools/` is not in the current Claude ZIP.
+The Claude ZIP includes `scripts/verify_symbols.py` and `references/api/2026.3-beta/symbols.json`. Use those paths in a packaged install.

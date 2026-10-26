@@ -39,6 +39,7 @@ CLAUDE_INCLUDE_PREFIXES = (
 EXCLUDED_LINK_MARKERS = (
     b"system_prompt.md",
     b"skills/README.md",
+    b"../skills/README.md",
     b"reference/mode-comparison.md",
     b"../Scripts/archive/HISTORICAL_SCRIPTS.md",
 )

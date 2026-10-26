@@ -1,3 +1,8 @@
+Mock suite: 28 tests, ordinary Python, mocked lux. Passed on commit 2c556133.
+Removed in 1.2.1: test_native_animation_objects_are_never_invoked.
+PR #10 recorded 29 for 1.2.0. That count does not apply to 1.2.1.
+A KeyShot run of 1.2.1 has not been done. Record the build, the scene, and the result when it is.
+
 Companion files keep the 1.2.0 names. They cover the 1.2.1 repair.
 1.2.1 repair: animation-name teaching removed. Checker-clean on that commit. Not a new KeyShot runtime test of 1.2.0.
 

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 KeyShot Get Information | Unified Inspector
-Version: 1.2.0
+Version: 1.2.1
 Target: KeyShot 2026.x (supplied 2026 lux module reference)
 Mode: read-only, KeyShot GUI (not headless)
+
+1.2.1: animation-name teaching removed. Not a new KeyShot runtime test.
 
 Consolidates user-supplied Information, animation, camera, material, and diagnostic scripts.
 Use KeyShot Scripts > Run Script to execute this file.
@@ -17,6 +19,7 @@ Standard mode does not alter scene state. Opt-in full camera/environment/image-s
 inspection temporarily changes the active item and restores it when Python continues.
 A native process crash cannot guarantee restoration. Do not use on an unsaved scene.
 """
+# kpsa: allow S-FILE-IO -- writes inspection reports
 import os
 import re
 import pprint

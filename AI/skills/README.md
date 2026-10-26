@@ -16,6 +16,15 @@ These files are **source templates**. Merely committing them under `AI/skills/` 
 
 Recommended behavior everywhere: retrieve minimal relevant documents; validate every `lux`/`luxmath` call against the **2026.3 beta dumps**; use MCP tools only if present and connected; default to no scene mutation; distinguish verified evidence from untested assumptions. [Integration details](../integrations/keyshot-mcp.md).
 
+## Claude packaging note
+
+claude.ai and the Skills API reject a skill ZIP that contains more than one file whose name is `SKILL.md` (any case). They also reject paths containing spaces or `&`. The repository stores the shared core as `AI/skill.md` and keeps material/script filenames free of those characters. When building the Claude package, the packager must:
+
+- exclude the ChatGPT and Grok `SKILL.md` files from the ZIP
+- rewrite references to `AI/skill.md` → `AI/skill_core.md` inside the bundled documents and the Claude entry point
+
+The path sanitizing (spaces → `_`, `&` → `_and_`) is already applied in the repository so future packages do not need to rewrite material or Scripts filenames.
+
 ## Grok independent frozen release
 
 [Grok v1.3.1 release record and importer](grok/RELEASE.md) preserve its separate, statically verified skill without overriding this project's agnostic core or its three platform adapters. The original ZIP must be imported before its release source is present under `platform-releases/`.

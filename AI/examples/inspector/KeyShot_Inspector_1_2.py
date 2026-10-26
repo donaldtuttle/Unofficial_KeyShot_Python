@@ -1506,24 +1506,13 @@ def material_library_metadata():
 
 
 def all_animation_objects():
-    """Deliberately do not call KeyShot's native Animation-object iterator.
-
-    objects, but does not document that class. A native KeyShot crash was
-    reported while running the Animation category; this call is a suspect
-    and must remain disabled pending isolated in-KeyShot verification.
-    """
-            "is {} in this KeyShot build, but was NOT executed. "
-            "Use the read-only scene-tree animation inventory once basic "
-            "animation status works, or investigate this native call "
-            "separately with a dedicated minimal script."
-            ).format("available" if available else "not available")
+    """Scene-tree animation inventory only. No undeclared animation object calls."""
+    return animation_nodes_hierarchy()
 
 
 def node_animation_objects():
-            "is {} in this KeyShot build, but was NOT executed. "
-            "Repeated invocation across scene nodes is disabled for "
-            "this diagnostic release.").format(
-                "available" if available else "not available")
+    """Scene-tree animation inventory only. No undeclared animation object calls."""
+    return animation_nodes_hierarchy()
 
 
 def animation_nodes_hierarchy():
@@ -1615,9 +1604,7 @@ def api_getter_coverage():
     """Inventory API availability, not an unsafe automatic no-arg execution."""
     lines = [
         "KeyShot 2026 reference: {} information getters".format(len(GETTERS_2026)),
-        "57 getters have reporting call sites; the two native animation-object "
-        "getters are intentionally DISABLED after a reported KeyShot crash.",
-        "executing either function.",
+        "Availability is an inventory of declared getters only.",
         "Availability is checked on the runtime module; many getters require "
         "parameters, a loaded scene, or a selected object.",
     ]
@@ -1812,12 +1799,8 @@ def select_report_options():
     ]
     return lux.getInputDialog(
         title="KeyShot Information Inspector 1.2.0 - Expanded Information",
-             "because a native KeyShot crash was reported. Advanced animation "
-             "hierarchy/bounds require separate explicit opt-in. "
-             "All saved cameras/environments/styles require temporary active-item "
-             "switching; the original is restored after each inspection when "
-             "Python execution survives. Avoid on unsaved scenes. "
-             "Native animation getters remain blocked. Review trace after crashes.",
+        desc="Read-only report. Advanced animation hierarchy and bounds require opt-in. "
+             "Saved cameras, environments and styles switch temporarily and restore when execution continues.",
         values=values, id=DIALOG_ID)
 
 

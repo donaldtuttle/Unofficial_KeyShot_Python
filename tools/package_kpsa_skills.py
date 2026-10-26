@@ -24,12 +24,23 @@ CLAUDE_INCLUDE_PREFIXES = (
     "AI/knowledge_base.md",
     "AI/index.md",
     "AI/skill.md",
+    "AI/glossary.md",
     "AI/kpsa_knowledge/",
     "AI/materials/",
     "AI/examples/",
     "AI/integrations/keyshot-mcp.md",
+    "Scripts/examples/",
     "lux/KeyShot_lux_API.md",
     "lux/KeyShot_luxmath_API.md",
+)
+
+# Links in the TOC docs that target files the lean package deliberately excludes.
+# The packager marks them so Claude does not follow them to a missing file.
+EXCLUDED_LINK_MARKERS = (
+    b"system_prompt.md",
+    b"skills/README.md",
+    b"reference/mode-comparison.md",
+    b"../Scripts/archive/HISTORICAL_SCRIPTS.md",
 )
 
 def sha(data):
@@ -83,6 +94,15 @@ def rewrite_skill_core(data: bytes) -> bytes:
     """Rewrite skill.md references so claude.ai does not count a second SKILL.md."""
     return data.replace(b"AI/skill.md", b"AI/skill_core.md").replace(b"skill.md", b"skill_core.md")
 
+def mark_excluded_links(data: bytes) -> bytes:
+    """Append a note to links that target files not in the lean package."""
+    note = b" *(not included in this package)*"
+    for target in EXCLUDED_LINK_MARKERS:
+        # Only mark if the link is present and not already marked
+        if target in data and note not in data:
+            data = data.replace(b"](" + target + b")", b"](" + target + b")" + note)
+    return data
+
 def entry(platform, name):
     return f'''---
 name: {name}
@@ -133,10 +153,14 @@ def run():
             lean = claude_lean_docs(docs)
             repo_docs = {}
             for path, data in lean.items():
+                if path.endswith((".md", ".txt")):
+                    data = rewrite_skill_core(data)
+                    if path in ("AI/knowledge_base.md", "AI/index.md", "AI/integrations/keyshot-mcp.md"):
+                        data = mark_excluded_links(data)
                 if path == "AI/skill.md":
-                    repo_docs["AI/skill_core.md"] = rewrite_skill_core(data)
+                    repo_docs["AI/skill_core.md"] = data
                 else:
-                    repo_docs[path] = rewrite_skill_core(data) if path.endswith((".md", ".txt")) else data
+                    repo_docs[path] = data
             skill_bytes = rewrite_skill_core(skill_bytes)
             package_meta = {
                 "name": "keyshot-python",
@@ -168,8 +192,16 @@ def run():
                     {"path": "scripts/verify_symbols.py", "sha256": sha(checker_bytes)},
                     {"path": "references/api/2026.3-beta/symbols.json", "sha256": sha(index_bytes)},
                 ]
-                inv = json.loads(inventory)
-                inv["package"] = package_meta
+                # Manifest lists only what is actually bundled, with checksums after edits
+                bundled = [{"path": path, "sha256": sha(data)} for path, data in sorted(repo_docs.items())]
+                bundled.append({"path": "scripts/verify_symbols.py", "sha256": sha(checker_bytes)})
+                bundled.append({"path": "references/api/2026.3-beta/symbols.json", "sha256": sha(index_bytes)})
+                inv = {
+                    "repository": "donaldtuttle/Unofficial_KeyShot_Python",
+                    "commit": commit,
+                    "files": bundled,
+                    "package": package_meta,
+                }
                 entries[prefix + "/SOURCE_MANIFEST.json"] = (json.dumps(inv, indent=2) + "\n").encode()
         msg = ("Bundled Unofficial_KeyShot_Python references. Connected GitHub and KeyShot MCP tools are optional, not included.\n"
                "LICENSE: GPLv3. README and LICENSE agree.\n")

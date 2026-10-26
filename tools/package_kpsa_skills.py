@@ -95,12 +95,14 @@ def rewrite_skill_core(data: bytes) -> bytes:
     return data.replace(b"AI/skill.md", b"AI/skill_core.md").replace(b"skill.md", b"skill_core.md")
 
 def mark_excluded_links(data: bytes) -> bytes:
-    """Append a note to links that target files not in the lean package."""
+    """Append a note to every link that targets a file not in the lean package."""
     note = b" *(not included in this package)*"
     for target in EXCLUDED_LINK_MARKERS:
-        # Only mark if the link is present and not already marked
-        if target in data and note not in data:
-            data = data.replace(b"](" + target + b")", b"](" + target + b")" + note)
+        link = b"](" + target + b")"
+        marked = link + note
+        # Replace only unmarked occurrences
+        data = data.replace(marked, link)
+        data = data.replace(link, marked)
     return data
 
 def entry(platform, name):
@@ -167,7 +169,7 @@ def run():
                 "version": VERSION,
                 "entry_point": {"path": "SKILL.md", "copied_from": "AI/skills/claude/SKILL.md", "sha256": sha(skill_bytes),
                                 "note": "Lean package. Core rewritten AI/skill.md -> AI/skill_core.md. Older dumps excluded."},
-                "content": sorted(repo_docs.keys()),
+                "content": sorted(list(repo_docs.keys()) + ["scripts/verify_symbols.py", "references/api/2026.3-beta/symbols.json"]),
                 "rules": ["exactly one SKILL.md", "no spaces or & in paths", "lean content list"],
             }
         entries = {prefix + "/SKILL.md": skill_bytes, prefix + "/SOURCE_MANIFEST.json": inventory}

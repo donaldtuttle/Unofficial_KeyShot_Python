@@ -81,16 +81,28 @@ def run():
         repo_docs = docs
         package_meta = None
         if platform == "Claude":
-            # claude.ai rejects a skill ZIP with more than one SKILL.md.
+            # claude.ai rejects a skill ZIP with more than one SKILL.md (any case)
+            # and rejects paths containing spaces or '&'.
             excluded = [{"path": path, "sha256": sha(data),
                          "reason": "claude.ai and the Skills API reject a skill ZIP that contains more than one SKILL.md"}
                         for path, data in docs.items() if path.endswith("/SKILL.md") and path != "AI/skills/claude/SKILL.md"]
             repo_docs = {path: data for path, data in docs.items() if not path.endswith("/SKILL.md") and path != "SKILL.md"}
+            # Rewrite AI/skill.md -> AI/skill_core.md in bundled docs and entry point
+            # so claude.ai does not count skill.md as a second SKILL.md.
+            def rewrite_skill(data: bytes) -> bytes:
+                return data.replace(b"AI/skill.md", b"AI/skill_core.md").replace(b"skill.md", b"skill_core.md")
+            repo_docs = {path: rewrite_skill(data) if path.endswith((".md", ".txt")) else data for path, data in repo_docs.items()}
+            if "AI/skill.md" in repo_docs:
+                repo_docs["AI/skill_core.md"] = repo_docs.pop("AI/skill.md")
+            skill_bytes = rewrite_skill(skill_bytes)
             package_meta = {
                 "name": "keyshot-python",
                 "version": VERSION,
-                "entry_point": {"path": "SKILL.md", "copied_from": "AI/skills/claude/SKILL.md", "sha256": sha(skill_bytes)},
+                "entry_point": {"path": "SKILL.md", "copied_from": "AI/skills/claude/SKILL.md", "sha256": sha(skill_bytes),
+                                "note": "References to the core changed from AI/skill.md to AI/skill_core.md"},
                 "excluded": excluded,
+                "path_sanitizing": {"reason": "claude.ai rejects spaces, '&', and skill.md as a second SKILL.md",
+                                    "rule": "space -> '_', '&' -> '_and_'; AI/skill.md -> AI/skill_core.md"},
             }
         entries = {prefix + "/SKILL.md": skill_bytes, prefix + "/SOURCE_MANIFEST.json": inventory}
         entries.update({prefix + "/references/repo/" + path: data for path, data in repo_docs.items()})

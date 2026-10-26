@@ -78,11 +78,21 @@ def run():
         filename = "KPSA_" + platform + ("_Plugin_" if platform == "ChatGPT" else "_Skill_") + VERSION + ".zip"
         prefix = "skills/" + name if platform == "ChatGPT" else name
         skill_bytes = (ROOT / "AI" / "skills" / platform.lower() / "SKILL.md").read_bytes()
-        entries = {prefix + "/SKILL.md": skill_bytes, prefix + "/SOURCE_MANIFEST.json": inventory}
         repo_docs = docs
+        package_meta = None
         if platform == "Claude":
             # claude.ai rejects a skill ZIP with more than one SKILL.md.
+            excluded = [{"path": path, "sha256": sha(data),
+                         "reason": "claude.ai and the Skills API reject a skill ZIP that contains more than one SKILL.md"}
+                        for path, data in docs.items() if path.endswith("/SKILL.md") and path != "AI/skills/claude/SKILL.md"]
             repo_docs = {path: data for path, data in docs.items() if not path.endswith("/SKILL.md") and path != "SKILL.md"}
+            package_meta = {
+                "name": "keyshot-python",
+                "version": VERSION,
+                "entry_point": {"path": "SKILL.md", "copied_from": "AI/skills/claude/SKILL.md", "sha256": sha(skill_bytes)},
+                "excluded": excluded,
+            }
+        entries = {prefix + "/SKILL.md": skill_bytes, prefix + "/SOURCE_MANIFEST.json": inventory}
         entries.update({prefix + "/references/repo/" + path: data for path, data in repo_docs.items()})
         if platform == "Claude":
             checker = (ROOT / "tools" / "verify_symbols.py").read_bytes()
@@ -94,8 +104,18 @@ def run():
                     str(ROOT / "lux" / "KeyShot_luxmath_API.md"),
                     "--build", "2026.3-beta", "-o", str(index_path),
                 ])
-            entries[prefix + "/scripts/verify_symbols.py"] = checker
-            entries[prefix + "/references/api/2026.3-beta/symbols.json"] = index_path.read_bytes()
+            checker_bytes = checker
+            index_bytes = index_path.read_bytes()
+            entries[prefix + "/scripts/verify_symbols.py"] = checker_bytes
+            entries[prefix + "/references/api/2026.3-beta/symbols.json"] = index_bytes
+            if package_meta is not None:
+                package_meta["bundled_tools"] = [
+                    {"path": "scripts/verify_symbols.py", "sha256": sha(checker_bytes)},
+                    {"path": "references/api/2026.3-beta/symbols.json", "sha256": sha(index_bytes)},
+                ]
+                inv = json.loads(inventory)
+                inv["package"] = package_meta
+                entries[prefix + "/SOURCE_MANIFEST.json"] = (json.dumps(inv, indent=2) + "\n").encode()
         msg = ("Bundled complete Unofficial_KeyShot_Python AI/scripts/API snapshot. Connected GitHub and KeyShot MCP tools are optional, not included.\n"
                "LICENSE: GPLv3. README and LICENSE agree.\n")
         if platform == "ChatGPT":

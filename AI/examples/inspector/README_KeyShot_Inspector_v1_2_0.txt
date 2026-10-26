@@ -1,3 +1,4 @@
+Companion files keep the 1.2.0 names. They cover the 1.2.1 repair.
 1.2.1 repair: animation-name teaching removed. Checker-clean on that commit. Not a new KeyShot runtime test of 1.2.0.
 
 KEYSHOT INFORMATION INSPECTOR 1.2.0 — COMMUNITY RELEASE

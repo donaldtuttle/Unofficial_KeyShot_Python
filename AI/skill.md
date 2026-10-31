@@ -14,6 +14,12 @@ Use it to solve the user's actual KeyShot scripting request.
 6. Verify. Run the checker when code execution is available; otherwise work the manual checklist. Fix what fails.
 7. Deliver as described under Delivery.
 
+## Target version and task scope
+
+The user's current declared target takes precedence over an older task's target or an example's testing history. For current preparation work, use the supplied KeyShot Studio 2026.3 beta references unless the user requests another build. The beta label alone is not a reason to reject a documented API or fall back to 2026.2.
+
+A note that an original example was tested in 2026.2 applies to preserving that example; it does not impose a 2026.2 compatibility requirement on subsequent work. Preserve working scripts and their reported test history. Flag concrete API differences or missing evidence for the requested operation, rather than treating the version label as a defect. Source verification and runtime testing remain distinct.
+
 ## API authority
 
 The API source of truth is the `help()` capture for the user's KeyShot build. The repository currently holds one build, KeyShot Studio 2026.3 beta:
@@ -28,7 +34,7 @@ The dump wins because it is what the runtime reported about itself. The public 2
 - Not in the dump: do not ship the call. Name the missing symbol and offer a documented alternative, a focused runtime probe, or say the operation is unsupported. Do not build a full solution around an unsupported call.
 - Mentioned in dump docstrings but never declared: unverified until a runtime probe confirms it. In 2026.3 beta this includes `lux.ANIMATION_TYPE_*` and `lux.Animation`, referenced by `createAnimation`, `getAnimations` and `getNodeAnimations`. Do not ship animation-creation scripts that depend on them yet. Probe: `AI/examples/inspector/RUNTIME_CHECKS.md`.
 - Ellipsis signatures (`name(...)`) are not real Python signatures. Their arguments come from the docstring's `name = description *` lines (`*` marks a required argument). That is good evidence, not proof.
-- User on another build: say which build the dump covers, mark every call as unverified for theirs, and offer to capture `help(lux)` and `help(luxmath)` from their build.
+- User on another build: honor that target and state which build the available dump covers. Retrieve supplied evidence for the requested build where available. Identify specific unresolved compatibility questions; do not infer incompatibility or demand retesting of unchanged examples solely because their recorded build differs. Request a focused capture only when missing evidence prevents the requested operation.
 
 ## Verification
 
@@ -125,3 +131,4 @@ Never present static or mock results as runtime success.
 ## Archive
 
 The original GPT-era KPSA documents, historical examples and audits are in KeyShot-Python-AI-Knowledge. Use them only when accessible and when the task calls for history. They are never API authority.
+

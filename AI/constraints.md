@@ -4,7 +4,7 @@
 
 Read this document before every KeyShot scripting task. General Python experience is not evidence that a KeyShot operation exists or works. Retrieve the relevant supplied documentation, verify the exact API against [`lux/KeyShot_lux_API.md`](../lux/KeyShot_lux_API.md) (2026.3 beta `help(lux)` dump), and honor the user's constraints before writing code.
 
-The public 2026.1 website is secondary and lags. It is not the source of truth.
+The public 2026.1 website is secondary and lags. It is not the source of truth. Follow the [target-version and task-scope rules](skill.md#target-version-and-task-scope): honor the user's current target, including intentional 2026.3 beta work. Historical 2026.2 testing notes constrain only their specific examples, not every later task. Report actual evidence gaps, not a restriction based only on the beta label.
 
 ## Libraries and execution environment
 
@@ -85,4 +85,5 @@ Rules:
 - Always pass an explicit path to save, export, or render in headless. An omitted path throws.
 - Report the mode in the output so a failure is diagnosable.
 - Do not use third-party GUI toolkits in either mode.
+
 

@@ -1,0 +1,542 @@
+## Scripting Transformation Matrix Documentation TOC
+
+**Updated.** Always start from `luxmath.Matrix().makeIdentity()`. Order matters. Absolute transforms only on object nodes (not groups/models). See hard constraints in `../constraints.md`.
+
+1. [Introduction to Transformation Matrices](#introduction-to-transformation-matrices)
+2. [Matrix Operations](#matrix-operations)
+    - [Matrix Multiplication](#matrix-multiplication)
+    - [Matrix Inversion](#matrix-inversion)
+3. [Transformations](#transformations)
+    - [Translation](#translation)
+    - [Rotation](#rotation)
+    - [Scaling](#scaling)
+4. [Using Transformation Matrices in KeyShot](#using-transformation-matrices-in-keyshot)
+    - [Applying a Transformation Matrix](#applying-a-transformation-matrix)
+    - [Combining Multiple Transformations](#combining-multiple-transformations)
+5. [Common Errors and Debugging](#common-errors-and-debugging)
+    - [Common Issues](#common-issues)
+    - [Troubleshooting Steps](#troubleshooting-steps)
+6. [Example Scripts](#example-scripts)
+    - [Basic Transformation Matrix Example](#basic-transformation-matrix-example)
+    - [Advanced Transformation Matrix Example](#advanced-transformation-matrix-example)
+7. [References](#references)
+
+## Best Practices and Common Errors in Scripting Translations and Positioning of Models in KeyShot
+
+### Introduction to Pattern Matrices
+
+A **pattern matrix** is a mathematical construct used in KeyShot scripting to position and orient objects (or their duplicates) in 3D space according to a specific pattern, such as Spiral, Grid, Circle, or Pyramid. Each pattern has a unique matrix that defines how objects are arranged. Understanding how these matrices are constructed and applied in scripts is crucial for creating dynamic and visually appealing scenes.
+
+### Matrix Basics
+
+A **transformation matrix** in 3D graphics is a 4x4 matrix that represents translation (movement), rotation, scaling, or a combination of these transformations. In KeyShot, these matrices are used to move (translate) objects into specific positions based on the pattern selected by the user.
+
+#### Identity Matrix
+
+Every transformation begins with an identity matrix, a special kind of matrix that doesn't alter the object when applied. It looks like this:
+
+```plaintext
+Identity Matrix = [
+ [1  0  0  0]
+ [0  1  0  0]
+ [0  0  1  0]
+ [0  0  0  1]
+]
+```
+
+In your script, create this matrix using:
+
+```python
+luxmath.Matrix().makeIdentity()
+```
+
+#### Translation
+
+Translation refers to moving an object from one place to another in 3D space. It's controlled by the x, y, and z offsets. In the script, the translation is applied to the identity matrix using:
+
+```python
+translate(offset)
+```
+
+This shifts the object by the specified `offset` vector, which contains the x, y, and z translation values.
+
+### Pattern Matrix Construction
+
+Each pattern (Spiral, Grid, Circle, Pyramid, etc.) has its own logic for calculating offsets, which determine where each object will be placed in 3D space. These offsets are then used to create a transformation matrix that is applied to each duplicate, positioning it correctly.
+
+### Examples of Pattern Matrix Calculations
+
+#### 1. Spiral Pattern Matrix
+
+```python
+def create_spiral_matrix(i, spacing, angle_increment, height_increment, direction, clockwise):
+    angle_increment = -angle_increment if clockwise else angle_increment
+    angle_rad = i * angle_increment * (math.pi / 180.0)
+    x_offset = math.sin(angle_rad) * spacing * i
+    y_offset = math.cos(angle_rad) * spacing * i + i * height_increment
+    z_offset = i * spacing
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Angle Calculation**: Converts the angle increment into radians and calculates the object's position along the spiral.
+- **Offset Calculation**: Uses sine and cosine functions to produce the spiral effect.
+- **Matrix Construction**: Applies the calculated offset to position the object in the spiral pattern.
+
+#### 2. Grid Pattern Matrix
+
+```python
+def create_grid_matrix(i, spacing, rows, cols, direction):
+    row = i // cols
+    col = i % cols
+    x_offset = col * spacing
+    z_offset = row * spacing
+    y_offset = 0
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Row and Column Calculation**: Determines the object's position within the grid using integer division and modulus operations.
+- **Offset Calculation**: Positions objects in a grid layout.
+- **Matrix Construction**: Translates the object into the grid pattern based on the calculated offsets.
+
+#### 3. Circle Pattern Matrix
+
+```python
+def create_circle_matrix(i, radius, num_duplicates, direction, clockwise):
+    angle_increment = -2 * math.pi / num_duplicates if clockwise else 2 * math.pi / num_duplicates
+    angle = i * angle_increment
+    x_offset = math.cos(angle) * radius
+    y_offset = math.sin(angle) * radius
+    z_offset = 0
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Angle Calculation**: Distributes the angle evenly around the circle.
+- **Offset Calculation**: Positions objects along the circle's circumference.
+- **Matrix Construction**: Translates each object to its position on the circle.
+
+#### 4. Pyramid Pattern Matrix
+
+```python
+def create_pyramid_matrix(i, spacing, base_width, direction):
+    layer = int((1 + math.sqrt(1 + 8 * i)) // 2)
+    index_in_layer = i - layer * (layer - 1) // 2
+    layer_width = max(base_width - layer + 1, 1)
+    row = index_in_layer // layer_width
+    col = index_in_layer % layer_width
+    x_offset = (col - (layer_width - 1) / 2) * spacing
+    y_offset = layer * spacing
+    z_offset = (row - (layer_width - 1) / 2) * spacing
+    offset = transform_direction(x_offset, y_offset, z_offset, direction)
+    return luxmath.Matrix().makeIdentity().translate(offset)
+```
+
+**Explanation:**
+- **Layer Calculation**: Determines the height of the object within the pyramid.
+- **Row and Column Calculation**: Arranges objects in a grid within each layer.
+- **Offset Calculation**: Positions the object based on its layer and grid position.
+- **Matrix Construction**: Translates the object to its correct position within the pyramid.
+
+### Summary of Pattern Matrix Operations
+
+1. **Identity Matrix**: All transformations begin with an identity matrix.
+2. **Offset Calculation**: Each pattern uses specific logic to calculate x, y, and z offsets.
+3. **Translation**: These offsets are used to create a translation matrix that positions each object.
+4. **Pattern-Specific Logic**: Each pattern has unique logic for spatial arrangements.
+
+### Scene Tree Management in KeyShot
+
+Understanding the scene tree in KeyShot is crucial for effectively scripting the translation and positioning of models and parts.
+
+#### Scene Tree Overview
+
+The scene tree is a hierarchical structure that organizes all the elements in a 3D scene. It includes models, groups, objects, and other elements. Each element is a node, and nodes can have different types, such as `MODEL`, `OBJECT`, or `GROUP`.
+
+#### Key Functions and Concepts
+
+1. **Getting the Scene Tree**:
+    - Use the following command to access the root of the scene tree:
+    ```python
+    root = lux.getSceneTree()
+    ```
+    - This returns the root node of the scene tree, enabling access and manipulation of all elements in the scene.
+
+2. **Finding Objects in the Scene**:
+    - To locate specific types of nodes within the scene tree:
+    ```python
+    types = (lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_MODEL)
+    for n in root.find("", types=types, depth=3):
+        if n != root:
+            objTxt.append(n.getName())
+            objRef.append(n)
+    ```
+    - This script searches for nodes of specified types up to a depth of 3 levels and stores them for later use.
+
+3. **Duplicating Objects**:
+    - Duplicates of objects can be created using:
+    ```python
+    dups = obj.duplicate(amount=amount)
+    ```
+    - This creates the specified number of duplicates, which can be individually transformed.
+
+4. **Transforming Objects**:
+    - After duplication, transform each duplicate using the selected pattern:
+    ```python
+    for i, dup in enumerate(dups, start=1):
+        transform_matrix = ...  # Create the transformation matrix based on the pattern
+        dup.applyTransform(transform_matrix)
+    ```
+    - The transformation matrix is calculated based on the selected pattern and applied to position the object.
+
+### Additional Transformations
+
+In some scenarios, additional transformations such as random rotation or scattering may be applied:
+
+```python
+# Apply Y-axis rotation
+rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(luxmath.Vector(0, 1, 0), math.radians(y_rotation))
+transform_matrix = transform_matrix.mul(rotation_matrix)
+
+# Apply scatter
+scatter_transform = scatter_matrix(scatter_x, scatter_y, scatter_z)
+transform_matrix = transform_matrix.mul(scatter_transform)
+
+dup.applyTransform(transform_matrix)
+```
+
+### Summary of Scene Tree Management
+
+1. **Scene Tree Access**: Begin by accessing the root of the scene tree.
+2. **Node Identification**: Identify specific nodes (models, objects, groups) using the `find` method.
+3. **Duplication**: Duplicate nodes based on user input.
+4. **Transformation**: Apply calculated transformations to position objects according to the selected pattern.
+5. **Additional Transformations**: Apply any extra transformations (rotation, scatter) as needed.
+
+### Case Studies and Examples
+
+#### Spiral Pattern Duplicator Script
+
+This script duplicates a selected model and arranges the duplicates in a spiral pattern. It includes options for spiral direction (clockwise or counterclockwise) and random rotation of duplicates.
+
+**Script Overview:**
+
+```python
+import os
+import sys
+import math
+from random import uniform, randint, choice
+
+def create_spiral_matrix(i, spacing, angle_increment, direction, clockwise):
+    angle_increment = -angle_increment if clockwise else angle_increment
+    angle_rad = i * angle_increment * (math.pi / 180.0)
+    if direction in ["X", "-X"]:
+        x_offset = i * spacing if direction == "X" else -i * spacing
+        y_offset = math.sin(angle_rad) * spacing * i
+        z_offset = math.cos(angle_rad) * spacing * i
+    elif direction in ["Y", "-Y"]:
+        x_offset = math.sin(angle_rad) * spacing * i
+        y_offset = i * spacing if direction == "Y" else -i * spacing
+        z_offset = math.cos(angle_rad) * spacing * i
+    elif direction in ["Z", "-Z"]:
+        x_offset = math.sin(angle_rad) * spacing * i
+        y_offset = math.cos(angle_rad) * spacing * i
+        z_offset = i * spacing if direction == "Z" else -i * spacing
+
+    return luxmath.Matrix().makeIdentity().translate(luxmath.Vector(x_offset, y_offset, z_offset))
+
+def main():
+    objTxt = []
+    objRef = []
+    root = lux.getSceneTree()
+    types = (lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_MODEL)
+    for n in root.find("", types=types, depth=3):
+        if n != root:
+            objTxt.append(n.getName())
+            objRef.append(n)
+
+    if len(objTxt) == 0:
+        raise Exception("No objects in the scene!")
+
+    opts = {
+        "object": inputItem("Object:", 0, objTxt),
+        "dups": inputInt("#Duplicates:", 4, (1, 4096)),
+        "spacing": inputInt("Spacing Between Duplicates:", 1.0, (0.1, 100.0)),
+        "angle": inputInt("Angle Increment (degrees):", 10.0, (0.1, 360.0)),
+        "direction": inputItem("Spiral Direction:", 0, ["X", "Y", "Z", "-X", "-Y", "-Z"]),
+        "clockwise": inputBool("Clockwise:", True),
+        "random_rotate": inputBool("Randomly Rotate Duplicates:", False)
+    }
+
+    obj = objRef[opts["object"][0]]
+    amount = opts["dups"]
+    spacing = opts["spacing"]
+    angle_increment = opts["angle"]
+    direction = opts["direction"][1]
+    clockwise = opts["clockwise"]
+    random_rotate = opts["random_rotate"]
+
+    dups = obj.duplicate(amount=amount)
+    if len(dups) == 0:
+        raise Exception("No duplicates could be created!")
+
+    for i, dup in enumerate(dups, start=1):
+        transform_matrix = create_spiral_matrix(i, spacing, angle_increment, direction, clockwise)
+        dup.applyTransform(transform_matrix)
+
+        if random_rotate:
+            rotation_axis = randaxis()
+            rotation_angle = uniform(0, 360)
+            rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(rotation_axis, rotation_angle)
+            dup.applyTransform(rotation_matrix)
+
+main()
+```
+
+#### Voxel-Based Island Script
+
+This script generates a voxel-based island environment using a 32x32 grid. It demonstrates how to use KeyShot’s Python API to navigate the scene tree, duplicate models, and apply transformations.
+
+**Script Overview:**
+
+```python
+import lux
+import luxmath
+import math
+import random
+
+def create_voxel_matrix(x, y, z, spacing):
+    return luxmath.Matrix().makeIdentity().translate(luxmath.Vector(x * spacing, y * spacing, z * spacing))
+
+def generate_island_height(x, z, width, depth):
+    center_x, center_z = width // 2, depth // 2
+    distance_from_center = math.sqrt((x - center_x) ** 2 + (z - center_z) ** 2)
+    max_distance = math.sqrt(center_x ** 2 + center_z ** 2)
+    distance_factor = 1 - (distance_from_center / max_distance)
+    max_height = 50
+    noise = random.uniform(-5, 5)
+    height = max_height * (distance_factor ** 2) + noise
+    return max(0, int(height))
+
+def is_surface_voxel(x, y, z, height_map, width, depth):
+    if y >= height_map[x][z] or y < 0:
+        return False
+    neighbors = [(x - 1, z), (x + 1, z), (x, z - 1), (x, z + 1), (x, z)]
+    for nx, nz in neighbors:
+        if nx < 0 or nx >= width or nz < 0 or nz >= depth:
+            continue
+        if y >= height_map[nx][nz]:
+            return True
+    return False
+
+def build_voxel_world(models, dimensions, spacing):
+    width, height, depth = dimensions
+    height_map = [[generate_island_height(x, z, width, depth) for z in range(depth)] for x in range(width)]
+    
+    max_height = max(max(row) for row in height_map)
+    
+    for x in range(width):
+        for z in range(depth):
+            for y in range(height):
+                if is_surface_voxel(x, y, z, height_map, width, depth):
+                    if y == height_map[x][z]:
+                        model = models.get("CubeGrass", None)
+                    elif y > height_map[x][z] * 0.7:
+                        model = models.get("CubeDirt", None)
+                    elif y > 0:
+                        model = models.get("CubeStone", None)
+                    else:
+                        model = models.get("CubeWater", None)
+                    
+                    if model:
+                        duplicated_model = model.duplicate(amount=1)[0]
+                        transform_matrix = create_voxel_matrix(x, y, z, spacing)
+                        duplicated_model.applyTransform(transform_matrix, absolute=False)
+
+def main():
+    root = lux.getSceneTree()
+    source_model_set_name = "SourceCubes"
+    source_model_set = root.find(source_model_set_name, types=[lux.NODE_TYPE_MODEL_SET])
+    
+    if not source_model_set:
+        raise Exception(f"No model set found with the name '{source_model_set_name}'.")
+
+    models = {}
+    for model in source_model_set[0].getChildren():
+        if model.getKind() == lux.NODE_TYPE_GROUP:
+            model_name = model.getName()
+            if model_name in ["CubeWater", "CubeStone", "CubeDirt", "CubeGrass"]:
+                models[model_name] = model
+
+    if not models:
+        raise Exception("No valid models found in the 'SourceCubes' model set.")
+    
+    dimensions = (32, 50, 32)  # Width, Height, Depth
+    
+    spacing = 1.0
+    build_voxel_world(models, dimensions, spacing)
+
+main()
+```
+
+
+## Understanding the Logic Behind Transformations in KeyShot Scripting
+
+In KeyShot, transforming models or parts within a 3D scene involves manipulating their position, orientation, and scale. Whether you're working with simple translations or complex matrices, understanding the underlying logic is crucial for precise control over how objects are moved and arranged in the scene.
+
+### 1. **The Transformation Matrix: A Deeper Dive**
+
+A **transformation matrix** is a versatile tool in 3D graphics, encapsulating translation, rotation, and scaling operations in a single 4x4 matrix. This matrix can be used to move objects within the 3D space efficiently and accurately.
+
+#### a. **Matrix Structure and Purpose**
+- A 4x4 matrix can represent various transformations:
+  - **Translation**: Moving an object to a new position.
+  - **Rotation**: Rotating an object around a given axis.
+  - **Scaling**: Changing the size of an object.
+
+- **Structure**:
+  - The first three rows and columns represent the rotation and scaling.
+  - The fourth column contains the translation vector (x, y, z).
+  - The fourth row is typically `[0, 0, 0, 1]`, ensuring proper matrix multiplication.
+
+#### b. **Combining Transformations**
+- **Order Matters**: The order in which transformations are applied affects the outcome. For instance, rotating an object and then translating it will produce a different result than translating it first and then rotating.
+- **Matrix Multiplication**: Multiple transformations can be combined into a single matrix using multiplication:
+    ```python
+    final_matrix = translation_matrix.mul(rotation_matrix).mul(scaling_matrix)
+    ```
+
+- **Applying the Matrix**: Once the final matrix is constructed, it is applied to the object:
+    ```python
+    obj.applyTransform(final_matrix)
+    ```
+
+### 2. **Simple Translations: Moving Objects Without Rotation or Scaling**
+
+When your goal is to move an object without changing its orientation or size, simple translations are often sufficient. These operations involve shifting an object's position along the x, y, and z axes by specific amounts.
+
+#### a. **Translation Logic**
+- **Translation Vector**: This is a vector that defines how far and in what direction the object should move. For example, a vector `[x_offset, y_offset, z_offset]` moves the object by `x_offset` units along the x-axis, `y_offset` units along the y-axis, and `z_offset` units along the z-axis.
+  
+- **Example**: Moving an object 10 units along the x-axis and 5 units along the y-axis:
+    ```python
+    translation_vector = luxmath.Vector(10, 5, 0)
+    transform_matrix = luxmath.Matrix().makeIdentity().translate(translation_vector)
+    obj.applyTransform(transform_matrix)
+    ```
+
+- **Using Only Translation**: When no rotation or scaling is needed, the transformation matrix is essentially the identity matrix with the translation vector applied.
+
+#### b. **Applying Sequential Translations**
+- **Sequential Moves**: If you need to move an object multiple times in different directions, you can apply multiple translations sequentially:
+    ```python
+    translation1 = luxmath.Matrix().makeIdentity().translate(luxmath.Vector(10, 0, 0))
+    translation2 = luxmath.Matrix().makeIdentity().translate(luxmath.Vector(0, 5, 0))
+    
+    obj.applyTransform(translation1)
+    obj.applyTransform(translation2)
+    ```
+
+- **Combining Translations**: Alternatively, combine the translation vectors before applying:
+    ```python
+    combined_translation = luxmath.Vector(10, 0, 0) + luxmath.Vector(0, 5, 0)
+    combined_matrix = luxmath.Matrix().makeIdentity().translate(combined_translation)
+    obj.applyTransform(combined_matrix)
+    ```
+
+### 3. **Rotations: Changing the Orientation of Objects**
+
+Rotation changes the orientation of an object around a specific axis. In KeyShot, rotations are often combined with translations to move and orient objects correctly within a scene.
+
+#### a. **Rotation Logic**
+- **Rotation Axis**: Defines the line around which the object rotates. Common axes are the x, y, and z axes.
+  
+- **Rotation Angle**: The degree by which the object should rotate around the axis.
+
+- **Example**: Rotating an object 45 degrees around the z-axis:
+    ```python
+    rotation_axis = luxmath.Vector(0, 0, 1)
+    rotation_angle = math.radians(45)
+    rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(rotation_axis, rotation_angle)
+    obj.applyTransform(rotation_matrix)
+    ```
+
+#### b. **Combining Rotations and Translations**
+- **Rotation First, Then Translation**: This sequence rotates the object in its original position, then moves it:
+    ```python
+    combined_matrix = rotation_matrix.mul(translation_matrix)
+    obj.applyTransform(combined_matrix)
+    ```
+
+- **Translation First, Then Rotation**: This moves the object to a new position first, then rotates it around the new position:
+    ```python
+    combined_matrix = translation_matrix.mul(rotation_matrix)
+    obj.applyTransform(combined_matrix)
+    ```
+
+### 4. **Scaling: Resizing Objects**
+
+Scaling changes the size of an object along the x, y, and z axes. While scaling is less commonly used in animation scripts, it's essential to understand how to apply it when needed.
+
+#### a. **Scaling Logic**
+- **Uniform Scaling**: The object is resized equally along all axes.
+- **Non-Uniform Scaling**: Different scaling factors are applied along each axis.
+
+- **Example**: Scaling an object by a factor of 2 along all axes:
+    ```python
+    scaling_matrix = luxmath.Matrix().makeIdentity().scale(2)
+    obj.applyTransform(scaling_matrix)
+    ```
+
+#### b. **Combining Scaling with Other Transformations**
+- **Scale and Rotate**: To scale and then rotate an object:
+    ```python
+    combined_matrix = scaling_matrix.mul(rotation_matrix)
+    obj.applyTransform(combined_matrix)
+    ```
+
+- **Order of Operations**: As with rotations and translations, the order in which you apply scaling affects the final transformation.
+
+### 5. **Common Transformation Scenarios**
+
+#### a. **Moving an Object to a Specific Position**
+To move an object to an absolute position in the scene:
+```python
+target_position = luxmath.Vector(50, 25, 10)
+transform_matrix = luxmath.Matrix().makeIdentity().translate(target_position)
+obj.applyTransform(transform_matrix, absolute=True)
+```
+
+This script sets the object's position directly to the target coordinates.
+
+#### b. **Moving an Object Relative to Its Current Position**
+To move an object by an offset relative to its current position:
+```python
+offset = luxmath.Vector(10, 5, 0)
+transform_matrix = luxmath.Matrix().makeIdentity().translate(offset)
+obj.applyTransform(transform_matrix, absolute=False)
+```
+
+This script shifts the object by the specified offset from its current location.
+
+#### c. **Rotating an Object Around Its Current Position**
+To rotate an object around its current center:
+```python
+rotation_axis = luxmath.Vector(0, 1, 0)  # Rotate around the Y-axis
+rotation_angle = math.radians(30)
+rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(rotation_axis, rotation_angle)
+obj.applyTransform(rotation_matrix)
+```
+
+This rotates the object by 30 degrees around the Y-axis.
+
+### 6. **Key Takeaways for Effective Transformation Scripting**
+
+- **Start with an Identity Matrix**: Always begin transformations with an identity matrix, ensuring a clean starting point.
+- **Order Matters**: The sequence in which you apply translation, rotation, and scaling affects the final result.
+- **Use Absolute vs. Relative Transforms Wisely**: Absolute transforms move objects to a specific position, while relative transforms move them based on their current position.
+- **Test Incrementally**: When applying complex transformations, test them incrementally to verify each step.

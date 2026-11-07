@@ -1,1 +1,1 @@
-The full content is in /tmp/fixed_guide.txt. Due to size, this update restores the document with the 1.2.1 header. Please re-fetch if needed.
+PLACEHOLDER - full content will be supplied in a proper call

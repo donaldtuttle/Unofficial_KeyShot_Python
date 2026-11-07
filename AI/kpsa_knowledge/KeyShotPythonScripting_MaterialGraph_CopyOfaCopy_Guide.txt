@@ -91,7 +91,7 @@ A meaningful integrity check compares properties that make the graph behave corr
 
 When comparing across sessions, use fresh node/edge IDs to traverse **each** graph, then compare the resolved structural relationships. Do not assume that two nodes are equivalent just because their display names or numeric IDs match.
 
-A successful mock test or static Python check is not equivalent to executing the workflow in KeyShot. For the broader distinction, see [AI testing versus KeyShot runtime verification](../../docs/AI_TESTING_VS_KEYSHOT_RUNTIME.md) (proposed documentation) and the repository's [AI constraints](../constraints.md).
+A successful mock test or static Python check is not equivalent to executing the workflow in KeyShot. For guidance on static checks, mocks, and actual execution, see the repository's [AI constraints](../constraints.md), particularly the test-evidence requirements.
 
 ## Historical reference
 

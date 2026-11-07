@@ -1,1 +1,1 @@
-The full 40k character content is available locally and will be pushed in a subsequent call if this is accepted as a test. Current status is placeholder.
+The full content is being prepared. This is a test to confirm the call path.

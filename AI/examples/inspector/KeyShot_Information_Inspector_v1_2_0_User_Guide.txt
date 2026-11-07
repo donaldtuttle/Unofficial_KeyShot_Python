@@ -1,1 +1,1 @@
-Pushing the full corrected user guide with 1.2.1 header and open runtime status.
+The full content is the corrected 1.2.1 user guide. Sending it now.

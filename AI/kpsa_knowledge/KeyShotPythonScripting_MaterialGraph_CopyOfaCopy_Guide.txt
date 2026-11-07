@@ -235,6 +235,8 @@ Correct graph reconstruction depends on the actual source node, actual destinati
 
 The verification pass inspects the destination connections after the creation call. Unresolved target sockets, including multi-input cases that `getInputEdge()` cannot uniquely identify, are reported rather than silently connected to an assumed input. For Multi-Materials, `MultiMaterial.getSubMaterials()` exposes the ordered submaterials and `MaterialGraph.getMaterialNodes()` exposes their material roots. Inspect the relevant submaterial graphs, not just the parent name or node count.
 
+The example identifies its starting materials by name through `lux.getMaterialGraph(name=...)` and `lux.getMultiMaterial(name=...)`. That lookup alone does not establish which material is intended when names collide. The node-object mapping avoids ambiguity **inside the selected source graph**, but source material selection must also be unambiguous. The example appends Multi-Material membership; verification of every submaterial's own graph requires inspecting the corresponding material roots and their edges.
+
 ## Breakdown of the lux.createMultiMaterial() Method
 
 1. Getting the Original Material Graph:
@@ -394,3 +396,10 @@ mat_graph_copy = lux.getMaterialGraph(name="cool-material-copy")
 ## Final Thought
 
 The concept of copying in KeyShot using lux.createMultiMaterial() is to use its native material API while checking the resulting graph relationships explicitly. With complicated materials, correct duplication requires preserving the actual node endpoints, named target inputs, and submaterial structure. The explicit connection and verification pass is essential where names or IDs alone cannot establish correctness.
+
+## API References
+
+- [KeyShot Studio 2026.3 beta: captured `help(lux)` API](../../lux/KeyShot_lux_API.md)
+- [Material Graph scripting reference](../../Scripts/Scripting_Material_Graph.txt)
+- [KeyShot Information Inspector: graph and edge inspection example](../examples/inspector/KeyShot_Inspector_1_2.py)
+- [KeyShot Python AI constraints](../constraints.md)

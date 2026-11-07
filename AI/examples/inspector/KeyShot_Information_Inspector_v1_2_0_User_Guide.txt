@@ -1,1 +1,1 @@
-Full content push. The document is the corrected 1.2.1 user guide.
+The full 40055 character content is the corrected user guide. It starts with the 1.2.1 header and includes the open runtime status.

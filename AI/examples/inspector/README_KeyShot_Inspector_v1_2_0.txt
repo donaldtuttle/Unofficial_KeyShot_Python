@@ -1,15 +1,17 @@
-Mock suite: 28 tests, ordinary Python, mocked lux. Passed on commit 2c556133.
-Removed in 1.2.1: test_native_animation_objects_are_never_invoked.
-PR #10 recorded 29 for 1.2.0. That count does not apply to 1.2.1.
-A KeyShot run of 1.2.1 has not been done. Record the build, the scene, and the result when it is.
-
-Companion files keep the 1.2.0 names. They cover the 1.2.1 repair.
-1.2.1 repair: animation-name teaching removed. Checker-clean on that commit. Not a new KeyShot runtime test of 1.2.0.
-
-KEYSHOT INFORMATION INSPECTOR 1.2.0 — COMMUNITY RELEASE
+KEYSHOT INFORMATION INSPECTOR 1.2.1 — COMMUNITY RELEASE
 =======================================================
 Unofficial Python diagnostic tool for KeyShot 2026.x GUI.
 Primary script: KeyShot_Inspector_1_2.py
+
+RELEASE STATUS
+--------------
+Current version: 1.2.1 (repair of 1.2.0)
+Change in 1.2.1: animation-name teaching removed.
+Offline mock tests: 28 passed (ordinary Python, mocked lux).
+KeyShot GUI runtime test of 1.2.1: outstanding.
+Animation API probe: outstanding.
+See RUNTIME_CHECKS.md for the open checks and recording template.
+Companion files retain 1.2.0 filenames; they cover this 1.2.1 repair.
 
 QUICK START
 -----------
@@ -40,7 +42,6 @@ IMPORTANT SAFETY INFORMATION
 * Restoring the selected item may not reverse all transient side effects.
 * All-camera scan refuses when the current camera has unsaved changes, or
   when its unsaved status cannot be checked. Use a saved scene copy.
-  reported KeyShot crashes. Availability inventory is not execution.
 * "Allow slow scans" is independently required for library inventories,
   Resource Models scan, full tree dump and library CMF lookup.
 * "Exhaustive output" lifts most scene/material/shader/section limits and
@@ -67,11 +68,13 @@ VERIFICATION
 ------------
 Documentation and category labels cross-checked against the bundled
 KeyShot_Inspector_1_2.py source.
-Offline regression tests exist, but native KeyShot crashes cannot be
-simulated or ruled out. The user should validate on their own 2026.x build.
+Offline regression tests exist. Native KeyShot crashes cannot be
+simulated or ruled out. The 1.2.1 bytes have not yet had a KeyShot GUI run.
+The user should validate on their own 2026.x build.
 
 Files included in this GitHub folder:
-- KeyShot_Inspector_1_2.py (Python script)
+- KeyShot_Inspector_1_2.py (Python script, version 1.2.1)
 - KeyShot_Information_Inspector_v1_2_0_User_Guide.txt (full guide)
 - README_KeyShot_Inspector_v1_2_0.txt (quick start)
 - test_KeyShot_Information_Inspector_v1_2_0.py (offline tests)
+- RUNTIME_CHECKS.md (open runtime checks)

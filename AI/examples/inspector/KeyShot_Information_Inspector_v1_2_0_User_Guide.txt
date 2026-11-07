@@ -3,7 +3,7 @@
 **Unofficial community utility · KeyShot 2026.x · Python script · GUI only**  
 **First public-release guide:** 2026-10-23 · **Current script:** `KeyShot_Inspector_1_2.py` (version 1.2.1)
 
-> **Purpose:** An inspection and diagnostic utility for KeyShot 2026.x with **74 selectable report operations across 12 categories**. Generate console output, a UTF-8 `.txt` report, or both. Ordinary reports are scene-read-only. Optional all-saved-item inventories temporarily change the active camera, environment, or image style, and attempt to restore it. This guide covers the 1.2.1 repair of the first community release (animation-name teaching removed). Offline mock tests passed. KeyShot GUI runtime test of 1.2.1 remains outstanding (see RUNTIME_CHECKS.md). The script has not been certified crash-free across live KeyShot scenes.
+> **Purpose:** An inspection and diagnostic utility for KeyShot 2026.x with **74 selectable report operations across 12 categories**. Generate console output, a UTF-8 `.txt` report, or both. Ordinary reports are scene-read-only. Optional all-saved-item inventories temporarily change the active camera, environment, or image style, and attempt to restore it. This guide covers the 1.2.1 repair of the first community release (animation-name teaching removed). Offline mock tests passed. Inspector v1.2.0 and v1.2.1 were tested in KeyShot by the author and confirmed working (see RUNTIME_CHECKS.md). The script has not been certified crash-free across live KeyShot scenes.
 
 ## Background and motivation
 

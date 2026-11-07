@@ -35,3 +35,5 @@ Use each module's own capture to verify calls. Guides and historical examples pr
 ## Shared documentation
 
 The seven `.txt` guides in this folder are identical copies of the matching files in `AI/kpsa_knowledge/`. That location remains available to existing AI configurations and links. When updating a shared guide, keep both copies synchronized.
+
+Some guides retain `../constraints.md` references from their original location in `AI/kpsa_knowledge/`. When reading these copies in `docs/`, use [AI/constraints.md](../AI/constraints.md).

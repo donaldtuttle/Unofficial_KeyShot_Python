@@ -1,3 +1,42 @@
+# Copy of a Copy: tested workflow and API accuracy notes
+
+**Provenance:** The author developed this workflow using an existing, working KeyShot script as a reference and reports testing the workflow inside KeyShot. That testing history must not be relabeled as a mere AI mock or an untested idea. The original v1.3.6 text is preserved verbatim under [archive/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide_v1.3.6_HISTORICAL.txt](archive/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide_v1.3.6_HISTORICAL.txt).
+
+**Scope of this revision:** Documentation/API audit only. No new KeyShot runtime execution has been performed in this revision, and the historical code below has not been changed or declared broken. The user's working reference implementation and actual test results have greater evidentiary weight for observed behavior than an AI-only static check.
+
+## What must be preserved
+
+- Copying materials, multi-material membership, and submaterial material graphs are separate operations; do not collapse them into a single generic clone operation.
+- The deliberate additional node/connection pass is important: it resolves and checks graph relationships where material and node names may be duplicated or absent.
+- Node and material IDs can be dynamically reassigned when a file is reopened. Use IDs to identify actual instances **within the relevant runtime/session**, never as stable cross-session matching keys.
+- Reconstruct and check *which node is wired to which target parameter*, not just whether expected node counts or names are present.
+- Do not remove a seemingly redundant pass or rewrite existing working behavior without establishing the exact behavior of the working reference and testing the revised script inside KeyShot.
+
+## 2026.3 beta API reference review (not a runtime failure report)
+
+The captured [`help(lux)` reference](../../lux/KeyShot_lux_API.md) documents:
+
+| Call or claim in historical v1.3.6 | What the captured API actually says | Action when revising executable code |
+| --- | --- | --- |
+| `lux.createMultiMaterial(name=..., mat=...)` | Supported; creates a multi-material based on an existing material | Retain, and inspect the resulting graph and submaterial structure in the target scene |
+| `MaterialGraph.newEdge(source, target, param)` | `param` is the **target parameter** receiving the connection | Resolve the target parameter explicitly; do not assume edge ID supplies it |
+| `edge.getID()` used as `param` | `ShaderEdge.getID()` returns the **edge ID** | Avoid conflating edge identity with the destination socket/parameter |
+| `parameter.getID()` | No such method is listed under `ShaderParameter`; `getName()` is listed | Confirm the actual target build and use its supported parameter lookup interface |
+| `node.getType()` passed to `newNode()` | `getType()` is documented as containing shader type name and human-friendly name; `newNode()` expects a shader type | Inspect the actual return representation before passing it to `newNode()` |
+| `getValue()`/`setValue()` for every parameter | Pure parameters cannot get or set a concrete value; `isPure()` is documented | Check purity and parameter type before attempting a value copy |
+| Complete independence and automatic preservation of every graph edge | These outcomes are stronger than the documented `createMultiMaterial()` signature alone | Preserve verified observations, but test the specific source/destination graph and connected inputs |
+| `copy.deepcopy()` necessarily works through pickling | Python's deep-copy process is not identical to pickling | Avoid this generalization; directly test supported KeyShot objects if it matters |
+
+**Important:** These notes identify potential discrepancies between the *historical text* and the recorded API. They do **not** contradict the author's report that a working KeyShot reference script was tested. In particular, the API check does not establish that the repository's historical illustrative function is byte-for-byte the same implementation the author successfully tested.
+
+## Verification standard for future changes
+
+For any *new* revised executable version: run on a saved test scene in the designated KeyShot build, include duplicate material names and blank/duplicate node names, inspect edges by actual endpoints and target parameters, verify multi-material/submaterial membership, and save/reopen to verify graph structure without relying on old dynamic IDs. Record which build, script revision, scene, and results were tested. Preserve the original tested reference and its behavior.
+
+---
+
+# Original guide and v1.3.6 source (retained without code changes)
+
 ### KeyShotPythonScripting MaterialGraph Copy Of A Copy Guide
 
 ## Table of Contents

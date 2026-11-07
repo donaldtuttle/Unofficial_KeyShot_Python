@@ -12,6 +12,7 @@ KeyShot GUI runtime testing: the author tested v1.2.0 and v1.2.1 and confirmed b
 Animation API probe: separate API investigation; not an Inspector release requirement.
 See RUNTIME_CHECKS.md for testing status and the separate animation API investigation.
 Companion files retain 1.2.0 filenames; they cover this 1.2.1 repair.
+Some dialog titles and report labels also retain 1.2.0 in the current source.
 
 QUICK START
 -----------
@@ -25,7 +26,7 @@ QUICK START
 ABOUT THE GUIDE
 ---------------
 Read KeyShot_Information_Inspector_v1_2_0_User_Guide.txt for:
-* What every one of the 74 selectable operations retrieves and why it is useful.
+* What every one of the 72 selectable operations retrieves and why it is useful.
 * The difference between category mode and Individual Gets mode.
 * The optional all-saved-camera, environment and image-style inventories.
 * Output limits, large-scene performance, and optional Exhaustive mode.
@@ -60,9 +61,11 @@ Optional <report_name>.metadata and <report_name>.xmp (non-overwriting).
 
 REPORT COVERAGE
 ---------------
-12 categories, 74 selectable report operations.
-2026 reference contains 59 non-dialog top-level information get* methods;
-the two native animation-object get calls are intentionally hard blocked.
+12 categories, 72 selectable report operations in the v1.2.1 registry.
+The API availability report checks the names in GETTERS_2026 without
+executing them; it is not an exhaustive inventory of every API getter.
+Native animation-object enumeration is not a selectable report in v1.2.1.
+Advanced animation reports use scene-tree traversal instead.
 
 VERIFICATION
 ------------

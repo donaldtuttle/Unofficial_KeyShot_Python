@@ -8,9 +8,9 @@ RELEASE STATUS
 Current version: 1.2.1 (repair of 1.2.0)
 Change in 1.2.1: animation-name teaching removed.
 Offline mock tests: 28 passed (ordinary Python, mocked lux).
-KeyShot GUI runtime test of 1.2.1: outstanding.
-Animation API probe: outstanding.
-See RUNTIME_CHECKS.md for the open checks and recording template.
+KeyShot GUI runtime testing: the author tested v1.2.0 and v1.2.1 and confirmed both working.
+Animation API probe: separate API investigation; not an Inspector release requirement.
+See RUNTIME_CHECKS.md for testing status and the separate animation API investigation.
 Companion files retain 1.2.0 filenames; they cover this 1.2.1 repair.
 
 QUICK START
@@ -68,8 +68,9 @@ VERIFICATION
 ------------
 Documentation and category labels cross-checked against the bundled
 KeyShot_Inspector_1_2.py source.
-Offline regression tests exist. Native KeyShot crashes cannot be
-simulated or ruled out. The 1.2.1 bytes have not yet had a KeyShot GUI run.
+The author tested v1.2.0 and v1.2.1 in KeyShot and confirmed both working.
+Offline regression tests are separate from that KeyShot runtime testing.
+Native KeyShot crashes cannot be simulated or ruled out by offline tests.
 The user should validate on their own 2026.x build.
 
 Files included in this GitHub folder:
@@ -77,4 +78,4 @@ Files included in this GitHub folder:
 - KeyShot_Information_Inspector_v1_2_0_User_Guide.txt (full guide)
 - README_KeyShot_Inspector_v1_2_0.txt (quick start)
 - test_KeyShot_Information_Inspector_v1_2_0.py (offline tests)
-- RUNTIME_CHECKS.md (open runtime checks)
+- RUNTIME_CHECKS.md (testing status and separate animation API investigation)

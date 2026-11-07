@@ -1,40 +1,44 @@
-# Material Graph Duplication — createMultiMaterial
+# Material graph duplication: copy, then verify
 
-KeyShot material graphs cannot be copied with Python copy/deepcopy.
-lux.MaterialGraph is not serializable.
+Target reference: KeyShot Studio 2026.3 beta.
 
-Use lux.createMultiMaterial() to duplicate a material graph.
-The new material receives new node IDs and is fully independent.
+The documented native operation is lux.createMultiMaterial(name=copy_name,
+mat=source_name): create a new Multi-Material based on an existing material.
+Both arguments are required. If mat is a list, only its first entry is documented
+as the cloning source. MaterialGraph.clone() is not declared in this capture.
+Python copy/deepcopy is not a documented KeyShot graph-copy operation.
 
-## Pattern
+Keep the post-copy connection-verification pass. The original workflow needs it
+to check that the intended nodes/material roots are connected using their
+current IDs. A successful copy call, newEdge call or changed ID is not enough.
 
-```python
-import lux
+Node names can be empty or duplicated. DT reports that IDs are reassigned when
+a scene is reopened. Use names as labels and current graph-scoped IDs/object
+references for identity. Refresh after copying/linking and rebuild the mapping
+after reopening; do not persist an ID or select the first matching display name.
 
-source_name = "cool-material"
-copy_name = "cool-material-copy"
+For Multi-Materials, getMaterialNodes() exposes individual sub-material roots.
+Read each root and inspect its graph connections; do not assume names or root
+list positions provide a reliable source-to-copy map. A native copying call has
+no documented node-map return. If correspondence cannot be established, report
+verification incomplete rather than inferring a mapping.
 
-# Optional: inspect original
-graph = lux.getMaterialGraph(name=source_name)
+For every copied edge, verify the mapped source ID, target ID, internal target
+parameter name and enabled state using both endpoint edge lists and
+getInputEdge(parameter=name). ShaderEdge.getID() is not documented as a target
+parameter name. ShaderParameter exposes getName(), not getID().
 
-# Duplicate
-lux.createMultiMaterial(name=copy_name, mat=source_name)
+Material independence, exact property/texture preservation and rendered
+appearance require separate observations. Different IDs alone do not establish
+independence. Do not describe a copy as fully independent on declaration evidence.
+Do not append a Multi-Material container as an assumed leaf sub-material or
+rewrite a tested manual reconstruction stage without verifying its purpose.
 
-# Work with the independent copy
-graph_copy = lux.getMaterialGraph(name=copy_name)
-# Modify graph_copy freely — original is unaffected
-```
+The full guide contains the complete read-only post-copy verifier, integration
+steps, corrections to the former example and a runtime acceptance checklist:
+[Material Graph Copy of a Copy](../kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt).
 
-## Why this works
-
-- createMultiMaterial clones the full graph (shaders, textures, edges, parameters).
-- New node IDs are assigned internally.
-- Connections are preserved in the copy.
-- Changes to the copy do not affect the source.
-
-## Notes
-
-- Node IDs are session-specific and change after the copy.
-- Prefer names over IDs when referencing materials or nodes.
-- After graph operations, re-query and verify edges/parameters.
-- Use only lux / luxmath + stdlib.
+API source: lux/KeyShot_lux_API.md at repository revision
+41a5aa8897557ab1115e7b087b5e989f25d16116. The source declarations and offline
+checks do not establish KeyShot runtime success. No scene assignments, active
+sub-material changes, cleanup or saving belong in a read-only verification pass.

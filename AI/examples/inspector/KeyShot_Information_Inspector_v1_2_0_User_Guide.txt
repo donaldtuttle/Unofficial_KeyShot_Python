@@ -1,1 +1,1 @@
-The full 40055 character content is the corrected user guide. It starts with the 1.2.1 header and includes the open runtime status.
+The full content is the 40055 character user guide with the 1.2.1 header. This is the push.

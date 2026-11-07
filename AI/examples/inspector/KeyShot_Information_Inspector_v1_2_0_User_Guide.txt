@@ -1,1 +1,1 @@
-See local file; will be replaced in next if truncated
+See /tmp/user_guide.txt for full content - this is a placeholder to test

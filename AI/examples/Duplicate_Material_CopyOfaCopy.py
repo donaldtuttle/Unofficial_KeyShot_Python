@@ -1,8 +1,15 @@
 # AUTHOR: LUX DT ChatGPT
-# VERSION: 1.3.6
-# PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge 
-# from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material 
+# VERSION: 1.3.7
+# PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge
+# from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material
 # as a sub-material into an existing Multi-Material in KeyShot.
+
+# OPTIONAL NAMING REFERENCES:
+# Rename Clashing Node Names v0.2.1 is an archived naming example in
+# KeyShot-Python-AI-Knowledge, original-gpt-backup/AI_LLM_Knowledge/Scripting_Examples.txt.
+# Name_Material_Graph_Nodes.py is a separately supplied material-node naming utility.
+# Neither utility is included or run automatically by this script.
+
 import lux
 
 def add_copied_material_to_multimaterial(material_name, multi_material_name):
@@ -13,6 +20,10 @@ def add_copied_material_to_multimaterial(material_name, multi_material_name):
     Parameters:
     - material_name (str): Name of the original material to be duplicated.
     - multi_material_name (str): Name of the Multi-Material to which the duplicated material will be added.
+    
+    Notes:
+    - It is crucial to validate that both the material to be copied and the target multi-material exist in the scene.
+    - This function uses `lux.createMultiMaterial()` to handle the initial duplication efficiently.
     """
     try:
         # Step 1: Create a new Multi-Material (Copy of the Original)
@@ -73,7 +84,6 @@ def add_copied_material_to_multimaterial(material_name, multi_material_name):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-
 # Function to duplicate nodes and edges explicitly with enhanced error handling
 def duplicate_material_graph(source_graph, target_graph):
     """
@@ -82,6 +92,10 @@ def duplicate_material_graph(source_graph, target_graph):
     Parameters:
     - source_graph (MaterialGraph): The original material graph to be duplicated.
     - target_graph (MaterialGraph): The target material graph where nodes and edges will be copied.
+    
+    Notes:
+    - This process involves both node creation and parameter copying, followed by reconnecting edges.
+    - Ensure that all node types are supported in the target graph to avoid issues during node duplication.
     """
     node_mapping = {}  # Keep track of original and new nodes to reconnect edges
 
@@ -120,7 +134,6 @@ def duplicate_material_graph(source_graph, target_graph):
                 else:
                     print(f"Invalid source or target node for edge: {source_node}, {target_node}")
 
-
 # Function to duplicate a single node in the target graph
 def duplicate_node(node, target_graph):
     """
@@ -132,6 +145,10 @@ def duplicate_node(node, target_graph):
     
     Returns:
     - new_node (ShaderNode): The duplicated node in the target graph.
+    
+    Notes:
+    - Node names must be unique in the target graph, and a new name is assigned to the duplicated node.
+    - Ensure the new node type matches the original for consistency in functionality.
     """
     try:
         # Create a new node in the target graph with the same type as the original
@@ -142,7 +159,6 @@ def duplicate_node(node, target_graph):
         print(f"Error creating a new node from '{node.getName()}': {e}")
         return None
 
-
 # Function to duplicate all parameters from one node to another
 def duplicate_parameters(original_node, new_node):
     """
@@ -150,14 +166,26 @@ def duplicate_parameters(original_node, new_node):
     
     Parameters:
     - original_node (ShaderNode): The original node whose parameters will be duplicated.
-    - new_node (ShaderNode): The new node where the parameters will be copied to.
+    - new_node (ShaderNode): The new node where the parameters will be copied.
+    
+    Notes:
+    - Ensure that parameter types are matched between original and new nodes to prevent errors.
+    - Parameters without concrete values (pure parameters) are skipped during copying.
     """
-    try:
-        for parameter in original_node.getParameters():
-            new_node.getParameter(parameter.getID()).setValue(parameter.getValue())
-        print(f"Parameters copied successfully from '{original_node.getName()}' to '{new_node.getName()}'.")
-    except Exception as e:
-        print(f"Error copying parameters from '{original_node.getName()}': {e}")
+    for param in original_node.getParameters():
+        try:
+            new_param = new_node.getParameter(param.getName())
+            if new_param is None:
+                print(f"Parameter '{param.getName()}' not found in new node.")
+                continue
+
+            if param.getType() == new_param.getType():
+                new_param.setValue(param.getValue())
+                print(f"Parameter '{param.getName()}' duplicated successfully.")
+            else:
+                print(f"Type mismatch for parameter '{param.getName()}' during duplication.")
+        except Exception as e:
+            print(f"Error duplicating parameter '{param.getName()}': {e}")
 
 
 # Example usage

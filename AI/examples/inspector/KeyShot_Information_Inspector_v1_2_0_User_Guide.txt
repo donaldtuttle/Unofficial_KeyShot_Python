@@ -1,9 +1,11 @@
-# KeyShot Information Inspector v1.2.0 — Complete User Guide
+# KeyShot Information Inspector v1.2.1 — Complete User Guide
 
 **Unofficial community utility · KeyShot 2026.x · Python script · GUI only**  
-**First public-release guide:** 2026-10-23 · **Script covered:** `KeyShot_Inspector_1_2.py` (version 1.2.0)
+**First public-release guide:** 2026-10-23 · **Current script:** `KeyShot_Inspector_1_2.py` (version 1.2.1)
 
-> **Purpose:** An inspection and diagnostic utility for KeyShot 2026.x with **74 selectable report operations across 12 categories**. Generate console output, a UTF-8 `.txt` report, or both. Ordinary reports are scene-read-only. Optional all-saved-item inventories temporarily change the active camera, environment, or image style, and attempt to restore it. This is the complete guide for the first community release, **v1.2.0**, not a change log or an addendum. The script has passed offline tests but has not been certified crash-free across live KeyShot scenes.
+> **Purpose:** An inspection and diagnostic utility for KeyShot 2026.x with **72 selectable report operations across 12 categories**. Generate console output, a UTF-8 `.txt` report, or both. Ordinary reports are scene-read-only. Optional all-saved-item inventories temporarily change the active camera, environment, or image style, and attempt to restore it. This guide covers the 1.2.1 repair of the first community release (animation-name teaching removed). Offline mock tests passed. Inspector v1.2.0 and v1.2.1 were tested in KeyShot by the author and confirmed working (see RUNTIME_CHECKS.md). The script has not been certified crash-free across live KeyShot scenes.
+
+The v1.2.1 source retains some v1.2.0 dialog titles, report labels, and companion filenames. The counts below describe the current selectable operation registry; those retained labels do not establish that a different script was loaded.
 
 ## Background and motivation
 
@@ -49,7 +51,7 @@ The script deliberately limits Individual Gets to one category per run to avoid 
 | **Individual Gets mode** | Choose specific report operations within one category. |
 | **Category for Individual Gets mode** | Category dropdown; used only when Individual Gets is checked. |
 | **Max scene nodes to inspect** | Default `700`; limits `walk_scene()`-based hierarchy/transform/metadata/animation reports. Truncated results are possible on large scenes. |
-| **Max nodes for per-node animation scan** | **Known v1.2.0 limitation:** this field currently is not used by any reporter. Adjust `Max scene nodes to inspect` instead. |
+| **Max nodes for per-node animation scan** | **Known v1.2.0/v1.2.1 limitation:** this field currently is not used by any reporter. Adjust `Max scene nodes to inspect` instead. |
 | **Max output per GET (KB)** | Default `18`; truncates each operation's *formatted text* (after the getter executes). It does not necessarily limit native API work. |
 | **Allow slow scans / library loading** | Default OFF. Required for Resource Models disk scan, all-library inventories, `dumpTree()` output, and library CMF metadata. |
 | **Allow advanced animation scene-tree scanning** | Default OFF. Required for animation node hierarchy and current-frame animated-parent bounds. Not required for basic animation duration/time/frame. |
@@ -57,7 +59,7 @@ The script deliberately limits Individual Gets to one category per run to avoid 
 | **Exhaustive output: no scene/material/section caps** | Default OFF. Removes most inspection and formatted-output limits. May take significant time, memory, and disk space. Resource Models disk scan remains separately bounded. |
 | **Optional library material for CMF metadata** | Exact name of **one material in the KeyShot material library**, used only when the CMF operation is selected and slow scans are enabled. Default placeholder is not an actual material selection. |
 
-**Standard internal limits:** material graph reporters inspect up to **40 scene materials** and **120 shader nodes per material**; `getObjectMaterial()` uses up to **100 object IDs**. The **Exhaustive output** checkbox lifts those scene/material/shader/section and object-ID caps (and can generate huge reports). It does **not** remove the Resource Models filesystem limits of **150 directories / 300 matches**, unblock library scans, or unblock the two native animation-object getters. Output caps only constrain data formatting after some native calls have completed.
+**Standard internal limits:** material graph reporters inspect up to **40 scene materials** and **120 shader nodes per material**; `getObjectMaterial()` uses up to **100 object IDs**. The **Exhaustive output** checkbox lifts those scene/material/shader/section and object-ID caps (and can generate huge reports). It does **not** remove the Resource Models filesystem limits of **150 directories / 300 matches**, unblock library scans, or enable native animation-object enumeration. Those native getters are not offered as selectable reports in v1.2.1. Output caps only constrain data formatting after some native calls have completed.
 
 ## 5. Suggested starting presets
 
@@ -71,13 +73,13 @@ The script deliberately limits Individual Gets to one category per run to avoid 
 | **Audit ALL environment setups** | Select Environments → ALL saved environments; enable temporary switching. Review brightness, HDRI, ground, backplate, and rotation separately for each. |
 | **Compare saved image styles** | Select Image styles → ALL saved image styles; enable temporary switching. Basic styles skip Photographic-only color and curve getters. |
 | **Export native metadata** | Select Scene → Export native .metadata and .xmp files; provide a writable existing output folder. Two files are created, separate from the TXT report. |
-| **Animation diagnosis** | First run **getAnimationInfo() / Time / Frame** only. Later, optionally enable animation-tree scanning. Avoid the two disabled native animation getters. |
+| **Animation diagnosis** | First run **getAnimationInfo() / Time / Frame** only. Later, optionally enable animation-tree scanning. Advanced reports use scene-tree traversal, not native animation-object enumeration. |
 | **Missing external textures** | External file references; resource folder paths. This does not scan the entire drive. |
 | **Resource inventory** | Select Library Inventories or Resource Models only with *Allow slow scans* enabled and expect possible library-loading delays. |
 
-## 6. Reference: all 74 selectable reports
+## 6. Reference: all 72 selectable reports
 
-All 74 options below use the labels and organization from the actual v1.2.0 registry. **Default ON** means the option runs when its category is checked in category mode; **Individual only** means the user must select it explicitly in Individual Gets mode. Any selected operation remains subject to its safety gates.
+All 72 options below use the labels and organization from the current v1.2.1 registry. **Default ON** means the option runs when its category is checked in category mode; **Individual only** means the user must select it explicitly in Individual Gets mode. Any selected operation remains subject to its safety gates.
 
 ### Scene / configuration / metadata (8 options)
 
@@ -224,7 +226,7 @@ All 74 options below use the labels and organization from the actual v1.2.0 regi
 **getKeepAspectRatio() / getLockResolution()** — *Individual only*. Aspect-ratio and resolution-lock flags. **Why use it:** Explain resolution changes or fixed aspect behavior.
 
 
-### Animation (5 options)
+### Animation (3 options)
 
 **getAnimationInfo() / Time / Frame** — **Default ON**. Duration and total frame count, active timeline time and current frame. Sub-calls are traced separately. **Why use it:** Basic animation diagnosis without advancing the timeline.
 
@@ -258,7 +260,7 @@ All 74 options below use the labels and organization from the actual v1.2.0 regi
 
 **hasContents()/is*() - Scene status flags** — *Individual only*. Scene contents/changed state, unsaved camera, headless/performance/paused/undo flags. **Why use it:** Fast read-only health and status check.
 
-**2026 API getter availability audit** — *Individual only*. Checks whether each of 59 documented non-dialog get* functions exists in the runtime; DOES NOT execute them. **Why use it:** Check API availability after a KeyShot update, not runtime safety.
+**2026 API getter availability audit** — *Individual only*. Checks whether the names in the script's `GETTERS_2026` tuple are callable in the runtime; DOES NOT execute them. This is a selected-name inventory, not an exhaustive count of all API getters. **Why use it:** Check API availability after a KeyShot update, not runtime safety.
 
 
 ## 7. Inspecting ALL saved cameras, environments, and image styles
@@ -277,7 +279,7 @@ KeyShot's detailed getters generally describe the **active** item. The list gett
 | **All saved environments** | All 14 documented `lux.Env` getters: name, lighting environment, backplate, brightness, rotation, height, size, background color and ground settings. | Temporarily selects each environment; attempts restoration. |
 | **All saved image styles** | Kind, bloom, chromatic aberration, denoise, vignette and Photographic-only color/curve. | Color/curve are not called for Basic styles. |
 
-**This is separate from “Exhaustive output.”** The latter removes most output/traversal caps but does not authorize camera, environment, or image-style switching. Neither option unlocks the two blocked native animation-object getters.
+**This is separate from “Exhaustive output.”** The latter removes most output/traversal caps but does not authorize camera, environment, or image-style switching. Neither option adds native animation-object enumeration to the available reports.
 
 **Native scene metadata files:** Use the dedicated *Export native .metadata and .xmp files (user folder)* report to save KeyShot's original current-scene metadata in two non-overwriting files. It does not automatically create one metadata file per camera or environment.
 
@@ -314,7 +316,7 @@ The trace goes in the chosen output folder **if it exists**. Otherwise, it tries
 
 If the log ends there, `getAnimationInfo()` was the last documented operation entered. **It is a clue, not conclusive proof of the root cause.** A crash or forced shutdown can interrupt logging for unrelated reasons. An ordinary caught Python exception usually produces `[ERROR]` text and may still reach `GET END`.
 
-The file may also contain `LIBRARY START` / `LIBRARY END`, `ANIMATION NATIVE GETTER BLOCKED`, `NOTE scene tree traversal capped`, `CANCELLED`, and `PYTHON ERROR` entries. With all-saved-item inspection enabled, it additionally records `CAMERA`, `ENVIRONMENT`, or `IMAGE STYLE` checkpoints for `SWITCH START/END`, `VERIFY ACTIVE START/END`, `READ START/END`, **individual property** `GET START/END`, `RESTORE START/END`, and possibly `ABORT`. A missing restore-END checkpoint is especially important to review.
+The file may also contain `LIBRARY START` / `LIBRARY END`, `NOTE scene tree traversal capped`, `CANCELLED`, and `PYTHON ERROR` entries. Older traces may contain `ANIMATION NATIVE GETTER BLOCKED` from the earlier release. With all-saved-item inspection enabled, it additionally records `CAMERA`, `ENVIRONMENT`, or `IMAGE STYLE` checkpoints for `SWITCH START/END`, `VERIFY ACTIVE START/END`, `READ START/END`, **individual property** `GET START/END`, `RESTORE START/END`, and possibly `ABORT`. A missing restore-END checkpoint is especially important to review.
 
 **What to share for troubleshooting:** copy the **last 20–40 trace lines**, the end of the partial TXT report, the category and checkboxes selected, KeyShot exact version, and whether the scene is saved and has animations/material graphs. Please redact local usernames, network paths, machine identifiers, license information and proprietary asset names first.
 
@@ -369,7 +371,7 @@ To use it, type the exact material-library name in the first dialog, check **All
 | **Output unexpectedly cut off** | Standard per-GET and node limits may truncate reports. Exhaustive mode lifts most caps but not Resource Models filesystem-scan bounds. |
 | **Native metadata export missing** | Select the dedicated export operation and an existing writable TXT output folder. It writes *two additional files* even if the main report destination is Console only. |
 | **Basic image style `Color/Curve` unavailable** | This is expected and protected; those getters apply only to Photographic styles. |
-| **Animation native getters show skipped** | Intentional crash precaution, not proof the API methods are absent. |
+| **Older reports show native animation getters as skipped** | That reflects the earlier release's guard. Version 1.2.1 does not list those native getters as selectable operations. |
 | **No TXT was saved** | Confirm output mode is not Console only, folder exists, and Python has write permission; inspect `PYTHON ERROR` in the trace. |
 | **No report data for CMF material** | Exact library name, CMF report checkbox, and slow-library opt-in are all required. |
 
@@ -381,8 +383,7 @@ This is an **unofficial community utility**. It uses the KeyShot 2026 API as doc
 
 ## 14. Reference and version scope
 
-- **Primary API reference:** user-supplied KeyShot 2026 built-in `lux` module help dump (`Pasted text(3).txt` / `KeyShot_2026_Lux_API_Reference.txt`).
-- **Implementation inspected:** `KeyShot_Inspector_1_2.py` (v1.2.0; 74 report options, 12 categories).
-- **Supporting material:** `KS_CustomInputDialog_GUI.txt`, `KS_ScriptDoc.txt`, `KS_MaterialScripts.txt`, `KS_CameraScripts.txt`, and `KSPA_BestPractices.txt`.
-- **Scope caveat:** The documented 2026 reference contains 59 non-dialog top-level `lux.get*` commands. The script reports via 57 and lists the other two as available/blocked; the API availability audit checks function presence without executing it.
-
+- **Primary API reference:** user-supplied KeyShot 2026 built-in `lux` module help dump (`Pasted text(3).txt` / `KeyShot_2026_Lux_API_Reference.txt`). The repository's current capture is `lux/KeyShot_lux_API.md`.
+- **Implementation inspected:** `KeyShot_Inspector_1_2.py` (v1.2.1; 72 report options, 12 categories).
+- **Original supporting material:** `KS_CustomInputDialog_GUI.txt`, `KS_ScriptDoc.txt`, `KS_MaterialScripts.txt`, `KS_CameraScripts.txt`, and `KSPA_BestPractices.txt`.
+- **Scope caveat:** The API availability audit checks function presence for the names in `GETTERS_2026` without executing them. It is not an exhaustive inventory of every API getter. Native animation-object getters are not selectable reports in v1.2.1.

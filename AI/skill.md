@@ -11,7 +11,7 @@ Use it to solve the user's actual KeyShot scripting request.
 3. Find the topic. `AI/knowledge_base.md` is the table of contents. `AI/index.md` is a keyword index for narrowing within it, not a second table of contents. Pull only the guides, material files and examples the task needs.
 4. Look up the API. Find every `lux` and `luxmath` symbol you plan to use in the dump for the user's build (see API authority).
 5. Write the script.
-6. Verify. Run the checker when code execution is available; otherwise work the manual checklist. Fix what fails.
+6. Verify. Run the checker when code execution is available; otherwise work the manual checklist. Resolve findings within the authorized scope and distinguish them from runtime failures.
 7. Deliver as described under Delivery.
 
 ## Target version and task scope
@@ -20,19 +20,21 @@ The user's current declared target takes precedence over an older task's target 
 
 A note that an original example was tested in 2026.2 applies to preserving that example; it does not impose a 2026.2 compatibility requirement on subsequent work. Preserve working scripts and their reported test history. Flag concrete API differences or missing evidence for the requested operation, rather than treating the version label as a defect. Source verification and runtime testing remain distinct.
 
+An author's explicit confirmation of successful testing is author-reported runtime evidence. Record it without requesting the same confirmation again or replacing it with "untested" because the assistant has not run KeyShot. State only the builds, scenes, and outcomes actually supplied. A successful workflow does not establish every branch, individual call, or later build. Do not change tested code merely to make it agree with a rewritten explanation or a static check.
+
 ## API authority
 
-The API source of truth is the `help()` capture for the user's KeyShot build. The repository currently holds one build, KeyShot Studio 2026.3 beta:
+The primary declaration references are the `help()` captures for the user's KeyShot build. The current primary captures cover KeyShot Studio 2026.3 beta; older captures elsewhere in the repository are historical:
 
 - `lux/KeyShot_lux_API.md` — `help(lux)`
 - `lux/KeyShot_luxmath_API.md` — `help(luxmath)`
 
 Check each module against its own dump.
 
-The dump wins because it is what the runtime reported about itself. The public 2026.1 website lags, guides in this repository can contradict the dump, and many example scripts predate it. Precedence: dump, then knowledge guides and material files, then example scripts, then the public website. Model memory is never evidence. Lower sources are good for patterns and ideas; only the dump confirms a symbol.
+For declarations about the recorded build, prefer its capture over knowledge guides, material files, example scripts, and the older public website. Model memory is never evidence. Keep this declaration check separate from supplied runtime observations and author-reported successful tests. If the evidence differs, state the exact discrepancy without inventing a mechanism or presenting a static mismatch as a reproduced runtime failure.
 
-- Not in the dump: do not ship the call. Name the missing symbol and offer a documented alternative, a focused runtime probe, or say the operation is unsupported. Do not build a full solution around an unsupported call.
-- Mentioned in dump docstrings but never declared: unverified until a runtime probe confirms it. In 2026.3 beta this includes `lux.ANIMATION_TYPE_*` and `lux.Animation`, referenced by `createAnimation`, `getAnimations` and `getNodeAnimations`. Do not ship animation-creation scripts that depend on them yet. Probe: `AI/examples/inspector/RUNTIME_CHECKS.md`.
+- Not in the dump: do not invent the call for new code. Name the missing declaration and check any specific supplied runtime evidence. Otherwise offer a documented alternative or a focused runtime observation when needed. Absence from the capture alone does not demonstrate that an existing author-tested workflow failed.
+- Mentioned in dump docstrings but never declared: not declaration-verified until a focused runtime observation establishes it. In the 2026.3 beta capture this includes `lux.ANIMATION_TYPE_*` and `lux.Animation`, referenced by `createAnimation`, `getAnimations` and `getNodeAnimations`. Do not invent animation-creation calls from these mentions. The separate API investigation is documented in `AI/examples/inspector/RUNTIME_CHECKS.md`; it is not an outstanding test of the author-tested Inspector.
 - Ellipsis signatures (`name(...)`) are not real Python signatures. Their arguments come from the docstring's `name = description *` lines (`*` marks a required argument). That is good evidence, not proof.
 - User on another build: honor that target and state which build the available dump covers. Retrieve supplied evidence for the requested build where available. Identify specific unresolved compatibility questions; do not infer incompatibility or demand retesting of unchanged examples solely because their recorded build differs. Request a focused capture only when missing evidence prevents the requested operation.
 
@@ -40,7 +42,7 @@ The dump wins because it is what the runtime reported about itself. The public 2
 
 ### With code execution: run the checker
 
-`tools/verify_symbols.py` checks a script against `symbols.json`, an index built from the dumps by `tools/build_symbol_index.py`. It finds undeclared names, members called on the wrong object, broken signatures, docstring-only symbols and policy items more reliably than reading the dump by eye.
+`tools/verify_symbols.py` checks a script against `symbols.json`, an index built from the dumps by `tools/build_symbol_index.py`. It reports undeclared names, members called on the wrong inferred object, signature mismatches, docstring-only symbols and policy items within its static-analysis coverage.
 
 ```
 python tools/verify_symbols.py script.py --index path/to/symbols.json
@@ -48,25 +50,25 @@ python tools/verify_symbols.py script.py --index path/to/symbols.json
 
 Host adapters give the packaged paths. Handle the results:
 
-- ERROR — undeclared symbol, wrong owner, or a call that breaks a real signature. Fix it before showing the script.
-- PROBE — the dump mentions the symbol but never declares it. Do not present the call as verified; include the console snippet the checker prints.
-- WARN — argument mismatch against documented parameters, deprecated API, headless hazard, or an unknown member on an untyped value. Fix it, or explain why it is safe.
-- POLICY — third-party import, subprocess, threading or network module, file I/O, or a dialog with no `lux.isHeadless()` check. Remove it, or, only when the user has explicitly authorised the exception, add an allow comment.
+- ERROR — undeclared symbol, wrong inferred owner, or a call that breaks a captured signature. Resolve it before presenting a new call as verified. For an existing tested script, report the source finding separately; do not change working code without an authorized, justified repair.
+- PROBE — the dump mentions the symbol but never declares it. Do not present it as declaration-verified. Retain any supplied runtime evidence separately and use the checker's probe only when additional evidence is needed.
+- WARN — argument mismatch against documented parameters, deprecated API, headless hazard, or an unknown member on an untyped value. Resolve or explain the finding; do not infer a runtime failure from the warning alone.
+- POLICY — third-party import, subprocess, threading or network module, file I/O, or a dialog with no `lux.isHeadless()` check. Remove it from newly generated code, or, only when the user has explicitly authorised the exception, add an allow comment. A historical example's policy difference is not proof that it is broken.
 
 Annotate helper parameters with lux types, for example `def apply(node: "lux.SceneNode")`, so the checker can verify owners inside helpers. Values returned by `find()`, `getChildren()` and `getNodes()` have no stated type in the dump, so members called on them count as owner-unverified.
 
-The checker is static. It proves names, owners and arguments against the dump, not behaviour.
+The checker is static. It checks the names, inferred owners and arguments it can analyze against the selected index; it does not prove complete API correctness or runtime behavior. A clean result is not a substitute for reported or observed KeyShot testing.
 
 ### Without code execution: manual checklist
 
 For every `lux` and `luxmath` symbol:
 
-- it exists in the dump for its module (function, class, method or constant);
+- it exists in the dump for its module (function, class, method or constant), or specific supplied runtime evidence establishes it;
 - it is called on the right owner (module, SceneNode, MaterialGraph, ShaderNode, ShaderEdge, ShaderParameter, ...);
-- its arguments match (names, types, required or optional);
-- it is not an invented facility (logging, undo, progress, or anything else absent from the dump).
+- its arguments match the available evidence (names, types, required or optional);
+- it is not an invented facility (logging, undo, progress, or a call without supporting evidence).
 
-Then check the script as a whole against the runtime rules below. If a box cannot be checked, do not ship that call, and say the checker was not run.
+Then check the script as a whole against the runtime rules below. Identify unresolved evidence precisely, do not ship an invented new call, and say the checker was not run. Preserve the reported testing history of existing code.
 
 ## Runtime rules
 
@@ -113,22 +115,23 @@ The MCP server and KeyShot's embedded Python are different runtimes. Dependencie
 
 For a supportable task, provide a complete, executable-intended script: explicit imports, configuration, preconditions, meaningful comments, and mode-appropriate inputs. Use standard Python for computation and files and documented KeyShot APIs for scene operations. When revising a script, preserve its behaviour or explain each deliberate change.
 
-Then explain how to run it, how it works and how to debug it, cite the exact dump symbols used, and give a verification report that keeps kinds of evidence apart:
+Then explain how to run it, how it works and how to debug it, cite the exact evidence used, and give a verification report that keeps kinds of evidence apart:
 
 ```
-Syntax:            pass | fail | not run
-API declarations:  checker summary, or "manual checklist" plus unverified calls
-Probes needed:     none | symbols + console snippet
-Allows in effect:  none | code -- reason
-Mock tests:        run | not run
-GUI runtime:       not run (requires KeyShot)
-Headless runtime:  not run (requires KeyShot)
-Visual:            not run (requires KeyShot)
+Syntax:                    pass | fail | not run
+API declarations:          checker summary, or manual checklist with precise gaps
+Author-reported runtime:   stated version/build, mode and result | not supplied
+Reviewer runtime execution: performed with details | not performed
+Additional probes:         none | specific unresolved question and reason
+Allows in effect:          none | code -- reason
+Mock tests:                result with provenance | not run in this review
+Headless evidence:         supplied or observed result | not established
+Visual evidence:           supplied or observed result | not established
 ```
 
-Never present static or mock results as runtime success.
+Never present static or mock results as runtime success. Never convert "the reviewer did not run KeyShot" into "the script has not been runtime-tested." Report concrete findings and their impact; do not impose a release hold solely because the reviewer lacks a live KeyShot session.
 
 ## Archive
 
-The original GPT-era KPSA documents, historical examples and audits are in KeyShot-Python-AI-Knowledge. Use them only when accessible and when the task calls for history. They are never API authority.
+The original GPT-era KPSA documents, historical examples and audits are in KeyShot-Python-AI-Knowledge. Use them only when accessible and when the task calls for history. They are never substitutes for target-build declaration evidence.
 

@@ -1,15 +1,18 @@
-Mock suite: 28 tests, ordinary Python, mocked lux. Passed on commit 2c556133.
-Removed in 1.2.1: test_native_animation_objects_are_never_invoked.
-PR #10 recorded 29 for 1.2.0. That count does not apply to 1.2.1.
-A KeyShot run of 1.2.1 has not been done. Record the build, the scene, and the result when it is.
-
-Companion files keep the 1.2.0 names. They cover the 1.2.1 repair.
-1.2.1 repair: animation-name teaching removed. Checker-clean on that commit. Not a new KeyShot runtime test of 1.2.0.
-
-KEYSHOT INFORMATION INSPECTOR 1.2.0 — COMMUNITY RELEASE
+KEYSHOT INFORMATION INSPECTOR 1.2.1 — COMMUNITY RELEASE
 =======================================================
 Unofficial Python diagnostic tool for KeyShot 2026.x GUI.
 Primary script: KeyShot_Inspector_1_2.py
+
+RELEASE STATUS
+--------------
+Current version: 1.2.1 (repair of 1.2.0)
+Change in 1.2.1: animation-name teaching removed.
+Offline mock tests: 28 passed (ordinary Python, mocked lux).
+KeyShot GUI runtime testing: the author tested v1.2.0 and v1.2.1 and confirmed both working.
+Animation API probe: separate API investigation; not an Inspector release requirement.
+See RUNTIME_CHECKS.md for testing status and the separate animation API investigation.
+Companion files retain 1.2.0 filenames; they cover this 1.2.1 repair.
+Some dialog titles and report labels also retain 1.2.0 in the current source.
 
 QUICK START
 -----------
@@ -23,7 +26,7 @@ QUICK START
 ABOUT THE GUIDE
 ---------------
 Read KeyShot_Information_Inspector_v1_2_0_User_Guide.txt for:
-* What every one of the 74 selectable operations retrieves and why it is useful.
+* What every one of the 72 selectable operations retrieves and why it is useful.
 * The difference between category mode and Individual Gets mode.
 * The optional all-saved-camera, environment and image-style inventories.
 * Output limits, large-scene performance, and optional Exhaustive mode.
@@ -40,7 +43,6 @@ IMPORTANT SAFETY INFORMATION
 * Restoring the selected item may not reverse all transient side effects.
 * All-camera scan refuses when the current camera has unsaved changes, or
   when its unsaved status cannot be checked. Use a saved scene copy.
-  reported KeyShot crashes. Availability inventory is not execution.
 * "Allow slow scans" is independently required for library inventories,
   Resource Models scan, full tree dump and library CMF lookup.
 * "Exhaustive output" lifts most scene/material/shader/section limits and
@@ -59,19 +61,24 @@ Optional <report_name>.metadata and <report_name>.xmp (non-overwriting).
 
 REPORT COVERAGE
 ---------------
-12 categories, 74 selectable report operations.
-2026 reference contains 59 non-dialog top-level information get* methods;
-the two native animation-object get calls are intentionally hard blocked.
+12 categories, 72 selectable report operations in the v1.2.1 registry.
+The API availability report checks the names in GETTERS_2026 without
+executing them; it is not an exhaustive inventory of every API getter.
+Native animation-object enumeration is not a selectable report in v1.2.1.
+Advanced animation reports use scene-tree traversal instead.
 
 VERIFICATION
 ------------
 Documentation and category labels cross-checked against the bundled
 KeyShot_Inspector_1_2.py source.
-Offline regression tests exist, but native KeyShot crashes cannot be
-simulated or ruled out. The user should validate on their own 2026.x build.
+The author tested v1.2.0 and v1.2.1 in KeyShot and confirmed both working.
+Offline regression tests are separate from that KeyShot runtime testing.
+Native KeyShot crashes cannot be simulated or ruled out by offline tests.
+The user should validate on their own 2026.x build.
 
 Files included in this GitHub folder:
-- KeyShot_Inspector_1_2.py (Python script)
+- KeyShot_Inspector_1_2.py (Python script, version 1.2.1)
 - KeyShot_Information_Inspector_v1_2_0_User_Guide.txt (full guide)
 - README_KeyShot_Inspector_v1_2_0.txt (quick start)
 - test_KeyShot_Information_Inspector_v1_2_0.py (offline tests)
+- RUNTIME_CHECKS.md (testing status and separate animation API investigation)

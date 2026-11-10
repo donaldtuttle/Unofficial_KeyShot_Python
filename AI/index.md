@@ -6,7 +6,10 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 
 ## API source of truth
 
-- [2026.3 beta help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the 2026.3 beta runtime. Prefer this over the public 2026.1 website.
+- [2026.3 beta help(lux) dump](../lux/KeyShot_lux_API.md) — declarations for `lux` in the recorded build. Prefer this over the public 2026.1 website.
+- [2026.3 beta help(luxmath) dump](../lux/KeyShot_luxmath_API.md) — declarations for `luxmath` from the same build.
+
+Check each module against its own capture. Preserve author-reported runtime testing separately from static checks; a declaration discrepancy alone is not a reproduced runtime failure.
 
 ## Core agent files (flat)
 
@@ -28,15 +31,15 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 
 ## Topics (pointers to existing kpsa_knowledge / materials)
 
-- API ownership and evidence → constraints + best-practices + 2026.3 beta dump
-- Cameras → QuickReference + 2026.3 beta dump
-- Scene nodes → QuickReference + 2026.3 beta dump
+- API ownership and evidence → constraints + best-practices + the relevant 2026.3 beta capture
+- Cameras → QuickReference + lux capture
+- Scene nodes → QuickReference + lux capture
 - Materials and duplication → materials/ + [Material_Graph_Duplication.txt](materials/Material_Graph_Duplication.txt)
-- Material graphs, parameters and edges → materials/ + ShaderNodeTypes doc + 2026.3 beta dump
+- Material graphs, parameters and edges → materials/ + ShaderNodeTypes doc + lux capture
 - OpenPBR conversion → [materials/openpbr_material_converter.py](materials/openpbr_material_converter.py)
-- Scene inspection / diagnostics → [examples/inspector/](examples/inspector/) (KeyShot Information Inspector v1.2.0)
-- Transformations → TransformationMatrix doc
-- GUI dialogs → API_GUI_Guide + constraints + 2026.3 beta dump
-- Rendering / Import-export / Headless / Animation → QuickReference + 2026.3 beta dump
+- Scene inspection / diagnostics → [examples/inspector/](examples/inspector/) (KeyShot Information Inspector v1.2.1)
+- Transformations → TransformationMatrix doc + luxmath capture; verify scene-node transform methods in the lux capture
+- GUI dialogs → API_GUI_Guide + constraints + lux capture
+- Rendering / Import-export / Headless / Animation → QuickReference + lux capture
 
 Full source collection and audits remain in the private repo `donaldtuttle/KeyShot-Python-AI-Knowledge`.

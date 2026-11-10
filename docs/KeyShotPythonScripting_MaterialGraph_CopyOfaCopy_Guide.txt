@@ -1,0 +1,425 @@
+### KeyShotPythonScripting MaterialGraph Copy Of A Copy Guide
+
+## Table of Contents
+
+1. [Manual Copy of Material Graphs Using KeyShot API](#manual-copy-of-material-graphs-using-keyshot-api)
+2. [Breakdown of the lux.createMultiMaterial() Method](#breakdown-of-the-luxcreatemultimaterial-method)
+3. [Why lux.createMultiMaterial() Works for Copying Material Graphs](#why-luxcreatemultimaterial-works-for-copying-material-graphs)
+4. [Advantages of Using lux.createMultiMaterial()](#advantages-of-using-luxcreatemultimaterial)
+5. [Potential Application for Sub-Materials](#potential-application-for-sub-materials)
+6. [Summary](#summary)
+7. [Considerations](#considerations)
+8. [The Essence of lux.createMultiMaterial() for Copying Material Graphs](#the-essence-of-luxcreatemultimaterial-for-copying-material-graphs)
+9. [Understanding the Concept: Why You Need This Approach](#understanding-the-concept-why-you-need-this-approach)
+10. [How lux.createMultiMaterial() Solves This Problem](#how-luxcreatemultimaterial-solves-this-problem)
+11. [Practical Example: Why This Matters](#practical-example-why-this-matters)
+12. [Step-by-Step Recap](#step-by-step-recap)
+13. [Why This is a Powerful Technique](#why-this-is-a-powerful-technique)
+14. [What to Keep in Mind](#what-to-keep-in-mind)
+15. [Final Thought](#final-thought)
+
+Let’s dive deeper into how KeyShot’s API allows for “copying” materials and material graphs, especially focusing on using functions like lux.createMultiMaterial() to create duplicates.
+
+## Manual Copy of Material Graphs Using KeyShot API
+
+The original material-copy workflow was developed and tested in KeyShot. This revised example preserves its native-copy and explicit node/edge reconstruction stages while updating API usage. Declaration discrepancies do not establish a failure of the tested workflow. The changes below have not received a fresh KeyShot runtime test.
+
+The reconstruction pass stops if node creation, concrete parameter copying, input resolution, or connection verification fails. Earlier scene changes remain in place; stopping does not roll them back. The root, submaterial, and appearance checks described below remain separate from this pass's connection checks.
+
+# AUTHOR: LUX DT ChatGPT
+# VERSION: 1.3.8 (guide example)
+# PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge 
+# from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material 
+# as a sub-material into an existing Multi-Material in KeyShot.
+```python
+import lux
+
+def add_copied_material_to_multimaterial(material_name, multi_material_name):
+    """
+    Duplicates the material specified by `material_name`, converts it to a Multi-Material, and adds it as a sub-material to
+    the existing Multi-Material `multi_material_name`.
+
+    Parameters:
+    - material_name (str): Name of the original material to be duplicated.
+    - multi_material_name (str): Name of the Multi-Material to which the duplicated material will be added.
+    """
+    try:
+        # Step 1: Create a new Multi-Material (Copy of the Original)
+        # This step clones the original material and gives it a new name.
+        copied_material_name = f"{material_name}_Copy"
+        lux.createMultiMaterial(name=copied_material_name, mat=material_name)
+
+        if lux.getMaterialGraph(name=copied_material_name) is None:
+            raise ValueError(f"Failed to create a copy of the material '{material_name}'")
+
+        print(f"Material '{copied_material_name}' copied successfully using lux.createMultiMaterial().")
+
+        # Step 2: Enable the copied material as a Multi-Material container
+        # Once the material is copied, get the material graph and enable it for multi-material capabilities.
+        copied_material_graph = lux.getMaterialGraph(name=copied_material_name)
+        if copied_material_graph is None:
+            raise ValueError(f"Material graph for '{copied_material_name}' not found")
+
+        copied_material_graph.setMultiMaterial(enable=True)
+        print(f"Material '{copied_material_name}' enabled as a multi-material.")
+
+        # Step 3: Retrieve the Original Material Graph and Duplicate Nodes and Parameters
+        # We now need to copy the nodes and connections from the original material graph.
+        original_material_graph = lux.getMaterialGraph(name=material_name)
+        if original_material_graph is None:
+            raise ValueError(f"Original material graph for '{material_name}' not found.")
+
+        print(f"Duplicating nodes and parameters from '{material_name}' to '{copied_material_name}'...")
+
+        # Step 4: Use the explicit node and parameter duplication approach
+        duplicate_material_graph(original_material_graph, copied_material_graph)
+
+        # Step 5: Retrieve the MultiMaterial in which we want to add the copied material
+        multi_material = lux.getMultiMaterial(multi_material_name)
+        if multi_material is None:
+            raise ValueError(f"Multi-material '{multi_material_name}' not found")
+
+        # Display current sub-materials in the MultiMaterial for reference
+        sub_materials = multi_material.getSubMaterials()
+        current_sub_materials_names = [str(mat) for mat in sub_materials]
+        print(f"Current sub-materials in '{multi_material_name}': {current_sub_materials_names}")
+
+        # Step 6: Add the copied material as a sub-material by using its name
+        # Use the setSubMaterials method to append the new copied material.
+        if hasattr(multi_material, 'setSubMaterials'):
+            new_sub_materials_names = current_sub_materials_names + [copied_material_name]
+            multi_material.setSubMaterials(new_sub_materials_names)
+            print(f"Copied material '{copied_material_name}' successfully added to '{multi_material_name}' as a sub-material.")
+        else:
+            raise AttributeError(f"'MultiMaterial' object has no method 'setSubMaterials'.")
+
+        # Step 7: Visualize the updated list of sub-materials
+        updated_sub_materials = multi_material.getSubMaterials()
+        print(f"Updated sub-materials in '{multi_material_name}': {[str(mat) for mat in updated_sub_materials]}")
+
+    except AttributeError as ae:
+        print(f"An attribute error occurred: {ae}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+# Function to duplicate nodes and edges explicitly with enhanced error handling
+def duplicate_material_graph(source_graph, target_graph):
+    """
+    Duplicate all nodes and parameters from one material graph to another, and attempt to reconnect edges.
+    
+    Parameters:
+    - source_graph (MaterialGraph): The original material graph to be duplicated.
+    - target_graph (MaterialGraph): The target material graph where nodes and edges will be copied.
+    """
+    node_mapping = {}  # Keep track of original and new nodes to reconnect edges
+
+    # Step A: Duplicate nodes with detailed error handling
+    for node in source_graph.getNodes():
+        try:
+            # Create a duplicate node in the target graph
+            new_node = duplicate_node(node, target_graph)
+            if new_node is None:
+                raise RuntimeError(f"No copied node for source ID {node.getID()}")
+            if new_node:
+                # Duplicate all parameters from the original node to the new node
+                duplicate_parameters(node, new_node)
+                node_mapping[node] = new_node  # Map original node to its duplicate
+                print(f"Node '{node.getName()}' duplicated successfully.")
+        except Exception as e:
+            print(f"Error duplicating node '{node.getName()}': {e}")
+            raise
+
+    # Step B: Duplicate edges with detailed error handling
+    for node in source_graph.getNodes():
+        if node in node_mapping:
+            for edge in node.getOutputEdges():
+                source_node = node_mapping.get(edge.getSourceNode())
+                target_node = node_mapping.get(edge.getTargetNode())
+                if source_node and target_node:
+                    try:
+                        # Create a new edge in the target graph to replicate the original connections
+                        param_name = get_edge_target_parameter(edge)
+                        target_graph.newEdge(source=source_node, target=target_node, param=param_name)
+
+                        # Read back the exact target input and verify its current node IDs.
+                        copied_edge = target_node.getInputEdge(parameter=param_name)
+                        if copied_edge is None:
+                            raise RuntimeError(f"No copied edge at input '{param_name}'.")
+                        copied_source = copied_edge.getSourceNode()
+                        copied_target = copied_edge.getTargetNode()
+                        if (copied_source is None or copied_target is None
+                                or copied_source.getID() != source_node.getID()
+                                or copied_target.getID() != target_node.getID()):
+                            raise RuntimeError(f"Copied edge endpoints do not match input '{param_name}'.")
+                        print(f"Edge verified between '{source_node.getName()}' (ID {source_node.getID()}) "
+                              f"and '{target_node.getName()}' (ID {target_node.getID()}) "
+                              f"using parameter '{param_name}'.")
+                    except Exception as e:
+                        print(f"Error creating or verifying edge between '{source_node.getName()}' and '{target_node.getName()}': {e}")
+                        raise
+                else:
+                    raise RuntimeError(f"Missing copied source or target for edge ID {edge.getID()}.")
+
+
+def get_edge_target_parameter(edge):
+    """Resolve one target input name from the existing connection.
+
+    Edge IDs identify connections, not parameter names. Multi-input sockets
+    that cannot be resolved through getInputEdge require inspection in KeyShot.
+    """
+    target = edge.getTargetNode()
+    if target is None:
+        raise RuntimeError(f"Edge ID {edge.getID()} has no target node.")
+
+    matching_names = set()
+    for parameter in target.getParameters() or []:
+        param_name = parameter.getName()
+        candidate = target.getInputEdge(parameter=param_name)
+        if candidate is not None and candidate.getID() == edge.getID():
+            matching_names.add(param_name)
+
+    if len(matching_names) != 1:
+        raise RuntimeError(
+            f"Cannot uniquely resolve the target input for edge ID {edge.getID()} "
+            f"on '{target.getName()}' (ID {target.getID()}); "
+            f"matched {len(matching_names)} parameter names."
+        )
+    return next(iter(matching_names))
+
+
+# Function to duplicate a single node in the target graph
+def duplicate_node(node, target_graph):
+    """
+    Duplicate a node from the source graph into the target graph.
+    
+    Parameters:
+    - node (ShaderNode): The node from the source graph to be duplicated.
+    - target_graph (MaterialGraph): The graph where the new node will be added.
+    
+    Returns:
+    - new_node (ShaderNode): The duplicated node in the target graph.
+    """
+    try:
+        # Create a new node in the target graph with the same type as the original
+        node_type = node.getType()
+        shader_type = node_type.get("name") if isinstance(node_type, dict) else node_type
+        if not isinstance(shader_type, str) or not shader_type:
+            raise ValueError(f"Shader type unavailable for node ID {node.getID()}")
+        new_node = target_graph.newNode(shader_type)
+        new_node.setName(f"{node.getName()}_Copy")
+        return new_node
+    except Exception as e:
+        print(f"Error creating a new node from '{node.getName()}': {e}")
+        raise
+
+
+# Function to duplicate all parameters from one node to another
+def duplicate_parameters(original_node, new_node):
+    """
+    Duplicate all parameters of the original node into the new node.
+    
+    Parameters:
+    - original_node (ShaderNode): The original node whose parameters will be duplicated.
+    - new_node (ShaderNode): The new node where the parameters will be copied to.
+    """
+    try:
+        for parameter in original_node.getParameters():
+            if parameter.isPure():
+                continue
+            target_parameter = new_node.getParameter(parameter.getName())
+            if target_parameter is None or target_parameter.isPure():
+                raise ValueError(f"No concrete destination parameter '{parameter.getName()}'")
+            if parameter.getType() != target_parameter.getType():
+                raise ValueError(f"Parameter type mismatch for '{parameter.getName()}'")
+            target_parameter.setValue(parameter.getValue())
+        print(f"Parameters copied successfully from '{original_node.getName()}' to '{new_node.getName()}'.")
+    except Exception as e:
+        print(f"Error copying parameters from '{original_node.getName()}': {e}")
+        raise
+
+
+# Example usage
+add_copied_material_to_multimaterial("MaterialName", "MultiMaterialName")
+```
+
+This approach uses KeyShot’s API to create copies of material graphs, followed by an explicit node and connection pass. Python’s copy.deepcopy() does not inherently require serialization, but it does require support from the objects being copied. A lux.MaterialGraph represents data managed by KeyShot; copying a Python reference is not the same as duplicating that material. Using KeyShot’s own material operations, then checking the copied graph, provides a way to create and work with distinct materials.
+
+## Breakdown of the lux.createMultiMaterial() Method
+
+1. Getting the Original Material Graph:
+
+```python
+mat_graph = lux.getMaterialGraph(name="cool-material")
+```
+
+• lux.getMaterialGraph(name="cool-material") retrieves the material graph of the specified material, named "cool-material".
+• A material graph in KeyShot consists of various nodes (such as shader nodes, texture nodes, etc.), and represents the complete material configuration for an object.
+
+2. Creating a New Multi-Material (Copy of the Original):
+
+```python
+clone_multi_material_of_mat_graph = lux.createMultiMaterial(
+    name="cool-material-copy", mat="cool-material"
+)
+```
+
+• lux.createMultiMaterial() is the key here. This function is used to create a new instance of a multi-material.
+• Arguments:
+• name="cool-material-copy": This specifies the name of the new Multi-Material. Choose an unused destination name and resolve the source material unambiguously before creating the copy.
+• mat="cool-material": This identifies the existing material to clone from. Both name and mat are required. The API also accepts a list for mat, but uses only its first item as the clone source; supplying a list does not request a separate clone of every item.
+• What This Does:
+• It creates a new multi-material, "cool-material-copy", which is essentially a copy of the original material graph ("cool-material").
+• KeyShot performs the native material duplication and assigns IDs to the resulting nodes. Inspect the resulting roots, nodes, parameters, and connections to establish what was copied, especially when the source is a Multi-Material.
+• The purpose is to edit the copied material ("cool-material-copy") independently of the original ("cool-material"). Verify that the copied graph refers to the intended copied nodes; a new name or a different ID alone does not establish that every material relationship is independent.
+
+3. Accessing the Copied Material Graph:
+
+```python
+mat_graph_copy = lux.getMaterialGraph(name="cool-material-copy")
+```
+
+• After the new material has been created, lux.getMaterialGraph() can be used again to retrieve the material graph for the copied material ("cool-material-copy").
+• At this point, you have full access to the nodes and parameters of the duplicate material graph, allowing you to edit, rename nodes, delete, or make other modifications.
+
+## Why lux.createMultiMaterial() Works for Copying Material Graphs
+
+1. KeyShot’s Internal Cloning Mechanism:
+• The lux.createMultiMaterial() function creates a Multi-Material based on an existing material. It works through KeyShot’s native material system, rather than asking Python’s generic copy machinery to duplicate a runtime-owned graph.
+• The workflow combines that native copying operation with inspection of the resulting nodes, parameter values, and connections. KeyShot assigns node IDs; the script records and uses the current IDs rather than assigning them itself.
+2. New Unique IDs:
+• One of the crucial aspects of copying materials is identifying the actual nodes within each current graph. This is because:
+• Node IDs are used to identify nodes internally. Shader-node names may be duplicated or empty, so names are useful labels but cannot serve as the sole mapping key.
+• Shared edits arise when operations refer to the same underlying material or node. Comparing bare ID values without their graph and current scene context is not sufficient to establish whether two references share state.
+• Node IDs are dynamic and can be reassigned when the file is reopened. Read getID() from the current nodes and resolve them in the appropriate graph with getNodeFromID(); rebuild the source-to-copy mapping for the current run rather than reusing saved IDs.
+3. Avoiding Conflicts:
+• Creating separate nodes avoids the shared state that comes from simply retaining references to the original nodes. IDs let the script track those nodes; changing an ID is not what creates independence.
+• For instance, if a connection in the new material still refers to an original node, editing that shared node can affect both materials. During the explicit node/edge pass, check that each source node, target node, and target input belongs to the intended copied structure. Record correspondence as nodes are created, or establish it from the copied graph’s actual structure; do not pair nodes solely by name, list position, or equal ID values across graphs. If correspondence remains ambiguous, resolve it before modifying connections.
+
+## Advantages of Using lux.createMultiMaterial()
+
+1. Handles Complexity Under the Hood:
+• Material graphs in KeyShot can be incredibly complex, consisting of various interconnected nodes like shaders, textures, bump maps, and more.
+• Manually rebuilding this structure and maintaining all its connections can be a substantial task. lux.createMultiMaterial() provides the native copying step, and KeyShot manages ID assignment. The explicit node and connection pass remains useful for checking that the intended structure survived the copy.
+2. Supports Full Customization:
+• Once the copy is made and its relationships are checked, you can customize it through the supported material-graph operations:
+• Delete nodes you don’t need.
+• Rename nodes to give them more meaningful labels for the new material, while continuing to identify them by their current graph and node IDs.
+• Add new nodes or reconnect existing nodes to customize the appearance further.
+• A verified copy provides a starting point for new materials with only incremental modifications. Check independence for the properties and resources you intend to change rather than assuming that every referenced resource was separately duplicated.
+3. Maintains Node Connections:
+• Preserving connections is essential to the copying workflow. Inspect getInputEdges() and getOutputEdges(), then check each edge’s getSourceNode(), getTargetNode(), and getID() against the intended source-to-copy mapping.
+• This is critical for maintaining the visual properties of the material, as connections between shader nodes, textures, and parameters define how the material looks. The revised example matches each original edge against the original target’s named inputs, requires exactly one matching parameter name, and passes that name to newEdge(). It reads the destination input back and checks both endpoint IDs.
+• The repository’s 2026.3 beta lux API reference describes MaterialGraph.newEdge(source, target, param) as attaching a source node to a target parameter, ShaderNode.getInputEdge(parameter=...) as looking up an input edge by parameter name, and ShaderEdge.getID() as returning the edge ID. The original tested implementation passed the edge ID, converted to a string, as that argument. The reference does not establish how that argument was handled at runtime; this discrepancy alone is not a demonstrated failure of that implementation. After an intentional reconnection, read the connection back and verify both endpoints and the target input.
+
+## Potential Application for Sub-Materials
+
+• lux.createMultiMaterial() creates a Multi-Material from an existing material. When using this workflow with sub-materials, inspect the parent Multi-Material and each sub-material root so that the copy operation targets the intended material.
+• In the case of sub-materials, the traversal and verification steps are:
+• Read MultiMaterial.getSubMaterials() for the associated sub-materials; its order matters. Use the parent MaterialGraph.getMaterialNodes() to obtain the individual sub-material root nodes, then inspect the nodes and connections reachable from each root. Record each root’s name, type, and current ID. Do not assume that root-list position alone proves correspondence with the sub-material list.
+• Retrieve a sub-material’s graph separately by name only when that lookup identifies it unambiguously. Otherwise, continue from its actual root in the parent graph. lux.createMultiMaterial() requires the name of an existing material to clone from; lux.createSceneMaterial() creates a new diffuse scene material and is not a duplication function.
+• Inspect the copy’s current roots and node IDs, verify the source-to-copy correspondence and connections, and check the intended sub-material order and active choice. Keep existing material assignments intact unless changing them is part of the requested operation.
+
+## Summary
+
+• Manual Copying with lux.createMultiMaterial(): This workflow uses KeyShot’s native material-copy operation, followed by an explicit node and edge pass to check the copied structure and its connections.
+• Why It Works: KeyShot handles native material creation and ID assignment. Verification uses current node identities and the source-to-copy mapping to check the copied graph’s roots, parameters, and connections, including unnamed nodes and duplicate names.
+• Practical Benefits:
+• You can create a complete material copy and verify that the intended edits are independent of the original.
+• This allows you to make changes to the copy without affecting the original material, supporting workflows where variant materials need to be created quickly.
+
+## Considerations
+
+• Sub-material handling requires traversal of every intended sub-material root, not just the parent graph’s getRoot(). Rediscover nodes and rebuild ID mappings after reopening the file.
+• Check the copied material’s properties, connections, and appearance in KeyShot. A completed API call or a new ID alone does not verify the whole graph. Retain the explicit connection pass even when native duplication appears to have preserved the material.
+
+This method of manual copying leverages KeyShot’s strengths in managing complex materials internally, making it an essential tool for creating variants and extending material libraries efficiently.
+
+Duplicating materials and nodes in KeyShot isn’t straightforward due to how it’s implemented internally.
+
+Let’s break it down a bit further and explain how it works more intuitively so you can feel confident using this technique.
+
+## The Essence of lux.createMultiMaterial() for Copying Material Graphs
+
+This approach uses KeyShot’s native API functions to create duplicates of materials in a way that respects the complexity of the material graph, with explicit verification of the resulting node relationships.
+
+## Understanding the Concept: Why You Need This Approach
+
+• Complexity of Material Graphs:
+• A material graph in KeyShot is not just a simple object—it’s a network of nodes, each representing a different aspect of the material (shaders, textures, bump maps, etc.).
+• These nodes are connected to form a graph structure, and each node has an ID that KeyShot assigns. That ID identifies the current node; it is not a permanent identifier to carry across reopening the scene.
+• Why Copying Material Graphs is Not Straightforward:
+• Python’s copy and deepcopy are generic object-copy operations, not documented KeyShot material-copy operations. They may use an object’s copying or reduction protocols, but do not inherently copy by serializing every object. A Python wrapper around a lux.MaterialGraph does not by itself provide a way to duplicate the material data owned by KeyShot.
+• If copy.deepcopy() reports a pickling or serialization error for lux.MaterialGraph, it means that copying route cannot reconstruct the object. Use the supported KeyShot material operations for the scene data instead; assigning the graph to another Python variable merely retains a reference.
+
+## How lux.createMultiMaterial() Solves This Problem
+
+The lux.createMultiMaterial() function creates a new Multi-Material based on an existing material. In this workflow, native duplication and the explicit node/edge pass work together to produce and check the copy. Here’s why and how it works effectively:
+
+1. Creates a New Material with a New Name:
+• lux.createMultiMaterial(name="cool-material-copy", mat="cool-material") creates a new material ("cool-material-copy") based on the existing material ("cool-material").
+• The destination name provides a way to retrieve the copied material in the scene. Choose it deliberately to avoid collisions; shader-node names inside the graph may still be duplicated or empty.
+2. New Node IDs Assigned Under the Hood:
+• Each node within the original "cool-material" material graph has a current Node ID that KeyShot uses internally. Inspect the node’s name and type alongside that ID to understand its role in the graph.
+• When you use lux.createMultiMaterial(), KeyShot creates the new material from "cool-material" and assigns IDs to the resulting nodes in "cool-material-copy". Traverse the resulting graph, including every intended sub-material root, to check the copied structure.
+• Use the current source-to-copy mapping to verify that edits target the copied nodes. Independence comes from the resulting material and node relationships, not from the numerical difference between their IDs.
+3. Preserves Relationships and Structure:
+• The connections between nodes, like how a texture is applied to a shader, are part of the structure to preserve and verify in the copied material graph.
+• Checking both edge endpoints and the destination input confirms the intended relationships. Checking the copied material in KeyShot also establishes whether its visual properties remain intact.
+
+## Practical Example: Why This Matters
+
+Imagine you have a multi-material that consists of several sub-materials representing different appearances (e.g., different colors or finishes for a car part). You want to make a copy of this entire structure but change one aspect in the duplicate without affecting the original.
+
+• Using lux.createMultiMaterial() provides the native copying step. For a full Multi-Material duplicate, inspect all intended sub-materials, their roots, order, active choice, and connections before adjusting the copied material.
+• If you manually create nodes and connections, KeyShot still assigns the new IDs. The script’s responsibility is to retain the correspondence between source and copied nodes and connect the correct target inputs. The explicit pass serves that mapping and verification purpose even when native duplication has already created nodes.
+
+## Step-by-Step Recap
+
+1. Retrieve Original Material Graph:
+
+```python
+mat_graph = lux.getMaterialGraph(name="cool-material")
+```
+
+• This gets you the material graph for "cool-material" so you can understand its structure or manipulate it.
+
+2. Create a Duplicate of the Material:
+
+```python
+clone_multi_material_of_mat_graph = lux.createMultiMaterial(
+    name="cool-material-copy", mat="cool-material"
+)
+```
+
+• This function creates a new material ("cool-material-copy") that is essentially a clone of "cool-material".
+• Read the resulting nodes, connections, and properties, and build the current source-to-copy correspondence. New IDs help identify the copied nodes; they do not by themselves prove that no references to original nodes remain.
+
+3. Access and Work with the Copied Graph:
+
+```python
+mat_graph_copy = lux.getMaterialGraph(name="cool-material-copy")
+```
+
+• You can now access the copied material graph, inspect each intended root and its connections, and make the required changes to the verified copy—add nodes, change properties, and build variants while preserving the original.
+
+## Why This is a Powerful Technique
+
+• Modular Flexibility: If you need to create multiple variations of a material, this approach is efficient. Instead of recreating the entire material from scratch, you can create a copy and tweak the parts that are different.
+• Safe Modifications: Current IDs and a verified source-to-copy mapping let you address the intended copied nodes even when names are missing or duplicated. Checking their relationships helps prevent changes from reaching shared original nodes.
+• Efficient Handling of Complexity: Material graphs can be intricate, with many interconnected nodes and parameters. KeyShot’s native copying operations reduce the amount of graph reconstruction required, while the explicit node/edge pass checks that the intended structure and inputs are connected correctly.
+
+## What to Keep in Mind
+
+• Current IDs Identify Nodes: Read IDs from the current graph and refresh them after reopening the file. Use them with the actual graph structure and source-to-copy correspondence; names alone are insufficient, and new IDs alone do not prove independent material state.
+• Requires API Knowledge: This approach requires familiarity with KeyShot’s API methods (getMaterialGraph(), createMultiMaterial(), etc.), which are not as straightforward as typical Python functions but are powerful when used correctly.
+
+## Final Thought
+
+The concept of copying in KeyShot using lux.createMultiMaterial() is all about using KeyShot’s built-in capabilities to handle the intricate relationships within a material graph. The API performs native material duplication and assigns node IDs; the explicit node and connection pass verifies the copied structure, including Multi-Material roots and sub-material relationships. Together, these steps let you build material variants efficiently and check that modifications affect the intended copy while preserving the original.
+
+
+## API References
+
+- [Captured KeyShot Studio 2026.3 beta API](https://github.com/donaldtuttle/Unofficial_KeyShot_Python/blob/main/lux/KeyShot_lux_API.md)
+- [Material Graph scripting reference](https://github.com/donaldtuttle/Unofficial_KeyShot_Python/blob/main/Scripts/Scripting_Material_Graph.txt)

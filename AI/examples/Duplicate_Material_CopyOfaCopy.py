@@ -1,5 +1,5 @@
 # AUTHOR: LUX DT ChatGPT
-# VERSION: 1.3.7
+# VERSION: 1.3.8
 # PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge
 # from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material
 # as a sub-material into an existing Multi-Material in KeyShot.
@@ -11,6 +11,16 @@
 # Neither utility is included or run automatically by this script.
 
 import lux
+
+# Only these concrete parameter types are handled by the manual value-copy pass.
+MANUAL_VALUE_TYPES = frozenset((
+    lux.PARAMETER_TYPE_BOOLEAN, lux.PARAMETER_TYPE_INTEGER,
+    lux.PARAMETER_TYPE_FLOAT, lux.PARAMETER_TYPE_FLOAT2, lux.PARAMETER_TYPE_FLOAT3,
+    lux.PARAMETER_TYPE_DOUBLE, lux.PARAMETER_TYPE_DOUBLE3,
+    lux.PARAMETER_TYPE_STRING, lux.PARAMETER_TYPE_STRINGLIST,
+    lux.PARAMETER_TYPE_COLOR, lux.PARAMETER_TYPE_COLORALPHA,
+))
+
 
 def add_copied_material_to_multimaterial(material_name, multi_material_name):
     """
@@ -97,6 +107,22 @@ def duplicate_material_graph(source_graph, target_graph):
     - This process involves both node creation and parameter copying, followed by reconnecting edges.
     - Ensure that all node types are supported in the target graph to avoid issues during node duplication.
     """
+    # Preflight the whole graph before creating any replacement nodes.
+    # Complex values stay in the graph made by the native material-copy operation.
+    source_nodes = source_graph.getNodes() or []
+    for node in source_nodes:
+        for parameter in node.getParameters() or []:
+            if parameter.isPure():
+                continue
+            parameter_type = parameter.getType()
+            if parameter_type not in MANUAL_VALUE_TYPES:
+                print(
+                    f"Keeping the native material copy: manual reconstruction was not run. "
+                    f"Node '{node.getName()}', parameter '{parameter.getName()}', "
+                    f"type {parameter_type} requires native preservation."
+                )
+                return
+
     node_mapping = {}  # Keep track of original and new nodes to reconnect edges
 
     # Step A: Duplicate nodes with detailed error handling
@@ -171,21 +197,24 @@ def duplicate_parameters(original_node, new_node):
     Notes:
     - Ensure that parameter types are matched between original and new nodes to prevent errors.
     - Parameters without concrete values (pure parameters) are skipped during copying.
+    - Complex values remain in the native copy; graph preflight prevents manual reconstruction.
     """
-    for param in original_node.getParameters():
-        try:
-            new_param = new_node.getParameter(param.getName())
-            if new_param is None:
-                print(f"Parameter '{param.getName()}' not found in new node.")
-                continue
-
-            if param.getType() == new_param.getType():
-                new_param.setValue(param.getValue())
-                print(f"Parameter '{param.getName()}' duplicated successfully.")
-            else:
-                print(f"Type mismatch for parameter '{param.getName()}' during duplication.")
-        except Exception as e:
-            print(f"Error duplicating parameter '{param.getName()}': {e}")
+    for parameter in original_node.getParameters() or []:
+        if parameter.isPure():
+            continue
+        parameter_type = parameter.getType()
+        if parameter_type not in MANUAL_VALUE_TYPES:
+            raise ValueError(
+                f"Parameter '{parameter.getName()}' (type {parameter_type}) "
+                "requires native preservation; no value was read."
+            )
+        target_parameter = new_node.getParameter(parameter.getName())
+        if target_parameter is None or target_parameter.isPure():
+            raise ValueError(f"No concrete destination parameter '{parameter.getName()}'")
+        if target_parameter.getType() != parameter_type:
+            raise ValueError(f"Parameter type mismatch for '{parameter.getName()}'")
+        target_parameter.setValue(parameter.getValue())
+    print(f"Parameters copied successfully from '{original_node.getName()}' to '{new_node.getName()}'.")
 
 
 # Example usage

@@ -22,13 +22,28 @@ Let’s dive deeper into how KeyShot’s API allows for “copying” materials 
 
 ## Manual Copy of Material Graphs Using KeyShot API
 
+The original v1.3.6 workflow was developed using KeyShot-tested code. Its parameter helper read every parameter with getValue(), without checking pure status or parameter type. That helper is not a general-purpose copier for complex shader data. This revision adds a focused parameter-copy guard; the edge-ID reconstruction logic remains unchanged.
+
+Pure parameters have no concrete value and are excluded from value copying. ColorGradient (PARAMETER_TYPE_COLORGRADIENT, 16), AnimationCurve (PARAMETER_TYPE_ANIMATIONCURVE, 17), and other types outside the explicit manual-value allowlist are never read with getValue() by this example. Before any manual nodes are created, the entire source graph is checked. If any unsupported concrete type is present, the example retains the graph created by lux.createMultiMaterial() and reports that the manual reconstruction pass was not run. It does not create replacement nodes with missing gradient or curve configuration. This leaves complex data to the native copy operation; it does not add a Python serializer or claim independent validation of every native-copy case.
+
+For supported concrete values, destination parameters are found by getName(), checked for matching type and non-pure status, then copied. The explicit node/edge pass remains in place for graphs passing the preflight. This focused change has not been executed in KeyShot here.
+
 # AUTHOR: LUX DT ChatGPT
-# VERSION: 1.3.6
+# VERSION: 1.3.7 (parameter-copy guard)
 # PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge 
 # from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material 
 # as a sub-material into an existing Multi-Material in KeyShot.
 ```python
 import lux
+
+# Only these concrete parameter types are handled by the manual value-copy pass.
+MANUAL_VALUE_TYPES = frozenset((
+    lux.PARAMETER_TYPE_BOOLEAN, lux.PARAMETER_TYPE_INTEGER,
+    lux.PARAMETER_TYPE_FLOAT, lux.PARAMETER_TYPE_FLOAT2, lux.PARAMETER_TYPE_FLOAT3,
+    lux.PARAMETER_TYPE_DOUBLE, lux.PARAMETER_TYPE_DOUBLE3,
+    lux.PARAMETER_TYPE_STRING, lux.PARAMETER_TYPE_STRINGLIST,
+    lux.PARAMETER_TYPE_COLOR, lux.PARAMETER_TYPE_COLORALPHA,
+))
 
 def add_copied_material_to_multimaterial(material_name, multi_material_name):
     """
@@ -108,6 +123,22 @@ def duplicate_material_graph(source_graph, target_graph):
     - source_graph (MaterialGraph): The original material graph to be duplicated.
     - target_graph (MaterialGraph): The target material graph where nodes and edges will be copied.
     """
+    # Preflight the whole graph before creating any replacement nodes.
+    # Complex values stay in the graph made by the native material-copy operation.
+    source_nodes = source_graph.getNodes() or []
+    for node in source_nodes:
+        for parameter in node.getParameters() or []:
+            if parameter.isPure():
+                continue
+            parameter_type = parameter.getType()
+            if parameter_type not in MANUAL_VALUE_TYPES:
+                print(
+                    f"Keeping the native material copy: manual reconstruction was not run. "
+                    f"Node '{node.getName()}', parameter '{parameter.getName()}', "
+                    f"type {parameter_type} requires native preservation."
+                )
+                return
+
     node_mapping = {}  # Keep track of original and new nodes to reconnect edges
 
     # Step A: Duplicate nodes with detailed error handling
@@ -170,19 +201,27 @@ def duplicate_node(node, target_graph):
 
 # Function to duplicate all parameters from one node to another
 def duplicate_parameters(original_node, new_node):
+    """Copy supported concrete values; pure parameters are handled through edges.
+
+    Complex parameters must remain in the native material copy. The graph-level
+    preflight prevents reconstruction of a graph containing unsupported values.
     """
-    Duplicate all parameters of the original node into the new node.
-    
-    Parameters:
-    - original_node (ShaderNode): The original node whose parameters will be duplicated.
-    - new_node (ShaderNode): The new node where the parameters will be copied to.
-    """
-    try:
-        for parameter in original_node.getParameters():
-            new_node.getParameter(parameter.getID()).setValue(parameter.getValue())
-        print(f"Parameters copied successfully from '{original_node.getName()}' to '{new_node.getName()}'.")
-    except Exception as e:
-        print(f"Error copying parameters from '{original_node.getName()}': {e}")
+    for parameter in original_node.getParameters() or []:
+        if parameter.isPure():
+            continue
+        parameter_type = parameter.getType()
+        if parameter_type not in MANUAL_VALUE_TYPES:
+            raise ValueError(
+                f"Parameter '{parameter.getName()}' (type {parameter_type}) "
+                "requires native preservation; no value was read."
+            )
+        target_parameter = new_node.getParameter(parameter.getName())
+        if target_parameter is None or target_parameter.isPure():
+            raise ValueError(f"No concrete destination parameter '{parameter.getName()}'")
+        if target_parameter.getType() != parameter_type:
+            raise ValueError(f"Parameter type mismatch for '{parameter.getName()}'")
+        target_parameter.setValue(parameter.getValue())
+    print(f"Parameters copied successfully from '{original_node.getName()}' to '{new_node.getName()}'.")
 
 
 # Example usage
@@ -256,7 +295,7 @@ mat_graph_copy = lux.getMaterialGraph(name="cool-material-copy")
 3. Maintains Node Connections:
 • Preserving connections is essential to the copying workflow. Inspect getInputEdges() and getOutputEdges(), then check each edge’s getSourceNode(), getTargetNode(), and getID() against the intended source-to-copy mapping.
 • This is critical for maintaining the visual properties of the material, as connections between shader nodes, textures, and parameters define how the material looks. In this example, the explicit node/edge pass uses param_name = edge.getID(), converts the value to a string when necessary, and passes it to target_graph.newEdge(source_node, target_node, param_name).
-• The repository’s 2026.3 beta lux API reference describes MaterialGraph.newEdge(source, target, param) as attaching a source node to a target parameter, ShaderNode.getInputEdge(parameter=...) as looking up an input edge by parameter name, and ShaderEdge.getID() as returning the edge ID. The runtime interpretation of the edge-ID argument has not been independently established by the documentation. The original implementation was developed using KeyShot-tested code; this documentation discrepancy does not establish a runtime failure. No replacement implementation has been validated in KeyShot. The restored script does not dynamically resolve named target inputs or read connections back to verify them. Inspection of endpoints and target inputs is separate from the implementation shown here.
+• The repository’s 2026.3 beta lux API reference describes MaterialGraph.newEdge(source, target, param) as attaching a source node to a target parameter, ShaderNode.getInputEdge(parameter=...) as looking up an input edge by parameter name, and ShaderEdge.getID() as returning the edge ID. The runtime interpretation of the edge-ID argument has not been independently established by the documentation. The original implementation was developed using KeyShot-tested code; this documentation discrepancy does not establish a runtime failure. No replacement implementation has been validated in KeyShot. The script does not dynamically resolve named target inputs or read connections back to verify them. Inspection of endpoints and target inputs is separate from the implementation shown here.
 
 ## Potential Application for Sub-Materials
 

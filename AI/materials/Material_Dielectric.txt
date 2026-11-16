@@ -1,0 +1,56 @@
+### Material: Dielectric
+  - **SHADER_TYPE**: lux_glass
+  - **abbe_number** (PARAMETER_TYPE_FLOAT): Abbe number for the material, influencing dispersion. (Value: 0.0)
+  - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **dispersion_samples** (PARAMETER_TYPE_INTEGER): Number of samples for calculating dispersion. (Value: 3)
+  - **glossy_samples** (PARAMETER_TYPE_INTEGER): Number of samples used for glossy reflections. (Value: 9)
+  - **ior** (PARAMETER_TYPE_FLOAT): Index of Refraction; affects the bending of light. (Value: 1.5)
+  - **ior_out** (PARAMETER_TYPE_FLOAT): Index of Refraction outside the material; affects the bending of light at the material's surface. (Value: 1.0)
+  - **multiple surface scattering** (PARAMETER_TYPE_BOOLEAN): Enables or disables multiple surface scattering. (Value: False)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **roughness** (PARAMETER_TYPE_FLOAT): Controls the sharpness of reflections. (Value: 0.0)
+  - **roughness_transmission** (PARAMETER_TYPE_FLOAT): Controls the roughness of transmission. (Value: 0.0)
+  - **thickness** (PARAMETER_TYPE_FLOAT): Thickness of the material. (Value: 500.0)
+  - **transmission** (PARAMETER_TYPE_COLOR): Color of transmission through the material. (Value: (0.3025, 0.3025, 0.3025))
+  - **transmission_out** (PARAMETER_TYPE_COLOR): Color of transmission outside the material. (Value: (1.0, 1.0, 1.0))
+
+## Parameters for shader node in material'Dielectric':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- abbe_number (Type: 4)
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- dispersion_samples (Type: 2)
+- glossy_samples (Type: 2)
+- ior (Type: 4)
+- ior_out (Type: 4)
+- multiple surface scattering (Type: 1)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- roughness (Type: 4)
+- roughness_transmission (Type: 4)
+- thickness (Type: 4)
+- transmission (Type: 13)
+- transmission_out (Type: 13)
+
+## The Dielectric material type is a more advanced way to create glass materials. Compared to the Solid Glass Material Type, you will find additional settings for dispersion (Abbe Number) and it can also be used to create an accurate interface between glass and liquid.
+
+Transmission
+This option controls the overall color of this material type. When light enters the surface it will take on the color set here. The amount of color that you see in this material is highly dependent on the Transparency Distance setting as well. If you have set a color in the transmission, but it looks too faint, try to decrease the Transparency Distance.
+
+Transparency Distance
+This slider controls the depth of the color selected in the Transmission setting, depending on the thickness of the part to which the material is applied. After setting a color in the Transmission setting, use Transparency Distance to make that color more or less saturated and prominent. A lower setting will show the color more in thin areas of the model, and a high setting will make the color faint in the thin areas.
+
+This physically accurate parameter simulates the effect you can observe by looking at the color of the shallow water at a beach versus the deep blue of a deep ocean. Without this you would see through to the bottom of the deepest ocean as easily as to the bottom of a swimming pool.
+
+Refractive Index
+This slider controls how much light will bend or refract as it passes through parts on your model that have this type of material. The default of 1.5 is accurate for simulating most types of glass, but you can increase the value to create a more dramatic refraction within the surface.
+
+Transmission Out
+This option controls the color of the light on the outside of the material. It is an advanced and complex setting, but it is needed when rendering containers with liquid. In the example of a water glass, you will need to have a dedicated surface for where the liquid and glass meet. On this surface, you should set the color of the glass with the transmission out setting and control the color of the liquid with the transmission setting. If the glass and liquid are both clear, set both transmission and transmission out to white.
+
+Refractive Index Outside

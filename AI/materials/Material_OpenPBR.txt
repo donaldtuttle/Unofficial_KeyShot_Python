@@ -1,0 +1,82 @@
+### Material: OpenPBR
+  - **SHADER_TYPE**: lux_openpbr
+  - **Constant**: lux.SHADER_TYPE_OPENPBR
+  - **Source**: KeyShot Studio 2026.3 beta, getParameters() on a live material named "Mold-Tech-11030 Spray Dot OpenPBR"
+
+
+Node order in the 2026.3 beta capture of "Mold-Tech-11030 Spray Dot OpenPBR":
+
+1. Root — geometry, labels, surface
+2. Mapping node — triplanar-style texture and scale parameters
+3. Empty node — no exposed parameters
+4. OpenPBR node — base, coat, specular, fuzz, subsurface, thin film, transmission, emission
+
+Root node:
+- geometry (PARAMETER_TYPE_SHADERGEOMETRY, 65540)
+- labels (PARAMETER_TYPE_SHADERLABEL, 65538)
+- surface (PARAMETER_TYPE_SHADERSURFACE, 65537)
+
+Mapping node (triplanar-style):
+- angleX, angleY, angleZ (PARAMETER_TYPE_FLOAT, 4)
+- blend (PARAMETER_TYPE_FLOAT, 4)
+- blend_color (PARAMETER_TYPE_BOOLEAN, 1)
+- brightness (PARAMETER_TYPE_FLOAT, 4)
+- bump_height (PARAMETER_TYPE_FLOAT, 4)
+- contrast (PARAMETER_TYPE_FLOAT, 4)
+- default_color (PARAMETER_TYPE_COLOR, 13)
+- first_shader (PARAMETER_TYPE_COLORALPHA, 14)
+- flagsX, flagsY, flagsZ (PARAMETER_TYPE_INTEGER, 2)
+- normalX, normalY, normalZ (PARAMETER_TYPE_BOOLEAN, 1)
+- second_shader (PARAMETER_TYPE_COLORALPHA, 14)
+- sync (PARAMETER_TYPE_BOOLEAN, 1)
+- textureUseProfileX, textureUseProfileY, textureUseProfileZ (PARAMETER_TYPE_BOOLEAN, 1)
+- textureX, textureY, textureZ (PARAMETER_TYPE_STRING, 9)
+- texture_space (PARAMETER_TYPE_INTEGER, 2)
+- third_shader (PARAMETER_TYPE_COLORALPHA, 14)
+- transform_obj_to_uv (PARAMETER_TYPE_MATRIX, 12)
+- uScaleX, uScaleY, uScaleZ (PARAMETER_TYPE_FLOAT, 4)
+- vScaleX, vScaleY, vScaleZ (PARAMETER_TYPE_FLOAT, 4)
+
+OpenPBR node:
+- base_color (PARAMETER_TYPE_COLOR, 13)
+- base_diffuse_roughness (PARAMETER_TYPE_FLOAT, 4)
+- base_metalness (PARAMETER_TYPE_FLOAT, 4)
+- base_weight (PARAMETER_TYPE_FLOAT, 4)
+- coat_color (PARAMETER_TYPE_COLOR, 13)
+- coat_darkening (PARAMETER_TYPE_FLOAT, 4)
+- coat_ior (PARAMETER_TYPE_FLOAT, 4)
+- coat_roughness (PARAMETER_TYPE_FLOAT, 4)
+- coat_roughness_anisotropy (PARAMETER_TYPE_FLOAT, 4)
+- coat_weight (PARAMETER_TYPE_FLOAT, 4)
+- emission_color (PARAMETER_TYPE_COLOR, 13)
+- emission_luminance (PARAMETER_TYPE_FLOAT, 4)
+- fuzz_color (PARAMETER_TYPE_COLOR, 13)
+- fuzz_roughness (PARAMETER_TYPE_FLOAT, 4)
+- fuzz_weight (PARAMETER_TYPE_FLOAT, 4)
+- geometry_coat_normal (PARAMETER_TYPE_SHADERBUMP, 65539)
+- geometry_coat_tangent (Type 0 — unnamed in the dump)
+- geometry_normal (PARAMETER_TYPE_SHADERBUMP, 65539)
+- geometry_opacity (PARAMETER_TYPE_FLOAT, 4)
+- geometry_tangent (Type 0 — unnamed in the dump)
+- geometry_thin_walled (PARAMETER_TYPE_BOOLEAN, 1)
+- specular_color (PARAMETER_TYPE_COLOR, 13)
+- specular_ior (PARAMETER_TYPE_FLOAT, 4)
+- specular_roughness (PARAMETER_TYPE_FLOAT, 4)
+- specular_roughness_anisotropy (PARAMETER_TYPE_FLOAT, 4)
+- specular_weight (PARAMETER_TYPE_FLOAT, 4)
+- subsurface_color (PARAMETER_TYPE_COLOR, 13)
+- subsurface_radius (PARAMETER_TYPE_FLOAT, 4)
+- subsurface_radius_scale (PARAMETER_TYPE_COLOR, 13)
+- subsurface_scatter_anisotropy (PARAMETER_TYPE_FLOAT, 4)
+- subsurface_weight (PARAMETER_TYPE_FLOAT, 4)
+- thin_film_ior (PARAMETER_TYPE_FLOAT, 4)
+- thin_film_thickness (PARAMETER_TYPE_FLOAT, 4)
+- thin_film_weight (PARAMETER_TYPE_FLOAT, 4)
+- transmission_color (PARAMETER_TYPE_COLOR, 13)
+- transmission_depth (PARAMETER_TYPE_FLOAT, 4)
+- transmission_disp_abbe_number (PARAMETER_TYPE_FLOAT, 4)
+- transmission_disp_scale (PARAMETER_TYPE_FLOAT, 4)
+- transmission_scatter (PARAMETER_TYPE_COLOR, 13)
+- transmission_scatter_ani (PARAMETER_TYPE_FLOAT, 4)
+- transmission_weight (PARAMETER_TYPE_FLOAT, 4)
+

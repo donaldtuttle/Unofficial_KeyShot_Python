@@ -1,0 +1,17 @@
+### Material: Planar Light
+  - **SHADER_TYPE**: lux_arealight
+  - **Constant**: lux.SHADER_TYPE_PLANAR_LIGHT
+  - **Source**: KeyShot Studio 2026.3 beta, getParameters() on a live material named "Planar Light Material"
+
+Root node:
+- geometry (PARAMETER_TYPE_SHADERGEOMETRY, 65540)
+- labels (PARAMETER_TYPE_SHADERLABEL, 65538)
+- surface (PARAMETER_TYPE_SHADERSURFACE, 65537)
+
+Light node:
+- apply_bump_to_labels (PARAMETER_TYPE_BOOLEAN, 1)
+- bumpmap (PARAMETER_TYPE_SHADERBUMP, 65539)
+- diffuse (PARAMETER_TYPE_COLORALPHA, 14)
+- opacitymap (PARAMETER_TYPE_COLORALPHA, 14)
+- opacitymap_mode (PARAMETER_TYPE_INTEGER, 2)
+

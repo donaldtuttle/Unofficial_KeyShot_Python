@@ -1,0 +1,73 @@
+### Material PARAMETER_TYPE: Generic
+  - **SHADER_TYPE**: lux_generic
+  - **anisotropic** (PARAMETER_TYPE_FLOAT): Degree of anisotropy. (Value: 0.0)
+  - **anisotropic direction** (PARAMETER_TYPE_INTEGER): Direction of anisotropy. (Value: 0)
+  - **anisotropic_angle** (PARAMETER_TYPE_FLOAT): Angle of anisotropy. (Value: 0.0)
+  - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **base_color** (PARAMETER_TYPE_COLOR): Base color of the material. (Value: (0, 0, 0, 1.0))
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **clearcoat** (PARAMETER_TYPE_FLOAT): Intensity of clearcoat layer. (Value: 0.0)
+  - **clearcoat_roughness** (PARAMETER_TYPE_FLOAT): Roughness of clearcoat layer. (Value: 0.0)
+  - **diffuse_saturation** (PARAMETER_TYPE_FLOAT): Saturation of the diffuse color. (Value: 0.0)
+  - **metallic** (PARAMETER_TYPE_FLOAT): Metallic property of the material. (Value: 0.0)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **roughness** (PARAMETER_TYPE_FLOAT): Controls the sharpness of reflections. (Value: 0.0)
+  - **sheen** (PARAMETER_TYPE_FLOAT): Intensity of sheen effect. (Value: 0.0)
+  - **sheen_tint** (PARAMETER_TYPE_FLOAT): Tint of the sheen effect. (Value: 0.0)
+  - **specular** (PARAMETER_TYPE_FLOAT): Specular reflection intensity. (Value: 0.5)
+  - **specular_tint** (PARAMETER_TYPE_FLOAT): Tint of the specular reflection. (Value: 0.0)
+
+## Parameters for shader node in material 'Generic':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- anisotropic (Type: 4)
+- anisotropic direction (Type: 2)
+- anisotropic_angle (Type: 4)
+- apply_bump_to_labels (Type: 1)
+- base_color (Type: 14)
+- bumpmap (Type: 65539)
+- clearcoat (Type: 4)
+- clearcoat_roughness (Type: 4)
+- diffuse_saturation (Type: 4)
+- metallic (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- roughness (Type: 4)
+- sheen (Type: 4)
+- sheen_tint (Type: 4)
+- specular (Type: 4)
+- specular_tint (Type: 4)
+
+
+## The Generic shader material type is based on the Disney BRDF shader. When you use the Material Importer to import materials such as a Unified 3D Material (.u3m) or Substance Painter Project (.sp) their properties will be mapped to the properties of the Generic material. The generic material is intended for PBR materials where texture used files are used to set parameters.The Disney BRDF shader has values going from 0-1. In the Generic material type, we have, for artistic purposes, allowed some of the parameters to have values exceeding this.
+
+Base Color
+This is the surface color and can be replaced by a texture.
+Metallic
+Controls the “metallicness” of the material. Increasing the value will produce a more metallic appearance.
+Roughness
+This will add microscopic levels of imperfections to the surface of the material. When set to 0, the material will appear perfectly smooth and polished. When the value is increased, the material will appear rougher as light is diffused across the surface.
+Specular
+The value determines the intensity of the reflection of light sources.
+Specular Tint
+Determines how much the color the specular reflection gets from the base color. Value between 0-1. At 0, the specular reflection is achromatic.
+Anisotropic
+This value determines the amount of anisotropy. Anisotropy (the opposite of isotropy) is the property of being directionally dependent. At 0 the surface will be isotropic and will reflect light evenly. Increasing the Anisotropic value add direction to the reflections. 
+Anisotropic Angle
+Adjust the angle of the anisotropy.
+Sheen
+The perceived shininess at grazing angles on a surface. Increase the value to add sheen to the material. Primarily used for cloth materials.
+Sheen Tint
+Determines how much the color the sheen gets from the base color. Value between 0-1. At 0, the sheen is achromatic (doesn’t tint incoming light).
+Clear-coat
+Adds a clear coat on top of the material. increasing the value will make the layer more prominent.
+Clear-coat Roughness
+Controls the roughness of the clear-coat. A value of 0 will make the surface glossy while increasing the value will give the surface a satin finish.
+Diffuse Saturation
+Adjusts the diffuse saturation of the material. Increasing this value can make the material have fluorescent look.
+Anisotropic Direction
+UV: the anisotropy follows the UV’s on the object
+Linear: the anisotropic direction is straight

@@ -1,9 +1,7 @@
 ```text
 # Keyshot 2026.3 Python3.11 Lux
 
->>>
 help(luxmath)
-
 
 Help on built-in module luxmath:
 NAME

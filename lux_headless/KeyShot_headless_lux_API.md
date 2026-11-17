@@ -1,14 +1,13 @@
-# Keyshot2023.2 Python3.11 Headless Lux
-
-```python
-KeyShot 2023.2 Headless Scripting Documentation
+```text
+KeyShot 2026.1 Headless Scripting Documentation
 built-in module lux
 
 lux          index (built-in)
-
 The module contains various classes and functions to use for manipulating the scene and rendering images.
   Classes
 builtins.object
+ColorParameter
+Colorway
 Env
 ImageStyle
 MaterialGraph
@@ -19,7 +18,96 @@ SceneNode
 ShaderEdge
 ShaderNode
 ShaderParameter
+Studio
 ThumbnailRenderOptions
+class ColorParameter(builtins.object)
+ColorParameter encapsulates color settings in a clear and consise way.
+ 
+Methods defined here:
+__hash__(self, /)
+Return hash(self).
+__init__(self, /, *args, **kwargs)
+Initialize self.  See help(type(self)) for accurate signature.
+__repr__(self, /)
+Return repr(self).
+__str__(self, /)
+Return str(self).
+getActiveSubColor(...)
+Gets the currently active sub color. Can only be called on multi colors!
+getColor(...)
+Get RGBA color value.
+getName(...)
+Get name of color.
+getSubColors(...)
+Gets the list of sub colors. Can only be called on multi colors!.
+isMultiColor(...)
+Is it a multi color.
+setActiveSubColor(...)
+Sets the currently active sub color. Must be part of the sub colors!
+sub = The sub color to activate. *
+setCMYK(...)
+Set value of color.
+color = 4 numbers in range [0,100]. *
+setHSV(...)
+Set value of color.
+color = 3 numbers in range [0,360[, [0,100], [0,100]. *
+setHex(...)
+Set value of color.
+color = Hexadecimal string representing the RGB color. *
+setKelvin(...)
+Set value of color.
+color = Kelvin temperature in range [2500,9500]. *
+setLab(...)
+Set value of color.
+color = 3 numbers in range [0,100], [-128,128], [-128,128]. *
+setName(...)
+Set color name. Names must be unique!
+name = The requested name. *
+setRGBA(...)
+Set RGB(A) value of color.
+color = 3 or 4 numbers in range [0,255]. *
+setRGBAf(...)
+Set RGB(A) value of color.
+color =  3 or 4 numbers in range [0,1]. *
+setSubColors(...)
+Sets the list of sub colors. The order matters. Can only be called on multi colors!
+colors = The list of sub colors. *
+Static methods defined here:
+__new__(*args, **kwargs) from builtins.type
+Create and return a new object.  See help(type) for accurate signature.
+class Colorway(builtins.object)
+Colorway encapsulates colorway settings in a clear and consise way.
+ 
+Methods defined here:
+__hash__(self, /)
+Return hash(self).
+__init__(self, /, *args, **kwargs)
+Initialize self.  See help(type(self)) for accurate signature.
+__repr__(self, /)
+Return repr(self).
+__str__(self, /)
+Return str(self).
+appendColor(...)
+Append a multi/sub color to colorway.
+multi = The multi color to append.
+sub = The sub color to append. Must be part of the multi color!*
+getColors(...)
+Get colors of colorway.
+getName(...)
+Get name of colorway.
+removeColor(...)
+Remove a multi color from colorway.
+color = The multi color to remove. *
+setName(...)
+Set colorway name. Names must be unique!
+name = The requested name. *
+updateColor(...)
+Update a multi color from colorway.
+multi = The multi color to update.
+sub = The sub color to activate. Must be part of the multi color!*
+Static methods defined here:
+__new__(*args, **kwargs) from builtins.type
+Create and return a new object.  See help(type) for accurate signature.
 class Env(builtins.object)
 Env encapsulates environment settings in a clear and consise way. Get an instance of the active environment using lux.getActiveEnvironment().
  
@@ -467,7 +555,7 @@ Find nodes in the subtree of this node by searching part names and material name
 name = Part name to search for (string/tuple/list). 
 mat = Material name to search for (string/tuple/list). 
 all = Match all part names or all material names (default = false).
-types = Filter results to match types (int/tuple/list) which can be the following the values: lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_ANIMATION, lux.NODE_TYPE_MODEL_SET, and lux.NODE_TYPE_MODEL default = all types). 
+types = Filter results to match types (int/tuple/list) which can be the following the values: lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_ANIMATION, lux.NODE_TYPE_MODEL_SET, lux.NODE_TYPE_MODEL and lux.NODE_TYPE_CAMERA default = all types). 
 depth = The amount of levels to go down the tree. A value of 1 means to only match the direct children of this node etc. (default = -1 = all)
 deleted = Whether or not to include deleted nodes. (default = False)
 getBoundingBox(...)
@@ -485,11 +573,13 @@ Get hidden nodes of a group (recursive).
 getID(...)
 Get node ID.
 getKind(...)
-Get node kind. Can be one of the following values: lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_ANIMATION, lux.NODE_TYPE_MODEL_SET, or lux.NODE_TYPE_MODEL.
+Get node kind. Can be one of the following values: lux.NODE_TYPE_GROUP, lux.NODE_TYPE_OBJECT, lux.NODE_TYPE_ANIMATION, lux.NODE_TYPE_MODEL_SET, lux.NODE_TYPE_MODEL or lux.NODE_TYPE_CAMERA.
 getLocked(...)
 Get locked nodes of a group (recursive).
 getMaterial(...)
 Get material of a node.
+getMetadata(...)
+Get metadata for this node as a dictionary.
 getName(...)
 Get node name.
 getParent(...)
@@ -508,6 +598,8 @@ hide(...)
 Hide node.
 isAnimation(...)
 Check if node is an animation.
+isCamera(...)
+Check if node is a camera.
 isDeleted(...)
 Check if node is deleted.
 isDescendantOf(...)
@@ -649,6 +741,8 @@ __repr__(self, /)
 Return repr(self).
 __str__(self, /)
 Return str(self).
+getColor(...)
+Get concrete value of shader parameter. Cannot be called on pure parameters.
 getDisplayName(...)
 Get display name of shader parameter.
 getName(...)
@@ -662,6 +756,52 @@ Checks if shader parameter is pure, i.e. has no concrete value. Pure parameters 
 setValue(...)
 Set concrete value of shader parameter. Cannot be called on pure parameters.
 value = The supported input types depend on the shader parameter type. *
+Static methods defined here:
+__new__(*args, **kwargs) from builtins.type
+Create and return a new object.  See help(type) for accurate signature.
+class Studio(builtins.object)
+Studio encapsulates studio settings in a clear and consise way.
+ 
+Methods defined here:
+__init__(self, /, *args, **kwargs)
+Initialize self.  See help(type(self)) for accurate signature.
+__repr__(self, /)
+Return repr(self).
+__str__(self, /)
+Return str(self).
+enableMultiMaterials(...)
+Enable or disable multi materials on the studio.
+enable = Boolean value for enabling or disabling multi materials. (default = True)
+getCamera(...)
+Get studio camera (name)
+getEnvironment(...)
+Set studio environment in the form of its name.
+getImageStyle(...)
+Set studio image style in the form of its name.
+getModelSets(...)
+Get studio model sets. It returns a list of model set names.
+getMultiMaterials(...)
+Get studio multi materials. Returns a list of (MaterialName, ActiveSubMaterialName) tuples for each multi material in the studio.
+getName(...)
+Get studio name.
+isMultiMaterialsEnabled(...)
+Returns whether multi materials are enabled for the studio.
+setCamera(...)
+Set studio camera.
+name = The camera in the form of its name or `None` to disable. *
+setEnvironment(...)
+Set studio environment.
+name = The environment in form of its name or `None` to disable. *
+setImageStyle(...)
+Set studio Image Style.
+name = The image style in form of its name or `None` to disable. *
+setModelSets(...)
+Set studio modelsets.
+names = A List of model sets (specified by a list of model set names) or `None` to disable. *
+updateMultiMaterial(...)
+Make the submaterial active for the given multimaterial in the studio.
+multimaterial = The name of a multimaterial in the studio *
+submaterial = The name of the submaterial to activate *
 Static methods defined here:
 __new__(*args, **kwargs) from builtins.type
 Create and return a new object.  See help(type) for accurate signature.
@@ -694,13 +834,23 @@ dict = Dictionary of object IDs to material names. *
 link = Whether to link to the material or create a duplicate. (default = False)
 clearGeometry(...)
 Clears all geometry in the scene.
+createColorway(...)
+Create a new colorway in the scene
+name = Name of color. Must be unique!*
 createMultiMaterial(...)
 Create a multi-material based on an existing material.
 name = Name of new multi-material. *
 mat = Name of existing material to clone from. Can be a string or list of strings (first item of the list will be used to clone from). *
+createSceneColor(...)
+Create a new color in the scene
+name = Name of color. Must be unique!
+multi = Set to create multi color*
 createSceneMaterial(...)
 Creates a new scene material (diffuse).
 name = Name of material to create. *
+deleteColorway(...)
+Delete a colorway in the scene
+colorway = Colorway to delete. Either object or name. *
 deleteMaterial(...)
 Deletes material from KeyShot context. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
 name = Name of material to delete. *
@@ -732,12 +882,17 @@ where mode can be one of the following values: lux.EXPORT_SINGLE_COLOR (STL), lu
 where sub_div can be either lux.EXPORT_SUB_DIV_NORMAL or lux.EXPORT_SUB_DIV_ADAPTIVE, and stop_criteria can be lux.EXPORT_SUB_DIV_POLYCOUNT or lux.EXPORT_SUB_DIV_EDGE_LENGTH.
   {"mode": lux.EXPORT_BAKING,
    "dpi": dpi,
+   "max_resolution": Maximum allowed texture resolution (only GLTF/B and USD),
    "num_samples": number_of_samples,
    "occlusion": include_ambient_occlusion_boolean,
    "draco_compression": Compress using Draco (only GLTF/B),
    "preferred_output": Prefer textures or geometry shaders when parts have both
-   "keep_uvs": Use original UVs if possible}
-where preferred_output can be either lux.EXPORT_OUTPUT_TEXTURES or lux.EXPORT_OUTPUT_GEOMETRY_SHADERS.
+   "keep_uvs": Use original UVs if possible,
+   "include_cameras": Include cameras in export. Default True (only GLTF/B),
+   "clay_materials": Skip baking and export all materials with a clay look (only GLTF/B)}
+where preferred_output can be either lux.EXPORT_OUTPUT_TEXTURES or lux.EXPORT_OUTPUT_GEOMETRY_SHADERS. This turns off/on using geometry nodes in GLTF/B exports.
+The dpi field is optional. With dpi specified texture quality in baking is calculated from dpi and is clamped by max_resolution. If dpi is not specified maximum resolution will be
+used on the biggest part and others will get an adaptive resolution based on that and the part size.
 findMaterialMetadata(...)
 Retrieve an object with the ability to access/modify metadata for a specific material in the material library.
 name = Name of material. *
@@ -746,7 +901,8 @@ Get active environment instance for manipulating and retrieving information.
 getActiveImageStyle(...)
 Get active image style instance for manipulating and retrieving information.
 getActiveStudio(...)
-Get active studio name of the scene.
+Get active studio of the scene. Yields name or instance.
+instance = Return lux.Studio instance instead of name. (default = False)
 getAnimationFrame(...)
 Returns the current animation frame.
 getAnimationInfo(...)
@@ -772,13 +928,20 @@ The values "vertical_shift" and "horizontal_shift" are only included for shift c
 The "mode" value is only included for panoramic cameras and will be either 
 lux.PANORAMA_TYPE_SPHERICAL or lux.PANORAMA_TYPE_CUBEMAP.
 getCameraLookAt(...)
-Gets the lool-at point of the active camera of the scene.
+Gets the look-at point of the active camera of the scene.
+getCameraPivot(...)
+Gets the pivot point of the active camera of the scene.
 getCameraPosition(...)
 Gets the position of the active camera of the scene.
 getCameraUp(...)
 Gets the up vector of the active camera of the scene.
 getCameras(...)
 Retrieves the cameras of the scene.
+getColorway(...)
+Get lux.Colorway object representing the colorway denoted by the colorway name.
+colorway = Colorway to access. Either object or name. *
+getColorways(...)
+Gets colorways of the scene.
 getEnvironments(...)
 Get list of environents of the scene.
 getExternalFiles(...)
@@ -805,13 +968,16 @@ Returns import options in a dictionary:
  tessellation_quality: Tessellation quality from 0.0 to 1.0. Higher values should yield more triangles.
  up_vector: Up vector of the source program. x = 0, y = 1, z = 2, -x = 3, -y = 4, -z = 5
  frame: Import a specific animation frame, if able.
+ import_animation: enables animation for glTF import. Set to False to import the model without animations. Default is True.
  mayaForceVersion: Maya file import depends on a local Maya installation. This option forces the importer to use a specific version. Should be a string representing the year release, e.g. "2013".
  group_by: For importers with multiple grouping options. Group by Layer = 0, Group by Shader = 1, Group by Object = 2.
  model_set_import_to: Which model set to import to. All = 0, Active = 1, Selected = 2, New = 3
 selected_model_set_ids = List of ids of model sets to import to when model_set_import == 2. Get model set id with GetId() on a lux.SceneNode.
 ext = File extension to get specific options.
 getDefaults = Whether to get KeyShot defaults or user settings from a previous import (default = false).
-inclusion_options = A bitwise collection of flags determining which features to import. Set to 31 for all features.
+inclusion_options = A bitwise collection of flags determining which features to import. 0 = Nothing, 1 = Geometry, 2 = Cameras, 4 = Environments, 8 = Image Styles, 16 = Studios. To include geometry and cameras set to 3 (since 1 + 2 = 3). Set to 31 for all features.
+instanceNames = Use instance-level naming for NX and Catia based formats.
+metadata = Import metadata where available.
 getKeepAspectRatio(...)
 Yield whether aspect ratio is being kept.
 getKeyShotDisplayVersion(...)
@@ -871,6 +1037,12 @@ Returns a list of render layers in the current scene.
 getRenderOptions(...)
 Returns render options as a lux.RenderOptions object. If defaults is set then it will return the internal defaults, otherwise it's the values as they appear in the render dialog.
 defaults = Return defaults or not (default = false).
+getSceneColor(...)
+Get lux.ColorParameter object representing the color denoted by the color name.
+name = Color name to access.
+multi = get color or multicolor*
+getSceneColors(...)
+Gets currently used colors and multi colors of the scene.
 getSceneInfo(...)
 Returns information about the scene in a dict: name, file name, unit/meter scale and number of triangles, objects, nurbs, curves, scene width/height, and rendering width/height.
 getSceneMaterials(...)
@@ -880,8 +1052,12 @@ Get lux.SceneNode object representing the root of the scene tree.
 getSphericalCamera(...)
 Get spherical information in degrees of active camera as a list: azimuth, inclination, and
 twist.
+getStudio(...)
+Returns a studio object that can be used to modified the studio based on a studio name.
+name = Name of studio. *
 getStudios(...)
-Get studio names of the scene.
+Get studios of the scene. Yields names or instances.
+instances = Return lux.Studio instances instead of names. (default = False)
 getSystemInfo(...)
 Returns information about the system as a dictionary.
 hasContents(...)
@@ -929,6 +1105,9 @@ name = The name of the new model set to create. *
 newScene(...)
 Clears the scene.
 dontAsk = Whether or not to suppress blocking dialogs while script is running, e.g. save scene (default = true, only in GUI mode).
+newStudio(...)
+Create a new studio.
+name = Name of studio. *
 openFile(...)
 Opens or imports a file. KSP files will be imported into the KeyShot resources folder.
 path = File path to open. *
@@ -957,6 +1136,21 @@ name = The name of the image style to remove. *
 removeModelSet(...)
 Remove a model set. If current model set is to be removed then the default model set is chosen.
 name = The name of the new model set to remove. *
+removeStudio(...)
+Removes a studio.
+name = Name of studio. *
+renderAnimation(...)
+Renders frames of the scene to a folder and/or video file.
+folder = Folder to render frames to. *
+frameFiles = Name of the frame files. The extension dictates the image format (can be jpg/jpeg, png, exr, tif/tiff or psd). (default = "frame.%d.jpg")
+keepFrames = Whether to keep the frames after rendering (default = true).
+width = Resolution width in pixels of the frames (default = scene width).
+height = Resolution height in pixels of the frames (default = scene height).
+fps = Frames per second (default = 12).
+videoName = Name of the video file, if any. The extension dictates the video format (can be mp4, mov, avi, or flv). (default = none)
+opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+format = Image format. Can be one of the following values: lux.RENDER_OUTPUT_JPEG, lux.RENDER_OUTPUT_PNG, lux.RENDER_OUTPUT_EXR, lux.RENDER_OUTPUT_TIFF8, lux.RENDER_OUTPUT_TIFF32, lux.RENDER_OUTPUT_PSD8, lux.RENDER_OUTPUT_PSD16, lux.RENDER_OUTPUT_PSD32 (requires file extension to match).
+renderLastFrame = Whether to render the last frame (default = true).
 renderCMF(...)
 Renders the scene to an image file.
 folder = Folder path to render to.*
@@ -973,6 +1167,16 @@ width = Resolution width in pixels of the output image (default = scene width).
 height = Resolution height in pixels of the output image (default = scene height).
 opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
 format = Image format. Can be one of the following values: lux.RENDER_OUTPUT_JPEG, lux.RENDER_OUTPUT_PNG, lux.RENDER_OUTPUT_EXR, lux.RENDER_OUTPUT_TIFF8, lux.RENDER_OUTPUT_TIFF32, lux.RENDER_OUTPUT_PSD8, lux.RENDER_OUTPUT_PSD16, lux.RENDER_OUTPUT_PSD32 (requires file extension to match).
+retessellate_advanced(...)
+Tessellates geometry.
+objectIDs = list of IDs of the sceneNodes to retesselate.
+distanceTolerance = set distance tolerance as a float between 0 and 100.
+angleTolerance = set angle tolerance as a float between 0 and 90.
+maxEdgeLength = set maximum edge length as a float between 0 and 100.
+retessellate_simple(...)
+Tessellates geometry.
+objectIDs = list of IDs of the sceneNodes to retesselate.
+quality = set quality of retesselation as a float between 0 and 1.
 saveCamera(...)
 Saves current camera if there are unsaved changes.
 saveFile(...)
@@ -1003,6 +1207,9 @@ excludeFlags = A list of properties that can be filtered out. (default = empty)
 Allowed excludeFlags are lux.SAVE_EXCLUDE_CONFIGURATOR, lux.SAVE_EXCLUDE_STUDIOS, lux.SAVE_EXCLUDE_GEOMETRY, lux.SAVE_EXCLUDE_CAMERAS, lux.SAVE_EXCLUDE_ENVIRONMENTS, lux.SAVE_EXCLUDE_IMAGE_STYLES, lux.SAVE_EXCLUDE_NURBS and lux.SAVE_EXCLUDE_ANIMATIONS.
 Notice you need to exclude Configurator (if there is one) to exclude Studios.
 In order exclude something a studio can control both studios and configurator must be excluded. If that isn't done the exclude will not occur.
+setActiveColorway(...)
+Set active colorway of the scene. Use lux.getColorways() to get a list of names.
+colorway = colorway object. *
 setActiveEnvironment(...)
 Set active environment of the scene. Use lux.getEnvironments() to get a list of names.
 name = Name of the environment. *
@@ -1044,6 +1251,10 @@ Set the active camera of the scene to panoramic mode.
 type = Type of the panoramic mode. Must be one of the following: lux.PANORAMA_TYPE_SPHERICAL, lux.PANORAMA_TYPE_CUBEMAP. (default = lux.PANORAMA_TYPE_SPHERICAL)
 setCameraPerspective(...)
 Set the active camera of the scene to perspective mode.
+setCameraPivot(...)
+Set the pivot point of the camera to coincide with an object or a point.
+obj = Object ID.
+pt = Point as tuple (x, y, z).
 setCameraPosition(...)
 Sets the position of the active camera of the scene.
 pos = Position of the camera (x, y, z). *
@@ -1151,6 +1362,7 @@ MODEL_ID_MATERIAL_DISC_25_MM = 'MaterialDisc_25_mm'
 MODEL_ID_MATERIAL_DISC_TOON_100_MM = 'MaterialDiscToon_100_mm'
 MODEL_ID_SPHERE_CUTAWAY_100_MM = 'SphereCutaway_100_mm'
 NODE_TYPE_ANIMATION = 3
+NODE_TYPE_CAMERA = 6
 NODE_TYPE_GROUP = 1
 NODE_TYPE_MODEL = 5
 NODE_TYPE_MODEL_SET = 4
@@ -1296,7 +1508,4 @@ VIEW_ISOMETRIC = 7
 VIEW_LEFT = 3
 VIEW_RIGHT = 4
 VIEW_TOP = 5
-
-FILE
-    (built-in)
 ```

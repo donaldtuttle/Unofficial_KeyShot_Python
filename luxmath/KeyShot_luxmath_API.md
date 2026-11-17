@@ -1,11 +1,9 @@
 ```text
-# Keyshot 2026.3 Python3.11 Lux
+KeyShot 2026.3 Headless Scripting Documentation
+built-in module luxmath
 
-help(luxmath)
-
-Help on built-in module luxmath:
-NAME
-    luxmath - The module contains a vector and matrix class for mathematical operations.
+luxmath          index (built-in)
+The module contains a vector and matrix class for mathematical operations.
 CLASSES
     builtins.object
         Matrix

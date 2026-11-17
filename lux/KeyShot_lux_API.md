@@ -1,12 +1,9 @@
 ```text
-# Keyshot 2026.3 Python3.11 Lux
+KeyShot 2026.3 Headless Scripting Documentation
+built-in module lux
 
-help(lux)
-
-
-Help on built-in module lux:
-NAME
-    lux - The module contains various classes and functions to use for manipulating the scene and rendering images.
+lux          index (built-in)
+The module contains various classes and functions to use for manipulating the scene and rendering images.
 CLASSES
     builtins.object
         ColorParameter

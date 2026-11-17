@@ -1,7 +1,5 @@
-# Keyshot2023.2 Python3.11 Headless Luxmath
-
-```python
-KeyShot 2023.2 Headless Scripting Documentation
+```text
+KeyShot 2026.1 Headless Scripting Documentation
 built-in module luxmath
 
 luxmath          index (built-in)
@@ -191,4 +189,5 @@ y
 The Y part.
 z
 The Z part.
+Copyright by KeyShot - Generated on Wed Feb 18 16:20:06 2026 using a modified pydoc.
 ```

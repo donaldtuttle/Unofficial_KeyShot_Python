@@ -1,5 +1,5 @@
 ```text
-KeyShot 2026.3 Headless Scripting Documentation
+KeyShot 2026.3 Python Scripting Documentation
 built-in module luxmath
 
 luxmath          index (built-in)

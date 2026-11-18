@@ -1,5 +1,5 @@
 ```text
-KeyShot 2026.3 Headless Scripting Documentation
+KeyShot Studio 2026.3 Python Scripting Documentation
 built-in module lux
 
 lux          index (built-in)

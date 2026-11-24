@@ -1,0 +1,72 @@
+### KeyShot Python Scripting ToC
+
+1. **KeyShot Python Scripting Guide**
+   - **Overview of Scripting**
+      -[[KeyShotPythonScripting_QuickReference_Documentation.txt]([KeyShotPythonScripting_QuickReference_Documentation.txt)
+     - [KeyShotPythonScripting_API_Guide.txt](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_API_Guide.txt)
+     - [KeyShotPythonScripting_API_Documentation.txt](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_API_Documentation.txt)
+   - **Best Practices and Tips**
+     - [KeyShotPythonScripting_API_BestPractices_Guide.txt](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_API_BestPractices_Guide.txt)
+   - **User Interface and Basics**
+     - [GUI Documentation](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt)
+     - [Understanding the Basics](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_API_UnderstandingTheBasics_Guide.txt)
+   - **Color Management**
+     - [Scene Color and Classes](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_Color_SceneColor_ColorWay_Classes_Guide.txt)
+   - **Scripting Techniques**
+     - [Constraints and Comprehensive Script Examples](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_Constraints_ComprehensiveScript_Guide&Examples.txt)
+     - [Debugging Techniques](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_Debugging_Guide.txt)
+   - **Material Graph Scripting**
+     - [Material Graph Guide](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_MaterialGraph_Guide.txt)
+     - [Copy of a Material Graph](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt)
+   - **Material Shaders in Scripting**
+     - [Material Shaders Overview](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_MaterialShaders_Documentation.txt)
+     - [Shader Classes and Parameters](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_MaterialShaders_ClassesFunctionsParametersTypes_Documentation.txt)
+   - **File Management**
+     - [OS Agnostic Practices](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_OS_Agnostic_Files&Folders.txt)
+     - [Python Environments and Scripts](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_PythonEnviorments&ScriptsInKeyShot_Guide.txt)
+   - **Utilities and Constants**
+     - [Utilities and Magic Methods](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_PythonUtilitiesMagicMethodsFunctions_Guide.txt)
+     - [Scene Node Types and Constants](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_SceneNodeTypes&Constants_Guide.txt)
+   - **Transformation Techniques**
+     - [Transformation Matrices](KeyShotPython_ScriptingGuide/KeyShotPythonScripting_TransformationMatrix_Documentation.txt)
+
+2. **KeyShot Material Shaders Types & Parameters**
+   - **Note:** The **KeyShot Material Shaders Types & Parameters** files are contained within the `KeyShotMaterialShaders_Types&Parameters.zip` archive. Please extract the contents before accessing the individual files.
+   - [KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)
+   - [Material Advanced.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Advanced.txt)
+   - [Material Anisotropic.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Anisotropic.txt)
+   - [Material Area Light.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Area Light.txt)
+   - [Material Cutaway.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Cutaway.txt)
+   - [Material Dielectric.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Dielectric.txt)
+   - [Material Diffuse.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Diffuse.txt)
+   - [Material Emissive.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Emissive.txt)
+   - [Material Flat.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Flat.txt)
+   - [Material Gem.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Gem.txt)
+   - [Material General.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material General.txt)
+   - [Material Generic .txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Generic .txt)
+   - [Material Generic PBR.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Generic PBR.txt)
+   - [Material Glass Solid.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Glass Solid.txt)
+   - [Material Glass.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Glass.txt)
+   - [Material Ground.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Ground.txt)
+   - [Material IES Light.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material IES Light.txt)
+   - [Material Liquid.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Liquid.txt)
+   - [Material Measured.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Measured.txt)
+   - [Material Metal.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Metal.txt)
+   - [Material Metallic Paint.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Metallic Paint.txt)
+   - [Material Multi-Layer Optics.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Multi-Layer Optics.txt)
+   - [Material Paint.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Paint.txt)
+   - [Material Plastic Cloudy.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Plastic Cloudy.txt)
+   - [Material Plastic Transparent.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Plastic Transparent.txt)
+   - [Material Plastic.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Plastic.txt)
+   - [Material Point Light.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Point Light.txt)
+   - [Material RealCloth.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material RealCloth.txt)
+   - [Material Scattering Medium.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Scattering Medium.txt)
+   - [Material Scripting Prompt.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Scripting Prompt.txt)
+   - [Material Spotlight.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Spotlight.txt)
+   - [Material Thin Film.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Thin Film.txt)
+   - [Material Toon.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Toon.txt)
+   - [Material Translucent Medium.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Translucent Medium.txt)
+   - [Material Translucent.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Translucent.txt)
+   - [Material Velvet.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Velvet.txt)
+   - [Material Wireframe.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Wireframe.txt)
+   - [Material Xray.txt](KeyShotMaterialShaders_Types&Parameters/KeyShotMaterialShaders_Types&Parameters/Material Xray.txt)

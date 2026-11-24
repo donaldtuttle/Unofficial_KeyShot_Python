@@ -1,9 +1,11 @@
-```text
-KeyShot Studio 2026.3 Python Scripting Documentation
-built-in module lux
+# Keyshot 2026.3 Python3.11 Lux
 
-lux          index (built-in)
-The module contains various classes and functions to use for manipulating the scene and rendering images.
+help(lux)
+
+
+Help on built-in module lux:
+NAME
+    lux - The module contains various classes and functions to use for manipulating the scene and rendering images.
 CLASSES
     builtins.object
         ColorParameter
@@ -1999,8 +2001,10 @@ DATA
     XR_TYPE_TURNTABLE = 1
 FILE
     (built-in)
-    
+
+>>>
 help(lux.renderImage)
+
 
 Help on function renderImage in module lux:
 renderImage(...)
@@ -2010,4 +2014,3 @@ renderImage(...)
     height = Resolution height in pixels of the output image (default = scene height).
     opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
     format = Image format. Can be one of the following values: lux.RENDER_OUTPUT_JPEG, lux.RENDER_OUTPUT_PNG, lux.RENDER_OUTPUT_EXR, lux.RENDER_OUTPUT_TIFF8, lux.RENDER_OUTPUT_TIFF32, lux.RENDER_OUTPUT_PSD8, lux.RENDER_OUTPUT_PSD16, lux.RENDER_OUTPUT_PSD32 (requires file extension to match).
-```

@@ -1,0 +1,5 @@
+interface:
+  default_prompt: Provide a detailed list of all 45 KeyShot Python API Classes.
+  display_name: KeyShot Python Scripting Reviewer
+  short_description: KeyShot Python Scripting Reviewer (KPSR) meticulously reviews
+    Py

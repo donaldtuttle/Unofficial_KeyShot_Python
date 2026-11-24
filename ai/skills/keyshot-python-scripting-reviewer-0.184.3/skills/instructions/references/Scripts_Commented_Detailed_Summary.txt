@@ -1,0 +1,89 @@
+# Detailed Summary of Commented Scripts
+
+This document lists the selected unique scripts contained in the "KeyShot_Python_Script_Examples_with_ToC.txt" for KeyShot based on their distinct functionalities.
+
+## List of Scripts:
+
+### General Scripts
+- **Add To Queue.py**: Adds a task to the render queue.
+- **Adjust Texture Scale Scene Units 1cm.py**: Adjusts texture scaling based on scene units (1cm).
+- **Animation Frame Padding Agnostic.py**: Manages animation frame padding agnostic of specific formats.
+- **Apply Library Color by Name to Diffuse Material Color.py**: Applies a color from the library by name to the diffuse material color.
+- **Apply Library Texture to Diffuse Material Color.py**: Applies a texture from the library to the diffuse material color.
+
+### Batch Processing
+- **Batch Import CAD Model Assign Material Template Name Model Set.py**: Batch imports CAD models and assigns material templates, naming model sets.
+- **Batch Import CAD Model Assign Material Template.py**: Batch imports CAD models and assigns material templates.
+- **Batch Import Multiple CAD File Types.py**: Batch imports multiple types of CAD files.
+- **Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py**: Assigns textures to diffuse sub-materials with default units in meters.
+- **Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py**: Assigns textures to diffuse sub-materials with scale units in centimeters.
+- **Batch Rename Find Replace GUI.py**: GUI for batch renaming using find and replace.
+- **Batch Rename Material Clashing Node Names.py**: Renames material nodes to resolve naming clashes.
+- **Batch Rename Model Sets.py**: Renames model sets in batch.
+- **Batch Rename Rhino CAD.py**: Batch renaming for Rhino CAD files.
+- **Batch Rename Rhino Clashing Node Names Underscores Colons.py**: Renames Rhino CAD nodes to resolve naming clashes using underscores and colons.
+- **Batch Render Incremental Screenshots.py**: Renders incremental screenshots in batch.
+- **Batch Rendering Animation with Frame Padding.py**: Manages batch rendering of animations with frame padding.
+- **Batch Save All Scene Materials to Material Library Agnostic.py**: Saves all scene materials to the material library, agnostic of specific formats.
+- **Batch Save All Scene Materials to Material Library.py**: Saves all scene materials to the material library.
+- **Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py**: Saves multi-material sub-materials to the material library, agnostic of specific formats.
+
+### Camera and Lighting
+- **Calculate Camera Distance.py**: Calculates the distance of the camera from the target.
+- **Camera Distance.py**: Script for managing camera distance.
+- **Change IES Light Color and File Agnostic.py**: Changes the color and file of IES lights, agnostic of specific formats.
+- **Create Camera Extract xmp Camera Data.py**: Creates a camera and extracts XMP camera data.
+- **Create Cameras Additional Functions Example.py**: Example script for additional camera functions.
+- **Create Cameras Template.py**: Template for creating cameras.
+- **Create Configured Cameras Template.py**: Template for creating configured cameras.
+- **Create Custom Cameras From XMP.py**: Creates custom cameras from XMP data.
+- **Create Standard Scene Example.py**: Example script for creating standard scenes.
+- **Create Standard Views and Perspective Cameras.py**: Creates standard views and perspective cameras.
+- **Create Standard Views and Perspective Cameras_Distance_50Units.py**: Creates standard views and perspective cameras with a distance of 50 units.
+- **Create Standard Views and Perspective Cameras_Distance_5Units.py**: Creates standard views and perspective cameras with a distance of 5 units.
+
+### GUI Scripts
+- **Creates Model Set.py**: Script to create a model set.
+- **CustomInputDialog_PC.py**: Custom input dialog for PC.
+- **Encode Video With Frame Padding.py**: Encodes video with frame padding.
+- **Get Model Sets.py**: Retrieves model sets.
+- **getMaterialGraph Parameters.py**: Retrieves parameters for the material graph.
+- **getSceneMaterials.py**: Retrieves scene materials.
+- **Get_Camera_Info.py**: Retrieves camera information.
+- **GUI Script Example Doc.py**: Example GUI script documentation.
+- **Hide All Model Sets Children.py**: Hides all children of model sets.
+- **Hides Node by Name.py**: Hides nodes by name.
+- **Import Scene Template cm.py**: Imports scene template with units in centimeters.
+- **Import Scene Template mm.py**: Imports scene template with units in millimeters.
+- **Load Environment From Library.py**: Loads environment settings from the library.
+- **lux.getInputDialog GUI Example.py**: Example of using `lux.getInputDialog` for GUI.
+- **lux.getSceneMaterials.py**: Retrieves scene materials using `lux.getSceneMaterials`.
+- **lux.getSceneTree.py**: Retrieves the scene tree using `lux.getSceneTree`.
+- **lux.getSceneTree_Nodes.py**: Retrieves nodes from the scene tree using `lux.getSceneTree`.
+
+### Material and Node Management
+- **Material Diffuse Color Apply Texture Example Agnostic.py**: Example script for applying textures to material diffuse color, agnostic of specific formats.
+- **Material Diffuse Color Apply Texture Example.py**: Example script for applying textures to material diffuse color.
+- **Material Diffuse Color Change Example.py**: Example script for changing material diffuse color.
+- **Material Diffuse Color Texture Example.py**: Example script for handling material diffuse color textures.
+- **Material IES Light Color and File Change.py**: Changes the color and file of IES lights in materials.
+- **Material Physical Light Color Change.py**: Changes the physical light color in materials.
+- **Model Set Renamer.py**: Renames model sets.
+- **New Model Set Template.py**: Template for creating new model sets.
+- **Pad Animation Frames.py**: Pads animation frames.
+- **Queue Render And Name Per Image Style.py**: Queues render tasks and names per image style.
+- **Remove Default Model Set.py**: Removes the default model set.
+- **Rename Clashing Node Names.py**: Renames nodes to resolve naming clashes.
+- **Rename Model Sets per Imported CAD.py**: Renames model sets based on imported CAD files.
+- **Rename ModelSets Manual.py**: Manually renames model sets.
+- **Renames Nodes Parenthesis.py**: Renames nodes, handling parentheses in names.
+- **Render Images Commented.py**: Renders images with comments.
+- **Rendered Animation Sequence Padding Agnostic.py**: Manages rendered animation sequences with padding agnostic of specific formats.
+- **Screenshot.py**: Takes screenshots.
+- **Select by Name and Translate and Rotate.py**: Selects parts by name and translates and rotates them.
+- **Translate Part By Name.py**: Translates parts by name.
+
+## Additional Notes:
+- Ensure to analyze each script thoroughly before implementation.
+- The scripts are categorized based on their primary functionality for easier reference.
+- Scripts are analyzed and documented as text to maintain compatibility with all systems.

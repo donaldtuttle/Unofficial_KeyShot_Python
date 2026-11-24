@@ -1,9 +1,12 @@
-```text
-KeyShot 2026.3 Python Scripting Documentation
-built-in module luxmath
+# Keyshot 2026.3 Python3.11 Lux
 
-luxmath          index (built-in)
-The module contains a vector and matrix class for mathematical operations.
+>>>
+help(luxmath)
+
+
+Help on built-in module luxmath:
+NAME
+    luxmath - The module contains a vector and matrix class for mathematical operations.
 CLASSES
     builtins.object
         Matrix
@@ -266,4 +269,3 @@ CLASSES
      |      The Z part.
 FILE
     (built-in)
-```

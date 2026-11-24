@@ -1,0 +1,65 @@
+### Material: Spotlight
+  - **SHADER_TYPE**: lux_spotlight
+  - **angle** (PARAMETER_TYPE_FLOAT): Beam angle of the spotlight. (Value: 60.0)
+  - **color** (PARAMETER_TYPE_COLOR): The color of the spotlight. (Value: (1.0, 1.0, 1.0))
+  - **color_stencil_width** (PARAMETER_TYPE_FLOAT): Width of the color stencil. (Value: 0.1)
+  - **falloff** (PARAMETER_TYPE_FLOAT): Falloff rate of the spotlight's intensity. (Value: 0.1)
+  - **focus_power_in_cone** (BOOLEAN): Determines if the spotlight has a focused power in its beam cone. (Value: False)
+  - **lumen** (PARAMETER_TYPE_BOOLEAN): Indicates if lumen measurement is used. (Value: True)
+  - **power** (PARAMETER_TYPE_FLOAT): Power of the light in watts. (Value: 5000.0)
+  - **radius** (PARAMETER_TYPE_FLOAT): Radius of the light source. (Value: 0.0)
+
+## Parameters for shader node in material'Spot Light':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- angle (Type: 4)
+- color (Type: 13)
+- color_stencil_width (Type: 4)
+- falloff (Type: 4)
+- focus_power_in_cone (Type: 1)
+- lumen (Type: 1)
+- power (Type: 4)
+- radius (Type: 4)
+
+## Spotlight
+Color
+Here you can set the color of the light.
+You can also place a stencil texture in front of the light source to control the shape and color of the emitted light – as you see it in real-life gobos.
+
+Color Stencil Diameter
+If you use a texture on the spotlight, this slider specifies the width of a virtual stencil disc that always fits the Spotlight’s beam exactly.
+
+Tip
+The stencil diameter is related to the width of the texture. if both are the same width the texture will fit the beam. if the texture is wider than the stencil it will be cropped, while textures that are smaller than the stencil will be repeated.
+
+Power determines how strong the light source is. It can be set in Lumen or Watt, where Lumen is recommended for the most accurate result.
+
+Lumen
+When the Power unit is set to Lumen, then the light output is specified as luminous flux. Total light output will be constant for area light objects of different sizes.
+
+Watt
+Light output os specified as Radient Flux.  This is not electric power.
+
+
+Constant Light Output
+This checkbox does not change the physical behavior or correctness of the Spotlight, but is there for convenience when adjusting Power or Beam Angle, depending on the preferred workflow. This setting allows to switch between constant total light output (checked) and constant illuminance (unchecked) when adjusting the Beam Angle.
+
+Note
+Illuminance is the luminous power incident on a surface.
+
+Constant Light Output is checked
+The entered Power value is the luminous flux of the clipped point light, i.e. the light emitted in the beam cone. The power of the Spotlight beam will be identical to the Power value. This also means that total light output with a large or small Beam Angle will be constant. Thus, illuminance will not be constant when changing the Beam Angle. Illuminance with a small Beam Angle will be higher than with a large Beam Angle, since the light is concentrated into a narrower beam.
+
+Constant Light Output is unchecked
+The entered Power value is the luminous flux of the unclipped point light, i.e. the light ignoring the beam cone. The actual power of the Spotlight beam will be a fraction of the Power value, since the light output is clipped by the beam. Thus, total light output with a large Beam Angle will be higher than with a small Beam Angle. At the same time, illuminance will be constant when changing the Beam Angle.
+
+Beam Angle
+Sets the angle that determines the size of the beam – the higher the angle the wider the beam.
+
+Falloff
+Falloff determines the point from where the beam is dimmed toward the edges. The scale reflects the radius of the beam, where 0 is on the outer edge of the beam and 1 is in the center. The higher the number, the softer the transition from light to dark will be.
+
+Radius
+Adjust the radius to control the softness of shadows cast from this light. A large radius gives soft shadows, while a small radius results in harder shadows with crisply defined, sharp edges. Note, the effect of radius depends on the size of models. Larger models may require a higher radius value for a similar effect.

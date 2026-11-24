@@ -1,0 +1,8 @@
+{
+  "skill": "keyshot-script-writer",
+  "test_cases": [
+    {"input": "write a KeyShot script to turntable the model", "should_trigger": true},
+    {"input": "generate KeyShot Python for batch configs", "should_trigger": true},
+    {"input": "how do I render in Blender", "should_trigger": false}
+  ]
+}

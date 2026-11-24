@@ -1,0 +1,509 @@
+{
+  "repository": "donaldtuttle/Unofficial_KeyShot_Python",
+  "commit": "c3433d74fd59c1e1be9c7236e1cd8636a48cd750",
+  "files": [
+    {
+      "path": "2026_updates.md",
+      "sha256": "19345ef86e881d9e8f4eef9ecdd4208b3f50b961b41b4fc06c1d91c8726fe714"
+    },
+    {
+      "path": "AI/README.md",
+      "sha256": "9fd60b4cf7f7ba6419ea6eea6eb22549e824eaa107332b513232a7f049ee455d"
+    },
+    {
+      "path": "AI/best-practices.md",
+      "sha256": "e251936c1b43a78c7de5e79a18fae3d86afff189f73f1d2a26ceec95a6b84547"
+    },
+    {
+      "path": "AI/constraints.md",
+      "sha256": "2136ca785e1ff25b07b03adabb233dbef143932fbf364d6f4b602fa2b610a1f4"
+    },
+    {
+      "path": "AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt",
+      "sha256": "9051ee1dfb9f72a464c9bf7e3cbc40a4b2d0e4f62d4515243086c22092d1b5eb"
+    },
+    {
+      "path": "AI/examples/inspector/KeyShot_Inspector_1_2.py",
+      "sha256": "91fd71e31ff64cd67112e95516c2f7fd6cb9d79cea671bf78d7892fc04a7e9b9"
+    },
+    {
+      "path": "AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt",
+      "sha256": "518670ce836231c8fa73832c480d54a75d2e7df43d3dee54cffa6b9cd950e9f5"
+    },
+    {
+      "path": "AI/examples/inspector/RUNTIME_CHECKS.md",
+      "sha256": "5a7c93ca187415dd7f8af717e6e43a3248f7f3160cf43eb38bc40d189990ef41"
+    },
+    {
+      "path": "AI/examples/inspector/test_KeyShot_Information_Inspector_v1_2_0.py",
+      "sha256": "c4003d3dc13b1b4b999f40420cea87505104c62015b00e0069fc154688732ec1"
+    },
+    {
+      "path": "AI/examples/openpbr_material_converter.py",
+      "sha256": "4248ef8cdc3647eda582ea74dcd94c42efc764e020ce4a7f6f1bf56b3d0f0d27"
+    },
+    {
+      "path": "AI/glossary.md",
+      "sha256": "72a597ee4f867996d988ccea7a2a0d1241e5a67f31a74df2a4a8648645465244"
+    },
+    {
+      "path": "AI/index.md",
+      "sha256": "a8b1db95a64eeec9b603c7fa8968c00e66f94e5384bc1144095f37178097459c"
+    },
+    {
+      "path": "AI/integrations/keyshot-mcp.md",
+      "sha256": "b7e7ba15c62597be76e95cbec0ca23e8f061281b13bdd5e1143203a185fe7fa4"
+    },
+    {
+      "path": "AI/knowledge_base.md",
+      "sha256": "fbcbf2deb530c58bd43e4a87e7d6d896014ca3e2d11a40efc895d9b1fa77bae2"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KS_CustomInputDialog_GUI.txt",
+      "sha256": "a6e2e2f446d99c0f33b67c22a5ae1a1df0caf3cb1d76c73809b9d25396bb02b4"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KeyShotPythonScripting_API_BestPractices_Guide.txt",
+      "sha256": "61ad818b15b1128e8b13652588e2372b79817b926fe936041e82724138791f2b"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KeyShotPythonScripting_API_Documentation.txt",
+      "sha256": "5f08deba484614552a39750127e7c9b00cb931c85010883e80ca27d736d62a5b"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt",
+      "sha256": "c142fde815dab4afcb6b7806074c8964f08b6afb050b8837f651b2ca7084b0f7"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt",
+      "sha256": "07fcfff896211d4802e863a74cf3c15db4cf38166a1cfcdea25e70532967124b"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt",
+      "sha256": "66aef3a294c54f504dd283ed2ad381fd5a5dfc52a899ddb8f7f847529c0f1ca6"
+    },
+    {
+      "path": "AI/kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt",
+      "sha256": "6bc60f04bf2f68289dfed7143827c81f643b5f2ca9e6768a3fd2895ac19dd8ea"
+    },
+    {
+      "path": "AI/kpsa_knowledge/README.md",
+      "sha256": "4057d456d31e7a7fedb587ff1ab33d8ff5365d4657e60673b73487da3a267260"
+    },
+    {
+      "path": "AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt",
+      "sha256": "711f2166f16d9926fd848c79d58c3c5861110fbf1815552f65563eb15da3d8a7"
+    },
+    {
+      "path": "AI/materials/Material_Advanced.txt",
+      "sha256": "a6522ed32121732a7094059f294e2959c42aa753592c681911d8764c0f247e68"
+    },
+    {
+      "path": "AI/materials/Material_Anisotropic.txt",
+      "sha256": "a750789bea7c2e55443b2f9407fd711d79a115308425320bb57a1a6956629e60"
+    },
+    {
+      "path": "AI/materials/Material_Area_Light.txt",
+      "sha256": "d561ebe5a8e499a3685b6001a18ad28ee7970a6e5410dd67ebd91273dff50bf2"
+    },
+    {
+      "path": "AI/materials/Material_Cutaway.txt",
+      "sha256": "51b23d6599738af6f91448dd3fb01ea4cfa74ef1ecbe5445a6c9612f01b925a8"
+    },
+    {
+      "path": "AI/materials/Material_Dielectric.txt",
+      "sha256": "b9ae08ba1cca60385c823e17d94cdda63d04a101ee9f25e368a76f7f97acf728"
+    },
+    {
+      "path": "AI/materials/Material_Diffuse.txt",
+      "sha256": "adf55a67c8aa42e2e7aa67210f668cd57048c5cb30b2cba55554afe6c8c03ca8"
+    },
+    {
+      "path": "AI/materials/Material_Emissive.txt",
+      "sha256": "52afd561508f52a18850c8a62213538be1870b83a206264ed0d097f19c7bd072"
+    },
+    {
+      "path": "AI/materials/Material_Flat.txt",
+      "sha256": "532c40c26c3e6f15fca885f0f776107ff60d705c0fe661ba3c9f6c0c9bb944b1"
+    },
+    {
+      "path": "AI/materials/Material_Gem.txt",
+      "sha256": "0af1afee4a201dc2b18ff4f6af2c08eff5e19657f7a5b1a92d640b9a44b7ddd4"
+    },
+    {
+      "path": "AI/materials/Material_General.txt",
+      "sha256": "57a0dcc00c9d16a059fe3acd4d306b949a6a1c2c2d7d150534159ef0680e9ea6"
+    },
+    {
+      "path": "AI/materials/Material_Generic.txt",
+      "sha256": "ba59dfe485c56079fb41d91473b92fac84c43bb3fa8b4c0ce35e0375d93945da"
+    },
+    {
+      "path": "AI/materials/Material_Glass.txt",
+      "sha256": "b3fd1874ec282fc184276f2630005c3775f38f0d34122ee561612e9f29bf7f5f"
+    },
+    {
+      "path": "AI/materials/Material_Glass_Solid.txt",
+      "sha256": "9c0366766b24073422982732f7f5e5773d988053c13095500eec4ee27d49763b"
+    },
+    {
+      "path": "AI/materials/Material_Graph_Duplication.txt",
+      "sha256": "90aa5b0cf93fa9a24900390aff39d6c4d718e958b9e70ec1bc1c7f06dfad338c"
+    },
+    {
+      "path": "AI/materials/Material_Ground.txt",
+      "sha256": "7938207f740af11fc3be3343add0416f0617bfb50545de8455e9d5da3f5eb1eb"
+    },
+    {
+      "path": "AI/materials/Material_IES_Light.txt",
+      "sha256": "659237da21741d6a1cf194d49fd81032d7a227ad500fe8d34d25b7fe01ad7212"
+    },
+    {
+      "path": "AI/materials/Material_Liquid.txt",
+      "sha256": "30fd02279f57d4168d9455c16480b2ed5c8c4b426b5544e337e06ae9cb9f755c"
+    },
+    {
+      "path": "AI/materials/Material_Measured.txt",
+      "sha256": "860e3dcba3ef397683ce10faf63153e2e6ed096d7a15c5e163ad828b28fcb422"
+    },
+    {
+      "path": "AI/materials/Material_Metal.txt",
+      "sha256": "6b557c6518ccd593b46eaca60488fe5a524207db41d6aaa781d73a4b34b7ccce"
+    },
+    {
+      "path": "AI/materials/Material_Metallic_Paint.txt",
+      "sha256": "9a72454b79cbf404d324b369573d35bb191ccebe2d6f0c1b782148929a2d1d05"
+    },
+    {
+      "path": "AI/materials/Material_Multi-Layer_Optics.txt",
+      "sha256": "1713d5a1397feeb7aca704c708caa16a84c3749070853d21aeeec892d8ab4084"
+    },
+    {
+      "path": "AI/materials/Material_OpenPBR.txt",
+      "sha256": "ef633aad0f5b8fe994cd4325b0aa8ff316cfc89fb480829331fa45e52dc19b53"
+    },
+    {
+      "path": "AI/materials/Material_Paint.txt",
+      "sha256": "bc5c9fdf5e5badb2a38feaa7bbbba89b72bf4faf8d958df8fec1e9dd0e61a3bb"
+    },
+    {
+      "path": "AI/materials/Material_Planar_Light.txt",
+      "sha256": "b8afdaf01c3140e4b1b95be31943e35d30468d162ad293e3c9117da06a23d5f7"
+    },
+    {
+      "path": "AI/materials/Material_Plastic.txt",
+      "sha256": "6547ca22c5238fc34351b40b5674a749f861c613ffd97b5b4decbf5104c95b95"
+    },
+    {
+      "path": "AI/materials/Material_Plastic_Cloudy.txt",
+      "sha256": "5fab152905a55fc2c8298dc5c62e28a0bcf1279e39f921a99faa0417ada95577"
+    },
+    {
+      "path": "AI/materials/Material_Plastic_Transparent.txt",
+      "sha256": "f77240e6981c1089c7056022fdde32a3aa3c39befb65380da796c92270f94e8e"
+    },
+    {
+      "path": "AI/materials/Material_Point_Light.txt",
+      "sha256": "be2b07e08352be81f7db5927a65adb6953ae3bb5b456150d54afb9df7b8836a1"
+    },
+    {
+      "path": "AI/materials/Material_RealCloth.txt",
+      "sha256": "f7736809f256f46daedd53703038ed3dd0c755220561447ece099c6db1242a4d"
+    },
+    {
+      "path": "AI/materials/Material_Scattering_Medium.txt",
+      "sha256": "77cdcff6b26f4418e8555c08601f71d26685552e52155963885544cae25653fd"
+    },
+    {
+      "path": "AI/materials/Material_Scripting_Prompt.txt",
+      "sha256": "4b54a809373f7017b440fe3af6d9bb4bd8f7a4a98b326de70cbe9f0e90fb4a55"
+    },
+    {
+      "path": "AI/materials/Material_Spotlight.txt",
+      "sha256": "76bc6583c04f4c1dc85cc05ef71d881b7113c3c8011d7831a66d078bd1fd168a"
+    },
+    {
+      "path": "AI/materials/Material_Thin_Film.txt",
+      "sha256": "c0a7cde3f4ad2333f1ac1cd63646d7f93df37b6afa130dfdb238894f3c4abb1a"
+    },
+    {
+      "path": "AI/materials/Material_Toon.txt",
+      "sha256": "b39977111a95bdad52dd5c21b7cbc4aea8b0b4f3c1f6c2c9836057dfc9c9e41c"
+    },
+    {
+      "path": "AI/materials/Material_Translucent.txt",
+      "sha256": "cff64bf3b3c89ac42e9378ed0582f1793c84346afb68da5feca89bfbdaf4590a"
+    },
+    {
+      "path": "AI/materials/Material_Translucent_Medium.txt",
+      "sha256": "2b988d7160a12aeeec34de2134cd6a17fc56e51afcdc60c2ca0f5456f760ad10"
+    },
+    {
+      "path": "AI/materials/Material_Velvet.txt",
+      "sha256": "73f46642e0a4c9f2df80e239decff5714a581f2dd941a4455a187084633d0f38"
+    },
+    {
+      "path": "AI/materials/Material_Wireframe.txt",
+      "sha256": "fc514d57d53079b7f226780d35eee8b4f7aff5bc17a0f415d736888ed4ab2095"
+    },
+    {
+      "path": "AI/materials/Material_Xray.txt",
+      "sha256": "1bb5acbb4aba09a3f8507e8c10143aece4daec8555e22a739b0185105138381a"
+    },
+    {
+      "path": "AI/materials/OpenPBR_and_Planar_Light.md",
+      "sha256": "4e08b4f2842d0e09141ffb916d25614adb8a338a66d1149adb42f720ebba44a1"
+    },
+    {
+      "path": "AI/materials/openpbr_material_converter.py",
+      "sha256": "4248ef8cdc3647eda582ea74dcd94c42efc764e020ce4a7f6f1bf56b3d0f0d27"
+    },
+    {
+      "path": "AI/reference/mode-comparison.md",
+      "sha256": "7a4a289fa334b5d688528245f2267dc28da0739e7c828449420c98f244fe759e"
+    },
+    {
+      "path": "AI/skill.md",
+      "sha256": "f6362f0d50e8d489424cdd1e70f4e9474605ac219c6369590b6ea3e81fda675c"
+    },
+    {
+      "path": "AI/skills/README.md",
+      "sha256": "b0baa315c4c00629025086fd4c75ae6ff868b99cb3274bcaa77daed30d0e9f15"
+    },
+    {
+      "path": "AI/skills/chatgpt/SKILL.md",
+      "sha256": "9fe974ab6d281ac155bc362529fd408ea40177cc723417a01fb1bc1057f7059b"
+    },
+    {
+      "path": "AI/skills/claude/SKILL.md",
+      "sha256": "cdffc390089af32193cdad73b331165dc9984828c4499ae49fa9f5dfc07f4bc0"
+    },
+    {
+      "path": "AI/skills/grok/RELEASE.md",
+      "sha256": "2d5a864793a52d3e73f7899c846b655a9c12fdd013dc573fb1f1087ccf0172e5"
+    },
+    {
+      "path": "AI/skills/grok/SKILL.md",
+      "sha256": "ce3c3c73632f19c50db04bd30c0169250604cf79c22490e6a2d82eea76b4a178"
+    },
+    {
+      "path": "AI/system_prompt.md",
+      "sha256": "34aee8934076a9790e0e3c2770c2e7b2df0ed52e9f8e5fbc7ce85c5f23fa3d83"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e7fdaf5eba21288263a3c5f333fbfc4d0ca3a58ac84459f72dee72d6a3eadab6"
+    },
+    {
+      "path": "Scripts/Accessing_Scene_Nodes.txt",
+      "sha256": "66d74015953b96f38de463a0253d65eb240ff8e859e4d653b2e04cf1c62d4df3"
+    },
+    {
+      "path": "Scripts/Scripting_Camera_manipulation.txt",
+      "sha256": "8d88bb591a3be4f29a2e769a488651e5af552ff87201f87a1a39df91e91de9d8"
+    },
+    {
+      "path": "Scripts/Scripting_Cancelling_scripts.txt",
+      "sha256": "db34297f2c89023737a918eeef49fbbb8996cb944d331c89b00d849a26cb8f66"
+    },
+    {
+      "path": "Scripts/Scripting_Import_file.txt",
+      "sha256": "1a2b3371881c7d14b7bc70e483ad1d4bbc05ac4892e40b3efb3289648a6d463d"
+    },
+    {
+      "path": "Scripts/Scripting_Material_Graph.txt",
+      "sha256": "2c362e4c9997a2265d09e7136bcb5d643d58b27e3d3fe0e2d6adf9ccbc588baf"
+    },
+    {
+      "path": "Scripts/Scripting_Render_image.txt",
+      "sha256": "00ff0279dea8e31b47a65aa1860eff7ce0a493396f6dd56a0c8a9ee528ea4948"
+    },
+    {
+      "path": "Scripts/Scripting_Transforming_scene_nodes.txt",
+      "sha256": "ac09ffeaec816a1ba98580ce162bfb9feabf2c98256746d86911b85c097d27c7"
+    },
+    {
+      "path": "Scripts/archive/HISTORICAL_SCRIPTS.md",
+      "sha256": "7e498eb0108a58d46307dc2248446de46abd790e66406b2f6d04886a5dc63724"
+    },
+    {
+      "path": "Scripts/examples/README.md",
+      "sha256": "5cb577d0e96384e662f0d411ea17ad76cf36615e74f0e48b90f6fb6141e6e503"
+    },
+    {
+      "path": "Scripts/examples/animation/frame_sequence.py",
+      "sha256": "1586a3e4bfaa94a0a78a8fab1a904befc1b6b85f04ba595b6da0a3044ed3985c"
+    },
+    {
+      "path": "Scripts/examples/gui/dialog_example.py",
+      "sha256": "2b88e2e652743d415195aaa2d4956ed70ffcadac358c66f5c6a7cb3c790152fb"
+    },
+    {
+      "path": "Scripts/examples/import-export/import_model_additive.py",
+      "sha256": "42c2c39b16a7783444853c60d5fba142ce3d04bac569a6b68eccfaadfdac5541"
+    },
+    {
+      "path": "Scripts/examples/information/camera_info.py",
+      "sha256": "08c8e04226ae3e3fe8390517630761dbef04b12201b9ce8edc9e4a8fb2a21532"
+    },
+    {
+      "path": "Scripts/examples/information/scene_report.py",
+      "sha256": "e8645576bdc1e448fcaefb05a8bd5e0baca37d1651e76fb1c8f8802476e4db85"
+    },
+    {
+      "path": "Scripts/examples/materials/color_gradient_connect.py",
+      "sha256": "6411ebf7309afcf6e0a1c44be4838521e7b7e2e3771a69bb085b84f374836b7f"
+    },
+    {
+      "path": "Scripts/examples/materials/configure_ies.py",
+      "sha256": "90b9c73cb88182b2e7f63238c4ac142db415bab23446727e497be55dd9896ee4"
+    },
+    {
+      "path": "Scripts/examples/materials/copy_concrete_parameters.py",
+      "sha256": "50f1d7b285a4e3866e07889c90924494406d3e2512960b233eab72aa95f28f47"
+    },
+    {
+      "path": "Scripts/examples/materials/delete_unused_nodes.py",
+      "sha256": "16c9244698fbc6f3bf1925f83181f5c9c947618d633520cd2e129b20c761855b"
+    },
+    {
+      "path": "Scripts/examples/materials/report_parameters.py",
+      "sha256": "1b902c8b7af65da1f8289c868c4912fac1f08606e04fd8be924b71498b57dac6"
+    },
+    {
+      "path": "Scripts/examples/materials/save_submaterials_to_library.py",
+      "sha256": "393ba84ab9f150b70dd19bee9b9ffc110ed50c2fd1c1b5ca95e789e85a2d5830"
+    },
+    {
+      "path": "Scripts/examples/models/activate_model_sets.py",
+      "sha256": "67748e0938f9e2130b8a5df26fbbda9e98719413b36506bcadaeb9a7dce35fef"
+    },
+    {
+      "path": "Scripts/examples/rendering/render_image_safe.py",
+      "sha256": "a7c948fd3e713117dfe38176bb90752bf4e725cda8303b2a35394fccafca015d"
+    },
+    {
+      "path": "Scripts/examples/transformations/pattern_positions.py",
+      "sha256": "3b158a612ac682aa93e8bfc8e4d2c268c93426f2c0e77123c3a561640f736a2a"
+    },
+    {
+      "path": "Scripts/examples/transformations/translate_object.py",
+      "sha256": "64db4689ae9d5b999aefefcc1bec21110da964dd91cd8f299808be8479139b1e"
+    },
+    {
+      "path": "lux/KeyShot_lux_API.md",
+      "sha256": "3ead00c17c9aca3f5d1b9a747a5ceb533c0735a435c4a8f8c8d2ae128c0bb42e"
+    },
+    {
+      "path": "lux/KeyShot_luxmath_API.md",
+      "sha256": "c5f38037601f940226931da939783b1a2dd736588e75f43942b465e593b3861c"
+    },
+    {
+      "path": "lux_headless/KeyShot_headless_lux_API.md",
+      "sha256": "836edc39f3e99187571368c049cf73ee81b9b09f9e96e49c8eaf7f8878438181"
+    },
+    {
+      "path": "luxmath/KeyShot_luxmath_API.md",
+      "sha256": "ed23d48abb3f4da45fed244991c81c550075e47ba5fd29428a283f17b7a6b773"
+    },
+    {
+      "path": "luxmath_headless/KeyShot_headless_luxmath_API.md",
+      "sha256": "92071064229423f8f9cc4dfd40795fd3aca96ebfb8169c0fc9595997598b3899"
+    }
+  ],
+  "package": {
+    "name": "keyshot-python",
+    "version": "1.1.1",
+    "entry_point": {
+      "path": "SKILL.md",
+      "copied_from": "AI/skills/claude/SKILL.md",
+      "sha256": "baf209e64fee8140ce6e7a4616ac4a565cf3316a7e27f3dff8518509a0c9c7d4",
+      "note": "Lean package. Core rewritten AI/skill.md -> AI/skill_core.md. Older dumps excluded."
+    },
+    "content": [
+      "AI/best-practices.md",
+      "AI/constraints.md",
+      "AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt",
+      "AI/examples/inspector/KeyShot_Inspector_1_2.py",
+      "AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt",
+      "AI/examples/inspector/RUNTIME_CHECKS.md",
+      "AI/examples/inspector/test_KeyShot_Information_Inspector_v1_2_0.py",
+      "AI/examples/openpbr_material_converter.py",
+      "AI/index.md",
+      "AI/integrations/keyshot-mcp.md",
+      "AI/knowledge_base.md",
+      "AI/kpsa_knowledge/KS_CustomInputDialog_GUI.txt",
+      "AI/kpsa_knowledge/KeyShotPythonScripting_API_BestPractices_Guide.txt",
+      "AI/kpsa_knowledge/KeyShotPythonScripting_API_Documentation.txt",
+      "AI/kpsa_knowledge/KeyShotPythonScripting_API_GUI_GuideDocumentation.txt",
+      "AI/kpsa_knowledge/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt",
+      "AI/kpsa_knowledge/KeyShotPythonScripting_TransformationMatrix_Documentation.txt",
+      "AI/kpsa_knowledge/KeyShotPython_Scripting_QuickReference_Documentation.txt",
+      "AI/kpsa_knowledge/README.md",
+      "AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt",
+      "AI/materials/Material_Advanced.txt",
+      "AI/materials/Material_Anisotropic.txt",
+      "AI/materials/Material_Area_Light.txt",
+      "AI/materials/Material_Cutaway.txt",
+      "AI/materials/Material_Dielectric.txt",
+      "AI/materials/Material_Diffuse.txt",
+      "AI/materials/Material_Emissive.txt",
+      "AI/materials/Material_Flat.txt",
+      "AI/materials/Material_Gem.txt",
+      "AI/materials/Material_General.txt",
+      "AI/materials/Material_Generic.txt",
+      "AI/materials/Material_Glass.txt",
+      "AI/materials/Material_Glass_Solid.txt",
+      "AI/materials/Material_Graph_Duplication.txt",
+      "AI/materials/Material_Ground.txt",
+      "AI/materials/Material_IES_Light.txt",
+      "AI/materials/Material_Liquid.txt",
+      "AI/materials/Material_Measured.txt",
+      "AI/materials/Material_Metal.txt",
+      "AI/materials/Material_Metallic_Paint.txt",
+      "AI/materials/Material_Multi-Layer_Optics.txt",
+      "AI/materials/Material_OpenPBR.txt",
+      "AI/materials/Material_Paint.txt",
+      "AI/materials/Material_Planar_Light.txt",
+      "AI/materials/Material_Plastic.txt",
+      "AI/materials/Material_Plastic_Cloudy.txt",
+      "AI/materials/Material_Plastic_Transparent.txt",
+      "AI/materials/Material_Point_Light.txt",
+      "AI/materials/Material_RealCloth.txt",
+      "AI/materials/Material_Scattering_Medium.txt",
+      "AI/materials/Material_Scripting_Prompt.txt",
+      "AI/materials/Material_Spotlight.txt",
+      "AI/materials/Material_Thin_Film.txt",
+      "AI/materials/Material_Toon.txt",
+      "AI/materials/Material_Translucent.txt",
+      "AI/materials/Material_Translucent_Medium.txt",
+      "AI/materials/Material_Velvet.txt",
+      "AI/materials/Material_Wireframe.txt",
+      "AI/materials/Material_Xray.txt",
+      "AI/materials/OpenPBR_and_Planar_Light.md",
+      "AI/materials/openpbr_material_converter.py",
+      "AI/skill_core.md",
+      "lux/KeyShot_lux_API.md",
+      "lux/KeyShot_luxmath_API.md"
+    ],
+    "rules": [
+      "exactly one SKILL.md",
+      "no spaces or & in paths",
+      "lean content list"
+    ],
+    "bundled_tools": [
+      {
+        "path": "scripts/verify_symbols.py",
+        "sha256": "b35491f6b15696b22bed36c3a917c31b32fdd3c7cb24dd72230758ed8ae2a0aa"
+      },
+      {
+        "path": "references/api/2026.3-beta/symbols.json",
+        "sha256": "87e10f19dcfe6c4d8378a4b2fa89957385ce36c59b7a9e524c52a4f72c12456f"
+      }
+    ]
+  }
+}

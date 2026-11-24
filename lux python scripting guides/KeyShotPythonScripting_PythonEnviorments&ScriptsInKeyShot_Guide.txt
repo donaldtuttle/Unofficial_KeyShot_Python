@@ -1,0 +1,306 @@
+Python in KeyShot
+
+### Table of Contents
+
+1. [Introduction to Running Python Scripts in KeyShot](#introduction-to-running-python-scripts-in-keyshot)
+   - [1.1 Overview of Python Scripting in KeyShot](#11-overview-of-python-scripting-in-keyshot)
+
+2. [Dynamic Script Name and Log Management](#dynamic-script-name-and-log-management)
+   - [2.1 Automatically Extract Script Name](#21-automatically-extract-script-name)
+   - [2.2 Generate a Unique Log File](#22-generate-a-unique-log-file)
+   - [2.3 Reusable Logging Utility Module](#23-reusable-logging-utility-module)
+   - [2.4 Centralized Log Files](#24-centralized-log-files)
+
+3. [Logging Utility Module (log_utils.py)](#logging-utility-module-log_utilspy)
+   - [3.1 Generating Log File Name](#31-generating-log-file-name)
+   - [3.2 Logging Messages](#32-logging-messages)
+   - [3.3 Displaying Final Summary](#33-displaying-final-summary)
+
+4. [Example Script Using the Logging Utility](#example-script-using-the-logging-utility)
+   - [4.1 Log File Generation in Script](#41-log-file-generation-in-script)
+   - [4.2 Logging Messages During Execution](#42-logging-messages-during-execution)
+   - [4.3 Display Summary of Logs](#43-display-summary-of-logs)
+
+5. [Example Workflow for Using Logs Effectively](#example-workflow-for-using-logs-effectively)
+   - [5.1 Running Scripts and Log Generation](#51-running-scripts-and-log-generation)
+   - [5.2 Reviewing Logs After Execution](#52-reviewing-logs-after-execution)
+
+6. [Additional Enhancements for Flexibility](#additional-enhancements-for-flexibility)
+   - [6.1 Centralized Log Management](#61-centralized-log-management)
+   - [6.2 Debug Levels in the Utility](#62-debug-levels-in-the-utility)
+
+7. [Automating the Entire Process](#automating-the-entire-process)
+   - [7.1 Batch Script for Running Multiple Scripts](#71-batch-script-for-running-multiple-scripts)
+
+8. [Summary of Logging in KeyShot](#summary-of-logging-in-keyshot)
+   - [8.1 Dynamic Log File Generation](#81-dynamic-log-file-generation)
+   - [8.2 Reusable Logging Utility](#82-reusable-logging-utility)
+   - [8.3 Post-Execution Summary Display](#83-post-execution-summary-display)
+   - [8.4 Centralized Logging and Debug Levels](#84-centralized-logging-and-debug-levels)
+   - [8.5 Batch Automation for Scripts](#85-batch-automation-for-scripts)
+
+9. [FAQ: Python Environments in KeyShot](#faq-python-environments-in-keyshot)
+   - [9.1 KeyShot’s Built-in Python Environment](#91-keyshots-built-in-python-environment)
+   - [9.2 External Python IDEs](#92-external-python-ides)
+
+10. [Potential Issues When Working in External Python Environments](#potential-issues-when-working-in-external-python-environments)
+    - [10.1 KeyShot API Not Available in External IDEs](#101-keyshot-api-not-available-in-external-ides)
+    - [10.2 Different Python Version or Missing Dependencies](#102-different-python-version-or-missing-dependencies)
+    - [10.3 Missing KeyShot-Specific Tools in External IDEs](#103-missing-keyshot-specific-tools-in-external-ides)
+
+11. [Best Practices for Developing KeyShot Scripts in External Python Environments](#best-practices-for-developing-keyshot-scripts-in-external-python-environments)
+    - [11.1 Hybrid Workflow](#111-hybrid-workflow)
+    - [11.2 Mock the lux Module in External IDE](#112-mock-the-lux-module-in-external-ide)
+    - [11.3 Modularize Your Script](#113-modularize-your-script)
+    - [11.4 Match Python Versions](#114-match-python-versions)
+    - [11.5 Use Remote Editing](#115-use-remote-editing)
+    - [11.6 Testing and Debugging Tips](#116-testing-and-debugging-tips)
+
+12. [Summary: Working Between Environments](#summary-working-between-environments)
+    - [12.1 Python Modules and Environments](#121-python-modules-and-environments)
+    - [12.2 Potential Issues](#122-potential-issues)
+    - [12.3 Best Practices for Seamless Development](#123-best-practices-for-seamless-development)
+
+
+You’re able to run Python scripts directly from files in the KeyShot environment, you can significantly improve the debugging experience by creating reusable logging utilities and managing unique log files for each script execution. Let’s dive into a complete setup to help make the process more streamlined and functional, especially when running scripts from files.
+
+1. Dynamic Script Name and Log Management
+
+Since you are running Python scripts from files, you can automatically generate a log file for each script using the __file__ attribute, which provides the script’s filename. Here’s how to effectively create a logging system based on the script name:
+
+Step-by-Step Plan
+
+1. Automatically Extract Script Name: Use Python’s built-in __file__ attribute to dynamically extract the script’s name.
+2. Generate a Unique Log File: Incorporate a timestamp to ensure each script run has its own log file for detailed tracking.
+3. Reusable Logging Utility Module: Create a separate module (log_utils.py) that can be imported into any script, providing a consistent logging mechanism.
+4. Centralized Log Files: Store the logs in a central location, perhaps in a designated “logs” directory for easy management and tracking.
+
+2. Logging Utility Module (log_utils.py)
+
+This utility module provides everything you need for effective script logging. It handles generating log file names, writing logs with contextual details, and even provides an option to display a final summary.
+
+# log_utils.py
+import os
+import datetime
+
+def get_log_file_name(script_path):
+"""Generate a log file name based on the script file name and current timestamp."""
+script_name = os.path.splitext(os.path.basename(script_path))[0]
+timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+return f"logs/{script_name}_{timestamp}_log.txt"
+
+def log_message(log_file_name, message, operation=None, status="INFO"):
+"""Log a message to the specified log file with details such as operation, status, and timestamp."""
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+detailed_message = f"[{status}] {timestamp} - {operation if operation else 'General'}: {message}"
+# Write to the specified log file
+os.makedirs(os.path.dirname(log_file_name), exist_ok=True) # Create directory if it doesn't exist
+with open(log_file_name, "a") as log_file:
+log_file.write(detailed_message + "\n")
+# Optionally print for immediate feedback
+print(detailed_message)
+
+def display_final_summary(log_file_name):
+"""Display all accumulated messages from the log file in a dialog box for copy-pasting."""
+with open(log_file_name, "r") as log_file:
+summary_text = log_file.read()
+# Display the summary in a KeyShot dialog (if KeyShot's lux module is available)
+import lux
+values = [("Summary", lux.DIALOG_TEXTAREA, "Script Execution Summary:", summary_text)]
+lux.getInputDialog(title="Execution Summary", desc="Copy the information below:", values=values)
+
+3. Example Script Using the Logging Utility
+
+Here is how you could use the logging utility in an actual KeyShot script file:
+
+# my_keyshot_script.py
+import lux
+from log_utils import get_log_file_name, log_message, display_final_summary
+
+# Get the log file name based on the script name
+LOG_FILE_NAME = get_log_file_name(__file__)
+
+# Example usage of logging during the script
+log_message(LOG_FILE_NAME, "Starting material duplication.", operation="Material Duplication")
+
+try:
+# Simulated operation for demonstration
+# Replace with actual KeyShot operations
+log_message(LOG_FILE_NAME, "Material duplicated successfully.", operation="Material Duplication", status="SUCCESS")
+except Exception as e:
+log_message(LOG_FILE_NAME, f"Error during material duplication: {str(e)}", operation="Material Duplication", status="ERROR")
+
+# At the end of the script, display a summary of what happened
+display_final_summary(LOG_FILE_NAME)
+
+Explanation of How It Works
+
+1. Log File Generation:
+• get_log_file_name(__file__): This function generates a log file name based on the script’s filename and the current timestamp.
+• The log file is saved in a directory called "logs", which is automatically created if it doesn’t exist.
+2. Logging Messages:
+• log_message(): This function logs messages to the file and prints them to the console for immediate feedback. Each log includes a timestamp, an operation name, and a status (INFO, SUCCESS, ERROR).
+3. Display Summary:
+• display_final_summary(): At the end of the script, the contents of the log file are displayed in a KeyShot dialog box. This makes it easy to copy-paste all the debug information for analysis or further review.
+
+4. Example Workflow for Using Logs Effectively
+
+• Run Script: When you run the script (my_keyshot_script.py), it will automatically generate a log file named something like my_keyshot_script_20231005_141500_log.txt in a logs directory.
+• Log Messages During Execution: Every key action or error is logged with contextual information.
+• Post-Execution Review:
+• Once the script finishes, the log summary will be displayed in a dialog, where you can copy the entire log if needed.
+• You can also access the log files directly in the logs directory for detailed review, comparison, or archiving.
+
+5. Additional Enhancements for Flexibility
+
+Centralized Log Management
+
+• You could add a central logging directory, which stores all logs from various scripts. This would help in tracking and analyzing performance across multiple scripts.
+
+# Customize the log directory if needed
+def get_log_file_name(script_path, log_dir="central_logs"):
+script_name = os.path.splitext(os.path.basename(script_path))[0]
+timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+return f"{log_dir}/{script_name}_{timestamp}_log.txt"
+
+Debug Levels in the Utility
+
+• Enhance the utility to handle debug levels. For instance, set DEBUG_LEVEL globally and use it to decide whether to log detailed information, errors only, or everything.
+
+DEBUG_LEVEL = 2 # Set globally
+
+def log_message(log_file_name, message, operation=None, status="INFO", level=1):
+if level <= DEBUG_LEVEL:
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+detailed_message = f"[{status}] {timestamp} - {operation if operation else 'General'}: {message}"
+os.makedirs(os.path.dirname(log_file_name), exist_ok=True)
+with open(log_file_name, "a") as log_file:
+log_file.write(detailed_message + "\n")
+print(detailed_message)
+
+6. Automating the Entire Process
+
+If you have several scripts and need to run them in succession with log tracking, you can create a batch script that runs each Python file, collects logs, and notifies you of the results:
+
+#!/bin/bash
+
+# Run multiple KeyShot scripts and track logs
+for script in my_keyshot_script1.py my_keyshot_script2.py my_keyshot_script3.py
+do
+python "$script"
+done
+
+echo "Scripts executed. Please check the logs directory for details."
+
+Summary
+
+1. Dynamic Log File Generation: Use __file__ to generate a unique log file for each script, including a timestamp for multiple runs.
+2. Reusable Utility (log_utils.py): Create a separate logging utility to handle log creation, message writing, and summary display, making it easy to reuse in every script.
+3. Post-Execution Summary: Display all logs in a KeyShot dialog at the end of the script, allowing for easy copy-pasting of information.
+4. Centralized Logging and Debug Levels: Manage logs centrally for multiple scripts and adjust the verbosity of logs using debug levels.
+5. Batch Automation: Run multiple scripts automatically and manage their logs to streamline debugging.
+
+This setup significantly enhances your debugging capabilities, making logs easy to manage, review, and use effectively, while reducing the need for cumbersome copy-pasting between Notepad and other tools.
+
+FAQ: Python Environments
+
+Working in another Python environment might lead to some potential issues when running scripts specifically within KeyShot. Let me explain why that might happen and how to best approach developing KeyShot scripts in an external environment.
+
+Working in Different Python Environments
+
+To understand this better, let’s consider the environments you might use:
+
+1. KeyShot’s Built-in Python Environment:
+• Purpose: KeyShot comes with its built-in scripting environment for creating, running, and debugging Python scripts that interact with the KeyShot scene and use the KeyShot API (lux module).
+• Python Version and API Compatibility: This environment is preconfigured with a specific Python version and has its own modules and API (like lux, luxmath, etc.) that are specific to KeyShot’s functionality.
+• Limitations: The KeyShot Python scripting environment is somewhat isolated, which means some Python modules you would expect in a full Python installation (like NumPy, Pandas, etc.) are not available, and you are limited to what’s included in KeyShot.
+2. External Python IDEs (e.g., VS Code, PyCharm, Jupyter, etc.):
+• Purpose: Environments like VS Code, PyCharm, or even Jupyter Notebooks offer advanced features such as syntax highlighting, code completion, debugging tools, and version control integration that are more robust compared to KeyShot’s scripting console.
+• Different Python Version: You can set up your own Python environment, including any additional libraries you need, but it may not match the specific version that KeyShot uses. This can create compatibility issues if there are differences in how Python functions work between versions.
+• No Built-In KeyShot API: The biggest limitation is that you don’t have access to KeyShot-specific modules like lux when working outside KeyShot. This means you won’t be able to run or test any part of the script that interacts directly with KeyShot, and you will need to import the script into KeyShot for final execution.
+
+Potential Issues of Working in External Environments
+
+Let’s talk about the specific challenges you might face:
+
+1. KeyShot API (lux) Isn’t Available in External Environments
+
+• Problem: If you write a KeyShot-specific script in VS Code or any other Python IDE, you won’t have access to KeyShot’s API (lux module) because it’s only available within KeyShot.
+• Example:
+
+import lux
+
+material = lux.getMaterial("MyMaterial")
+
+This script will not run in an external environment because lux is a KeyShot-specific module and cannot be installed externally like a regular Python library.
+
+• Solution: When writing scripts in an external IDE, you can use dummy functions to simulate KeyShot’s functions, allowing you to develop and structure the logic. However, you’ll need to replace them with real lux calls and then test the script within KeyShot.
+
+2. Different Python Version or Missing Dependencies
+
+• Problem: The version of Python available in KeyShot might be different from the one you use in VS Code or PyCharm, leading to compatibility issues. KeyShot may not have all standard libraries or may use an older version of Python that lacks newer features.
+• For example, f-string formatting (introduced in Python 3.6) might not be supported if KeyShot is using an older version.
+• Some standard libraries that you import in VS Code may not exist in KeyShot’s environment, resulting in errors.
+• Solution:
+• Match Python Versions: Make sure the version of Python installed in your IDE matches the version used by KeyShot.
+• Code Compatibility: Avoid using features that are only available in newer versions if KeyShot’s Python environment is older.
+• Local Testing for Logic Only: Use your IDE for general Python testing (like handling data, developing complex functions), but test anything related to lux in KeyShot.
+
+3. Missing KeyShot-Specific Tools in External IDEs
+
+• Problem: You won’t have access to KeyShot-specific tools like material graphs, nodes, and direct scene manipulation while working in an external IDE.
+• Solution: Use the external environment for general Python development, such as writing reusable utility functions, testing logic, or building data structures. For any KeyShot API-related commands, you must test and debug inside KeyShot itself.
+
+Best Practices for Developing KeyShot Scripts in External Python Environments
+
+1. Hybrid Workflow:
+• Use VS Code or PyCharm to write, organize, and maintain your scripts.
+• Use KeyShot to run the scripts and test anything that involves direct interaction with KeyShot scenes or materials.
+2. Mock the lux Module in External IDE:
+• Create mock functions in your Python IDE that simulate the behavior of KeyShot’s lux functions. This will allow you to run the script in the IDE without actual KeyShot-specific operations.
+Example of Mocking lux:
+
+# lux_mock.py
+class LuxMock:
+def getMaterial(self, name):
+print(f"Simulating getting material: {name}")
+return {"name": name, "properties": {}}
+
+def getMaterialGraph(self, name):
+print(f"Simulating getting material graph for: {name}")
+return {"graph": f"Mock graph for {name}"}
+
+lux = LuxMock()
+
+# Example usage
+material = lux.getMaterial("MyMaterial")
+print(material)
+
+In this example, you create a LuxMock class that simulates the lux behavior so you can debug your Python logic without needing access to KeyShot. When you move back to KeyShot, you replace lux_mock with lux.
+
+3. Modularize Your Script:
+• Write your KeyShot-specific code and your general-purpose Python code in separate modules.
+• For instance, put all lux calls into one file (keyshot_operations.py), and put general logic or reusable utilities (logging, calculations, etc.) into another (utilities.py). You can work on utilities.py freely in any IDE, while keyshot_operations.py should be developed and tested within KeyShot.
+4. Match Python Versions:
+• Find out which Python version KeyShot uses (e.g., Python 3.7) and set up the same version in your IDE.
+• If KeyShot uses a conda environment or a virtual environment, create a similar virtual environment in your IDE to match the packages and version.
+5. Use Remote Editing (If Possible):
+• Some IDEs allow you to connect remotely to an application that runs Python scripts. If KeyShot has this capability, you could, in theory, run the script from your IDE directly in KeyShot (though this setup is advanced and might require a lot of tweaking).
+6. Testing and Debugging Tips:
+• Log Everything: Since KeyShot pauses when running scripts, using log files to track progress is essential when testing in KeyShot.
+• Use Assertions in External Development: When developing in VS Code, you can use assertions to check that your logic is working correctly. Replace them with KeyShot-compatible error handling (like print statements or log writing) when moving the script to KeyShot.
+
+Summary: Working Between Environments
+
+• Python Modules and Environments:
+• KeyShot uses its specific environment, which includes its lux API, and this environment is isolated from the external IDEs you might use.
+• External IDEs like VS Code are useful for their features (code completion, debugging) but cannot access lux directly.
+• Potential Issues:
+• Missing KeyShot Modules (lux): You can’t run KeyShot-specific commands outside of KeyShot.
+• Different Python Versions: KeyShot’s Python version might differ from your IDE, leading to incompatibility.
+• Best Practices:
+• Develop general Python logic and reusable utilities in VS Code or another IDE, but use KeyShot to run and test anything with lux.
+• Mock the KeyShot API when developing outside KeyShot, allowing you to test script logic while excluding the actual lux operations.
+• Modularize your script so that the parts unrelated to KeyShot (utilities.py) can be developed in the external IDE, while lux-dependent parts are maintained in KeyShot.
+
+By following these best practices, you can leverage the power of external Python environments for better development efficiency while ensuring compatibility with KeyShot when running the final scripts.

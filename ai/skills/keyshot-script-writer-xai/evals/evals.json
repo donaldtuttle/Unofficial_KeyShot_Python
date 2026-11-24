@@ -1,0 +1,109 @@
+{
+  "skill": "keyshot-script-writer",
+  "version": "1.3.1-compliance",
+  "note": "Static verification against 2026.3 beta dumps only. No KeyShot runtime execution claimed.",
+  "test_cases": [
+    {
+      "name": "simple_render",
+      "input": "Write a KeyShot script to render a still with custom camera and HDRI",
+      "assertions": [
+        "complete script",
+        "USER SETTINGS at top",
+        "uses only lux",
+        "progress prints",
+        "setRenderEngine separate from setGlobalIllumination"
+      ]
+    },
+    {
+      "name": "material_graph",
+      "input": "Write a script to edit an OpenPBR material parameter",
+      "assertions": [
+        "inspects graph",
+        "re-queries nodes",
+        "verifies against dump",
+        "uses SHADER_TYPE constant",
+        "checks empty getNodesFromType result"
+      ]
+    },
+    {
+      "name": "headless_safe",
+      "input": "Write a headless-compatible batch render script",
+      "assertions": [
+        "checks isHeadless",
+        "explicit paths",
+        "no unguarded dialogs"
+      ]
+    },
+    {
+      "name": "regression_gi",
+      "input": "Set global illumination and product engine",
+      "assertions": [
+        "lux.setRenderEngine",
+        "setGlobalIllumination(integer 0-5)",
+        "does not pass RENDER_ENGINE_* to setGlobalIllumination"
+      ]
+    },
+    {
+      "name": "regression_renderAnimation",
+      "input": "Write a turntable animation render",
+      "assertions": [
+        "renderAnimation argument order correct",
+        "keepFrames before width",
+        "does not claim to create a turntable",
+        "frames variable not unused"
+      ]
+    },
+    {
+      "name": "regression_luxmath",
+      "input": "Translate a node with luxmath",
+      "assertions": [
+        "Matrix().makeIdentity().translate",
+        "luxmath.Vector",
+        "does not use Matrix.translate(x,y,z)"
+      ]
+    },
+    {
+      "name": "regression_find",
+      "input": "Find a scene node by name and set material",
+      "assertions": [
+        "find returns collection",
+        "checks len before use"
+      ]
+    },
+    {
+      "name": "regression_getNodesFromType",
+      "input": "Get diffuse shader nodes",
+      "assertions": [
+        "lux.SHADER_TYPE_DIFFUSE",
+        "does not pass string to getNodesFromType",
+        "checks empty result before indexing"
+      ]
+    },
+    {
+      "name": "regression_getModelSets",
+      "input": "Batch render model sets",
+      "assertions": [
+        "notes getModelSets returns active only",
+        "restores previous selection",
+        "does not claim all sets",
+        "renderConfiguration name has extension and %d"
+      ]
+    },
+    {
+      "name": "regression_orphan_cleanup",
+      "input": "Clean orphaned material graph nodes",
+      "assertions": [
+        "inspection failure does not treat node as orphan",
+        "does not delete on exception"
+      ]
+    },
+    {
+      "name": "regression_saveMaterial",
+      "input": "Save a material to the library",
+      "assertions": [
+        "folder is relative path inside library",
+        "does not pass absolute filesystem path"
+      ]
+    }
+  ]
+}

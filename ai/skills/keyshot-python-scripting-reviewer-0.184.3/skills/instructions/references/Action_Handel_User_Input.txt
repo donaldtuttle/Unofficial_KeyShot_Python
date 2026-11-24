@@ -1,0 +1,216 @@
+import os
+import re
+import zipfile
+
+# Load specific section from a file
+def load_specific_section(file_path, section_name):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        start_marker = f'## {section_name}'
+        end_marker = '## '  # Assuming the next section starts with '## '
+        start_index = content.find(start_marker)
+        end_index = content.find(end_marker, start_marker + len(start_marker))
+        if start_index != -1 and end_index != -1:
+            section = content[start_index:end_index].strip()
+        elif start_index != -1:
+            section = content[start_index:].strip()  # In case it's the last section
+        else:
+            section = "Section not found"
+    return section
+
+# Load the entire document content
+def load_document(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
+
+# Extract sections using regular expressions
+def extract_sections(content, section_names):
+    sections = {}
+    for section_name in section_names:
+        pattern = re.compile(rf'## {section_name}.*?(?=## |$)', re.DOTALL)
+        match = pattern.search(content)
+        if match:
+            sections[section_name] = match.group(0)
+        else:
+            sections[section_name] = "Section not found or could not be parsed"
+    return sections
+
+# Load user input handler logic
+def load_user_input_handler(file_path='/mnt/data/user_input_handler.py'):
+    with open(file_path, 'r') as file:
+        code = file.read()
+    exec(code, globals())
+    return "User input handler loaded."
+
+# User input handler functions
+def handle_user_request(user_input, tocs, instructions_toc):
+    if "import" in user_input and "CAD" in user_input:
+        response = handle_specific_request(user_input, tocs, "Batch Import CAD")
+    elif "TypeError" in user_input or "FileNotFoundError" in user_input:
+        response = analyze_error(user_input, tocs)
+    elif "list scripts" in user_input:
+        response = list_available_scripts(tocs)
+    elif "search" in user_input:
+        search_term = user_input.split("search", 1)[1].strip()
+        response = search_documentation(tocs, search_term)
+    elif "summary" in user_input:
+        response = generate_summary(tocs)
+    elif "unzip" in user_input:
+        # Assuming user provides paths in some format, e.g., "unzip /path/to/zip /path/to/extract"
+        parts = user_input.split()
+        zip_file_path = parts[1]
+        extraction_dir = parts[2]
+        response = unzip_file(zip_file_path, extraction_dir)
+    elif "extract_materials" in user_input:
+        response = extract_materials_section(tocs)
+    # Add more cases here
+    # elif "new_case" in user_input:
+    #     response = handle_new_case(user_input, tocs)
+    else:
+        response = handle_generic_request(user_input, tocs, instructions_toc)
+    
+    return response
+
+def handle_specific_request(user_input, tocs, section_name):
+    file_name = '2024_1_Scripting_Documentation.txt'
+    return load_specific_section(os.path.join('/mnt/data', file_name), section_name)
+
+def handle_generic_request(user_input, tocs, instructions_toc):
+    instructions = re.findall(r'##\s(.+?)\n', instructions_toc)
+    
+    for instruction in instructions:
+        if instruction.lower() in user_input.lower():
+            file_name = '2024_1_Scripting_Documentation.txt'
+            section_name = instruction
+            return load_specific_section(os.path.join('/mnt/data', file_name), section_name)
+    
+    return "Request not identified. Please provide more details."
+
+def analyze_error(log, tocs):
+    if "TypeError" in log:
+        return "TypeError: Ensure the correct data type is used."
+    elif "FileNotFoundError" in log:
+        return "FileNotFoundError: Ensure the file path is correct and the file exists."
+
+    # Add more error handling based on documentation
+    file_name = 'Best Practices for Python Scripting.txt'
+    section_name = 'Exception Handling'
+    best_practices = load_specific_section(os.path.join('/mnt/data', file_name), section_name)
+    
+    return best_practices
+
+def list_available_scripts(tocs):
+    examples_toc = tocs['Scripting_Examples.txt']
+    scripts = re.findall(r'##\s(.+?)\n', examples_toc)
+    return scripts
+
+def search_documentation(tocs, search_term):
+    results = {}
+    for file_name, toc in tocs.items():
+        matches = re.finditer(rf".{{0,50}}{re.escape(search_term)}.{{0,50}}", toc, re.IGNORECASE)
+        if matches:
+            contextual_matches = []
+            for match in matches:
+                start, end = match.span()
+                context = toc[max(0, start-50):min(len(toc), end+50)]
+                contextual_matches.append(context)
+            results[file_name] = contextual_matches
+    return results
+
+def validate_relevance(found_sections, validation_terms):
+    validated_results = {}
+    for file_name, sections in found_sections.items():
+        validated_sections = []
+        for section in sections:
+            if any(term.lower() in section.lower() for term in validation_terms):
+                validated_sections.append(section)
+        if validated_sections:
+            validated_results[file_name] = validated_sections
+    return validated_results
+
+def generate_summary(tocs):
+    summary = {}
+    for file_name, toc in tocs.items():
+        sections = re.findall(r'(\d+\.\s\[.+?\])', toc[:20000])  # Extract key sections within the first 20,000 characters
+        summary[file_name] = "\n".join(sections)
+    return summary
+
+def unzip_file(zip_file_path, extraction_dir):
+    os.makedirs(extraction_dir, exist_ok=True)
+
+    with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+        zip_ref.extractall(extraction_dir)
+
+    extracted_files = os.listdir(extraction_dir)
+    return extracted_files
+
+# Extract material shader parameters
+def extract_materials_section(tocs):
+    section_names = [
+        "Material Xray",
+        "Material Velvet",
+        "Material Gem",
+        "Material Thin Film",
+        "Material Measured",
+        "Material Wireframe",
+        "Material Translucent",
+        "Material Ground",
+        "Material Metallic Paint",
+        "Material Glass",
+        "Material RealCloth",
+        "Material Point Light",
+        "Material Generic",
+        "Material Anisotropic",
+        "Material Dielectric",
+        "Material Translucent Medium",
+        "Material Emissive",
+        "Material Plastic Transparent",
+        "Material Cutaway",
+        "Material Liquid",
+        "Material Plastic",
+        "Material Advanced",
+        "Material Diffuse",
+        "Material Plastic Cloudy",
+        "Material IES Light",
+        "Material Spotlight",
+        "Material Area Light",
+        "Material Metal",
+        "Material Flat",
+        "Material Paint",
+        "Material Multi-Layer Optics",
+        "Material Scattering Medium",
+        "Material Glass Solid",
+        "Material Toon"
+    ]
+    content = load_document('/mnt/data/Scripting_Materials_Documentation.txt')
+    sections = extract_sections(content, section_names)
+    
+    result = ""
+    for section_name, section_content in sections.items():
+        result += f"## {section_name}\n{section_content[:1000]}\n"  # Print the first 1000 characters of each section for verification
+    return result
+
+# Helper function to load all ToCs from given files
+def load_all_tocs():
+    toc_files = [
+        '/mnt/data/Quick_Reference_Documentation.txt',
+        '/mnt/data/Common_Errors.txt',
+        '/mnt/data/KeyShot_Python_Script_Examples_with_ToC',
+        '/mnt/data/Scripting_Material_Graph.txt',
+        '/mnt/data/Scripting_Transforming_Scene_Nodes.txt',
+        '/mnt/data/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt'
+    ]
+    
+    tocs = {}
+    for toc_file in toc_files:
+        with open(toc_file, 'r') as file:
+            tocs[toc_file] = file.read()
+    return tocs
+
+# Example usage
+tocs = load_all_tocs()
+user_input = "extract_materials"
+instructions_toc = tocs['/mnt/data/2024_1_Scripting_Documentation.txt']
+
+response = handle_user_request(user_input, tocs, instructions_toc)
+print(response)

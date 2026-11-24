@@ -1,0 +1,175 @@
+### Material: RealCloth
+  - **SHADER_TYPE**: lux_real_cloth
+  - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
+  - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
+  - **display_mode** (PARAMETER_TYPE_INTEGER): Display mode for the cloth. (Value: 1)
+  - **flyaway_enabled** (BOOLEAN): Determines if flyaway fibers are enabled. (Value: False)
+  - **opacitymap** (PARAMETER_TYPE_TEXTURE): Defines the material's opacity. (Value: Pure Parameter)
+  - **opacitymap_mode** (PARAMETER_TYPE_INTEGER): Mode for opacity map. (Value: 2)
+  - **scale** (PARAMETER_TYPE_FLOAT): Scale of the cloth weave pattern. (Value: 0.002)
+  - **translucency** (PARAMETER_TYPE_FLOAT): Degree of translucency. (Value: 0.0)
+  - **warp_color** (PARAMETER_TYPE_COLOR): Color of the warp threads. (Value: (0.0, 0.0, 0.0))
+  - **warp_ior** (PARAMETER_TYPE_FLOAT): Index of Refraction for warp threads. (Value: 1.6)
+  - **warp_specular** (PARAMETER_TYPE_COLOR): Specular color of the warp threads. (Value: (1.0, 1.0, 1.0))
+  - **weft_color** (PARAMETER_TYPE_COLOR): Color of the weft threads. (Value: (0.376, 0.6092, 0.8))
+  - **weft_ior** (PARAMETER_TYPE_FLOAT): Index of Refraction for weft threads. (Value: 1.6)
+  - **weft_specular** (PARAMETER_TYPE_COLOR): Specular color of the weft threads. (Value: (1.0, 1.0, 1.0))
+
+## Parameters for shader node in material'RealCloth':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- display_mode (Type: 2)
+- flip_normals (Type: 1)
+- flyaway_density (Type: 4)
+- flyaway_density_texture (Type: 14)
+- flyaway_enabled (Type: 1)
+- flyaway_length (Type: 4)
+- flyaway_length_variation (Type: 4)
+- flyaway_limit (Type: 4)
+- flyaway_radius (Type: 4)
+- flyaway_randomness (Type: 4)
+- flyaway_saturation (Type: 4)
+- flyaway_yarn_flow (Type: 4)
+- moire_reduction (Type: 4)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)
+- scale (Type: 4)
+- scale_mode (Type: 2)
+- translucency (Type: 4)
+- transparent (Type: 1)
+- uv_angle (Type: 4)
+- uv_distortion (Type: 4)
+- warp_color (Type: 13)
+- warp_color_variation (Type: 4)
+- warp_fiber_density (Type: 4)
+- warp_fiber_detail (Type: 4)
+- warp_ior (Type: 4)
+- warp_ply_count (Type: 2)
+- warp_ply_pitch (Type: 4)
+- warp_roughness (Type: 4)
+- warp_specular (Type: 13)
+- weave_pattern (Type: 19)
+- weft_color (Type: 13)
+- weft_color_variation (Type: 4)
+- weft_fiber_density (Type: 4)
+- weft_fiber_detail (Type: 4)
+- weft_ior (Type: 4)
+- weft_ply_count (Type: 2)
+- weft_ply_pitch (Type: 4)
+- weft_roughness (Type: 4)
+- weft_specular (Type: 13)
+
+## The RealCloth (TM) procedural material enables you to create woven fabrics, with your custom weave patterns, detailed down to the ply. And make the cloth appear even more tactile with flyaway fibers.
+
+The warp describes the long threads held under tension during weaving. The weft is the the thread that is passed through the warp threads across the width of the cloth.
+
+Prerequisites and Limitations
+RealCloth material requires that your geometry has UV coordinates. If your part does not have good UV’s you can try the Unwrap UV tool.
+The RealCloth material does not support Labels.
+If used on Cutaway Caps, RealCloth cannot use flyaway fibers.
+Displacement and flyaway fibers on RealCloth are currently not supported in Render NURBS Mode.
+Tip
+For the best result, the UV coordinates should be “in proportion”, in the sense that 1 unit in the U direction matches 1 unit in the V direction.
+
+Consider the UV map as a cut pattern applied to the cloth – any warping in the UV coordinates will appear as stretched fabric.
+
+Edit Weave Pattern (Pro)
+Click the Edit Weave Pattern button  to set up the repeating pattern that will make up your cloth, this will bring out the Pattern Editor.
+The pattern editor is a KeyShot Pro feature. If you don’t have a Pro license the Edit Weave Pattern button will be disabled, and you won’t be able to edit the pattern.
+
+Pattern Size: This determines how many threads the pattern will span
+
+Warp: The threads that are strung over the loom vertically, and holds the tension during weaving. The warp runs in the longitude of the fabric. In the preview, it is the vertical threads.
+Weft: This is the thread that you weave between the warp threads, creating your patterns and structure in the weave. In the preview, it is the horizontal threads.
+ Pattern Presets: Here you can select between a number of the most commonly used weave patterns – plain, basket, twill, and satin. Selecting a pattern will set the appropriate number of warp/weft threads and apply the pattern to the preview. The Step value in the pattern names determines how many warp threads the weft crosses on over, before going under the warp again.
+Pattern preview: Here you can edit the pattern. Each crossing between a warp and weft makes up a cell in the grid, click a cell to switch which of the threads are in front.
+
+Invert Weave Pattern: This will switch all thread crossings around.
+
+Warp
+Width: This determines the width of the warp threads. The scale goes from 0-1, where 1 means that the threads are as wide as the cells.
+Tension: Here you set how tightly the warp threads are strung.
+Shape:
+Ribbon: The ribbon-shaped thread is highly compressed and flat. Note that if you are using the ribbon shape, Ply Count and Ply Pitch will not be relevant.
+Round: The round thread is not highly compressed.
+Weft
+Width: This determines the width of the weft threads. The scale goes from 0-1, where 1 means that the threads are as wide as the cells.
+Tension: Here you set how tightly the weft thread is strung while woven through the warp.
+Shape:
+Ribbon: The ribbon shaped thread is highly compressed and flat. Note that if you are using the ribbon shape, Ply Count and Ply Pitch will not be relevant.
+Round: The round thread is not highly compressed.
+Close/Apply: The changes to the weave pattern won’t be applied instantly. Because calculating the weave pattern may take a some time you have to press apply Apply to see the effect on the cloth in the Real-time View. When you are happy with what you see in the Real-time View you hit Close to hide the dialog.
+
+Appearance
+Size: this lets you select how you want to control the size of the weave pattern.
+
+Use Units: If you choose to set the size in Units, a slider controlling the Max. Thread Width will appear. With this you can determine the physical size of the threads, which then will be converted the appropriate UV scale. This scaling is recommended if you are using the cloth across multiple parts, which may not have the same UV scaling. 
+Use UV Scale: If you choose this option, the UV scale slider will appear. This determines the width of the pattern in relation to 1 UV-unit. This scaling method is recommended if you are going to animate the object.
+
+Color: This controls the overall color of the material. When light enters the surface, it will take on the color set here. The amount of color that you see in this material is highly dependent on the transparency setting as well.
+
+Roughness: This will add microscopic levels of imperfections to the surface of the material when the values are increased. When set to 0 a material will appear perfectly smooth and polished. When the value is increased, the material will appear rougher as light is diffused across the surface.
+
+Translucency: Increasing translucency will make the curves appear more see-through. Setting this to 0, will make the curves appear perfectly opaque.
+This setting is only available if you have 3D Ply Geometry applied under Geometry settings.
+
+Geometry
+Ply Pitch: Pitch is the metric approach to measuring “thread count”. The value determines the distance along the yarn for a single revolution of a ply (measured along the length of the thread, not the length of the twisted strand)
+
+Ply Count: Ply is the number of strands that are twisted around one another to create a single thread
+
+Display: There are three settings here, to control how accurate the cloth representation should be.
+
+Single Sided: Show the front-face of the cloth on both sides of the surface.
+Two Sided: The front and back side of the geometry will also have a front and back side of the pattern applied.
+3D Ply Geometry: The geometry of the object will be modified by the material, creating 3D Curves.
+
+Known Limitation
+Applying 3D Ply to a geometry with overlapping UVs, will appear to break your geometry. Try using the Unwrap UV tool to avoid this.
+
+Swap front and back: This will change the direction that the front and back of the material is facing. Use this if the flyaway fibers are facing the wrong way.
+
+Transparent Weave: Enable this if you want the gabs between threads to be transparent. Notice that this is not the same as adding translucent qualities to the woven parts.
+
+Flyaway Fibers
+Add flyaway fibers: When enabled, this will add stray fibers on the cloth surface. The fibers are based on displacement, so they won’t be visible until the the displacement has been executed. Flyaway fibers will follow the direction of the normals.
+
+Flyaway Density: Determines the number of flyaway fibers. The density is calculated in relation to the weave pattern. With a density of 1, you will on average get 1 flyaway fiber per yarn crossing.
+
+Flyaway Radius: Determines how thick the fibers are.
+
+Flyaway Length: Determines how long each fiber is.
+
+Flyaway Length Variation: Adds variation to the length of the fibers. The fibers will be varied up to the selected length + length * variation value.
+
+Flyaway Randomness: by default the flyaway fibers are straight, Adding randomness will warp the fibers.
+
+Flyaway Direction: Determines the angle at which the flyaway fiber comes out of the plies in the yarn. At 0 the fibers will have a 90* angle to the ply, and at 0 the fiber will follow the direction of the ply.
+
+Flyaway Max Curves: Adding large amounts of curves can make the scene very heavy. The amount of curves is impacted by both the density and length variation values. Flyaway Max Curves enable you to limit the overall amount of flyaway curves added pr. part. When the limit is reached, the density of flyaway fibers will be impacted. The limit value is measured in millions and is only approximate. If you don’t want to set a limit just leave the value at 0.
+
+Advanced
+In this section you will find more advanced settings related to the above settings categories.
+
+Appearance
+Specular: This is the color and intensity of the reflection of light sources within the scene. Black will completely turn off reflections, while white will provide a very shiny plastic look. To achieve the most realistic look use some level of gray or white. However, adding color can give the material a metallic effect.
+
+Refractive Index: This controls how much light will bend or “refract” as it passes through parts that have this type of material. The default of 1.5 is accurate for simulating most types of plastics, but you can increase the value to create more dramatic refraction within the surface.
+
+Color Variation: Will add variation of the color of the thread within the weave, running along the pattern. When set to 0 the threads will be perfectly uniform in color. Increasing the value will add subtle variations that can help emphasize the pattern and give a more “handcrafted look”.
+
+Geometry
+Angle: This enables you to change the direction of the weave.
+
+Fiber Detail: This controls how pronounced the fibers appear in the threads. 0 is not at all and increasing the value adds detail.
+
+Anti aliasing: Reduce moire artifacts by adding noise to the image. This may require more samples when rendering.
+
+Execute Geometry Node: After any edits to either Flyaway Fibers or 3D Ply Geometry, you must “execute geometry” before you can see the effect in the Real-time View.
+
+Note
+Whenever a scene contains un-executed changes to a displacement parameter (eg. flyaways or 3D ply geometry) , you will see the  Execute Displaced Geometry button in the top right corner of the Real-time View. Press this to execute the geometry changes.

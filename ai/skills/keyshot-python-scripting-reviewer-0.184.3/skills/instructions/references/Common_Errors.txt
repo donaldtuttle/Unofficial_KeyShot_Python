@@ -1,0 +1,792 @@
+### Best Practices for Python Scripting with KeyShot
+
+### Table of Contents
+
+1. [Define input fields for the dialog](#define-input-fields-for-the-dialog)
+2. [Create the dialog](#create-the-dialog)
+3. [Correctly getting the active camera's information](#correctly-getting-the-active-cameras-information)
+4. [KeyShot Python Scripting: Common Errors and Solutions](#keyshot-python-scripting-common-errors-and-solutions)
+   - [Tuples CANNOT be Empty](#tuples-cannot-be-empty)
+   - [Type Mismatch Error](#type-mismatch-error)
+   - [Handling `opts` from `lux.getInputDialog`](#handling-opts-from-luxgetinputdialog)
+5. [Material Graph](#material-graph)
+   - [Accessing Material Graphs and Handling Errors](#accessing-material-graphs-and-handling-errors)
+6. [Camera](#camera)
+   - [Correcting Camera Access Error](#correcting-camera-access-error)
+   - [Additional Tips](#additional-tips)
+7. [Structure and Readability](#structure-and-readability)
+8. [Script Creation Process](#script-creation-process)
+9. [Error Handling](#error-handling)
+10. [Feedback Loop and Redundancy Measures](#feedback-loop-and-redundancy-measures)
+11. [Efficient Resource Management](#efficient-resource-management)
+12. [Script Execution](#script-execution)
+13. [User Interaction](#user-interaction)
+14. [Modularity and Reusability](#modularity-and-reusability)
+15. [Performance Optimization](#performance-optimization)
+16. [Testing and Debugging](#testing-and-debugging)
+   - [Debugging Instructions](#debugging-instructions)
+   - [Testing Responsibility Acknowledgment](#testing-responsibility-acknowledgment)
+17. [Documentation](#documentation)
+18. [Specific KeyShot Considerations](#specific-keyshot-considerations)
+19. [Example Script: Importing a Model and Rendering an Image](#example-script-importing-a-model-and-rendering-an-image)
+20. [User Requests Script for Specific Functionality (X)](#user-requests-script-for-specific-functionality-x)
+21. [Best Practices](#best-practices)
+   - [Proper Error Handling](#proper-error-handling)
+   - [Modular Functions](#modular-functions)
+   - [Logging and Debugging](#logging-and-debugging)
+   - [Data Structures](#data-structures)
+   - [Documentation and Comments](#documentation-and-comments)
+   - [Consistent Naming Conventions](#consistent-naming-conventions)
+   - [Using Built-in Functions](#using-built-in-functions)
+   - [Resource Management](#resource-management)
+22. [Common Issues and Their Solutions](#common-issues-and-their-solutions)
+   - [Type Mismatch Errors](#type-mismatch-errors)
+   - [Empty or Uninitialized Values](#empty-or-uninitialized-values)
+   - [File Handling Errors](#file-handling-errors)
+   - [Index Out of Range](#index-out-of-range)
+   - [Attribute Errors](#attribute-errors)
+   - [Recursive Function Limits](#recursive-function-limits)
+   - [Handling Complex Data Structures](#handling-complex-data-structures)
+   - [Concurrency Issues](#concurrency-issues)
+
+KeyShot Python Scripting: Common Errors and Solutions
+
+## Tuples CANNOT be Empty
+
+---
+
+### Define input fields for the dialog
+
+When using `lux.getInputDialog()` to create custom input dialogs in KeyShot, ensure that all fields, especially those of type `lux.DIALOG_TEXT`, have non-empty default values. This requirement prevents runtime errors related to uninitialized or empty fields in the dialog.
+
+### Create the dialog
+
+Common Errors:
+
+**Empty Item Tuple Exception:**
+
+**Error Message:** Exception: Items of item tuple must be specified!
+
+**Cause:** This error occurs when a tuple expected by a function like `lux.getInputDialog()` is incomplete or improperly formatted, particularly for selection items (`lux.DIALOG_ITEM`).
+
+**Solution:** Ensure that all tuples defining dialog items are complete and correctly formatted. For selection items (`lux.DIALOG_ITEM`), include all required elements: the label, item type, description, default selection, and a list of options.
+
+---
+
+**Type Mismatch Error:**
+
+**Error Message:** TypeError: argument 1 must be str, not list
+
+**Cause:** This error is typically raised when a function expects a string argument, but a list (or another non-string type) is provided instead.
+
+**Solution:** Carefully review function calls to ensure that all arguments are of the expected type. For functions expecting a string, do not pass lists or other composite types without first converting or extracting the appropriate string value.
+
+---
+
+**Implementation Tips:**
+
+**Debugging:** Use print statements or logging to debug argument types and values passed into functions. This can help identify where type mismatches occur.
+
+**Type Checking:** Implement explicit type checks or use Python's type hinting to make your code clearer and catch type-related errors early.
+
+**Consistent Formatting:** When dealing with functions that require tuples (like `lux.getInputDialog()`), double-check the consistency and completeness of your tuples to prevent formatting-related exceptions.
+
+**Example:** Here is an example illustrating how to correctly define a field in `lux.getInputDialog()` with a non-empty default value:
+
+```python
+# Define input fields for the dialog
+values = [
+    ("name", lux.DIALOG_TEXT, "Model Name:", "DefaultModelName"),  # Non-empty default value
+    # Other fields as needed
+]
+
+# Create the dialog
+opts = lux.getInputDialog(title="Model Import Settings",
+                          desc="Configure settings for importing models.",
+                          values=values)
+```
+
+---
+
+### Correctly getting the active camera's information
+
+The error "string indices must be integers, not 'str'" indicates that somewhere in your script, you are trying to use a string as an index for a list, which is not allowed in Python.
+
+### Understanding the `'str'` Error
+
+**Initial Error:**
+- The error message "TypeError: string indices must be integers, not 'str'" occurs when you try to use a string as an index for a list. This typically happens when you expect a dictionary (which allows string keys) but get a list or a string.
+
+**Error Context:**
+- The error arose in the context of trying to access studio attributes using string keys, which implied that the data structure wasn't what we expected.
+
+---
+
+### Steps to Fix the Error
+
+1. **Inspecting the Data Structure:**
+   - We added debug prints to inspect the data returned by the `lux.getStudios()` function. This helped us understand that `lux.getStudios()` was returning a list of studio names (strings) rather than a list of dictionaries or objects with `id` and `name` keys.
+
+```python
+def get_all_studios():
+    studios = lux.getStudios()
+    print("Studios:", studios)  # Debug print to check the structure
+    return studios
+```
+
+2. **Identifying the Correct Method:**
+   - Since `lux.getStudioSettings()` did not exist, we inspected the available methods and attributes of the `lux.Studio` object using `dir()`:
+
+```python
+def inspect_studio_methods(studio_name):
+    studio = lux.getStudio(studio_name)  # Retrieve the studio object
+    methods = [method for method in dir(studio) if callable(getattr(studio, method))]
+    attributes = [attr for attr in dir(studio) if not callable(getattr(studio, attr)) and not attr.startswith("__")]
+    return methods, attributes
+```
+
+3. **Using Correct Methods:**
+   - Based on the inspection, we identified the appropriate methods available on the `lux.Studio` object: `getCamera()`, `getEnvironment()`, `getImageStyle()`, `getModelSets()`, `getMultiMaterials()`, `isMultiMaterialsEnabled()`, and `getName()`.
+
+4. **Updating the Script:**
+   - We updated the script to use these methods to retrieve the settings for each studio:
+
+```python
+import lux
+
+def get_all_studios():
+    studios = lux.getStudios()  # Retrieve all studios
+    return studios
+
+def get_studio_settings(studio_name):
+    studio = lux.getStudio(studio_name)  # Retrieve the studio object
+    # Extract settings from the studio object using available methods
+    studio_settings = {
+        'name': studio.getName(),
+        'camera': studio.getCamera(),
+        'environment': studio.getEnvironment(),
+        'image_style': studio.getImageStyle(),
+        'model_sets': studio.getModelSets(),
+        'multi_materials': studio.getMultiMaterials(),
+        'is_multi_materials_enabled': studio.isMultiMaterialsEnabled()
+    }
+    return studio_settings
+
+def main():
+    studios = get_all_studios()
+    all_studio_settings = {}
+    
+    for studio in studios:
+        settings = get_studio_settings(studio)
+        all_studio_settings[studio] = settings
+    
+    return all_studio_settings
+
+if __name__ == "__main__":
+    studio_settings = main()
+    for studio, settings in studio_settings.items():
+        print(f"Studio: {studio}")
+        for setting, value in settings.items():
+            print(f"  {setting}: {value}")
+```
+
+### Summary
+
+**Error Cause:** The `'str'` error was caused by trying to use a string key to index into a string or list, which isn't allowed.
+
+**Solution:**
+1. **Inspect the Data:** We used debug prints to understand the structure of the data returned by `lux.getStudios()`.
+2. **Identify Methods:** We inspected the `lux.Studio` object to identify available methods.
+3. **Update Script:** We used the correct methods to extract the required settings from the `lux.Studio` object.
+
+By following these steps, we correctly retrieved and displayed the settings for each studio without encountering the `'str'` error.
+
+---
+
+### Common Errors: Handling `opts` from `lux.getInputDialog`
+
+**Issue:**
+When using `lux.getInputDialog` to create a dropdown selection dialog in KeyShot, the returned `opts` for the selected item may be a list, not just the string name of the selected preset. This can lead to errors if the script attempts to use the entire list instead of extracting the needed string name.
+
+**Explanation:**
+The `opts` dictionary returned by `lux.getInputDialog` contains the user’s selections. For a dropdown (`lux.DIALOG_ITEM`), the selected item is often returned as a list. This list typically includes:
+- The index of the selected item.
+- The string name of the selected item.
+
+For example:
+```python
+opts = {"preset": [1, "Basic"]}
+```
+In this case, the `preset` key maps to a list where `1` is the index of the selected item in the dropdown, and `"Basic"` is the string name of the selected lighting preset.
+
+**Solution:**
+To correctly handle the returned `opts`, extract the string name from the list before using it. Here’s how:
+
+1. **Check if `opts` contains the expected key**:
+    ```python
+    if "preset" in opts:
+    ```
+
+2. **Ensure the value is a list with the expected structure**:
+    ```python
+    selected_preset_info = opts["preset"]
+    if isinstance(selected_preset_info, list) and len(selected_preset_info) == 2:
+    ```
+
+3. **Extract the string name**:
+    ```python
+    selected_preset = selected_preset_info[1]
+    ```
+
+4. **Use the extracted string name**:
+    ```python
+    success = load_lighting_preset(selected_preset)
+    ```
+
+By following these steps, you ensure that only the string name of the preset is used, avoiding errors caused by passing a list to functions expecting a string.
+
+---
+
+### Example Correction:
+Here’s how the relevant part of the script is corrected to handle the `opts` correctly:
+
+```python
+# Check if the user made a selection
+if opts and "preset" in opts:
+    selected_preset_info = opts["preset"]
+    if isinstance(selected_preset_info, list) and len(selected_preset_info) == 2:
+        selected_preset = selected_preset_info[1]
+        if selected_preset:
+            success = load_lighting_preset(selected_preset)
+            if success:
+                lux.getMessageBox("Preset Loaded", f"The lighting preset '{selected_preset}' has been successfully loaded.")
+            else:
+                lux.getMessageBox("Error", f"Failed to load the lighting preset '{selected_preset}'.")
+        else:
+            lux.getMessageBox("Invalid Selection", "No valid preset selected.")
+    else:
+        lux.getMessageBox("Error
+
+", "Unexpected format for the selected preset.")
+else:
+    lux.getMessageBox("Cancelled", "The dialog was cancelled or closed without selection.")
+```
+
+### Summary:
+Always check the structure of the `opts` returned by `lux.getInputDialog` when using dropdown selections. Ensure you extract the actual string value needed to avoid errors related to incorrect data types. This practice helps maintain robustness and clarity in your scripts.
+
+---
+
+### KeyShot Scripting: Handling Material Graphs
+
+When working with material graphs in KeyShot via Python scripting, it's crucial to utilize the correct functions provided by the `lux` module for accessing and manipulating materials. The `MaterialGraph` class encapsulates a graph of material nodes constituting a material in the scene, enabling manipulation of material parameters, addition/removal of material nodes, and their association with input and output edges.
+
+**Accessing Material Graphs and Handling Errors**
+
+**Function to Use:**
+To get a material graph, use `lux.getMaterialGraph(name)`, where name is the name of the material.
+
+**Common Errors:**
+
+**AttributeError:** module 'lux' has no attribute 'getMaterial'. Did you mean: 'MultiMaterial'?
+**AttributeError:** module 'lux' has no attribute 'getMaterials'. Did you mean: 'getCameras'?
+
+**Solutions:**
+These errors typically occur when attempting to access materials or their properties using incorrect or non-existent `lux` module functions.
+
+**Correct Usage:**
+- Use `lux.getMaterialGraph(name)` to access the material graph of a specific material by its name.
+- To obtain information about materials used in the scene, or to manipulate materials directly, consider using the following functions correctly:
+  - `lux.getSceneMaterials()`: Retrieves currently used materials in the scene.
+  - `lux.getName()`: Retrieves the name of a node, which can be useful when working with materials and model sets.
+  - `lux.getMaterialNodes()`: Retrieves a list of material root nodes within a material graph. For multi-materials, it returns individual sub-material roots; for regular materials, it returns a list with a single item equivalent to getRoot().
+
+**Correcting Misused Functions:**
+- **Incorrect Use:** Attempting to use `lux.getMaterial()` or `lux.getMaterials()` directly, which are not valid functions and can lead to `AttributeError`.
+- **Correction:** Utilize the correct functions for your intended operations, such as `lux.getSceneMaterials()` for retrieving materials or `lux.getMaterialGraph(name)` for accessing a material's graph.
+
+**Implementation Tips:**
+- **Review KeyShot Python API Documentation:** Always refer to the most current KeyShot Python API documentation to understand available functions and their proper usage.
+- **Debugging:** Use print statements to debug the names and types of variables, especially when passing them as arguments to functions, to ensure they match the expected values.
+
+By adhering to these guidelines and utilizing the correct functions for accessing and manipulating material graphs in KeyShot, you can avoid common errors and enhance your scripting workflow.
+
+---
+
+### KeyShot Scripting: Correcting Camera Access Error
+
+**Error Encounter:**
+AttributeError: module 'lux' has no attribute 'getActiveCamera'
+
+This error indicates an attempt to use a non-existent function `getActiveCamera` in the `lux` module to retrieve the currently active camera.
+
+**Cause:**
+The error arises from a misunderstanding or incorrect reference to the available KeyShot Python API functions for camera manipulation.
+
+**Correct Usage:**
+The correct function to use for getting the active camera's information is `lux.getCamera()`, not `lux.getActiveCamera`.
+
+**Solution:**
+- **Review KeyShot Python API Documentation:** Always consult the latest KeyShot Python API documentation to understand the correct naming and usage of functions related to camera operations.
+- **Code Adjustment:** Replace any incorrect usage of `lux.getActiveCamera` with `lux.getCamera()` in your scripts. This function retrieves the current camera settings, including its name, type, and parameters.
+
+**Example Correct Usage:**
+```python
+# Correctly getting the active camera's information
+camera_info = lux.getCamera()
+print("Active Camera:", camera_info)
+```
+
+---
+
+### Additional Tips:
+
+**Understanding Camera Functions:**
+- Familiarize yourself with other camera-related functions in the KeyShot Python API to fully leverage camera manipulation in your scripts. Functions such as `lux.setCamera()`, `lux.saveCamera()`, and `lux.setStandardView()` can be particularly useful.
+
+**Error Checking:**
+- Implement try-except blocks around your camera function calls to catch and handle potential errors gracefully, improving script robustness.
+
+By adhering to the correct usage of `lux.getCamera()` for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
+
+---
+
+## Structure and Readability
+
+**Write Clear and Readable Code:**
+- Always write clear and readable code. Use meaningful variable names and comments to describe the purpose of your code.
+
+**Follow PEP 8:**
+- Adhere to PEP 8, the Python style guide, for consistent formatting.
+
+**Organize Code:**
+- Organize your code into functions and classes as appropriate to encapsulate functionality and enhance reusability.
+
+### Script Creation Process:
+
+**Craft Python scripts that effectively demonstrate the application of KeyShot’s functions/classes.**
+- Ensure that all script examples are straightforward, replicable, and include clear comments for easy understanding.
+- Explicitly acknowledge any limitations encountered during script development and suggest possible external solutions if necessary.
+
+## Error Handling
+
+**Exception Handling:**
+- Use try-except blocks to handle exceptions and ensure your script can fail gracefully.
+
+**Logging:**
+- Log errors and important events for easier debugging and maintenance.
+
+### Feedback Loop and Redundancy Measures:
+
+**Iterative Development:**
+- Regularly present initial script drafts for review and be open to revisions based on feedback.
+
+**Multiple Solution Paths:**
+- Wherever feasible, offer various scripting approaches for a single problem, ensuring a well-rounded understanding and alternative solutions.
+
+**Cross-Referencing for Accuracy:**
+- Diligently cross-verify all scripts with the KeyShot documentation to maintain consistency and correctness.
+
+## Efficient Resource Management
+
+**Resource Release:**
+- Release resources such as file handles and connections promptly to avoid resource leaks.
+
+**Context Managers:**
+- Use context managers (`with` statement) for managing resources like files and network connections.
+
+## Script Execution
+
+**User Feedback:**
+- For long-running operations like rendering or importing files, provide user feedback using dialogs or progress bars.
+
+**Operation Cancellation:**
+- Allow cancellation of long-running operations where possible, using return values to check for success or failure.
+
+## User Interaction
+
+**Input Collection:**
+- Use `lux.getInputDialog()` to collect multiple inputs from the user in a single dialog, enhancing user experience.
+
+**Default Values:**
+- Ensure all fields in dialogs have non-empty default values to prevent runtime errors.
+
+## Modularity and Reusability
+
+**Function Decomposition:**
+- Break down complex tasks into smaller, reusable functions.
+
+**Modules and Packages:**
+- Use modules and packages to organize your scripts logically.
+
+## Performance Optimization
+
+**Loop Optimization:**
+- Optimize loops and avoid unnecessary computations.
+
+**Efficient Data Structures:**
+- Use efficient data structures and algorithms to improve performance.
+
+## Testing and Debugging
+
+**Test Cases:**
+- Write test cases for your scripts to ensure they work as expected.
+
+**Debugging Tools:**
+- Use print statements or logging for debugging, especially to track variable values and function calls.
+
+### Debugging Instructions:
+
+**After I test the KeyShot Python scripts in the KeyShot environment, I will provide detailed error logs and descriptions of any issues encountered.**
+- Based on the provided error information, your role will be to analyze these errors, identify the root causes, and suggest modifications or solutions to rectify these issues.
+- Focus on efficient and clear communication regarding potential bugs, ensuring that explanations are specific to the KeyShot scripting context.
+- Utilize the documentation of 'lux' and 'luxmath' to align debugging solutions with KeyShot's scripting framework.
+- In your debugging process, prioritize solutions that maintain compatibility with the 'lux' and 'luxmath' environment and the relevant Python version.
+
+### Testing Responsibility Acknowledgment:
+
+**Note: Script testing will be conducted by the user within the KeyShot environment.**
+
+## Documentation
+
+**Code Documentation:**
+- Document your code thoroughly with docstrings and comments.
+
+**User Documentation:**
+- Maintain a README file or similar documentation to explain the purpose and usage of your scripts.
+
+## Specific KeyShot Considerations
+
+**KeyShot Modules:**
+- Utilize KeyShot's specific modules like `lux` and `luxmath` for operations involving the scene and mathematical computations.
+
+**Operation Sequence:**
+- Follow the correct sequence of operations, such as loading a scene or model before attempting to manipulate it.
+
+---
+
+### Example Script: Importing a Model and Rendering an Image
+
+Here's a sample script that imports a model and renders an image, demonstrating some of the best practices mentioned above:
+
+```python
+import lux
+import luxmath
+import os
+
+def import_model(file_path):
+    """Import a model into KeyShot."""
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"File {file_path} not found")
+    
+    opts = lux.getImportOptions()
+    opts["snap_to_ground"] = False
+    opts["adjust_environment"] = False
+    opts["adjust_camera_look_at"] = False
+    
+    success = lux.importFile(file_path, opts=opts)
+    if not success:
+        raise RuntimeError("Failed to import model")
+    
+    print(f"Successfully imported {file_path}")
+
+def render_image(output_path, width=1200, height=1000):
+    """Render an image from the current scene."""
+    opts = lux.getRenderOptions()
+    opts.setMaxTimeRendering(10)
+    
+    success = lux.renderImage(output_path, width=width, height=height, opts=
+
+opts)
+    if not success:
+        raise RuntimeError("Failed to render image")
+    
+    print(f"Image rendered and saved to {output_path}")
+
+def main():
+    """Main function to import a model and render an image."""
+    try:
+        model_path = "/path/to/your/model.obj"
+        output_image_path = "/path/to/save/image.png"
+        
+        import_model(model_path)
+        render_image(output_image_path)
+        
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+### Testing Responsibility Acknowledgment:
+
+**Note that script testing will be conducted by the user within the KeyShot environment.** KSPYGPT’s role is to provide accurate and executable scripts based on the documentation and references, without the capacity to perform direct script testing.
+
+### Debugging Instructions:
+
+1. After the user tests the KeyShot Python scripts in the KeyShot environment, the user will provide detailed error logs and descriptions of any issues encountered.
+2. Based on the provided error information, your role will be to analyze these errors, identify the root causes, and suggest modifications or solutions to rectify these issues.
+3. Focus on efficient and clear communication regarding potential bugs, ensuring that explanations are specific to the KeyShot scripting context.
+4. Utilize the documentation of 'lux' and 'luxmath' to align debugging solutions with KeyShot's scripting framework.
+5. In your debugging process, prioritize solutions that maintain compatibility with the KeyShot 2023.3 'lux' and 'luxmath' environment and the relevant Python version.
+
+### Regular Feedback and Adjustments:
+
+**Actively seek and incorporate feedback to refine scripts, ensuring they meet the specific needs and standards of KeyShot Python scripting.**
+
+---
+
+### User Requests Script for Specific Functionality (X)
+
+1. Review Quick Reference: Initially, consult the quick reference guide created for your scripts, which includes descriptions, significant Luxion KeyShot classes and functions, and relevant keywords tagged for each script.
+2. Locate Topic X: Use the keyword or functionality (X) mentioned by the user to search within the quick reference guide. This involves filtering the guide for any mentions of the keyword or related terms that match the user’s request.
+3. Review X in Quick Reference: Once a match or related topic is found within the quick reference, review the details provided for that script or topic, including a brief description and any notable classes or functions it utilizes.
+4. Review KeyShot Script Examples and References.txt for X: For a more in-depth understanding or to locate the specific script(s) that match the query, refer back to the .zip archive or the indexed repository where the scripts are stored. This step might involve searching file names, comments, or code content for the keyword or functionality (X).
+5. Reference X Script(s): Identify and reference the specific script(s) that address the functionality (X) requested by the user. Provide the user with the script name, a brief overview of its functionality, and any pertinent details from the quick reference guide that align with their request.
+6. Consider the Pertinent Details: While referencing the script(s), highlight any pertinent details such as how the script implements the functionality (X), any dependencies, specific KeyShot versions it’s compatible with, or any setup required within the KeyShot environment.
+
+```python
+import zipfile
+import os
+
+# Define the path to the zip file and the extraction directory
+zip_file_path = '/mnt/data/FILENAME.zip'
+extraction_dir = '/mnt/data/FILENAME/'
+
+# Create a directory to extract the files to
+os.makedirs(extraction_dir, exist_ok=True)
+
+# Extract the zip file
+with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+    zip_ref.extractall(extraction_dir)
+
+# List the files extracted
+extracted_files = os.listdir(extraction_dir)
+extracted_files
+```
+
+**Analyze the .zip file it contains files in .py but analyze as .txt. Never analyze as .py. Only text.**
+
+---
+
+### Material Graph
+
+**KeyShot Scripting: Handling Material Graphs**
+
+When working with material graphs in KeyShot via Python scripting, it's crucial to utilize the correct functions provided by the `lux` module for accessing and manipulating materials. The `MaterialGraph` class encapsulates a graph of material nodes constituting a material in the scene, enabling manipulation of material parameters, addition/removal of material nodes, and their association with input and output edges.
+
+**Accessing Material Graphs and Handling Errors**
+
+**Function to Use:**
+To get a material graph, use `lux.getMaterialGraph(name)`, where name is the name of the material.
+
+**Common Errors:**
+
+**AttributeError:** module 'lux' has no attribute 'getMaterial'. Did you mean: 'MultiMaterial'?
+**AttributeError:** module 'lux' has no attribute 'getMaterials'. Did you mean: 'getCameras'?
+
+**Solutions:**
+These errors typically occur when attempting to access materials or their properties using incorrect or non-existent `lux` module functions.
+
+**Correct Usage:**
+- Use `lux.getMaterialGraph(name)` to access the material graph of a specific material by its name.
+- To obtain information about materials used in the scene, or to manipulate materials directly, consider using the following functions correctly:
+  - `lux.getSceneMaterials()`: Retrieves currently used materials in the scene.
+  - `lux.getName()`: Retrieves the name of a node, which can be useful when working with materials and model sets.
+  - `lux.getMaterialNodes()`: Retrieves a list of material root nodes within a material graph. For multi-materials, it returns individual sub-material roots; for regular materials, it returns a list with a single item equivalent to getRoot().
+
+**Correcting Misused Functions:**
+- **Incorrect Use:** Attempting to use `lux.getMaterial()` or `lux.getMaterials()` directly, which are not valid functions and can lead to `AttributeError`.
+- **Correction:** Utilize the correct functions for your intended operations, such as `lux.getSceneMaterials()` for retrieving materials or `lux.getMaterialGraph(name)` for accessing a material's graph.
+
+**Implementation Tips:**
+- **Review KeyShot Python API Documentation:** Always refer to the most current KeyShot Python API documentation to understand available functions and their proper usage.
+- **Debugging:** Use print statements to debug the names and types of variables, especially when passing them as arguments to functions, to ensure they match the expected values.
+
+By adhering to these guidelines and utilizing the correct functions for accessing and manipulating material graphs in KeyShot, you can avoid common errors and enhance your scripting workflow.
+
+---
+
+### Camera
+
+**KeyShot Scripting: Correcting Camera Access Error**
+
+**Error Encounter:**
+AttributeError: module 'lux' has no attribute 'getActiveCamera'
+
+This error indicates an attempt to use a non-existent function `getActiveCamera` in the `lux` module to retrieve the currently active camera.
+
+**Cause:**
+The error arises from a misunderstanding or incorrect reference to the available KeyShot Python API functions for camera manipulation.
+
+**Correct Usage:**
+The correct function to use for getting the active camera's information is `lux.getCamera()`, not `lux.getActiveCamera`.
+
+**Solution:**
+- **Review KeyShot Python API Documentation:** Always consult the latest KeyShot Python API documentation to understand the correct naming and usage of functions related to camera operations.
+- **Code Adjustment:** Replace any incorrect usage of `lux.getActiveCamera` with `lux.getCamera()` in your scripts. This function retrieves the current camera settings, including its name, type, and parameters.
+
+**Example Correct Usage:**
+```python
+# Correctly getting the active camera's information
+camera_info = lux.getCamera()
+print("Active Camera:", camera_info)
+```
+
+### Additional Tips:
+
+**Understanding Camera Functions:**
+- Familiarize yourself with other camera-related functions in the KeyShot Python API to fully leverage camera manipulation in your scripts. Functions such as `lux.setCamera()`, `lux.saveCamera()`, and `lux.setStandardView()` can be particularly useful.
+
+**Error Checking:**
+- Implement try-except blocks around your camera function calls to catch and handle potential errors gracefully, improving script robustness.
+
+By adhering to the correct usage of `lux.getCamera()` for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
+
+Best Practices
+Proper Error Handling:
+
+Always use try-except blocks to catch and handle exceptions gracefully. This ensures that scripts do not fail unexpectedly and provides informative error messages.
+python
+
+try:
+    # Code that might raise an exception
+except Exception as e:
+    print(f"Error: {e}")
+Modular Functions:
+
+Break down the code into smaller, modular functions. This makes the code more readable, maintainable, and reusable.
+python
+
+def get_active_environment():
+    # Function implementation
+Logging and Debugging:
+
+Use print statements for logging and debugging purposes. This helps in tracking the flow of the script and identifying issues.
+python
+
+print(f"Node Name: {node_name}")
+Data Structures:
+
+Use appropriate data structures like lists, dictionaries, and sets to store and manage data efficiently.
+python
+
+scene_info = {
+    "name": scene_info.getName(),
+    "number_of_nodes": scene_info.getNumberOfNodes(),
+}
+Documentation and Comments:
+
+Add docstrings and comments to explain the purpose and functionality of functions and code blocks. This helps others understand the code better.
+python
+
+def get_node_details(node):
+    """
+    Retrieve detailed information about a specific node.
+    """
+Consistent Naming Conventions:
+
+Use consistent naming conventions for variables and functions. This improves code readability and maintainability.
+python
+
+def get_scene_tree_model_part_and_group_ids():
+    # Function implementation
+Using Built-in Functions:
+
+Utilize built-in functions and methods provided by the KeyShot API to perform operations efficiently.
+python
+
+materials = lux.getSceneMaterials()
+Resource Management:
+
+Properly manage resources like files to avoid leaks. Use context managers where applicable.
+python
+
+with open(file_path, 'w') as file:
+    # Write to file
+Common Issues and Their Solutions
+Type Mismatch Errors:
+
+Issue: Passing incorrect types to functions.
+Solution: Ensure that the types of arguments passed to functions match the expected types.
+python
+
+distance = camera.getDistance()  # Ensure camera is of the correct type
+Empty or Uninitialized Values:
+
+Issue: Accessing or using uninitialized or empty values.
+Solution: Check for None or empty values before using them.
+python
+
+if materials:
+    # Process materials
+else:
+    print("No materials found.")
+File Handling Errors:
+
+Issue: Errors related to file operations, such as file not found.
+Solution: Verify file paths and ensure files exist before performing operations.
+python
+
+if os.path.exists(library_path):
+    print(f"Resource Library Path: {library_path}")
+else:
+    print("Library path does not exist.")
+Index Out of Range:
+
+Issue: Accessing elements in a list using out-of-range indices.
+Solution: Check the length of the list before accessing elements.
+python
+
+if index < len(my_list):
+    element = my_list[index]
+else:
+    print("Index out of range")
+Attribute Errors:
+
+Issue: Accessing non-existent attributes or methods on objects.
+Solution: Verify the existence of attributes or methods using hasattr() or by consulting the API documentation.
+python
+
+if hasattr(lux, 'getCamera'):
+    camera_info = lux.getCamera()
+else:
+    print("Function 'getCamera' not found in 'lux' module")
+Recursive Function Limits:
+
+Issue: Exceeding the maximum recursion depth in recursive functions.
+Solution: Use iterative approaches where possible to avoid deep recursion.
+python
+
+def get_all_children(node):
+    all_children = []
+    stack = [node]
+    while stack:
+        current_node = stack.pop()
+        children = current_node.getChildren()
+        all_children.extend(children)
+        stack.extend(children)
+    return all_children
+Handling Complex Data Structures:
+
+Issue: Difficulty in managing complex or nested data structures.
+Solution: Break down the data structure into manageable parts and process them incrementally.
+python
+
+def process_node(node):
+    node_name = node.getName()
+    node_type = node.getType()
+    # Further processing
+Concurrency Issues:
+
+Issue: Issues related to concurrent access and modifications of shared resources.
+Solution: Use thread-safe mechanisms and proper synchronization techniques.
+python
+
+from threading import Lock
+lock = Lock()
+with lock:
+    # Critical section of code

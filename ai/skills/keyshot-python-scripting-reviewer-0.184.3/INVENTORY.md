@@ -1,0 +1,71 @@
+# Export inventory
+
+## Export identity
+
+| Field | Value |
+| --- | --- |
+| Display name | KeyShot Python Scripting Reviewer |
+| Package name | `gpt-e2ffc2e54121dcc9cafc60768b8dc90e` |
+| Package version | `0.184.3` |
+| Export date | 2026-11-18 |
+| Original files | 22 |
+| Original bytes | 1,231,111 |
+| Standalone executable scripts | None exposed |
+| Preservation check | All copied original SHA-256 hashes matched |
+
+## Original plugin files
+
+These files were copied byte-for-byte from the accessible plugin bundle.
+
+| Path | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `plugin.json` | 1,556 | `03b649bcbdf167cfcabd75dddf581c75a221187118fd9d93285914d4d61f001c` |
+| `.codex-plugin/plugin.json` | 1,407 | `dcf5f5c6bf334406c05300e100664e1b854ced7713f0be8c3a19ec6f847ff06d` |
+| `assets/gpt-icon.png` | 44,721 | `83eab21b34bfe2b8c8855f68d02b59a943c0ef83088dca03b3a812746a4d227b` |
+| `skills/instructions/SKILL.md` | 9,056 | `2d0199e1d9c00a59b15a81c9c9a93045246c4cb8c8b234bfd74ab6cad0de39a2` |
+| `skills/instructions/agents/openai.yaml` | 231 | `7417b74b4c3fb46626ec06fedc445d7e795350416d744809264f2ad6a6c1ce1f` |
+| `skills/instructions/lookup/knowledge-index.json` | 2,711 | `feb63833a2e4842aeff4675c1b4a6ee8ebe321a73382498e29b79a9f4f936d07` |
+| `skills/instructions/references/ABOUT.txt` | 28,814 | `6d883f83d1ba003e80a54b32b98c1cfc567d7ca36913ed4d6f7d174ab1f570ef` |
+| `skills/instructions/references/Action_Handel_User_Input.txt` | 8,309 | `38571fa8d0b2a9c181c4858991c31bc0a1be25ea2fe4fa56ef48ec73b5ff983f` |
+| `skills/instructions/references/Common_Errors.txt` | 36,060 | `793c0ecc332f9b35ac0e7dfa2cdb517255e3fc7b9dd3d7ee763099cba4ebbcac` |
+| `skills/instructions/references/KeyShot_headless_lux_API.md` | 64,944 | `fdc5114fdeab3d4d00e4c2eda4ed0d886d869c6394b606b0443a59139b690dc3` |
+| `skills/instructions/references/KeyShot_headless_luxmath_API.md` | 6,110 | `1182e65d4a0bd8b20cfb8385727ecb4ad5a3fc9732ab6fd5198b50e3ea4530b3` |
+| `skills/instructions/references/KeyShot_lux_API.md` | 93,074 | `a91fa12d62fd50a135c1bfd10c522a0220c6c3433ee7bba2b5e17abbaca5364e` |
+| `skills/instructions/references/KeyShot_luxmath_API.md` | 8,703 | `7ec978629ccd49a8445fb68a919abeb5892ebfc837a9605d57c86d77d92c1174` |
+| `skills/instructions/references/KeyShot_Python_Script_Examples_with_ToC.txt` | 367,494 | `0226d1f5940c1cc2a95cf3626db3dcf98f32753b2185b2c671e476206756d9a3` |
+| `skills/instructions/references/KeyShot_Python_Scripting_Documentation_2024_1_OS_Agnostic_Folders.txt` | 13,584 | `7f95616d21ac69a3d1962b91db76bdd687d9c53d4fc5b3037ac7f3c87bb9bb44` |
+| `skills/instructions/references/KPSR_QuickGuide.txt` | 30,620 | `e00de1f88c9a6a010efc71825b9912b2b449def7b9bd3051363288c891128a92` |
+| `skills/instructions/references/KS_GUI.txt` | 9,004 | `b4ba4878308dbe9dbeff2e088406dfd212b943df8e747b67ca9c6497e4b7a843` |
+| `skills/instructions/references/Quick_Reference_Documentation.txt` | 74,088 | `76b08b1d5e3d9d27804547fd094e18d7d553d2f2cefdd0c2fb2e6aafe3410935` |
+| `skills/instructions/references/Scripting_Material_Graph.txt` | 216,060 | `d3673d678744f86ad6c163145c9f5566fab009c000205bea4154fea758a02ab6` |
+| `skills/instructions/references/Scripting_Transforming_Scene_Nodes.txt` | 24,057 | `937446d14223d14c0bf9e633b4630946aa9a14edf2e17f6a66ec242544f1cea3` |
+| `skills/instructions/references/Scripts_Commented_Detailed_Summary.txt` | 7,060 | `c29ac6b1839d37199726cdffaf9eac5098c90436f7281ed8cbdab60722ffe6cb` |
+| `skills/instructions/references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt` | 183,448 | `e25f39048fc97a995e292c4d4ffb1f529c863ef11c13e3a58810315a425786d7` |
+
+## Files added for the GitHub export
+
+| Path | Purpose |
+| --- | --- |
+| `README.md` | Repository overview and handoff instructions |
+| `INVENTORY.md` | Human-readable inventory and accessibility report |
+| `EXPORT-MANIFEST.json` | Machine-readable export metadata and inventory |
+| `SHA256SUMS.txt` | Integrity checksums for the 22 original files |
+
+## Referenced but unavailable
+
+| Referenced name | Evidence | Export status |
+| --- | --- | --- |
+| `KeyShot 2024.3_Headless_Scripting_Documentation.txt` | Named in `skills/instructions/SKILL.md` | Not present in the accessible bundle or knowledge index; not included |
+| `Scripting_Materials_Documentation.txt` | Named only in an example request in `skills/instructions/SKILL.md` | Not present in the accessible bundle or knowledge index; not included |
+
+All 16 paths listed in `skills/instructions/lookup/knowledge-index.json` were present and included.
+
+## Other accessibility and packaging notes
+
+- The exact requested package was available as an installed, migrated plugin bundle. The account source listing exposed a separately named `keyshot-python-scripting-assistant` plugin; it was not merged into this export.
+- No standalone `.py`, shell, batch, executable, shared-library, or archive file was present. Python examples remain embedded in the original text files.
+- No `LICENSE`, repository URL, homepage URL, MCP configuration, app binding, or standalone source repository was exposed in the requested bundle.
+- The original `.codex-plugin/plugin.json` compatibility manifest was retained.
+- `skills/instructions/agents/openai.yaml` ends its `short_description` with `Py`; this appears truncated but was deliberately preserved.
+- The portable manifest's `shortDescription` is longer than current packaging guidance permits. It was deliberately preserved because this export is source-preserving.
+- This is a GitHub source snapshot, not a claim of public-directory submission readiness or KeyShot runtime verification.

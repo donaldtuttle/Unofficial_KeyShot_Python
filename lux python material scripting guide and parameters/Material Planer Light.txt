@@ -1,0 +1,10 @@
+### Material: 'Planar Light Material':
+- geometry (Type: 65540)
+- labels (Type: 65538)
+- surface (Type: 65537)
+Parameters for shader node in material 'Planar Light Material':
+- apply_bump_to_labels (Type: 1)
+- bumpmap (Type: 65539)
+- diffuse (Type: 14)
+- opacitymap (Type: 14)
+- opacitymap_mode (Type: 2)

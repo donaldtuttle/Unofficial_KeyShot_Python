@@ -1,0 +1,27 @@
+{
+  "interface": {
+    "capabilities": [
+      "skills"
+    ],
+    "category": "Developer Tools",
+    "composerIcon": "./assets/gpt-icon.png",
+    "defaultPrompt": [
+      "Provide a detailed list of all 45 KeyShot Python API Classes.",
+      "Create exhaustive list of KeyShot Python API functions available through the lux and luxmath modules, including additional operations and utilities.",
+      "Write a script that creates 3 model sets named product, ground, and AO, and also creates a new camera for each of the 7 standard views."
+    ],
+    "developerName": "Donald Tuttle",
+    "displayName": "KeyShot Python Scripting Reviewer",
+    "logo": "./assets/gpt-icon.png",
+    "longDescription": "KeyShot Python Scripting Reviewer (KPSR) meticulously reviews Python scripts for KeyShot, identifying potential issues, inefficiencies, and areas for improvement.",
+    "shortDescription": "KeyShot Python Scripting Reviewer (KPSR) meticulously reviews Python scripts for KeyShot, identifying potential issues, inefficiencies, and areas for improvement."
+  },
+  "name": "gpt-e2ffc2e54121dcc9cafc60768b8dc90e",
+  "version": "0.184.3",
+  "description": "KeyShot Python Scripting Reviewer (KPSR) meticulously reviews Python scripts for KeyShot, identifying potential issues, inefficiencies, and areas for improvement.",
+  "author": {
+    "name": "Donald Tuttle"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

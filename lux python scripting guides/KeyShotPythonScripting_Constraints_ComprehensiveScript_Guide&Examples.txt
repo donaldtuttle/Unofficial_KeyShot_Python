@@ -1,0 +1,860 @@
+### Understanding Constraints Through Practical Context
+
+### Table of Contents
+
+1. [Understanding Constraints Through Practical Context](#understanding-constraints-through-practical-context)
+   - [1.1 Usage Patterns and Function Limitations](#11-usage-patterns-and-function-limitations)
+     - [1.1.1 Constraints on Parameters](#111-constraints-on-parameters)
+     - [1.1.2 Node and Graph Operations](#112-node-and-graph-operations)
+   - [1.2 Contextual Decision Making](#12-contextual-decision-making)
+     - [1.2.1 Conditional Checks](#121-conditional-checks)
+     - [1.2.2 Handling of Special Cases and Errors](#122-handling-of-special-cases-and-errors)
+   - [1.3 Best Practices in API Usage](#13-best-practices-in-api-usage)
+     - [1.3.1 Dialog Constraints](#131-dialog-constraints)
+     - [1.3.2 Material Graph Operations](#132-material-graph-operations)
+     - [1.3.3 Limitations on Node Connections](#133-limitations-on-node-connections)
+   - [1.4 Conveying Implicit Rules and Hidden Constraints](#14-conveying-implicit-rules-and-hidden-constraints)
+     - [1.4.1 Action-Effect Relationships](#141-action-effect-relationships)
+     - [1.4.2 Observing Limits Through Iterative Logic](#142-observing-limits-through-iterative-logic)
+     - [1.4.3 API Method Return Values](#143-api-method-return-values)
+     - [1.4.4 Preconditions for Multi-Material Features](#144-preconditions-for-multi-material-features)
+   - [1.5 Providing "Intuition" to the LLM](#15-providing-intuition-to-the-llm)
+     - [1.5.1 Sequential Understanding](#151-sequential-understanding)
+     - [1.5.2 Logical Constraints](#152-logical-constraints)
+     - [1.5.3 Error-Avoidance Patterns](#153-error-avoidance-patterns)
+     - [1.5.4 Validation and Preconditions](#154-validation-and-preconditions)
+   - [1.6 Conclusion](#16-conclusion)
+   - [1.7 Structure of Cross-Referenced Index and ToC](#17-structure-of-cross-referenced-index-and-toc)
+     - [1.7.1 Global Table of Contents (ToC) for All Scripts](#171-global-table-of-contents-toc-for-all-scripts)
+     - [1.7.2 Detailed Index with Cross-Referencing](#172-detailed-index-with-cross-referencing)
+     - [1.7.3 ToC and Index Embedded in Each Script](#173-toc-and-index-embedded-in-each-script)
+   - [1.8 Implementation and Benefits of Cross-Referencing](#18-implementation-and-benefits-of-cross-referencing)
+     - [1.8.1 Efficient Navigation and Quick Lookup](#181-efficient-navigation-and-quick-lookup)
+     - [1.8.2 Deep Understanding of API Relationships](#182-deep-understanding-of-api-relationships)
+     - [1.8.3 Reducing Redundancy, Encouraging Reusability](#183-reducing-redundancy-encouraging-reusability)
+     - [1.8.4 Improved Training for LLMs](#184-improved-training-for-llms)
+   - [1.9 Example of a Cross-Referenced Index and ToC](#19-example-of-a-cross-referenced-index-and-toc)
+   - [1.10 Conclusion](#110-conclusion)
+   - [1.11 Example Scripts That Align with Functionalities](#111-example-scripts-that-align-with-functionalities)
+     - [1.11.1 Material Graph Operations & Shader Node Manipulation](#1111-material-graph-operations--shader-node-manipulation)
+     - [1.11.2 Loading Materials from .zip and Batch Material Assignment](#1112-loading-materials-from-zip-and-batch-material-assignment)
+     - [1.11.3 Error Handling in Material Graphs](#1113-error-handling-in-material-graphs)
+     - [1.11.4 Additional Comprehensive Examples for Material and Shader Operations](#1114-additional-comprehensive-examples-for-material-and-shader-operations)
+     - [1.11.5 Delete Unused Shader and Material Graph Nodes](#1115-delete-unused-shader-and-material-graph-nodes)
+   - [1.12 Summary of Selected Scripts and Their Utility](#112-summary-of-selected-scripts-and-their-utility)
+
+Usage Patterns and Function Limitations:
+
+Constraints on Parameters: When scripts explicitly define the input types and value ranges, such as using lux.DIALOG_INTEGER with a value constraint (1, 10), the LLM learns the expected and acceptable parameter ranges for different functions. This helps the model infer the library’s constraints, such as what values are valid for a given input.
+Node and Graph Operations: By demonstrating the specific ways in which nodes can be added, connected, or removed within a material graph, the LLM will understand the inherent rules and limits of what’s possible with the KeyShot API. It will learn, for example, that certain node types cannot be connected directly or that multi-material conversions have preconditions.
+Contextual Decision Making:
+
+The scripts include conditional checks—such as determining if a material is already a multi-material or whether a node already exists before duplicating it. These checks convey to the LLM the constraints and conditions under which certain operations can or should be performed.
+Through these comprehensive examples, the LLM learns to develop a mental model of what is safe to assume (e.g., material nodes need proper connections before duplication) versus what must be explicitly checked. This provides a sense of when the library’s functions require validation and additional logic to succeed.
+Handling of Special Cases and Errors:
+
+The scripts are built to demonstrate error handling comprehensively, including errors like:
+Missing or invalid files (FileNotFoundError).
+Incorrect input types (TypeError).
+Situations where expected objects or nodes are not found (RuntimeError).
+Through this exposure, the LLM understands the typical pitfalls or limitations of the library’s functionality. It learns that not every function call is guaranteed to succeed, and it develops a better understanding of what to do when things go wrong—like prompting the user to reselect an item or providing descriptive error messages.
+Best Practices in API Usage:
+
+The scripts are explicitly designed to model best practices, which inherently communicate the boundaries of safe usage. For example, if all scripts validate input dialogs or always set default values, the LLM understands that these practices aren’t just optional—they're essential to prevent unexpected behavior in KeyShot.
+Including redundant measures, such as re-checking node states after an operation, will help the LLM understand that certain processes in the KeyShot API require confirmation of success due to constraints like asynchronous operations or unpredictable data states.
+Examples of Intuitive Constraints Derived from the Scripts
+Dialog Constraints:
+
+When defining user inputs, the tuple provided must be complete and formatted correctly. The LLM will learn that missing values, such as undefined lux.DIALOG_ITEM options, cause errors that need to be anticipated and handled.
+Material Graph Operations:
+
+The LLM will understand that some operations are sequential: a material must be converted to a multi-material before adding additional sub-material nodes. This implies a dependency chain—operations can’t always be executed out of order, and certain states must be achieved before proceeding.
+If a script checks whether a shader node is of a type like 'lux_metal' before duplicating, it implies that not all shader nodes are eligible for duplication in the same way, and some logic must be applied to determine eligibility.
+Limitations on Node Connections:
+
+Scripts that manipulate nodes in the material graph will convey the rules about which types of nodes can be connected. If the LLM is trained to see failed connection attempts being caught and logged, it will understand that not all node connections are valid, and specific checks must be done to maintain graph consistency.
+Handling Library-Specific Objects:
+
+Constraints on KeyShot-specific objects, like lux.MultiMaterial, lux.ShaderEdge, etc., will be evident through explicit usage examples. The LLM will learn about the correct properties and methods available for these objects by seeing them used in practice and will understand when a particular type of node or parameter is expected.
+Data Types and Expected Behavior:
+
+The explicit use of data types and conversion functions will help the LLM understand where type safety is crucial. For instance, whenever a string is expected and the script checks the type before passing it to a function, the LLM can infer the importance of type compliance for certain lux API calls.
+Conveying Implicit Rules and Hidden Constraints
+Action-Effect Relationships:
+
+By seeing what operations must precede others, such as fetching a material graph before duplicating nodes, the LLM learns an implicit action-effect sequence that represents the internal logic of the API. This sequence tells the model about what preconditions are necessary for successful execution.
+Observing Limits Through Iterative Logic:
+
+Scripts that iterate over nodes with checks like “skip label nodes” indicate that not all nodes are equivalent in terms of manipulation capabilities. These kinds of checks show the LLM that certain node types should not be manipulated in specific ways, indicating categorical constraints within the API’s functionality.
+API Method Return Values:
+
+The use of methods like lux.getMaterialGraph() with explicit validation of whether it returns None tells the LLM that such a situation is possible and must be anticipated. Thus, the LLM understands that the API may fail to return expected objects, and alternative paths must be available.
+Preconditions for Multi-Material Features:
+
+The requirement to call material_graph.setMultiMaterial(True) before working with multiple sub-materials demonstrates an important precondition. The LLM would internalize that multi-material operations aren't enabled by default, and a conversion step is mandatory.
+Providing "Intuition" to the LLM
+"Intuition" in this context means equipping the LLM with a thorough internal model of the lux library's rules, expectations, and common pitfalls. By training on these comprehensive scripts:
+
+Sequential Understanding:
+
+The LLM would understand that operations must follow a logical order and that each method or class has certain prerequisites.
+Logical Constraints:
+
+The LLM will derive logical constraints like dependencies between objects (e.g., a shader node must belong to a material graph), type restrictions, and the importance of completeness in dialogs and user inputs.
+Error-Avoidance Patterns:
+
+It will identify patterns for avoiding common errors, such as ensuring valid data types, checking object states before proceeding, and confirming connections between nodes.
+Validation and Preconditions:
+
+Understanding the importance of validating user input and checking for None values in response to API calls helps the LLM know what conditions to enforce or verify before executing further commands.
+Conclusion
+With 10 comprehensive scripts that encapsulate KeyShot’s material graph manipulation and other features through clear steps, descriptions, and best practices, the LLM can effectively develop "intuition" about the constraints of the lux API. These scripts would guide it in recognizing preconditions, operational sequences, type requirements, and error scenarios—all essential for understanding the limitations and rules that govern the library’s effective use.
+
+
+Structure of Cross-Referenced Index and ToC
+1. Global Table of Contents (ToC) for All Scripts
+The ToC would cover all 10 scripts, giving a high-level view of the topics covered in each one. The ToC could be categorized based on specific functionalities, such as:
+
+Materials and Shaders
+Loading materials from a .zip file
+Creating and modifying shader nodes
+Converting to multi-material
+Scene and Model Operations
+Importing and exporting models
+Batch import workflows
+Material Graph Manipulations
+Adding, editing, and removing nodes
+Connecting shader edges
+User Interaction and Error Handling
+User input dialogs (lux.getInputDialog)
+Error handling best practices
+Environment and Camera Settings
+Applying environment settings
+Camera creation and manipulation
+Advanced Transformations
+Using transformation matrices with shader nodes
+Applying grid, circle, and spiral patterns
+This ToC would be a navigational guide, providing users and LLMs with a way to see what is covered at a glance and jump directly to relevant scripts.
+
+2. Detailed Index with Cross-Referencing
+An index would provide a deeper level of cross-referencing. Each entry could point to specific parts of one or more scripts that demonstrate the topic. The cross-referencing would have these characteristics:
+
+Indexed by Class, Function, and Task:
+
+Each class (e.g., lux.MaterialGraph, lux.ShaderNode) and each function (getNodes(), newEdge(), etc.) should have a corresponding index entry.
+Index entries could also be created for common tasks such as "Loading materials from a .zip" or "Converting to a multi-material."
+Multiple References:
+
+Each entry could have multiple references to different scripts. For example:
+lux.MaterialGraph:
+Script 3, Section 2: Creating a Material Graph
+Script 5, Section 1: Accessing Material Nodes
+newEdge() (Creating Connections):
+Script 4, Step 4: Duplicating and Reconnecting Nodes
+Script 7, Step 3: Building Shader Relationships
+3. ToC and Index Embedded in Each Script
+Each script could have its own mini-ToC embedded at the top to provide an overview of the specific steps included in that script. For example:
+
+Script 4: Advanced Material Graph Manipulation
+Table of Contents:
+Loading Material Graph (Line 12)
+Adding Shader Nodes (Line 32)
+Connecting Nodes Using Edges (Line 54)
+Duplicating Existing Nodes (Line 76)
+Error Handling for Material Operations (Line 102)
+This would allow users and LLMs to understand script structure at a glance and go directly to the part they are interested in.
+
+Implementation and Benefits of Cross-Referencing
+1. Efficient Navigation and Quick Lookup
+Finding Specific Methods and Their Uses: With an index cross-referenced across all scripts, it would be easy to find all examples where a specific method, like getMaterialGraph(), is used, demonstrating different contexts—such as fetching a graph for reading, modifying, or duplicating nodes.
+
+Jumping to Sections: An LLM would be able to directly refer to a specific section or operation. If asked about a certain function or concept, the LLM could easily point out which script (and which part) contains the most relevant information.
+
+2. Deep Understanding of API Relationships
+Showing Dependencies and Relationships: Cross-referencing helps illustrate relationships between classes and methods. For instance, entries for lux.ShaderNode and lux.MaterialGraph could show that nodes are manipulated within a material graph and reference sections that demonstrate how nodes and edges interact.
+
+Highlighting Constraints and Usage Patterns: When methods like setMultiMaterial() are referenced, the cross-referencing can show all the instances where this method is called, along with what preconditions are typically checked. This allows the LLM to better understand the contextual requirements for different methods.
+
+3. Reducing Redundancy, Encouraging Reusability
+Avoiding Script Duplication: Instead of having similar functionality spread across numerous examples, a cross-referenced index allows reusability of a few comprehensive scripts. Users or LLMs could follow the references to see different variations of the same operation, thus maintaining a leaner dataset without losing functionality.
+
+Modular Learning: With fewer but well-referenced scripts, the LLM can be trained on modular components of the scripts. If a user needs a function for creating a shader node, they could reference multiple parts of the scripts that provide insights into that specific operation.
+
+4. Improved Training for LLMs
+Training Contextual Understanding: Having cross-references allows the LLM to train not just on isolated examples but also understand how concepts interrelate across different contexts. The index entries can highlight all cases where a specific class or method interacts with others, allowing the LLM to grasp broader relationships and recurring patterns.
+
+Enhanced Context Sensitivity: The LLM could more accurately infer which classes or methods are appropriate in different situations. For instance, if several index references show that newEdge() is always used after validating node types, the LLM learns this as a best practice rather than relying solely on individual instances.
+
+Example of a Cross-Referenced Index and ToC
+Here is an example of how the index and ToC might look:
+
+Global Table of Contents:
+
+Script 1: Material Import from .zip and Application to Scene
+Script 2: Advanced Shader Node Manipulation
+Script 3: Batch Material Assignment and Scene Setup
+Script 4: Material Graph Operations (Node Creation, Duplication, Edge Handling)
+...
+Index:
+
+lux.MaterialGraph
+
+Script 2, Section 3: Creating a new material graph
+Script 4, Section 1: Accessing existing material graphs
+newEdge()
+
+Script 4, Step 3: Connecting a new shader node to an existing material
+Script 7, Step 2: Establishing node relationships for a procedural shader
+Loading Materials
+
+Script 1, Step 1: Extracting materials from a .zip
+Script 6, Step 2: Applying extracted materials to scene models
+Error Handling in Material Graphs
+
+Script 3, Step 5: Handling missing shader nodes
+Script 5, Step 4: Recovering from invalid node connections
+Embedded ToC for Script 4: Material Graph Operations:
+
+Step 1: Fetch Material Graph (Line 10)
+Step 2: Validate Material Type (Line 22)
+Step 3: Add and Duplicate Nodes (Line 45)
+Step 4: Create Connections Between Nodes (Line 78)
+Step 5: Error Handling and Verification (Line 102)
+Conclusion
+Creating a cross-referenced index and ToC for the 10 comprehensive scripts would be immensely beneficial for both LLM training and practical user application. It allows for:
+
+Efficient navigation and quick access to specific methods, concepts, or examples.
+A deeper understanding of constraints, dependencies, and relationships within the lux API.
+Modular, reusable learning that can help avoid redundancy and make knowledge easier to digest and apply.
+Enhanced training for LLMs, enabling them to understand not only isolated tasks but also the broader patterns and correct usage sequences within KeyShot scripting.
+
+ example scripts that align with the functionalities you're interested in, such as Material Graph Operations, Shader Node Manipulation, Loading materials from .zip, Batch Material Assignment, and Error Handling.
+
+1. Material Graph Operations & Shader Node Manipulation
+Delete Unused Nodes in Material Graph
+
+Script Name: Material\Delete Unused Nodes in Material Graph.py
+Overview: This script focuses on cleaning up the material graph by removing nodes that are no longer used. It uses operations to traverse the material graph, find nodes that are not connected, and delete them. This is essential for understanding how to maintain an optimal and organized material graph .
+Color Gradient ShaderEdge Cube Material Color Connect
+
+# Delete unused nodes from the material graph.  May need to be run multiple times.
+```python
+import lux
+
+MAX_ITERATIONS = 10  # Maximum number of cleanup iterations
+
+def has_material_connections(node):
+    """Check if a material node has connections."""
+    input_edges = node.getInputEdges()
+    output_edges = node.getOutputEdges()
+    return bool(input_edges or output_edges)
+
+def cleanup_unused_material_nodes(material_graph):
+    """Clean up unconnected nodes within a material graph."""
+    nodes_to_remove = []
+    try:
+        nodes = material_graph.getNodes()
+        for node in nodes:
+            if not has_material_connections(node):
+                nodes_to_remove.append(node)
+        for node in nodes_to_remove:
+            material_graph.removeNode(node)
+            print(f"Removed node: {node.getName()} from material: {material_graph.getMaterialName()}")
+    except Exception as e:
+        print(f"Exception encountered while processing material graph: {e}")
+    return bool(nodes_to_remove)
+
+def cleanup_scene():
+    """Main function to clean up the scene."""
+    any_changes = True
+    iteration_count = 0
+
+    while any_changes and iteration_count < MAX_ITERATIONS:
+        any_changes = False
+        iteration_count += 1
+
+        # Cleanup material nodes
+        material_names = lux.getSceneMaterials()
+        for material_name in material_names:
+            try:
+                material_graph = lux.getMaterialGraph(name=material_name)
+                if material_graph:
+                    if cleanup_unused_material_nodes(material_graph):
+                        any_changes = True
+            except Exception as e:
+                print(f"Exception encountered while processing material {material_name}: {e}")
+
+    if iteration_count >= MAX_ITERATIONS:
+        lux.getMessageBox("Scene cleanup stopped after reaching the maximum number of iterations.", "Cleanup Stopped", lux.MESSAGE_BOX_WARNING)
+    else:
+        lux.getMessageBox("Scene cleanup of unconnected nodes completed.", "Cleanup Complete", lux.MESSAGE_BOX_INFO)
+
+cleanup_scene()
+```
+
+Script Name: ShaderEdge Connect.py
+Overview: Demonstrates how to connect a color gradient shader node to the diffuse color of a material in the material graph. It showcases how to create new nodes, set up edges between them, and provides a practical use case for working with shader connections .
+Batch Multi-Material Diffuse Sub-Material Assign Texture
+
+# Example of graphing a Color Gradient shader edge node.
+```python
+import lux  # Import the KeyShot built-in module 'lux'.
+
+def connect_color_gradient_to_diffuse_color(material_name):
+    """
+    Connects a Color Gradient shader to the diffuse color parameter of a given material.
+
+    :param material_name: The name of the material to modify.
+    """
+    # Get the material graph of the specified material.
+    graph = lux.getMaterialGraph(material_name)
+    if graph is None:
+        print(f"Material '{material_name}' not found.")
+        return
+
+    # Create a new Color Gradient node in the material graph.
+    gradient_node = graph.newNode("lux_color_gradient")
+    if gradient_node is None:
+        print("Failed to create Color Gradient node.")
+        return
+
+    # Set up the Color Gradient node if necessary.
+    # This step is customizable based on specific gradient requirements.
+
+    # Flag to check if the connection is made.
+    connected = False
+    # Loop through all nodes of type 'lux_diffuse' in the material graph.
+    for shader_node in graph.getNodesFromType('lux_diffuse'):
+        # Check if the node has a diffuse parameter.
+        diffuse_param = shader_node.getParameter("diffuse")
+        if diffuse_param:
+            # Connect the Color Gradient node to the diffuse parameter of the shader node.
+            graph.newEdge(source=gradient_node, target=shader_node, param="diffuse")
+            print("Color Gradient shader successfully connected to lux_diffuse node.")
+            connected = True
+            break  # Break the loop after making the connection.
+
+    # Notify if no suitable shader node is found for the diffuse color.
+    if not connected:
+        print("Suitable shader node for diffuse color not found in material graph.")
+
+# Example usage
+# Define the material name.
+material_name = "Rainbow Gradient Material"
+
+# Apply the Color Gradient to the diffuse color of the specified material.
+connect_color_gradient_to_diffuse_color(material_name)
+```
+
+2. Loading Materials from .zip and Batch Material Assignment
+Batch Multi-Material Diffuse Sub-Material Assign Texture
+
+Script Name: Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py
+Overview: This script automates the creation of sub-materials and applies textures with UV scale adjustment. It involves handling the material graph, creating new nodes, and applying different textures to each material instance, which is useful for learning advanced node manipulations in a batch context​.
+
+# Script for automating the creation of sub-materials and applying textures with UV scale adjustment in KeyShot.
+```python
+import lux  # Import the KeyShot built-in module 'lux'.
+import os  # Import the os module for file path operations.
+
+def display_material_selection_and_directory():
+    """
+    Display a dialog for the user to select materials and a directory for textures.
+    """
+    scene_materials = lux.getSceneMaterials()  # Get all materials in the current scene.
+    if not scene_materials:
+        lux.getMessageBox("No materials found in the scene.", "Error", lux.MESSAGE_BOX_CRITICAL)
+        return None, None
+
+    # Create dialog fields for material selection and directory.
+    material_values = [(mat, lux.DIALOG_CHECK, mat, False) for mat in scene_materials]
+    directory_values = [("directory", lux.DIALOG_FOLDER, "Bitmap directory:", None)]
+    opts = lux.getInputDialog(title="Select Material and Directory", values=material_values + directory_values)
+    if not opts:
+        return None, None  # Return None if the user does not make a selection.
+
+    selected_materials = [mat for mat, selected in opts.items() if selected and mat in scene_materials]
+    directory = opts['directory']
+    return selected_materials, directory
+
+def create_and_apply_texture(material_name, texture_path):
+    """
+    Create a new material node, apply a texture, and set UV scale.
+
+    :param material_name: Name of the material to apply the texture to.
+    :param texture_path: Path of the texture file.
+    """
+    material_graph = lux.getMaterialGraph(material_name)  # Get the material graph.
+    texture_node = material_graph.newNode('__texture')  # Create a new texture node.
+    texture_node.getParameter('texture').setValue(texture_path)  # Set the texture file.
+
+    # Set the UV scale for the texture.
+    texture_node.getParameter("uv_scale_u").setValue(0.01)  # Set scale for U coordinate.
+    texture_node.getParameter("uv_scale_v").setValue(0.01)  # Set scale for V coordinate.
+
+    # Connect the texture node to the color parameter of the material.
+    for node in material_graph.getNodes():
+        for param in node.getParameters():
+            if param.getType() in [lux.PARAMETER_TYPE_COLOR, lux.PARAMETER_TYPE_COLORALPHA]:
+                material_graph.newEdge(texture_node, node, param.getName())
+                return
+
+def process_material(material_name, directory):
+    """
+    Process each material to create sub-materials with textures from the directory.
+
+    :param material_name: Name of the material to process.
+    :param directory: Directory containing texture files.
+    """
+    bitmap_files = [f for f in os.listdir(directory) if os.path.splitext(f)[1].lower() in ['.png', '.jpg', '.jpeg']]
+    if not bitmap_files:
+        print(f"No bitmap files found in directory: {directory}")
+        return
+
+    # Convert to MultiMaterial if necessary.
+    multi_material = lux.getMultiMaterial(material_name)
+    if not multi_material:
+        lux.createMultiMaterial(material_name)
+        multi_material = lux.getMultiMaterial(material_name)
+
+    # Create a new sub-material for each texture file and apply the texture with UV scaling.
+    for file in bitmap_files:
+        texture_path = os.path.join(directory, file)
+        new_material_name = f"{material_name}_{os.path.splitext(file)[0]}"
+        lux.createSceneMaterial(new_material_name)  # Create a new material.
+        create_and_apply_texture(new_material_name, texture_path)  # Apply texture.
+
+        # Update the multi-material with the new sub-material.
+        sub_materials = multi_material.getSubMaterials()
+        sub_materials.append(new_material_name)
+        multi_material.setSubMaterials(sub_materials)
+
+        print(f"Added sub-material '{new_material_name}' with texture '{file}' to '{material_name}'.")
+
+def main():
+    """
+    Main function to execute the script.
+    """
+    selected_materials, directory = display_material_selection_and_directory()
+    if not selected_materials or not directory:
+        print("Operation cancelled or invalid input.")
+        return
+
+    # Process each selected material.
+    for material_name in selected_materials:
+        process_material(material_name, directory)
+
+# Execute the main function.
+main()
+```
+
+Script Name: Script Name: Material\Color Gradient ShaderEdge Diffuse Material Color Connect.py
+Overview: Provides a workflow for saving all the materials used in a scene—including multi-material sub-materials—to the KeyShot material library. It demonstrates how to loop over scene nodes, access their material graphs, and save them to an external location. This is highly beneficial for batch saving tasks and learning how to interact with KeyShot's material storage APIs​.
+
+# Example of graphing a Color Gradient shader edge node.
+```python
+import lux  # Import the KeyShot built-in module 'lux'.
+
+def connect_color_gradient_to_diffuse_color(material_name):
+    """
+    Connects a Color Gradient shader to the diffuse color parameter of a given material.
+
+    :param material_name: The name of the material to modify.
+    """
+    # Get the material graph of the specified material.
+    graph = lux.getMaterialGraph(material_name)
+    if graph is None:
+        print(f"Material '{material_name}' not found.")
+        return
+
+    # Create a new Color Gradient node in the material graph.
+    gradient_node = graph.newNode("lux_color_gradient")
+    if gradient_node is None:
+        print("Failed to create Color Gradient node.")
+        return
+
+    # Set up the Color Gradient node if necessary.
+    # This step is customizable based on specific gradient requirements.
+
+    # Flag to check if the connection is made.
+    connected = False
+    # Loop through all nodes of type 'lux_diffuse' in the material graph.
+    for shader_node in graph.getNodesFromType('lux_diffuse'):
+        # Check if the node has a diffuse parameter.
+        diffuse_param = shader_node.getParameter("diffuse")
+        if diffuse_param:
+            # Connect the Color Gradient node to the diffuse parameter of the shader node.
+            graph.newEdge(source=gradient_node, target=shader_node, param="diffuse")
+            print("Color Gradient shader successfully connected to lux_diffuse node.")
+            connected = True
+            break  # Break the loop after making the connection.
+
+    # Notify if no suitable shader node is found for the diffuse color.
+    if not connected:
+        print("Suitable shader node for diffuse color not found in material graph.")
+
+# Example usage
+# Define the material name.
+material_name = "Rainbow Gradient Material"
+
+# Apply the Color Gradient to the diffuse color of the specified material.
+connect_color_gradient_to_diffuse_color(material_name)
+```
+
+3. Error Handling in Material Graphs
+Save Sub-Materials to Library and Avoid Duplicates
+
+# Script to save multi-material sub-materials to the material library in KeyShot, compatible with PC and Apple systems.
+```python
+import os
+import platform  # Module to detect the operating system.
+import lux  # Import the KeyShot built-in module 'lux'.
+
+def get_all_children(node):
+    """
+    Recursively get all children of a node.
+
+    :param node: The node from which to start the recursion.
+    :return: A list of all child nodes.
+    """
+    all_children = []
+    try:
+        children = node.getChildren()  # Retrieve direct children of the node.
+        all_children.extend(children)
+        for child in children:
+            all_children.extend(get_all_children(child))  # Recursive call for children of each child.
+    except Exception:
+        pass  # Ignore any errors during the process.
+    return all_children
+
+def is_multi_material(material_name):
+    """
+    Check if the given material is a multi-material.
+
+    :param material_name: The name of the material to check.
+    :return: True if the material is a multi-material, False otherwise.
+    """
+    material_graph = lux.getMaterialGraph(name=material_name)
+    return material_graph and len(material_graph.getMaterialNodes()) > 1  # True if more than one sub-material.
+
+def save_sub_materials_to_library(multi_material_name, library_path, saved_materials):
+    """
+    Save all sub-materials of a multi-material while avoiding duplicates.
+
+    :param multi_material_name: The name of the multi-material.
+    :param library_path: The library path where the materials will be saved.
+    :param saved_materials: A set to keep track of already saved materials.
+    """
+    material_graph = lux.getMaterialGraph(name=multi_material_name)
+    if not material_graph:
+        print(f"Multi-material '{multi_material_name}' not found.")
+        return
+
+    # Save each sub-material to the library, avoiding duplicates.
+    sub_materials = material_graph.getMaterialNodes()
+    for sub_material in sub_materials:
+        sub_material_name = sub_material.getName()
+        if sub_material_name not in saved_materials:
+            lux.saveMaterial(name=sub_material_name, folder=library_path)
+            print(f"Saved sub-material '{sub_material_name}' to library at '{library_path}'.")
+            saved_materials.add(sub_material_name)
+
+def process_current_scene(library_path):
+    """
+    Process the currently open KeyShot file and avoid saving duplicate materials.
+
+    :param library_path: The library path where the materials will be saved.
+    """
+    saved_materials = set()
+    root_node = lux.getSceneTree()
+    all_nodes = get_all_children(root_node)
+
+    # Process each node in the scene.
+    for node in all_nodes:
+        material_name = node.getMaterial()
+        if material_name and is_multi_material(material_name):
+            save_sub_materials_to_library(material_name, library_path, saved_materials)
+
+def main():
+    """
+    Main function to execute the script.
+    """
+    # Determine the library path based on the operating system.
+    if platform.system() == "Windows":
+        library_path = "C:/Users/Public/Documents/KeyShot/Materials"
+    else:  # macOS and other Unix-like systems
+        library_path = "/Library/Application Support/KeyShot/Materials"
+
+    # Process the currently open KeyShot scene.
+    process_current_scene(library_path)
+
+# Execute the main function.
+main()
+```
+
+Script Name: Batch Save Multi-Material Sub-Materials to KS2024 Material Library Agnostic.py
+Overview: This script includes built-in error handling while saving materials to avoid duplicates. It uses a set to track saved materials and ensures that no material is saved twice. This demonstrates proper validation and error handling practices for complex operations within the material graph​.
+Check Node Availability and Connection Handling
+
+# Script to save the scene's materials and multi-material sub-materials to the material library in KeyShot.
+```python
+import os
+import lux  # Import the KeyShot built-in module 'lux'.
+
+def get_library_path():
+    """
+    Determines the KeyShot "Resources Library" path based on the operating system.
+    """
+    if os.name == 'nt':  # Windows
+        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot")
+    else:  # macOS and Unix/Linux
+        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
+    return library_path
+
+def get_all_children(node):
+    """
+    Recursively get all children of a node.
+
+    :param node: The parent node from which children are to be gathered.
+    :return: A list of all child nodes.
+    """
+    all_children = []
+    try:
+        children = node.getChildren()  # Retrieve direct children of the node.
+        all_children.extend(children)
+        for child in children:
+            all_children.extend(get_all_children(child))  # Recursive call for children of each child.
+    except Exception:
+        pass  # Ignore any errors during the process.
+    return all_children
+
+def save_sub_materials_to_library(multi_material_name, saved_materials):
+    """
+    Save all sub-materials of a multi-material while avoiding duplicates.
+
+    :param multi_material_name: Name of the multi-material.
+    :param saved_materials: Set of already saved material names to avoid duplication.
+    """
+    library_path = get_library_path()  # Get the library path based on the OS.
+    material_graph = lux.getMaterialGraph(name=multi_material_name)
+    if not material_graph:
+        print(f"Multi-material '{multi_material_name}' not found.")
+        return
+
+    # Retrieve sub-materials of the multi-material.
+    sub_materials = material_graph.getMaterialNodes()
+    for sub_material in sub_materials:
+        sub_material_name = sub_material.getName()
+        # Check if the sub-material has not been saved already.
+        if sub_material_name not in saved_materials:
+            lux.saveMaterial(name=sub_material_name, folder=library_path)
+            print(f"Saved sub-material '{sub_material_name}' to library at '{library_path}'.")
+            saved_materials.add(sub_material_name)
+
+def process_current_scene():
+    """
+    Process the currently open KeyShot file and avoid saving duplicate materials.
+    """
+    saved_materials = set()
+    root_node = lux.getSceneTree()
+    all_nodes = get_all_children(root_node)
+
+    # Iterate through all nodes in the scene and process their materials.
+    for node in all_nodes:
+        material_name = node.getMaterial()
+        if material_name:
+            save_sub_materials_to_library(material_name, saved_materials)
+
+def main():
+    """
+    Main function to execute the script.
+    """
+    # Process the currently open KeyShot scene.
+    process_current_scene()
+
+# Execute the main function.
+main()
+```
+
+Script Name: Material\Color Gradient ShaderEdge Diffuse Material Color Connect.py
+Overview: This script not only connects shader nodes but also includes error checks to verify if the material exists before proceeding. Such practices are crucial for maintaining stability when manipulating material graphs programmatically .
+
+# Example of graphing a Color Gradient shader edge node.
+```python
+import lux  # Import the KeyShot built-in module 'lux'.
+
+def connect_color_gradient_to_diffuse_color(material_name):
+    """
+    Connects a Color Gradient shader to the diffuse color parameter of a given material.
+
+    :param material_name: The name of the material to modify.
+    """
+    # Get the material graph of the specified material.
+    graph = lux.getMaterialGraph(material_name)
+    if graph is None:
+        print(f"Material '{material_name}' not found.")
+        return
+
+    # Create a new Color Gradient node in the material graph.
+    gradient_node = graph.newNode("lux_color_gradient")
+    if gradient_node is None:
+        print("Failed to create Color Gradient node.")
+        return
+
+    # Set up the Color Gradient node if necessary.
+    # This step is customizable based on specific gradient requirements.
+
+    # Flag to check if the connection is made.
+    connected = False
+    # Loop through all nodes of type 'lux_diffuse' in the material graph.
+    for shader_node in graph.getNodesFromType('lux_diffuse'):
+        # Check if the node has a diffuse parameter.
+        diffuse_param = shader_node.getParameter("diffuse")
+        if diffuse_param:
+            # Connect the Color Gradient node to the diffuse parameter of the shader node.
+            graph.newEdge(source=gradient_node, target=shader_node, param="diffuse")
+            print("Color Gradient shader successfully connected to lux_diffuse node.")
+            connected = True
+            break  # Break the loop after making the connection.
+
+    # Notify if no suitable shader node is found for the diffuse color.
+    if not connected:
+        print("Suitable shader node for diffuse color not found in material graph.")
+
+# Example usage
+# Define the material name.
+material_name = "Rainbow Gradient Material"
+
+# Apply the Color Gradient to the diffuse color of the specified material.
+connect_color_gradient_to_diffuse_color(material_name)
+```
+
+4. Additional Comprehensive Examples for Material and Shader Operations
+Connect Shader Nodes and Copy Parameters
+
+Script Name: Color Gradient ShaderEdge Diffuse Material Color Connect.py
+Overview: This script shows how to connect existing nodes using shader edges and copy parameters from one shader to another, useful for advanced material manipulation tasks .
+
+# Example of graphing a Color Gradient shader edge node.
+```python
+import lux  # Import the KeyShot built-in module 'lux'.
+
+def connect_color_gradient_to_diffuse_color(material_name):
+    """
+    Connects a Color Gradient shader to the diffuse color parameter of a given material.
+
+    :param material_name: The name of the material to modify.
+    """
+    # Get the material graph of the specified material.
+    graph = lux.getMaterialGraph(material_name)
+    if graph is None:
+        print(f"Material '{material_name}' not found.")
+        return
+
+    # Create a new Color Gradient node in the material graph.
+    gradient_node = graph.newNode("lux_color_gradient")
+    if gradient_node is None:
+        print("Failed to create Color Gradient node.")
+        return
+
+    # Set up the Color Gradient node if necessary.
+    # This step is customizable based on specific gradient requirements.
+
+    # Flag to check if the connection is made.
+    connected = False
+    # Loop through all nodes of type 'lux_diffuse' in the material graph.
+    for shader_node in graph.getNodesFromType('lux_diffuse'):
+        # Check if the node has a diffuse parameter.
+        diffuse_param = shader_node.getParameter("diffuse")
+        if diffuse_param:
+            # Connect the Color Gradient node to the diffuse parameter of the shader node.
+            graph.newEdge(source=gradient_node, target=shader_node, param="diffuse")
+            print("Color Gradient shader successfully connected to lux_diffuse node.")
+            connected = True
+            break  # Break the loop after making the connection.
+
+    # Notify if no suitable shader node is found for the diffuse color.
+    if not connected:
+        print("Suitable shader node for diffuse color not found in material graph.")
+
+# Example usage
+# Define the material name.
+material_name = "Center"
+
+# Apply the Color Gradient to the diffuse color of the specified material.
+connect_color_gradient_to_diffuse_color(material_name)
+```
+
+5. Delete Unused Shader and Material Graph Nodes
+
+Script Name: Material\Delete Unused Shader and Material Graph Nodes.py
+Overview: Focuses on identifying and removing unused shader and material graph nodes. This script helps in understanding the best practices for cleaning and optimizing material graphs, ensuring a leaner and more efficient workflow .
+
+# Script that deletes unused material shader and material graph nodes. May need to be run multiple times. Uses lux.getSceneMaterials() to locate unused material shaders.
+```python
+import lux
+
+MAX_ITERATIONS = 10  # Maximum number of cleanup iterations
+
+def has_material_connections(node):
+    """Check if a material node has connections."""
+    input_edges = node.getInputEdges()
+    output_edges = node.getOutputEdges()
+    return bool(input_edges or output_edges)
+
+def cleanup_unused_material_nodes(material_graph):
+    """Clean up unconnected nodes within a material graph."""
+    nodes_to_remove = []
+    try:
+        nodes = material_graph.getNodes()
+        for node in nodes:
+            if not has_material_connections(node):
+                nodes_to_remove.append(node)
+        for node in nodes_to_remove:
+            material_graph.removeNode(node)
+            print(f"Removed node: {node.getName()} from material: {material_graph.getMaterialName()}")
+    except Exception as e:
+        print(f"Exception encountered while processing material graph: {e}")
+    return bool(nodes_to_remove)
+
+def cleanup_scene():
+    """Main function to clean up the scene."""
+    any_changes = True
+    iteration_count = 0
+
+    while any_changes and iteration_count < MAX_ITERATIONS:
+        any_changes = False
+        iteration_count += 1
+
+        # Cleanup material nodes
+        material_names = lux.getSceneMaterials()
+        for material_name in material_names:
+            try:
+                material_graph = lux.getMaterialGraph(name=material_name)
+                if material_graph:
+                    if cleanup_unused_material_nodes(material_graph):
+                        any_changes = True
+            except Exception as e:
+                print(f"Exception encountered while processing material {material_name}: {e}")
+
+    if iteration_count >= MAX_ITERATIONS:
+        lux.getMessageBox("Scene cleanup stopped after reaching the maximum number of iterations.", "Cleanup Stopped", lux.MESSAGE_BOX_WARNING)
+    else:
+        lux.getMessageBox("Scene cleanup of unconnected nodes completed.", "Cleanup Complete", lux.MESSAGE_BOX_INFO)
+
+cleanup_scene()
+```
+
+Summary of Selected Scripts and Their Utility
+The selected scripts provide a wide range of use cases and examples for understanding the constraints and effective manipulation of KeyShot’s material graph:
+
+Graph Operations & Node Management:
+
+Scripts like Delete Unused Shader and Material Graph Nodes.py and Color Gradient ShaderEdge Diffuse Material Color Connect.py provide a practical guide to maintaining and editing the material graph.
+Batch Processing & External Loading:
+
+Scripts focusing on batch assignment (Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py) and saving (Batch Save All Scene Materials to KS2024 Material Library Agnostic.py) are useful for automating tasks and learning how to handle multiple materials simultaneously.
+Error Handling Best Practices:
+
+Error handling in scripts like Batch Save All Scene Materials teaches the importance of robust validation in complex workflows, which directly relates to understanding the limits and preconditions of the lux API.
+These scripts, if organized into a well-structured index and ToC, would greatly help both users and LLMs in cross-referencing functionalities and understanding the scope and limits of the KeyShot lux API for material manipulation.

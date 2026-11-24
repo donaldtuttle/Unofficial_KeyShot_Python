@@ -1,0 +1,69 @@
+{
+  "files": [
+    {
+      "name": "ABOUT.txt",
+      "path": "references/ABOUT.txt"
+    },
+    {
+      "name": "Action_Handel_User_Input.txt",
+      "path": "references/Action_Handel_User_Input.txt"
+    },
+    {
+      "name": "Common_Errors.txt",
+      "path": "references/Common_Errors.txt"
+    },
+    {
+      "name": "KPSR_QuickGuide.txt",
+      "path": "references/KPSR_QuickGuide.txt"
+    },
+    {
+      "name": "KS_GUI.txt",
+      "path": "references/KS_GUI.txt"
+    },
+    {
+      "name": "KeyShot_Python_Script_Examples_with_ToC.txt",
+      "path": "references/KeyShot_Python_Script_Examples_with_ToC.txt"
+    },
+    {
+      "name": "KeyShot_Python_Scripting_Documentation_2024_1_OS_Agnostic_Folders.txt",
+      "path": "references/KeyShot_Python_Scripting_Documentation_2024_1_OS_Agnostic_Folders.txt"
+    },
+    {
+      "name": "KeyShot_headless_lux_API.md",
+      "path": "references/KeyShot_headless_lux_API.md"
+    },
+    {
+      "name": "KeyShot_headless_luxmath_API.md",
+      "path": "references/KeyShot_headless_luxmath_API.md"
+    },
+    {
+      "name": "KeyShot_lux_API.md",
+      "path": "references/KeyShot_lux_API.md"
+    },
+    {
+      "name": "KeyShot_luxmath_API.md",
+      "path": "references/KeyShot_luxmath_API.md"
+    },
+    {
+      "name": "Quick_Reference_Documentation.txt",
+      "path": "references/Quick_Reference_Documentation.txt"
+    },
+    {
+      "name": "Scripting_Material_Graph.txt",
+      "path": "references/Scripting_Material_Graph.txt"
+    },
+    {
+      "name": "Scripting_Transforming_Scene_Nodes.txt",
+      "path": "references/Scripting_Transforming_Scene_Nodes.txt"
+    },
+    {
+      "name": "Scripts_Commented_Detailed_Summary.txt",
+      "path": "references/Scripts_Commented_Detailed_Summary.txt"
+    },
+    {
+      "name": "ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt",
+      "path": "references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt"
+    }
+  ],
+  "guidelines": "Resolve each files[].path relative to the directory containing this skill's SKILL.md (the skill root), not this index's lookup/ directory or the current working directory. Use that directory for filesystem reads or append the path unchanged to the skill's root resource URI. This index is not a complete inventory of the plugin's files. If a needed file is absent from this index or cannot be found or read at its indexed path, continue normal file discovery using the skill's available file listing or installed files; do not stop or conclude that the file is unavailable based on this index alone. This index is primarily a GPT migration helper that maps original GPT upload names to packaged filenames in the plugin."
+}

@@ -3,7 +3,6 @@
 1. [Introduction to Transformation Matrices](#introduction-to-transformation-matrices)
 2. [Matrix Operations](#matrix-operations)
     - [Matrix Multiplication](#matrix-multiplication)
-    - Matrix Inversion
 3. [Transformations](#transformations)
     - [Translation](#translation)
     - [Rotation](#rotation)
@@ -12,12 +11,11 @@
     - [Applying a Transformation Matrix](#applying-a-transformation-matrix)
     - [Combining Multiple Transformations](#combining-multiple-transformations)
 5. [Common Errors and Debugging](#common-errors-and-debugging)
-    - Common Issues
-    - Troubleshooting Steps
+    - [Common Transformation Scenarios](#5-common-transformation-scenarios)
+    - [Key Takeaways for Effective Transformation Scripting](#6-key-takeaways-for-effective-transformation-scripting)
 6. [Example Scripts](#example-scripts)
     - [Basic Transformation Matrix Example](#basic-transformation-matrix-example)
     - [Advanced Transformation Matrix Example](#advanced-transformation-matrix-example)
-7. References
 
 <a name="common-errors-and-debugging"></a>
 

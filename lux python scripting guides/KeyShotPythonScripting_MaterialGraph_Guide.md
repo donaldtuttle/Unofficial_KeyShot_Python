@@ -32,8 +32,6 @@
    - [7.2 Robust Error Handling](#72-robust-error-handling)
 
 8. [Advanced Concepts for Curious Participants](#advanced-concepts-for-curious-participants)
-   - [8.1 Luxmath for Node Transformations](#81-luxmath-for-node-transformations)
-   - [8.2 Practical Examples](#82-practical-examples)
 
 9. [Summary and Key Takeaways](#summary-and-key-takeaways)
    - [9.1 Multi-Material as Copy/Instance](#91-multi-material-as-copyinstance)

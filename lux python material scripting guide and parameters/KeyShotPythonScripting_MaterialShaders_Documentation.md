@@ -20,7 +20,7 @@
   - [The Thin Film material type produces an iridescent effect similar to a soap bubble.](#the-thin-film-material-type-produces-an-iridescent-effect-similar-to-a-soap-bubble)
   - [Material Measured](#material-measured)
     - [Material: Measured](#material-measured-1)
-  - [Parameters for shader node in material'Gem':](#parameters-for-shader-node-in-materialgem-1)
+  - [Parameters for shader node in material 'Measured'](#parameters-for-shader-node-in-material-measured)
   - [The Measured material type supports the import of the X-Rite Appearance exchange Format (AxF) and Radiance BSDF format. These formats contain vendor neutral digital material representations that captures the light scattering characteristics for specific physical materials.](#the-measured-material-type-supports-the-import-of-the-x-rite-appearance-exchange-format-axf-and-radiance-bsdf-format-these-formats-contain-vendor-neutral-digital-material-representations-that-captures-the-light-scattering-characteristics-for-specific-physical-materials)
   - [Material Wireframe](#material-wireframe)
     - [Material: Wireframe](#material-wireframe-1)
@@ -501,7 +501,9 @@ The Color Filter setting acts as a color multiplier for the Thin Film material t
   - **texture_space** (PARAMETER_TYPE_INTEGER): Texture space used for the material. (Value: 1)
   - **transform_obj_to_uv** (PARAMETER_TYPE_MATRIX): Transformation matrix from object to UV space. (Value: <luxmath.Matrix>)
 
-## Parameters for shader node in material'Gem':
+<a name="parameters-for-shader-node-in-materialgem-1"></a>
+
+## Parameters for shader node in material 'Measured':
 - geometry (Type: 65540)
 - labels (Type: 65538)
 - surface (Type: 65537)

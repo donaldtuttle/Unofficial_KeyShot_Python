@@ -37,7 +37,7 @@
    - [1.10 Conclusion](#110-conclusion)
    - [1.11 Example Scripts That Align with Functionalities](#111-example-scripts-that-align-with-functionalities)
      - [1.11.1 Material Graph Operations & Shader Node Manipulation](#1111-material-graph-operations--shader-node-manipulation)
-     - [1.11.2 Loading Materials from .zip and Batch Material Assignment](#1112-loading-materials-from-zip-and-batch-material-assignment)
+     - [1.11.2 Batch Material Assignment](#2-batch-material-assignment)
      - [1.11.3 Error Handling in Material Graphs](#1113-error-handling-in-material-graphs)
      - [1.11.4 Additional Comprehensive Examples for Material and Shader Operations](#1114-additional-comprehensive-examples-for-material-and-shader-operations)
      - [1.11.5 Delete Unused Shader and Material Graph Nodes](#1115-delete-unused-shader-and-material-graph-nodes)
@@ -437,7 +437,7 @@ connect_color_gradient_to_diffuse_color(material_name)
 
 <a name="1112-loading-materials-from-zip-and-batch-material-assignment"></a>
 
-### 2. Loading Materials from .zip and Batch Material Assignment
+### 2. Batch Material Assignment
 Batch Multi-Material Diffuse Sub-Material Assign Texture
 
 Script Name: Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py

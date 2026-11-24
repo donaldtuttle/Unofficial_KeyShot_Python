@@ -1,4 +1,4 @@
-### KeyShot Python Scripting Comprehensive Guide
+# KeyShot Python Scripting Comprehensive Guide
 
 This guide consolidates best practices, common error handling techniques, performance optimization tips, and recommendations for KeyShot Python scripting. It is designed to help you write efficient, maintainable, and robust scripts for KeyShot.
 
@@ -21,15 +21,17 @@ This guide consolidates best practices, common error handling techniques, perfor
 15. [Scripting Workflow Management](#15-scripting-workflow-management)
 16. [Best Practice Examples](#16-best-practice-examples)
 
-1. Structure and Readability
+## 1. Structure and Readability
 
-	•	Consistent Naming Conventions: Use snake_case for function and variable names, and PascalCase for class names to follow Python and KeyShot conventions.
-	•	Use Built-in Constants: Prefer using predefined constants from the lux and luxmath modules (e.g., node types, material properties) over hardcoding values.
-	•	PEP 8 Adherence: Follow Python’s PEP 8 style guide for consistent formatting, including indentation, spacing, and line lengths.
-	•	Modularization: Break down complex tasks into smaller, reusable functions or classes for better readability and maintainability.
+- Consistent Naming Conventions: Use snake_case for function and variable names, and PascalCase for class names to follow Python and KeyShot conventions.
+- Use Built-in Constants: Prefer using predefined constants from the lux and luxmath modules (e.g., node types, material properties) over hardcoding values.
+- PEP 8 Adherence: Follow Python’s PEP 8 style guide for consistent formatting, including indentation, spacing, and line lengths.
+- Modularization: Break down complex tasks into smaller, reusable functions or classes for better readability and maintainability.
 
 Example:
 
+
+```python
 def create_spiral_matrix(index, spacing, angle_increment, direction):
     """
     Creates a transformation matrix for arranging objects in a spiral pattern.
@@ -44,33 +46,41 @@ def create_spiral_matrix(index, spacing, angle_increment, direction):
     angle_rad = index * angle_increment * (math.pi / 180.0)
     offset = luxmath.Vector(math.cos(angle_rad), 0, math.sin(angle_rad)) * spacing
     return luxmath.Matrix().makeIdentity().translate(offset)
+```
 
-2. Script Creation Process
 
-	•	Document Assumptions: State assumptions about the environment, scene, and objects (e.g., object types, scale).
-	•	Acknowledge Limitations: Document any known limitations (e.g., KeyShot version compatibility) and provide potential workarounds.
+## 2. Script Creation Process
 
-3. Error Handling and Debugging
+- Document Assumptions: State assumptions about the environment, scene, and objects (e.g., object types, scale).
+- Acknowledge Limitations: Document any known limitations (e.g., KeyShot version compatibility) and provide potential workarounds.
 
-	•	Use Try-Except Blocks: Handle critical operations (e.g., file imports, transformations) with try-except blocks.
-	•	Type Checking: Implement type checking, particularly for user inputs collected via lux.getInputDialog(). Use isinstance() to validate types.
-	•	Error Logging: Use lux.logError() for error logging, and supplement with custom log files to keep an external record of errors across script executions.
+## 3. Error Handling and Debugging
+
+- Use Try-Except Blocks: Handle critical operations (e.g., file imports, transformations) with try-except blocks.
+- Type Checking: Implement type checking, particularly for user inputs collected via lux.getInputDialog(). Use isinstance() to validate types.
+- Error Logging: Use lux.logError() for error logging, and supplement with custom log files to keep an external record of errors across script executions.
 
 Example:
 
+
+```python
 try:
     model.duplicate(amount=1)
 except TypeError as e:
     with open("error_log.txt", "a") as log_file:
         log_file.write(f"TypeError: {str(e)}\n")
     lux.logError(f"TypeError encountered: {e}")
+```
 
-4. User Interaction and Feedback
 
-	•	Input Collection: Use lux.getInputDialog() to gather user inputs. Provide default values and tooltips for enhanced user experience.
+## 4. User Interaction and Feedback
+
+- Input Collection: Use lux.getInputDialog() to gather user inputs. Provide default values and tooltips for enhanced user experience.
 
 Example:
 
+
+```python
 values = [
     ("spacing", lux.DIALOG_DOUBLE, "Spacing Between Objects:", 1.0, (0.1, 100.0), "Distance between objects in 3D space"),
 ]
@@ -80,11 +90,15 @@ opts = lux.getInputDialog(title="Object Duplicator", values=values)
 if opts["spacing"] <= 0:
     lux.logError("Invalid spacing value, must be greater than zero.")
     return
+```
 
-	•	User Feedback: Provide real-time feedback during long-running operations using progress bars and status updates. Implement cancel functionality with lux.isUserCancelled().
+
+- User Feedback: Provide real-time feedback during long-running operations using progress bars and status updates. Implement cancel functionality with lux.isUserCancelled().
 
 Example:
 
+
+```python
 progress_bar = lux.getProgressBar("Processing")
 progress_bar.start()
 for i, task in enumerate(tasks):
@@ -93,15 +107,19 @@ for i, task in enumerate(tasks):
         lux.logInfo("Operation canceled by the user")
         break
 progress_bar.finish()
+```
 
-5. Common Errors and Solutions
 
-	•	Empty Item Tuple Exception: Ensure tuples defining dialog items are properly formatted.
-	•	Type Mismatch Error: Use isinstance() to validate that arguments passed to functions match expected types.
-	•	Material Graph Access: Always check for the presence of material graphs before attempting manipulation to avoid AttributeError.
+## 5. Common Errors and Solutions
+
+- Empty Item Tuple Exception: Ensure tuples defining dialog items are properly formatted.
+- Type Mismatch Error: Use isinstance() to validate that arguments passed to functions match expected types.
+- Material Graph Access: Always check for the presence of material graphs before attempting manipulation to avoid AttributeError.
 
 Example:
 
+
+```python
 graph = lux.getMaterialGraph("MaterialName")
 if graph:
     parameter = graph.getParameter("diffuse")
@@ -109,27 +127,35 @@ if graph:
         parameter.setValue((1.0, 0.5, 0.0))
 else:
     lux.logError("Material graph 'MaterialName' not found.")
+```
 
-6. Performance Optimization
 
-	•	Loop Optimization: Pre-calculate values outside of loops and batch-process transformations to minimize overhead.
-	•	Efficient Data Structures: Use dictionaries, sets, and lists to manage frequent lookups and updates.
+## 6. Performance Optimization
+
+- Loop Optimization: Pre-calculate values outside of loops and batch-process transformations to minimize overhead.
+- Efficient Data Structures: Use dictionaries, sets, and lists to manage frequent lookups and updates.
 
 Example:
 
+
+```python
 def optimize_processing(object_models, transform_matrix):
     lux.beginUndoSession()  # Batch operations for performance
     for model in object_models:
         model.applyTransform(transform_matrix)
     lux.endUndoSession()
+```
 
-7. Handling Material Graphs
 
-	•	Efficient Material Graph Access: Use lux.getMaterialGraph(name) for retrieving and manipulating material parameters. Ensure nodes exist before modifying them.
-	•	Node Connection: Ensure materials, such as multi-layer optics, are connected using correct shader types.
+## 7. Handling Material Graphs
+
+- Efficient Material Graph Access: Use lux.getMaterialGraph(name) for retrieving and manipulating material parameters. Ensure nodes exist before modifying them.
+- Node Connection: Ensure materials, such as multi-layer optics, are connected using correct shader types.
 
 Example:
 
+
+```python
 graph = lux.getMaterialGraph("MaterialName")
 if graph:
     node = graph.newNode(lux.SHADER_TYPE_DIFFUSE)
@@ -138,136 +164,180 @@ if graph:
         diffuse_param.setValue((0.5, 0.5, 0.5))
 else:
     lux.logError("Material graph not found.")
+```
 
-8. Camera Operations
 
-	•	Correct Functions: Use lux.getCamera() for accessing camera settings.
-	•	Save Camera Settings: Always save changes to camera settings using lux.saveCamera() after modifications.
+## 8. Camera Operations
+
+- Correct Functions: Use lux.getCamera() for accessing camera settings.
+- Save Camera Settings: Always save changes to camera settings using lux.saveCamera() after modifications.
 
 Example:
 
+
+```python
 camera_info = lux.getCamera()
 lux.setCameraFieldOfView(45)
 lux.saveCamera()
+```
 
-9. Testing and Debugging
 
-	•	Write Test Cases: Automate testing with sample scenes to validate script functionality.
-	•	Iterative Debugging: Test incrementally with small scripts, then apply to larger scenes.
-	•	Detailed Error Logs: Provide contextual logs for each failure point, aiding in debugging.
+## 9. Testing and Debugging
 
-10. Resource Management
+- Write Test Cases: Automate testing with sample scenes to validate script functionality.
+- Iterative Debugging: Test incrementally with small scripts, then apply to larger scenes.
+- Detailed Error Logs: Provide contextual logs for each failure point, aiding in debugging.
 
-	•	Context Managers: Use Python’s with statement to manage file handles and ensure proper resource release.
-	•	Scene Tree Resources: Release unused models or objects to free up memory.
+## 10. Resource Management
+
+- Context Managers: Use Python’s with statement to manage file handles and ensure proper resource release.
+- Scene Tree Resources: Release unused models or objects to free up memory.
 
 Example:
 
+
+```python
 for model in unused_models:
     lux.deleteObject(model)
+```
 
-11. Documentation
 
-	•	Version Control: Indicate KeyShot version compatibility in your scripts to prevent issues from API changes across versions.
-	•	Inline Comments for Complex Logic: Provide detailed comments, especially for matrix operations or complex transformations.
+## 11. Documentation
+
+- Version Control: Indicate KeyShot version compatibility in your scripts to prevent issues from API changes across versions.
+- Inline Comments for Complex Logic: Provide detailed comments, especially for matrix operations or complex transformations.
 
 Example:
 
+
+```python
 # Rotate 30 degrees around the Z-axis
 rotation_matrix = luxmath.Matrix().makeIdentity().rotateAroundAxis(luxmath.Vector(0, 0, 1), math.radians(30))
+```
 
-12. Special Considerations for KeyShot Modules
 
-	•	Lux and LuxMath Usage: Use luxmath.Matrix() and luxmath.Vector() for transformations to ensure proper object manipulation.
-	•	Matrix Transformations: Always start with an identity matrix before applying transformations.
+## 12. Special Considerations for KeyShot Modules
+
+- Lux and LuxMath Usage: Use luxmath.Matrix() and luxmath.Vector() for transformations to ensure proper object manipulation.
+- Matrix Transformations: Always start with an identity matrix before applying transformations.
 
 Example:
 
+
+```python
 matrix = luxmath.Matrix().makeIdentity().translate(luxmath.Vector(1.0, 0.0, 0.0))
+```
 
-13. Key Highlights
 
-	1.	Error Handling: Integrate robust error handling, including managing missing models and validating user inputs.
-	2.	Performance Optimization: Use efficient data structures and batch operations to minimize performance bottlenecks.
-	3.	User Feedback: Provide real-time feedback during long operations, and allow for task cancellation.
-	4.	Resource Management: Release unused objects and materials after processing to prevent memory leaks.
-	5.	Detailed Logging: Provide error logs and contextual information to aid in debugging.
-	6.	Iterative Testing: Develop scripts incrementally and refine them based on regular feedback.
+## 13. Key Highlights
 
-14. Modularity and Reusability
+1. Error Handling: Integrate robust error handling, including managing missing models and validating user inputs.
+2. Performance Optimization: Use efficient data structures and batch operations to minimize performance bottlenecks.
+3. User Feedback: Provide real-time feedback during long operations, and allow for task cancellation.
+4. Resource Management: Release unused objects and materials after processing to prevent memory leaks.
+5. Detailed Logging: Provide error logs and contextual information to aid in debugging.
+6. Iterative Testing: Develop scripts incrementally and refine them based on regular feedback.
 
-	•	DRY Principle: Refactor common logic into reusable functions to avoid redundancy.
+## 14. Modularity and Reusability
+
+- DRY Principle: Refactor common logic into reusable functions to avoid redundancy.
 
 Example:
 
+
+```python
 def create_translation_matrix(x, y, z):
     return luxmath.Matrix().makeIdentity().translate(luxmath.Vector(x, y, z))
 
 matrix1 = create_translation_matrix(1.0, 0.0, 0.0)
 matrix2 = create_translation_matrix(0.0, 1.0, 0.0)
+```
 
-15. Scripting Workflow Management
 
-	•	Script Initialization: Reset scene states (e.g., camera views, environment settings) to ensure predictable script behavior.
-	•	Graceful Script Exit: Handle interruptions (e.g., user cancellation) gracefully by adding clean-up operations.
+## 15. Scripting Workflow Management
+
+- Script Initialization: Reset scene states (e.g., camera views, environment settings) to ensure predictable script behavior.
+- Graceful Script Exit: Handle interruptions (e.g., user cancellation) gracefully by adding clean-up operations.
 
 Example:
 
+
+```python
 try:
     # Perform operations
     pass
 finally:
     lux.logInfo("Script terminated, cleaning up resources.")
     # Clean-up code here
+```
 
-16. Best Practice Examples
 
-1. Scene Initialization Example
+## 16. Best Practice Examples
 
+### 1. Scene Initialization Example
+
+
+```python
 def initialize_scene():
     lux.setCamera('Main Camera')  # Reset to default camera
     lux.setEnvironment("Default Environment")  # Ensure default environment
+```
 
-2. Material Graph Manipulation Example
 
+### 2. Material Graph Manipulation Example
+
+
+```python
 graph = lux.getMaterialGraph("MyMaterial")
 if graph:
     diffuse = graph.getParameter("diffuse")
     if diffuse:
         diffuse.setValue((0.1, 0.2, 0.3))
+```
 
-Additional Common Errors:
 
-	1.	Empty Item Tuple Exception (lux.getInputDialog)
-	•	Error: Exception: Items of item tuple must be specified!
-	•	Cause: Incomplete or improperly formatted tuple in lux.getInputDialog().
-	•	Solution: Ensure all fields in dialog items are complete and non-empty, especially lux.DIALOG_ITEM fields.
+### Additional Common Errors:
+
+1. Empty Item Tuple Exception (lux.getInputDialog)
+- Error: Exception: Items of item tuple must be specified!
+- Cause: Incomplete or improperly formatted tuple in lux.getInputDialog().
+- Solution: Ensure all fields in dialog items are complete and non-empty, especially lux.DIALOG_ITEM fields.
 Example:
 
+
+```python
 values = [
     ("name", lux.DIALOG_TEXT, "Model Name:", "DefaultName")  # Provide non-empty default
 ]
 lux.getInputDialog(title="Model Import", values=values)
+```
 
 
-	2.	Type Mismatch Error
-	•	Error: TypeError: argument 1 must be str, not list
-	•	Cause: Passing a list or other non-string data type to a function expecting a string.
-	•	Solution: Ensure the function argument types match what is expected, such as using str() to convert non-string arguments to strings where necessary.
+
+2. Type Mismatch Error
+- Error: TypeError: argument 1 must be str, not list
+- Cause: Passing a list or other non-string data type to a function expecting a string.
+- Solution: Ensure the function argument types match what is expected, such as using str() to convert non-string arguments to strings where necessary.
 Example:
 
+
+```python
 # Correct usage of string argument
 lux.logInfo("Processing object ID: " + str(object_id))
+```
 
 
 
-Best Practices for Material Graph Manipulation:
 
-	1.	Handling Material Graphs Safely
-	•	Always use lux.getMaterialGraph(name) to access the material graph.
-	•	Check for node existence using defensive programming before modifying nodes.
+### Best Practices for Material Graph Manipulation:
+
+1. Handling Material Graphs Safely
+- Always use lux.getMaterialGraph(name) to access the material graph.
+- Check for node existence using defensive programming before modifying nodes.
 Example:
 
+
+```python
 graph = lux.getMaterialGraph("MaterialName")
 if graph:
     diffuse_node = graph.getParameter("diffuse")
@@ -275,42 +345,46 @@ if graph:
         diffuse_node.setValue((1.0, 0.5, 0.0))  # Set color
 else:
     lux.logError("Material graph not found.")
+```
 
-Manual vs Modular Python an AI
+
+## Manual vs Modular Python an AI
 
 In the context of LLM (Large Language Model) recommendations, there’s a strong emphasis on using modular code for good reasons like reusability, maintainability, and separation of concerns. However, in scripting environments like KeyShot, especially for complex material duplication tasks, the need for manual verification might conflict with standard modularization practices. Here’s how you can reconcile these two viewpoints and make them understand the necessity of a manual approach in your case:
 
-Why Modular Approaches Are Usually Recommended:
+### Why Modular Approaches Are Usually Recommended:
 
 1. Reusability: Modular code—broken down into functions and classes—allows each piece to be reused in multiple contexts. This reduces redundancy and makes maintaining and updating code easier.
 2. Separation of Concerns: Each module handles a specific responsibility, improving code readability and making it easier to debug.
 3. Testing and Reliability: Smaller modules can be independently tested, allowing for a more reliable and less error-prone system.
 
-Why a Manual Approach Is Important Here:
+### Why a Manual Approach Is Important Here:
 
 In your KeyShot scripting task, manual verification serves a unique purpose that might not be apparent from a purely modular perspective. Here are key reasons why manual, hands-on verification is essential, even within a modular framework:
 
 1. Complexity of Relationships:
-• KeyShot material graphs are often highly complex, with multiple nodes, unique relationships, and parameter dependencies. Relying solely on modular functions that assume the duplication is always straightforward may oversimplify what is actually required.
-• lux.createMultiMaterial() provides a fast, broad duplication, but in intricate graphs, nodes and connections can have special behaviors (such as custom procedural setups or edge cases that require tailored handling). Manual checks allow you to handle these scenarios specifically.
+- KeyShot material graphs are often highly complex, with multiple nodes, unique relationships, and parameter dependencies. Relying solely on modular functions that assume the duplication is always straightforward may oversimplify what is actually required.
+- lux.createMultiMaterial() provides a fast, broad duplication, but in intricate graphs, nodes and connections can have special behaviors (such as custom procedural setups or edge cases that require tailored handling). Manual checks allow you to handle these scenarios specifically.
 2. Need for Precision and Customization:
-• Modular functions generally implement generic behavior that applies to most cases, but in tasks like duplicating materials, each node and parameter may require specific attention depending on the material type.
-• Manual validation (duplicate_node(), duplicate_parameters(), etc.) gives you the control to make context-specific adjustments that aren’t feasible within a generic module.
+- Modular functions generally implement generic behavior that applies to most cases, but in tasks like duplicating materials, each node and parameter may require specific attention depending on the material type.
+- Manual validation (duplicate_node(), duplicate_parameters(), etc.) gives you the control to make context-specific adjustments that aren’t feasible within a generic module.
 3. Quality Assurance:
-• The main benefit of a manual setup here is quality assurance. Even if you use a modular function to perform a task like lux.createMultiMaterial(), verifying the output through manual checks ensures that all relationships and parameter settings are accurately preserved.
-• This step is crucial to avoid subtle bugs or inconsistencies that might lead to incorrect rendering, visual artifacts, or unexpected material behaviors.
+- The main benefit of a manual setup here is quality assurance. Even if you use a modular function to perform a task like lux.createMultiMaterial(), verifying the output through manual checks ensures that all relationships and parameter settings are accurately preserved.
+- This step is crucial to avoid subtle bugs or inconsistencies that might lead to incorrect rendering, visual artifacts, or unexpected material behaviors.
 
-How to Bridge Manual Verification with Modular Design:
+### How to Bridge Manual Verification with Modular Design:
 
 You can address the LLM’s emphasis on modularity while explaining why manual steps are still needed:
 
 1. Modular Verification Functions:
-• Create modular helper functions that perform specific aspects of the manual verification and correction. For example, you can write functions like:
-• verify_node_parameters(source_node, target_node)
-• verify_edge_connections(source_graph, target_graph, node_mapping)
+- Create modular helper functions that perform specific aspects of the manual verification and correction. For example, you can write functions like:
+- verify_node_parameters(source_node, target_node)
+- verify_edge_connections(source_graph, target_graph, node_mapping)
 These functions would provide modularity while still allowing you to perform detailed manual verification. You can then use these helper functions wherever verification is necessary, achieving code reuse and maintainability.
 
 
+
+```python
 def verify_node_parameters(source_node, target_node):
 for param in source_node.getParameters():
 new_param = target_node.getParameter(param.getName())
@@ -320,15 +394,19 @@ new_param.setValue(param.getValue())
 print(f"Parameter '{param.getName()}' adjusted to match the source.")
 else:
 print(f"Warning: Parameter '{param.getName()}' not found in target node.")
+```
+
 
 2. Combining Automation and Manual Checks:
-• Use modular functions for the initial duplication and automated parts of the process, such as using lux.createMultiMaterial() to handle node copying.
-• Afterward, use modularized manual verification functions to validate and correct any discrepancies. This hybrid approach keeps the code modular while ensuring manual precision.
+- Use modular functions for the initial duplication and automated parts of the process, such as using lux.createMultiMaterial() to handle node copying.
+- Afterward, use modularized manual verification functions to validate and correct any discrepancies. This hybrid approach keeps the code modular while ensuring manual precision.
 3. Separate Responsibilities While Allowing Manual Overrides:
-• Design modules that have a primary role of attempting duplication automatically but with built-in hooks or overrides for manual interventions.
-• For example, a function like duplicate_material_graph() could accept additional parameters like a verify flag to determine if manual verification should be triggered after the automated step.
+- Design modules that have a primary role of attempting duplication automatically but with built-in hooks or overrides for manual interventions.
+- For example, a function like duplicate_material_graph() could accept additional parameters like a verify flag to determine if manual verification should be triggered after the automated step.
 
 
+
+```python
 def duplicate_material_graph(source_graph, target_graph, verify=True):
 # Automatically duplicate using lux.createMultiMaterial()
 # ...
@@ -336,18 +414,22 @@ def duplicate_material_graph(source_graph, target_graph, verify=True):
 if verify:
 # Perform manual validation and correction
 verify_edge_connections(source_graph, target_graph, node_mapping)
+```
 
 
-Explaining This to an LLM or a “Best Practices” System:
+
+### Explaining This to an LLM or a “Best Practices” System:
 
 To explain why manual approaches are used:
 
-• Highlight Complexity and Specificity: Explain that KeyShot material graphs are complex entities, where each node and parameter might require specific handling that cannot be generalized effectively. LLMs often focus on the average case, whereas in graphics scripting, the edge cases are the ones that usually cause problems.
-• Point Out Risk Mitigation: Stress that manual verification serves as a critical risk mitigation step. The consequences of missing a parameter or incorrectly duplicating a node might not manifest until rendering time, which could lead to extensive rework. Manual checks act as preventative measures to ensure correctness.
-• Emphasize Hybrid Workflow Benefits: The hybrid approach—automating what can be automated, and verifying manually where necessary—offers the best of both worlds: it maximizes efficiency while ensuring high-quality, reliable results.
+- Highlight Complexity and Specificity: Explain that KeyShot material graphs are complex entities, where each node and parameter might require specific handling that cannot be generalized effectively. LLMs often focus on the average case, whereas in graphics scripting, the edge cases are the ones that usually cause problems.
+- Point Out Risk Mitigation: Stress that manual verification serves as a critical risk mitigation step. The consequences of missing a parameter or incorrectly duplicating a node might not manifest until rendering time, which could lead to extensive rework. Manual checks act as preventative measures to ensure correctness.
+- Emphasize Hybrid Workflow Benefits: The hybrid approach—automating what can be automated, and verifying manually where necessary—offers the best of both worlds: it maximizes efficiency while ensuring high-quality, reliable results.
 
-Practical Example of a Hybrid Modular Design:
+### Practical Example of a Hybrid Modular Design:
 
+
+```python
 import lux
 
 # Automated duplication function
@@ -388,42 +470,46 @@ verify_and_adjust_edges(source_graph, copied_graph)
 
 # Example usage
 duplicate_and_verify_material("original-material")
+```
+
 
 This code is modular, follows good practices, and retains the manual verification steps necessary to ensure correctness in a complex environment like KeyShot. By using this hybrid approach, you can satisfy modularity requirements while keeping the custom manual handling where it matters most.
 
 
-Manual vs Modular Python: Understanding the Hybrid Approach for KeyShot Scripting
+## Manual vs Modular Python: Understanding the Hybrid Approach for KeyShot Scripting
 
 When scripting in KeyShot, there’s a clear need to balance between using modular code for maintainability and employing manual verification for precision. Large Language Models (LLMs) typically recommend modularity for good reasons like reusability, separation of concerns, and reliability, but in certain KeyShot workflows, especially those involving complex material manipulations, a manual approach may be required to ensure the highest quality output. Here’s how you can reconcile these approaches effectively:
 
-Why Modular Approaches Are Usually Recommended:
+### Why Modular Approaches Are Usually Recommended:
 
 1. Reusability:
-• Functions and classes allow components to be reused in multiple scenarios, reducing redundancy.
+- Functions and classes allow components to be reused in multiple scenarios, reducing redundancy.
 2. Separation of Concerns:
-• Each function or class serves a specific purpose, which improves readability and makes the code easier to understand and debug.
+- Each function or class serves a specific purpose, which improves readability and makes the code easier to understand and debug.
 3. Testing and Reliability:
-• Smaller, focused modules can be individually tested, ensuring that each part works reliably before integration.
+- Smaller, focused modules can be individually tested, ensuring that each part works reliably before integration.
 
-Why Manual Verification is Crucial in KeyShot Scripting:
+### Why Manual Verification is Crucial in KeyShot Scripting:
 
 KeyShot’s material and scene complexities often require hands-on intervention to ensure accurate reproduction of visual elements, especially when dealing with material graphs and transformations.
 
 1. Complex Relationships:
-• Material graphs in KeyShot are complex, involving many interconnected nodes and unique parameter dependencies. Directly replicating a graph with a function like lux.createMultiMaterial() could overlook custom behaviors or dependencies between nodes. Manual checks ensure every node and connection behaves as expected, especially for custom procedural setups or specialized workflows.
+- Material graphs in KeyShot are complex, involving many interconnected nodes and unique parameter dependencies. Directly replicating a graph with a function like lux.createMultiMaterial() could overlook custom behaviors or dependencies between nodes. Manual checks ensure every node and connection behaves as expected, especially for custom procedural setups or specialized workflows.
 2. Precision and Customization:
-• Generic modular functions might apply standard settings across nodes, but in scenarios involving different material types and dependencies, each element may require specific adjustments. Manual verification allows you to customize each node and parameter beyond the capabilities of a generic function.
+- Generic modular functions might apply standard settings across nodes, but in scenarios involving different material types and dependencies, each element may require specific adjustments. Manual verification allows you to customize each node and parameter beyond the capabilities of a generic function.
 3. Quality Assurance:
-• Automated processes, while efficient, may introduce subtle issues not immediately visible. Manual verification ensures all aspects of a material or transformation have been correctly applied, avoiding problems that could lead to incorrect renders or visual inconsistencies.
+- Automated processes, while efficient, may introduce subtle issues not immediately visible. Manual verification ensures all aspects of a material or transformation have been correctly applied, avoiding problems that could lead to incorrect renders or visual inconsistencies.
 
-How to Bridge Manual Verification with Modular Design:
+### How to Bridge Manual Verification with Modular Design:
 
 To balance modularity and manual verification, you can take a hybrid approach:
 
 1. Create Modular Verification Functions:
-• Instead of embedding verification code everywhere, write reusable helper functions that perform specific verification tasks. This retains modularity while allowing for detailed manual checks where needed.
-• Example Function:
+- Instead of embedding verification code everywhere, write reusable helper functions that perform specific verification tasks. This retains modularity while allowing for detailed manual checks where needed.
+- Example Function:
 
+
+```python
 def verify_node_parameters(source_node, target_node):
 for param in source_node.getParameters():
 new_param = target_node.getParameter(param.getName())
@@ -433,13 +519,17 @@ new_param.setValue(param.getValue())
 print(f"Parameter '{param.getName()}' adjusted to match the source.")
 else:
 print(f"Warning: Parameter '{param.getName()}' not found in target node.")
+```
+
 
 This function ensures that parameters from a source node match those in a target node, making it easy to verify specific aspects of a material graph.
 
 2. Combine Automation with Manual Checks:
-• Use functions like lux.createMultiMaterial() for initial automation but follow it with detailed verification. This keeps the process efficient but adds a layer of quality control.
-• Example Function:
+- Use functions like lux.createMultiMaterial() for initial automation but follow it with detailed verification. This keeps the process efficient but adds a layer of quality control.
+- Example Function:
 
+
+```python
 def duplicate_material_graph(source_graph, target_graph, verify=True):
 # Automatically duplicate using lux.createMultiMaterial()
 # ...
@@ -447,22 +537,26 @@ def duplicate_material_graph(source_graph, target_graph, verify=True):
 if verify:
 # Perform manual validation and correction
 verify_edge_connections(source_graph, target_graph, node_mapping)
+```
+
 
 
 3. Design Modules with Manual Override Options:
-• When writing modular functions, allow for manual overrides or additional verification steps as needed. This can be achieved with parameters like verify=True or manual_override=True to indicate when extra verification is required.
+- When writing modular functions, allow for manual overrides or additional verification steps as needed. This can be achieved with parameters like verify=True or manual_override=True to indicate when extra verification is required.
 
-Explaining the Need for Manual Steps to an LLM or “Best Practices” System:
+### Explaining the Need for Manual Steps to an LLM or “Best Practices” System:
 
-• Highlight Complexity and Specificity:
-• KeyShot material graphs often contain many unique, intricate dependencies that cannot be captured through generic automation. While LLMs favor modularity for the average case, the complexity in graphics scripting requires detailed handling of edge cases.
-• Risk Mitigation:
-• Stress the importance of manual verification as a risk mitigation step. Inaccurate material or node duplication could lead to visual artifacts or incorrect rendering, requiring substantial rework. Manual checks prevent these issues by ensuring each element is correctly handled before proceeding.
-• Emphasize Hybrid Workflow Benefits:
-• Combining modular functions with manual verification offers efficiency while maintaining precision. This hybrid approach ensures scripts are reusable and maintainable while also delivering reliable results, which is crucial in a creative environment like KeyShot.
+- Highlight Complexity and Specificity:
+- KeyShot material graphs often contain many unique, intricate dependencies that cannot be captured through generic automation. While LLMs favor modularity for the average case, the complexity in graphics scripting requires detailed handling of edge cases.
+- Risk Mitigation:
+- Stress the importance of manual verification as a risk mitigation step. Inaccurate material or node duplication could lead to visual artifacts or incorrect rendering, requiring substantial rework. Manual checks prevent these issues by ensuring each element is correctly handled before proceeding.
+- Emphasize Hybrid Workflow Benefits:
+- Combining modular functions with manual verification offers efficiency while maintaining precision. This hybrid approach ensures scripts are reusable and maintainable while also delivering reliable results, which is crucial in a creative environment like KeyShot.
 
-Practical Example of Hybrid Modular Design:
+### Practical Example of Hybrid Modular Design:
 
+
+```python
 import lux
 
 # Automated duplication function
@@ -503,147 +597,185 @@ verify_and_adjust_edges(source_graph, copied_graph)
 
 # Example usage
 duplicate_and_verify_material("original-material")
+```
+
 
 Summary:
 
-• Modular Verification Functions allow you to compartmentalize checks, ensuring you maintain modularity while verifying specific components.
-• Combining Automation and Manual Verification ensures that you take advantage of automation’s speed and manual validation’s accuracy.
-• Hybrid Approach: This practice provides an effective way to reconcile modular best practices with the need for precision, especially in creative environments like KeyShot where visual quality is paramount.
+- Modular Verification Functions allow you to compartmentalize checks, ensuring you maintain modularity while verifying specific components.
+- Combining Automation and Manual Verification ensures that you take advantage of automation’s speed and manual validation’s accuracy.
+- Hybrid Approach: This practice provides an effective way to reconcile modular best practices with the need for precision, especially in creative environments like KeyShot where visual quality is paramount.
 
 This approach leverages both automation and manual precision, making sure that your KeyShot scripting maintains modularity for maintainability while also ensuring that the intricacies of material and node relationships are accurately managed.
 
 
-Additional Best Practices:
+### Additional Best Practices:
 
-	1.	Input Validation for Custom Dialogs
-	•	Validate user inputs to ensure they meet the expected format, especially when using lux.getInputDialog(). This can prevent user mistakes from causing runtime errors.
+1. Input Validation for Custom Dialogs
+- Validate user inputs to ensure they meet the expected format, especially when using lux.getInputDialog(). This can prevent user mistakes from causing runtime errors.
 Example:
 
+
+```python
 opts = lux.getInputDialog(title="Object Duplicator", values=values)
 if opts["spacing"] <= 0:
     lux.logError("Invalid spacing value, must be greater than zero.")
     return
+```
 
 
-	2.	Batch Processing for Scene Optimizations
-	•	Use batch operations to minimize performance bottlenecks, especially when manipulating multiple objects or materials in large scenes.
+
+2. Batch Processing for Scene Optimizations
+- Use batch operations to minimize performance bottlenecks, especially when manipulating multiple objects or materials in large scenes.
 Example:
 
+
+```python
 lux.beginUndoSession()
 for model in object_models:
     model.applyTransform(transform_matrix)
 lux.endUndoSession()
+```
 
 
-	3.	Efficient Scene Resource Management
-	•	Free up resources such as unused objects or materials to optimize scene performance. This is especially important for memory management in complex scenes.
+
+3. Efficient Scene Resource Management
+- Free up resources such as unused objects or materials to optimize scene performance. This is especially important for memory management in complex scenes.
 Example:
 
+
+```python
 for model in unused_models:
     lux.deleteObject(model)
+```
 
 
 
-Testing and Debugging:
 
-	1.	Use Logging to Debug
-	•	Utilize lux.logInfo() or custom log files for debugging complex scripts. This practice helps track issues across sessions.
+### Testing and Debugging:
+
+1. Use Logging to Debug
+- Utilize lux.logInfo() or custom log files for debugging complex scripts. This practice helps track issues across sessions.
 Example:
 
+
+```python
 try:
     model.duplicate(amount=1)
 except TypeError as e:
     with open("error_log.txt", "a") as log_file:
         log_file.write(f"TypeError: {str(e)}\n")
     lux.logError(f"TypeError encountered: {e}")
+```
 
-Performance Optimizations:
 
-	1.	Scene Tree Operations
-	•	Limit operations on the scene tree to avoid performance issues. Batch transformations or material applications can significantly reduce execution time.
+### Performance Optimizations:
+
+1. Scene Tree Operations
+- Limit operations on the scene tree to avoid performance issues. Batch transformations or material applications can significantly reduce execution time.
 Example:
 
+
+```python
 lux.beginUndoSession()  # Start a batch process
 for model in models:
     model.applyTransform(transform_matrix)
 lux.endUndoSession()  # End the batch process
+```
 
 
-Group, Model, Part, Object, and Children Differences in KeyShot Scripting
+
+## Group, Model, Part, Object, and Children Differences in KeyShot Scripting
 
 In KeyShot, the scene tree is hierarchical, consisting of several node types: groups, models, parts, objects, and their children. Understanding the differences and constraints between these entities is essential for scripting transformations, material applications, and scene manipulations.
 
-1. Groups
+### 1. Groups
 
-	•	Definition: A group is a node that can contain multiple child nodes, which can be objects, models, or even other groups.
-	•	Script Functions: Groups are often used for organizing scene elements. You can access and manipulate their children, lock/unlock them, or apply transformations that affect all descendants.
-	•	Transformation Constraints: Applying transformations to groups affects all its child nodes recursively, but it doesn’t support absolute transforms since it aggregates its child nodes.
-	•	Access: Use node.getChildren() to access a group’s children .
+- Definition: A group is a node that can contain multiple child nodes, which can be objects, models, or even other groups.
+- Script Functions: Groups are often used for organizing scene elements. You can access and manipulate their children, lock/unlock them, or apply transformations that affect all descendants.
+- Transformation Constraints: Applying transformations to groups affects all its child nodes recursively, but it doesn’t support absolute transforms since it aggregates its child nodes.
+- Access: Use node.getChildren() to access a group’s children .
 
-2. Models
+### 2. Models
 
-	•	Definition: A model is a specific type of node that represents an entire 3D entity imported into the scene.
-	•	Script Functions: Models behave similarly to groups but are treated as a cohesive unit. They can contain multiple parts or objects.
-	•	Special Handling: You can duplicate models, apply materials to them, and move them across groups. Importantly, models are direct children of model sets, and transformations are typically applied relative to their origin .
-	•	KeyScript Commands:
+- Definition: A model is a specific type of node that represents an entire 3D entity imported into the scene.
+- Script Functions: Models behave similarly to groups but are treated as a cohesive unit. They can contain multiple parts or objects.
+- Special Handling: You can duplicate models, apply materials to them, and move them across groups. Importantly, models are direct children of model sets, and transformations are typically applied relative to their origin .
+- KeyScript Commands:
 
+
+```python
 model_node.applyTransform(transform_matrix)
+```
+
 
 Use Case: When dealing with multiple parts within a model, you need to manage the part individually, ensuring transformations like rotation, translation, or scaling are correct  .
 
-3. Parts
+### 3. Parts
 
-	•	Definition: Parts are components of a model and represent individual pieces within a model (e.g., a wheel in a car model).
-	•	Script Functions: Parts can be individually manipulated, and they inherit transformations from their parent model or group unless overridden.
-	•	Accessing Parts: Use find with a part name to access and modify it. It’s essential to ensure the part exists before applying transformations.
+- Definition: Parts are components of a model and represent individual pieces within a model (e.g., a wheel in a car model).
+- Script Functions: Parts can be individually manipulated, and they inherit transformations from their parent model or group unless overridden.
+- Accessing Parts: Use find with a part name to access and modify it. It’s essential to ensure the part exists before applying transformations.
 
+
+```python
 parts = model.find("part_name")
 part.applyTransform(matrix)
+```
+
 
 Note: Be cautious with applying absolute transformations as parts within a larger model might lose their relative positioning .
 
-4. Objects
+### 4. Objects
 
-	•	Definition: Objects are the lowest level of scene nodes, representing individual meshes or surfaces. They cannot have children.
-	•	Script Functions: Objects can be duplicated, hidden, shown, transformed, and assigned materials. They support absolute transformations, unlike groups.
+- Definition: Objects are the lowest level of scene nodes, representing individual meshes or surfaces. They cannot have children.
+- Script Functions: Objects can be duplicated, hidden, shown, transformed, and assigned materials. They support absolute transformations, unlike groups.
 
+
+```python
 obj.applyTransform(matrix, absolute=True)
+```
+
 
 Common Operations: Apply translation, scaling, or rotation transformations, either relatively or absolutely.
 
-5. Children
+### 5. Children
 
-	•	Definition: Children refer to the direct descendants of any group or model node. They can be objects, parts, or groups themselves.
-	•	Script Functions: Managing children typically involves recursive operations. For example, when applying transformations or setting visibility recursively:
+- Definition: Children refer to the direct descendants of any group or model node. They can be objects, parts, or groups themselves.
+- Script Functions: Managing children typically involves recursive operations. For example, when applying transformations or setting visibility recursively:
 
+
+```python
 for child in node.getChildren():
     child.applyTransform(matrix)
+```
+
 
 Key Constraints: Children inherit transformations from their parents unless an absolute transformation is applied to the child node directly.
 
-Constraints on Transformations and Operations
+### Constraints on Transformations and Operations
 
-	1.	Absolute Transformations:
-	•	Only applicable to object nodes. Group and model nodes do not support absolute transformations, and attempting to apply one will result in errors .
-	2.	Relative Transformations:
-	•	Both groups and models support relative transformations, meaning they are transformed relative to their current position within the scene  .
-	3.	Material Applications:
-	•	You can apply materials at any node level (group, model, part, or object). However, applying a material to a group or model applies it to all child nodes unless explicitly overridden for a part or object .
+1. Absolute Transformations:
+- Only applicable to object nodes. Group and model nodes do not support absolute transformations, and attempting to apply one will result in errors .
+2. Relative Transformations:
+- Both groups and models support relative transformations, meaning they are transformed relative to their current position within the scene  .
+3. Material Applications:
+- You can apply materials at any node level (group, model, part, or object). However, applying a material to a group or model applies it to all child nodes unless explicitly overridden for a part or object .
 
-Best Practices
+### Best Practices
 
-	•	Use Recursive Functions: When dealing with groups and their children, use recursive functions to apply transformations or properties across all nodes.
-	•	Type Checking: Ensure that you’re working with the correct node type before applying transformations or materials, as certain functions are only available for specific node types (e.g., absolute transforms on objects).
-	•	Batch Operations: For performance, batch transformations on multiple nodes using undo sessions to minimize performance overhead .
+- Use Recursive Functions: When dealing with groups and their children, use recursive functions to apply transformations or properties across all nodes.
+- Type Checking: Ensure that you’re working with the correct node type before applying transformations or materials, as certain functions are only available for specific node types (e.g., absolute transforms on objects).
+- Batch Operations: For performance, batch transformations on multiple nodes using undo sessions to minimize performance overhead .
 
 By understanding and respecting the differences and constraints between groups, models, parts, objects, and children, you can efficiently manipulate the scene using KeyShot’s scripting API.
 
-KeyShot Python Scripting: Common Errors and Solutions
+## KeyShot Python Scripting: Common Errors and Solutions
 
-##GUI Considerations:
+### GUI Considerations:
 Non-Empty Default Values for lux.getInputDialog():
 When using lux.getInputDialog() to create custom input dialogs in KeyShot, ensure that all fields, especially those of type lux.DIALOG_TEXT, have non-empty default values. This requirement prevents runtime errors related to uninitialized or empty fields in the dialog.
-Common Errors:
+### Common Errors:
 Empty Item Tuple Exception:
 
 Error Message: Exception: Items of item tuple must be specified!
@@ -654,13 +786,15 @@ Type Mismatch Error:
 Error Message: TypeError: argument 1 must be str, not list
 Cause: This error is typically raised when a function expects a string argument, but a list (or another non-string type) is provided instead.
 Solution: Carefully review function calls to ensure that all arguments are of the expected type. For functions expecting a string, do not pass lists or other composite types without first converting or extracting the appropriate string value.
-Implementation Tips:
+### Implementation Tips:
 Debugging: Use print statements or logging to debug argument types and values passed into functions. This can help identify where type mismatches occur.
 Type Checking: Implement explicit type checks or use Python's type hinting to make your code clearer and catch type-related errors early.
 Consistent Formatting: When dealing with functions that require tuples (like lux.getInputDialog()), double-check the consistency and completeness of your tuples to prevent formatting-related exceptions.
 Example:
 Here is an example illustrating how to correctly define a field in lux.getInputDialog() with a non-empty default value:
 
+
+```python
 # Define input fields for the dialog
 values = [
     ("name", lux.DIALOG_TEXT, "Model Name:", "DefaultModelName"),  # Non-empty default value
@@ -671,6 +805,8 @@ values = [
 opts = lux.getInputDialog(title="Model Import Settings",
                           desc="Configure settings for importing models.",
                           values=values)
+```
+
 
 ### GUI Scripting
 
@@ -680,6 +816,8 @@ In scripts it is especially preferable to show a single dialog when multiple inp
 
 As an example, if we wanted to write a video encoding script the following dialog might suffice:
 
+
+```pycon
 >>> values = [("folder", lux.DIALOG_FOLDER, "Folder with frames:", None), \
               ("fmt", lux.DIALOG_TEXT, "Frame file format:", "frame.%d.jpg"), \
               ("start", lux.DIALOG_INTEGER, "Start frame:", 1, (1, 4096)), \
@@ -691,6 +829,8 @@ As an example, if we wanted to write a video encoding script the following dialo
                               values = values)
 >>> opts
 {'end': 10, 'fps': 10, 'fmt': 'frame.%d.jpg', 'name': 'video.mp4', 'start': 1, 'folder': ''}
+```
+
 If you click “OK” without changing any values then you will get the Python dictionary above. Each key is associated with the value from the dialog.
 
 Note
@@ -699,10 +839,14 @@ The “\” characters above indicates a continuation of the line, so it is not 
 
 For scripts that are run often it is convenient to have KeyShot remember the last values for when the dialog is displayed again, and that is accomplished by using a unique value for the id option:
 
+
+```pycon
 >>> opts = lux.getInputDialog(title = "Encode Video", \
                               desc = "Put a description here.", \
                               values = values, \
                               id = "something_unique_goes_here")
+```
+
 If the unique value is already used by some other script then you will get undesired results. However, keep in mind that your script must use the same unique value each time to retrieve your values.
 
 
@@ -814,12 +958,12 @@ Common Errors:
 The lux.getInputDialog() function cannot be empty. This means whenever you define a field of type lux.DIALOG_TEXT, you need to ensure that the default value (the fourth element in the tuple for that field) is a non-empty string.
 
 
-##Material Graph
+### Material Graph
 
-KeyShot Scripting: Handling Material Graphs
+### KeyShot Scripting: Handling Material Graphs
 When working with material graphs in KeyShot via Python scripting, it's crucial to utilize the correct functions provided by the lux module for accessing and manipulating materials. The MaterialGraph class encapsulates a graph of material nodes constituting a material in the scene, enabling manipulation of material parameters, addition/removal of material nodes, and their association with input and output edges.
 
-Accessing Material Graphs and Handling Errors
+### Accessing Material Graphs and Handling Errors
 Function to Use:
 
 To get a material graph, use lux.getMaterialGraph(name), where name is the name of the material.
@@ -835,16 +979,16 @@ To obtain information about materials used in the scene, or to manipulate materi
 lux.getSceneMaterials(): Retrieves currently used materials in the scene.
 lux.getName(): Retrieves the name of a node, which can be useful when working with materials and model sets.
 lux.getMaterialNodes(): Retrieves a list of material root nodes within a material graph. For multi-materials, it returns individual sub-material roots; for regular materials, it returns a list with a single item equivalent to getRoot().
-Correcting Misused Functions
+### Correcting Misused Functions
 Incorrect Use: Attempting to use lux.getMaterial() or lux.getMaterials() directly, which are not valid functions and can lead to AttributeError.
 Correction: Utilize the correct functions for your intended operations, such as lux.getSceneMaterials() for retrieving materials or lux.getMaterialGraph(name) for accessing a material's graph.
-Implementation Tips
+### Implementation Tips
 Review KeyShot Python API Documentation: Always refer to the most current KeyShot Python API documentation to understand available functions and their proper usage.
 Debugging: Use print statements to debug the names and types of variables, especially when passing them as arguments to functions, to ensure they match the expected values.
 By adhering to these guidelines and utilizing the correct functions for accessing and manipulating material graphs in KeyShot, you can avoid common errors and enhance your scripting workflow.
 
-##Camera
-KeyShot Scripting: Correcting Camera Access Error
+### Camera
+### KeyShot Scripting: Correcting Camera Access Error
 Error Encounter:
 
 AttributeError: AttributeError: module 'lux' has no attribute 'getActiveCamera'
@@ -861,9 +1005,13 @@ Review KeyShot Python API Documentation: Always consult the latest KeyShot Pytho
 Code Adjustment: Replace any incorrect usage of lux.getActiveCamera with lux.getCamera() in your scripts. This function retrieves the current camera settings, including its name, type, and parameters.
 
 Example Correct Usage:
+
+```python
 # Correctly getting the active camera's information
 camera_info = lux.getCamera()
 print("Active Camera:", camera_info)
+```
+
 
 Additional Tips:
 
@@ -871,7 +1019,7 @@ Understanding Camera Functions: Familiarize yourself with other camera-related f
 Error Checking: Implement try-except blocks around your camera function calls to catch and handle potential errors gracefully, improving script robustness.
 By adhering to the correct usage of lux.getCamera() for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
 
-Final Thoughts
+### Final Thoughts
 
 By following this comprehensive guide, you will ensure that your Python scripts for KeyShot are robust, efficient, and maintainable. Emphasizing error handling, modularity, and user feedback will help you develop scripts that integrate seamlessly with KeyShot workflows. This guide is designed to assist both AI-assisted script development and manual KeyShot scripting. By following these best practices, script writers can create efficient, error-free, and maintainable Python scripts that optimize the KeyShot experience.
 

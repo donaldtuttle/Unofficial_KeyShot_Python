@@ -1,4 +1,4 @@
-### KeyShot Python Scripting Guide
+# KeyShot Python Scripting Guide
 
 ## Table of Contents
 
@@ -7,7 +7,7 @@
    - [1.2 Getting Started with Python in KeyShot](#12-getting-started-with-python-in-keyshot)
    - [1.3 Basic Python Concepts for KeyShot Scripting](#13-basic-python-concepts-for-keyshot-scripting)
    
-2. [Chapter 2: lux.SceneTree Class](#chapter-2-luxscenetree-class)
+2. [Chapter 2: lux.SceneTree Class](#chapter-2-luxscenetree-class-and-node-management)
    - [2.1 Accessing Scene Nodes Using lux.getSceneTree()](#21-accessing-scene-nodes-using-luxgetscenetree)
    - [2.2 Finding Nodes in the Scene](#22-finding-nodes-in-the-scene)
    - [2.3 Showing All Hidden Nodes](#23-showing-all-hidden-nodes)
@@ -1178,7 +1178,7 @@ By using these standard views, you can quickly change the orientation of the act
 - **Switch Between Cameras**: Use `lux.setCamera()` to switch between different cameras quickly for rendering or scene inspection.
 
 ---
-### Chapter 9: Advanced Topics and Special Cases
+## Chapter 9: Advanced Topics and Special Cases
 
 ---
 
@@ -1371,7 +1371,7 @@ lux.logInfo("CAD file imported and rendered successfully.")
 
 ---
 
-### Chapter 10: Best Practices
+## Chapter 10: Best Practices
 
 ---
 
@@ -1561,7 +1561,7 @@ Consider using a version control system like Git to manage changes to your scrip
 
 ---
 
-### Chapter 11: Common Issues and Solutions
+## Chapter 11: Common Issues and Solutions
 
 ---
 
@@ -1808,7 +1808,7 @@ else:
 ---
 
 
-### Chapter 12: Reference and Resources
+## Chapter 12: Reference and Resources
 
 ---
 

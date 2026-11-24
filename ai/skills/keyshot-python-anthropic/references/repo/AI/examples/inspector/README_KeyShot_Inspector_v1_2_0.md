@@ -1,7 +1,7 @@
 KEYSHOT INFORMATION INSPECTOR 1.2.0 — COMMUNITY RELEASE
 =======================================================
 Unofficial Python diagnostic tool for KeyShot 2026.x GUI.
-Primary script: KeyShot_Inspector_1_2.py
+Primary script: [KeyShot_Inspector_1_2.py](KeyShot_Inspector_1_2.py)
 
 QUICK START
 -----------
@@ -14,7 +14,7 @@ QUICK START
 
 ABOUT THE GUIDE
 ---------------
-Read KeyShot_Information_Inspector_v1_2_0_User_Guide.txt for:
+Read [KeyShot_Information_Inspector_v1_2_0_User_Guide.md](KeyShot_Information_Inspector_v1_2_0_User_Guide.md) for:
 * What every one of the 74 selectable operations retrieves and why it is useful.
 * The difference between category mode and Individual Gets mode.
 * The optional all-saved-camera, environment and image-style inventories.
@@ -47,7 +47,7 @@ OUTPUT
 ------
 KeyShot_Information_Report.txt (or a non-overwriting timestamped name)
 KeyShot_Inspector_v1_2_0_Trace.txt (overwritten at each new diagnostic run)
-Optional <report_name>.metadata and <report_name>.xmp (non-overwriting).
+Optional `<report_name>.metadata` and `<report_name>.xmp` (non-overwriting).
 
 REPORT COVERAGE
 ---------------
@@ -63,7 +63,7 @@ Offline regression tests exist, but native KeyShot crashes cannot be
 simulated or ruled out. The user should validate on their own 2026.x build.
 
 Files included in this GitHub folder:
-- KeyShot_Inspector_1_2.py (Python script)
-- KeyShot_Information_Inspector_v1_2_0_User_Guide.txt (full guide)
-- README_KeyShot_Inspector_v1_2_0.txt (quick start)
-- test_KeyShot_Information_Inspector_v1_2_0.py (offline tests)
+- [KeyShot_Inspector_1_2.py](KeyShot_Inspector_1_2.py) (Python script)
+- [KeyShot_Information_Inspector_v1_2_0_User_Guide.md](KeyShot_Information_Inspector_v1_2_0_User_Guide.md) (full guide)
+- README_KeyShot_Inspector_v1_2_0.md (quick start)
+- [test_KeyShot_Information_Inspector_v1_2_0.py](test_KeyShot_Information_Inspector_v1_2_0.py) (offline tests)

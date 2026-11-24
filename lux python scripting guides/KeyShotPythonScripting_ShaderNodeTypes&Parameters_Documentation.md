@@ -1,4 +1,4 @@
-### Geometry Nodes
+# Geometry Nodes
 
 ## Bubbles
 - density (Type: 4)
@@ -51,7 +51,7 @@
 - resolution in pixels (Type: 1)
 
 
-### Texture Nodes
+# Texture Nodes
 
 ## Texture Map
 - blend_color (Type: 1)
@@ -168,7 +168,7 @@
 - uv_shift_v (Type: 4)
 - uv_two_sided (Type: 1)
 
-### 2D Procedural
+# 2D Procedural
 
 ## Brushed
 - bump_height (Type: 4)
@@ -287,7 +287,7 @@
 - weft_width (Type: 4)
 - width_variation (Type: 4)
 
-### 3D Procedural
+# 3D Procedural
 
 ## 3D Paint
 - background (Type: 14)
@@ -551,7 +551,7 @@
 - transform_obj_to_uv (Type: 12)
 - winter (Type: 13)
 
-### Animation Nodes
+# Animation Nodes
 
 ## Color Fade
 - blend (Type: 1)
@@ -572,7 +572,7 @@
 - name (Type: 9)
 - start_time (Type: 4)
 
-### Utlity Nodes
+# Utlity Nodes
 
 ## Bump Add
 - bump_1 (Type: 65539)

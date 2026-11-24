@@ -1,13 +1,15 @@
 ### Classes
-MaterialGraph
-MaterialMetadata
-ShaderEdge
-ShaderNode
-ShaderParameter
+- MaterialGraph
+- MaterialMetadata
+- ShaderEdge
+- ShaderNode
+- ShaderParameter
 
 ## class MaterialGraph
 MaterialGraph encapsulates a graph of material nodes that constitutes a material in the scene, and enables manipulation of material parameters, adding/removing material nodes, and associating them with input and output edges. Get a material graph by using lux.getMaterialGraph(name).
  
+
+```text
 Methods defined here:
 __eq__(self, value, /)
 Return self==value.
@@ -70,6 +72,8 @@ Controls multi-material features of material graph. If disabling a multi-materia
 enable = Enable or disable. *
 Static methods defined here:
 __new__(*args, **kwargs) 
+```
+
 
 ## class MaterialMetadata
 The MaterialMetadata exposes the functionality needed to edit CMF meta data for a material.
@@ -83,6 +87,8 @@ lux.findMaterialMetadata(<material_name>).
 Save changes by passing an instance of this class to:
 lux.saveMaterialMetadata(<metadata_instance>)
  
+
+```text
 Methods defined here:
 __init__(self, /, *args, **kwargs)
 Initialize self.  See help(type(self)) for accurate signature.
@@ -105,11 +111,15 @@ name = name of field.
 value = new value for field.
 Static methods defined here:
 __new__(*args, **kwargs) 
+```
 
 
-##class ShaderEdge
+
+## class ShaderEdge
 ShaderEdge encapsulates a shader edge from a source shader node to a target shader node as part of a material graph. Get a shader edge via a shader node from a material graph instance.
  
+
+```text
 Methods defined here:
 __eq__(self, value, /)
 Return self==value.
@@ -141,11 +151,15 @@ isEnabled(...)
 Checks if shader edge is enabled.
 Static methods defined here:
 __new__(*args, **kwargs) 
+```
+
 
 
 ## class ShaderNode
 ShaderNode encapsulates a shader node as part of a material graph, and enables manipulation of material parameters. Get a shader node via a material graph instance.
  
+
+```text
 Methods defined here:
 __eq__(self, value, /)
 Return self==value.
@@ -189,11 +203,15 @@ setName(...)
 Set shader node's name.
 Static methods defined here:
 __new__(*args, **kwargs) 
+```
+
 
 
 ## class ShaderParameter
 ShaderParameter encapsulates a parameter of a shader node as part of a material graph. Get a shader parameter via a shader node instance.
  
+
+```text
 Methods defined here:
 __hash__(self, /)
 Return hash(self).
@@ -220,6 +238,8 @@ Set concrete value of shader parameter. Cannot be called on pure parameters.
 value = The supported input types depend on the shader parameter type. *
 Static methods defined here:
 __new__(*args, **kwargs) 
+```
+
 
 
 ## saveMaterialMetadata(...)
@@ -232,6 +252,8 @@ obj = Object ID to apply to. *
 link = Whether to link to the material or create a duplicate. (default = False)
 
 ## SHADER PARAMETERS
+
+```text
 PARAMETER_TYPE_ANIMATIONCURVE = 17
 PARAMETER_TYPE_AXALTACOLOR = 18
 PARAMETER_TYPE_BOOLEAN = 1
@@ -255,8 +277,12 @@ PARAMETER_TYPE_SHADERUV = 65541
 PARAMETER_TYPE_STRING = 9
 PARAMETER_TYPE_STRINGLIST = 10
 PARAMETER_TYPE_WEAVEPATTERN = 19
+```
+
 
 ## SHADER_TYPES
+
+```text
 SHADER_TYPE_ADVANCED = 'lux_advanced'
 SHADER_TYPE_ANISOTROPIC = 'lux_anisotropic'
 SHADER_TYPE_AXALTA_PAINT = 'dupont_paint'
@@ -343,6 +369,8 @@ SHADER_TYPE_WIREFRAME = 'show_wireframe'
 SHADER_TYPE_WOOD = 'lux_wood'
 SHADER_TYPE_WOOD_ADVANCED = 'lux_wood2'
 SHADER_TYPE_XRAY = 'lux_xray'
+```
+
 
 ## NOTE
 Material Types bring the power to quickly apply real world, physically accurate material properties to your parts. Each Material Type comes preset with settings to quickly apply or change material with the option to adjust each setting as desired. There are four categories of KeyShot Material Types:
@@ -359,7 +387,7 @@ Plastic
 Thin Film
 Translucent
 
-##Advanced Materials
+## Advanced Materials
 Advanced
 Anisotropic
 Dielectric
@@ -3234,7 +3262,7 @@ Plastic
 Thin Film
 Translucent
 
-##Advanced Materials
+## Advanced Materials
 Advanced
 Anisotropic
 Dielectric

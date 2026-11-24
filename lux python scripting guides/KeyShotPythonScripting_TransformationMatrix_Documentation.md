@@ -1,9 +1,9 @@
-## Scripting Transformation Matrix Documentation TOC
+# Scripting Transformation Matrix Documentation TOC
 
 1. [Introduction to Transformation Matrices](#introduction-to-transformation-matrices)
 2. [Matrix Operations](#matrix-operations)
     - [Matrix Multiplication](#matrix-multiplication)
-    - [Matrix Inversion](#matrix-inversion)
+    - Matrix Inversion
 3. [Transformations](#transformations)
     - [Translation](#translation)
     - [Rotation](#rotation)
@@ -12,18 +12,24 @@
     - [Applying a Transformation Matrix](#applying-a-transformation-matrix)
     - [Combining Multiple Transformations](#combining-multiple-transformations)
 5. [Common Errors and Debugging](#common-errors-and-debugging)
-    - [Common Issues](#common-issues)
-    - [Troubleshooting Steps](#troubleshooting-steps)
+    - Common Issues
+    - Troubleshooting Steps
 6. [Example Scripts](#example-scripts)
     - [Basic Transformation Matrix Example](#basic-transformation-matrix-example)
     - [Advanced Transformation Matrix Example](#advanced-transformation-matrix-example)
-7. [References](#references)
+7. References
+
+<a name="common-errors-and-debugging"></a>
 
 ## Best Practices and Common Errors in Scripting Translations and Positioning of Models in KeyShot
+
+<a name="introduction-to-transformation-matrices"></a>
 
 ### Introduction to Pattern Matrices
 
 A **pattern matrix** is a mathematical construct used in KeyShot scripting to position and orient objects (or their duplicates) in 3D space according to a specific pattern, such as Spiral, Grid, Circle, or Pyramid. Each pattern has a unique matrix that defines how objects are arranged. Understanding how these matrices are constructed and applied in scripts is crucial for creating dynamic and visually appealing scenes.
+
+<a name="matrix-operations"></a>
 
 ### Matrix Basics
 
@@ -191,6 +197,8 @@ The scene tree is a hierarchical structure that organizes all the elements in a 
     ```
     - The transformation matrix is calculated based on the selected pattern and applied to position the object.
 
+<a name="transformations"></a>
+
 ### Additional Transformations
 
 In some scenarios, additional transformations such as random rotation or scattering may be applied:
@@ -215,7 +223,11 @@ dup.applyTransform(transform_matrix)
 4. **Transformation**: Apply calculated transformations to position objects according to the selected pattern.
 5. **Additional Transformations**: Apply any extra transformations (rotation, scatter) as needed.
 
+<a name="example-scripts"></a>
+
 ### Case Studies and Examples
+
+<a name="advanced-transformation-matrix-example"></a>
 
 #### Spiral Pattern Duplicator Script
 
@@ -384,6 +396,8 @@ main()
 ```
 
 
+<a name="using-transformation-matrices-in-keyshot"></a>
+
 ## Understanding the Logic Behind Transformations in KeyShot Scripting
 
 In KeyShot, transforming models or parts within a 3D scene involves manipulating their position, orientation, and scale. Whether you're working with simple translations or complex matrices, understanding the underlying logic is crucial for precise control over how objects are moved and arranged in the scene.
@@ -403,8 +417,13 @@ A **transformation matrix** is a versatile tool in 3D graphics, encapsulating tr
   - The fourth column contains the translation vector (x, y, z).
   - The fourth row is typically `[0, 0, 0, 1]`, ensuring proper matrix multiplication.
 
+<a name="combining-multiple-transformations"></a>
+
 #### b. **Combining Transformations**
 - **Order Matters**: The order in which transformations are applied affects the outcome. For instance, rotating an object and then translating it will produce a different result than translating it first and then rotating.
+
+<a name="matrix-multiplication"></a>
+
 - **Matrix Multiplication**: Multiple transformations can be combined into a single matrix using multiplication:
     ```python
     final_matrix = translation_matrix.mul(rotation_matrix).mul(scaling_matrix)
@@ -418,6 +437,8 @@ A **transformation matrix** is a versatile tool in 3D graphics, encapsulating tr
 ### 2. **Simple Translations: Moving Objects Without Rotation or Scaling**
 
 When your goal is to move an object without changing its orientation or size, simple translations are often sufficient. These operations involve shifting an object's position along the x, y, and z axes by specific amounts.
+
+<a name="basic-transformation-matrix-example"></a>
 
 #### a. **Translation Logic**
 - **Translation Vector**: This is a vector that defines how far and in what direction the object should move. For example, a vector `[x_offset, y_offset, z_offset]` moves the object by `x_offset` units along the x-axis, `y_offset` units along the y-axis, and `z_offset` units along the z-axis.
@@ -447,6 +468,8 @@ When your goal is to move an object without changing its orientation or size, si
     combined_matrix = luxmath.Matrix().makeIdentity().translate(combined_translation)
     obj.applyTransform(combined_matrix)
     ```
+
+<a name="rotation"></a>
 
 ### 3. **Rotations: Changing the Orientation of Objects**
 
@@ -478,6 +501,8 @@ Rotation changes the orientation of an object around a specific axis. In KeyShot
     obj.applyTransform(combined_matrix)
     ```
 
+<a name="scaling"></a>
+
 ### 4. **Scaling: Resizing Objects**
 
 Scaling changes the size of an object along the x, y, and z axes. While scaling is less commonly used in animation scripts, it's essential to understand how to apply it when needed.
@@ -502,6 +527,8 @@ Scaling changes the size of an object along the x, y, and z axes. While scaling 
 - **Order of Operations**: As with rotations and translations, the order in which you apply scaling affects the final transformation.
 
 ### 5. **Common Transformation Scenarios**
+
+<a name="applying-a-transformation-matrix"></a>
 
 #### a. **Moving an Object to a Specific Position**
 To move an object to an absolute position in the scene:

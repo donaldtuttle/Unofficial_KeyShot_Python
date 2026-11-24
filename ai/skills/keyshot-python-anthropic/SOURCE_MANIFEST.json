@@ -426,9 +426,9 @@
     "content": [
       "AI/best-practices.md",
       "AI/constraints.md",
-      "AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt",
+      "AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.md",
       "AI/examples/inspector/KeyShot_Inspector_1_2.py",
-      "AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt",
+      "AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.md",
       "AI/examples/inspector/RUNTIME_CHECKS.md",
       "AI/examples/inspector/test_KeyShot_Information_Inspector_v1_2_0.py",
       "AI/examples/openpbr_material_converter.py",

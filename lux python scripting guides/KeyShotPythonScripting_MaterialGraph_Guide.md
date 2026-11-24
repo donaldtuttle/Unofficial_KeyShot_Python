@@ -1,4 +1,4 @@
-### KeyShot Python MaterialGraph Scripting
+# KeyShot Python MaterialGraph Scripting
 
 ### Table of Contents
 
@@ -77,74 +77,79 @@
     - [16.2 Avoiding Ambiguity Between Material Graph and Node Graph](#162-avoiding-ambiguity-between-material-graph-and-node-graph)
 
 
-1. Introduction to KeyShot Python Scripting for Material Graphs
+## <a name="introduction-to-keyshot-python-scripting-for-material-graphs"></a>1. Introduction to KeyShot Python Scripting for Material Graphs
 
-• Objective: Explain what material graphs are in KeyShot and why they’re useful in 3D rendering.
-• Target Learning: Understand how Python scripting interacts with the material graph to perform automated tasks, such as duplicating nodes and modifying materials.
+- <a name="11-objective"></a>Objective: Explain what material graphs are in KeyShot and why they’re useful in 3D rendering.
+- <a name="12-target-learning"></a>Target Learning: Understand how Python scripting interacts with the material graph to perform automated tasks, such as duplicating nodes and modifying materials.
 
-2. Key Concepts and Components from the Provided Script
+## <a name="key-concepts-and-components-from-the-provided-script"></a>2. Key Concepts and Components from the Provided Script
 
-• Multi-Material as an Instance Copy: Explain how multi-material containers are essentially treated as instances of their sub-materials, making manipulation efficient and flexible in workflows.
-• Node Duplication in Material Graph:
-• Introduce lux.getMaterialGraph(name) for accessing material graphs, and demonstrate how to duplicate nodes using target_graph.newNode() .
-• Highlight the importance of obtaining correct types using functions like source_node.getType() and the practical implementation of duplicate_node().
+- <a name="21-multi-material-as-an-instance-copy"></a>Multi-Material as an Instance Copy: Explain how multi-material containers are essentially treated as instances of their sub-materials, making manipulation efficient and flexible in workflows.
+- <a name="22-node-duplication-in-material-graph"></a>Node Duplication in Material Graph:
+- Introduce lux.getMaterialGraph(name) for accessing material graphs, and demonstrate how to duplicate nodes using target_graph.newNode() .
+- Highlight the importance of obtaining correct types using functions like source_node.getType() and the practical implementation of duplicate_node().
 
-3. Implementing GUI Elements in KeyShot Scripting
+## <a name="implementing-gui-elements-in-keyshot-scripting"></a>3. Implementing GUI Elements in KeyShot Scripting
 
-• Challenges with GUI in KeyShot:
-• Discuss common constraints and errors users encounter when creating input dialogs. Emphasize the requirement that input fields must not be empty and how type mismatches can lead to runtime errors .
-• lux.getInputDialog() Usage: Walk through an example of how to gather user input with lux.getInputDialog() for selecting a multi-material or sub-material .
-• Practice Exercise: Have participants modify the script to include an additional input dialog that lets users choose rendering parameters for each duplicated sub-material.
+- <a name="31-challenges-with-gui-in-keyshot"></a>Challenges with GUI in KeyShot:
+- Discuss common constraints and errors users encounter when creating input dialogs. Emphasize the requirement that input fields must not be empty and how type mismatches can lead to runtime errors .
+- <a name="32-luxgetinputdialog-usage"></a>lux.getInputDialog() Usage: Walk through an example of how to gather user input with lux.getInputDialog() for selecting a multi-material or sub-material .
+- <a name="33-practice-exercise"></a>Practice Exercise: Have participants modify the script to include an additional input dialog that lets users choose rendering parameters for each duplicated sub-material.
 
-4. Deep Dive: Script Breakdown
+## <a name="deep-dive-script-breakdown"></a>4. Deep Dive: Script Breakdown
 
-• Node Type Extraction:
-• The function get_node_type(source_node) extracts the type of the node, ensuring that the newly created node matches the source’s type. Highlight why this is essential for maintaining consistency across duplicated nodes and how to handle edge cases where the node type is a dictionary.
-• Parameter Duplication:
-• Explain the function duplicate_parameters(), detailing how parameters are transferred from the source to the new node while skipping “pure parameters” that don’t hold concrete values (e.g., opacity maps that are placeholders) .
+- <a name="41-node-type-extraction"></a>Node Type Extraction:
+- The function get_node_type(source_node) extracts the type of the node, ensuring that the newly created node matches the source’s type. Highlight why this is essential for maintaining consistency across duplicated nodes and how to handle edge cases where the node type is a dictionary.
+- <a name="42-parameter-duplication"></a>Parameter Duplication:
+- Explain the function duplicate_parameters(), detailing how parameters are transferred from the source to the new node while skipping “pure parameters” that don’t hold concrete values (e.g., opacity maps that are placeholders) .
 
-5. Edge Handling in Material Graphs
+## <a name="edge-handling-in-material-graphs"></a>5. Edge Handling in Material Graphs
 
-• Duplicating Edges Between Nodes:
-• Explain how the script re-establishes connections between nodes using getOutputEdges(), ensuring that the relationships between nodes are preserved after duplication.
-• Hands-On Practice: Have participants connect a newly created node to an existing one using target_graph.newEdge(source_node, target_node, param_name).
+- <a name="51-duplicating-edges-between-nodes"></a>Duplicating Edges Between Nodes:
+- Explain how the script re-establishes connections between nodes using getOutputEdges(), ensuring that the relationships between nodes are preserved after duplication.
+- <a name="52-hands-on-practice"></a>Hands-On Practice: Have participants connect a newly created node to an existing one using target_graph.newEdge(source_node, target_node, param_name).
 
-6. Adding and Verifying Sub-Materials in a Multi-Material
+## <a name="adding-and-verifying-sub-materials-in-a-multi-material"></a>6. Adding and Verifying Sub-Materials in a Multi-Material
 
-• KeyShot’s Multi-Material Limitations and Advantages:
-• Teach how to add sub-materials using multi_material.addSubMaterial() and verify the addition by retrieving the sub-materials list .
-• Validation Check: Demonstrate how to handle situations when a material addition might fail and the steps required to debug using Python’s exception handling (try...except).
+- <a name="61-keyshots-multi-material-limitations-and-advantages"></a>KeyShot’s Multi-Material Limitations and Advantages:
+- Teach how to add sub-materials using multi_material.addSubMaterial() and verify the addition by retrieving the sub-materials list .
+- <a name="62-validation-check"></a>Validation Check: Demonstrate how to handle situations when a material addition might fail and the steps required to debug using Python’s exception handling (try...except).
 
-7. Common Errors and Troubleshooting
+## <a name="common-errors-and-troubleshooting"></a>7. Common Errors and Troubleshooting
 
-• GUI Dialog Best Practices:
-• Emphasize avoiding empty tuples and handling type mismatches in dialogs .
-• Highlight the need for robust error handling, especially when the material graph or input values could be incorrect.
+- <a name="71-gui-dialog-best-practices"></a>GUI Dialog Best Practices:
+- Emphasize avoiding empty tuples and handling type mismatches in dialogs .
+- <a name="72-robust-error-handling"></a>Highlight the need for robust error handling, especially when the material graph or input values could be incorrect.
 
-8. Advanced Concepts for Curious Participants
+## <a name="advanced-concepts-for-curious-participants"></a>8. Advanced Concepts for Curious Participants
 
-• Luxmath for Node Transformations:
-• Introduce luxmath, particularly luxmath.Matrix(), and explain how transformations like translating nodes apply in material graphs .
-• Practical examples to transform shader nodes or adjust their positioning in the material graph.
+- <a name="81-luxmath-for-node-transformations"></a>Luxmath for Node Transformations:
+- Introduce luxmath, particularly luxmath.Matrix(), and explain how transformations like translating nodes apply in material graphs .
+- <a name="82-practical-examples"></a>Practical examples to transform shader nodes or adjust their positioning in the material graph.
 
-9. Summary and Key Takeaways
+## <a name="summary-and-key-takeaways"></a>9. Summary and Key Takeaways
 
-• Multi-Material as Copy/Instance:
-• Recap how understanding that a multi-material can be treated as an instance allows users to manage complex materials more effectively.
-• Importance of GUI and User Interaction:
-• Emphasize the importance of getting user feedback through dialogs and properly validating input to prevent errors.
+- <a name="91-multi-material-as-copyinstance"></a>Multi-Material as Copy/Instance:
+- Recap how understanding that a multi-material can be treated as an instance allows users to manage complex materials more effectively.
+- <a name="92-importance-of-gui-and-user-interaction"></a>Importance of GUI and User Interaction:
+- Emphasize the importance of getting user feedback through dialogs and properly validating input to prevent errors.
 
-Key Learning Takeaways
+## <a name="key-learning-takeaways"></a>Key Learning Takeaways
 
-1. Multi-Material Container: Recognizing that a multi-material can be treated as a copy or instance of its sub-materials allows for powerful replication and customization while preserving hierarchy.
-2. GUI Constraints in KeyShot: Understanding the limitations of GUI interactions, such as the requirement that input fields must not be empty, and learning effective error handling techniques for dialog interactions .
-3. Material Graph Manipulation: Learning to duplicate nodes and parameters effectively, including handling edge connections between nodes, is critical for creating sophisticated materials without redundant manual work.
+1. <a name="101-multi-material-container"></a>Multi-Material Container: Recognizing that a multi-material can be treated as a copy or instance of its sub-materials allows for powerful replication and customization while preserving hierarchy.
+2. <a name="102-gui-constraints-in-keyshot"></a>GUI Constraints in KeyShot: Understanding the limitations of GUI interactions, such as the requirement that input fields must not be empty, and learning effective error handling techniques for dialog interactions .
+3. <a name="103-material-graph-manipulation"></a>Material Graph Manipulation: Learning to duplicate nodes and parameters effectively, including handling edge connections between nodes, is critical for creating sophisticated materials without redundant manual work.
 
 
-• Viewers are given the original script and a slightly modified version to correct.
-• Introduce common errors (like type mismatches or null nodes) intentionally, and walk viewers through how to debug and resolve them.
-• Participants will use the KeyShot scripting console to test lux.getMaterialGraph(), lux.getInputDialog(), and edge creation methods, gaining hands-on experience.
+- <a name="hands-on-exercises-and-walkthrough"></a><a name="111-modifying-and-correcting-scripts"></a>Viewers are given the original script and a slightly modified version to correct.
+- <a name="112-debugging-common-errors"></a>Introduce common errors (like type mismatches or null nodes) intentionally, and walk viewers through how to debug and resolve them.
+- <a name="113-testing-luxgetmaterialgraph-and-edge-creation-methods"></a>Participants will use the KeyShot scripting console to test lux.getMaterialGraph(), lux.getInputDialog(), and edge creation methods, gaining hands-on experience.
 
+
+<a name="author-information"></a><a name="121-version-information"></a><a name="122-script-purpose"></a>
+
+
+```python
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.3.5
 # Duplicates sub-material within the parent multi-material's graph, skipping pure parameters and validating edges.
@@ -361,7 +366,11 @@ print(f"An error occurred while duplicating the sub-material: {e}")
 
 # Run the script
 duplicate_submaterial_in_multimaterial()
+```
 
+
+
+```python
 # AUTHOR: LUX DT ChatGPT
 # VERSION: 1.3.6
 # PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge
@@ -536,26 +545,31 @@ else:
 print(f"Type mismatch for parameter '{param.getName()}' during duplication.")
 except Exception as e:
 print(f"Error duplicating parameter '{param.getName()}': {e}")
+```
 
-Traversing the KeyShot Material Graph
+
+## Traversing the KeyShot Material Graph
+
+
+<a name="131-handling-node-names-and-ids"></a>
 
 My biggest takeaway is in regards to the dynamic nature of Node IDs and the need to properly handle node names, especially when dealing with new nodes that may also be created without names.
 
 To ensure consistency even after saving and reopening a KeyShot project (which could change Node IDs), it’s crucial to:
 
 1. Name all Nodes, Both Old and New: Assign names to nodes if they don’t already have one. This makes the nodes identifiable not only in the current session but also across different sessions where Node IDs may change.
-2. Define a Consistent Naming Convention: For unnamed nodes, use a systematic approach to generate names that are consistent, meaningful, and unique enough to reduce confusion during traversal or duplication.
+2. <a name="132-consistent-naming-strategy-for-nodes"></a>Define a Consistent Naming Convention: For unnamed nodes, use a systematic approach to generate names that are consistent, meaningful, and unique enough to reduce confusion during traversal or duplication.
 3. Ensure Unique Naming for Newly Created Nodes: If the old node does not have a name, assign a generated name to the newly duplicated node, ensuring all nodes have a name for further operations or connections.
 
 Script:
 
 The script below has been created with a consistent naming strategy for nodes:
 
-• It will assign a name to any unnamed nodes encountered during traversal.
-• Newly duplicated nodes will always be given a name, even if the original node lacked one.
-• The naming convention will ensure unique identification of nodes by using patterns like "Duplicated_{original_name_or_id}".
+- It will assign a name to any unnamed nodes encountered during traversal.
+- Newly duplicated nodes will always be given a name, even if the original node lacked one.
+- The naming convention will ensure unique identification of nodes by using patterns like "Duplicated_{original_name_or_id}".
 
-‘’’python
+```python
 import lux
 
 try:
@@ -672,165 +686,222 @@ except ValueError as ve:
 print(f"[ERROR] {ve}")
 except Exception as e:
 print(f"[ERROR] Unexpected error: {e}")
-‘’’
+```
 
-Key Enhancements for Handling Missing Node Names:
+## <a name="key-enhancements-for-handling-missing-node-names"></a>Key Enhancements for Handling Missing Node Names:
 
-1. Fallback Naming for Unnamed Nodes:
-• When a node doesn’t have a name, it is assigned a temporary name using the pattern "Unnamed_Node_<ID>". This ensures that every node can be uniquely referred to, even if it didn’t originally have a name.
-2. Assigning Names to New Nodes:
-• When creating a new node (new_material_node), it is assigned a name immediately. If the original node was unnamed, the new node is given a name based on a concatenation of "Duplicated_" and the fallback name or original name.
-3. Use of Node IDs:
-• Node IDs are used throughout the script as a backup to identify nodes, particularly for logging and creating connections (newEdge()).
-• This ensures that even if the name is not informative or absent, the Node ID provides unique identification within the session.
+1. <a name="151-fallback-naming-for-unnamed-nodes"></a>Fallback Naming for Unnamed Nodes:
+- When a node doesn’t have a name, it is assigned a temporary name using the pattern "`Unnamed_Node_<ID>`". This ensures that every node can be uniquely referred to, even if it didn’t originally have a name.
+2. <a name="152-assigning-names-to-new-nodes"></a>Assigning Names to New Nodes:
+- When creating a new node (new_material_node), it is assigned a name immediately. If the original node was unnamed, the new node is given a name based on a concatenation of "Duplicated_" and the fallback name or original name.
+3. <a name="153-primary-use-of-node-ids-for-identification-and-logging"></a>Use of Node IDs:
+- Node IDs are used throughout the script as a backup to identify nodes, particularly for logging and creating connections (newEdge()).
+- This ensures that even if the name is not informative or absent, the Node ID provides unique identification within the session.
 4. Persistent Naming for Future Sessions:
-• Assigning names to unnamed nodes ensures that these nodes will have identifiable names even if the Node IDs change between sessions (e.g., after saving and reopening a file). This helps maintain a consistent reference to nodes.
+- Assigning names to unnamed nodes ensures that these nodes will have identifiable names even if the Node IDs change between sessions (e.g., after saving and reopening a file). This helps maintain a consistent reference to nodes.
 
 Summary:
 
-• Node Name Fallbacks: The script now uses temporary names ("Unnamed_Node_<ID>") for nodes that lack original names, ensuring that all nodes are named and easier to track.
-• Unique Naming for Duplicated Nodes: The new nodes are always assigned a name, which is critical for identifying them in future sessions where Node IDs may change.
-• Primary Use of Node IDs for Identification and Logging: This ensures that every node is uniquely and dynamically tracked during operations, reducing the risk of errors when node names are missing.
+- Node Name Fallbacks: The script now uses temporary names ("`Unnamed_Node_<ID>`") for nodes that lack original names, ensuring that all nodes are named and easier to track.
+- Unique Naming for Duplicated Nodes: The new nodes are always assigned a name, which is critical for identifying them in future sessions where Node IDs may change.
+- Primary Use of Node IDs for Identification and Logging: This ensures that every node is uniquely and dynamically tracked during operations, reducing the risk of errors when node names are missing.
 
-**Conclusion**
+## <a name="conclusion-and-summary"></a>**Conclusion**
 
-##NODE vs. Material Names
+## NODE vs. Material Names
 
-1. Node Names vs. Material Names:
+1. <a name="161-differentiating-node-names-vs-material-names"></a>Node Names vs. Material Names:
 
-• Material Names: These are distinct identifiers for different materials (or multi-materials) within the scene. For example, "Center_Material_MM" is a name for a specific material in the entire KeyShot scene.
-• Node Names: These names represent specific nodes within a material graph, such as shaders, textures, or other graph components.
+- Material Names: These are distinct identifiers for different materials (or multi-materials) within the scene. For example, "Center_Material_MM" is a name for a specific material in the entire KeyShot scene.
+- Node Names: These names represent specific nodes within a material graph, such as shaders, textures, or other graph components.
 
 In the script:
 
-• Material names are accessed using functions like lux.getSceneMaterials() and are directly referenced when accessing material graphs using lux.getMaterialGraph(material_name).
-• Node names are internal to a material graph and represent specific nodes. This distinction is maintained by treating material-related functions and variables differently from node-related ones.
+- Material names are accessed using functions like lux.getSceneMaterials() and are directly referenced when accessing material graphs using lux.getMaterialGraph(material_name).
+- Node names are internal to a material graph and represent specific nodes. This distinction is maintained by treating material-related functions and variables differently from node-related ones.
 
 2. Clear Differentiation Between Node Names and IDs:
 
-• Node IDs: These are unique identifiers assigned by KeyShot to each node within a material graph. They are used primarily when making connections, creating nodes, and ensuring the correct node is identified.
+- Node IDs: These are unique identifiers assigned by KeyShot to each node within a material graph. They are used primarily when making connections, creating nodes, and ensuring the correct node is identified.
 
 The use of Node IDs provides the following benefits:
 
-• Uniqueness: Even if two nodes share the same name (or lack a name entirely), their Node IDs will be distinct.
-• Connection Integrity: When duplicating nodes or maintaining edges, using Node IDs ensures that the script connects the correct nodes, regardless of their names or whether they have names at all.
+- Uniqueness: Even if two nodes share the same name (or lack a name entirely), their Node IDs will be distinct.
+- Connection Integrity: When duplicating nodes or maintaining edges, using Node IDs ensures that the script connects the correct nodes, regardless of their names or whether they have names at all.
 
 3. Specific Use of Names and IDs:
 
-• When traversing the material graph, the script:
-• Uses getNodes() to collect all nodes and identifies nodes using their names and types if available.
-• Falls back to Node IDs for logging and assigning fallback names if a node name is missing.
-• When duplicating nodes or creating connections between nodes:
-• Node IDs are used to identify the exact nodes being connected (edge.getSource().getId() and edge.getTarget().getId()). This ensures that the new edges are linked to the exact replicas of the original nodes.
-• The new node is always given a name immediately after being created (new_material_node.setName(new_material_node_name)), ensuring that subsequent references are clear.
+- When traversing the material graph, the script:
+- Uses getNodes() to collect all nodes and identifies nodes using their names and types if available.
+- Falls back to Node IDs for logging and assigning fallback names if a node name is missing.
+- When duplicating nodes or creating connections between nodes:
+- Node IDs are used to identify the exact nodes being connected (edge.getSource().getId() and edge.getTarget().getId()). This ensures that the new edges are linked to the exact replicas of the original nodes.
+- The new node is always given a name immediately after being created (new_material_node.setName(new_material_node_name)), ensuring that subsequent references are clear.
 
-4. Avoiding Ambiguity Between Material Graph and Node Graph:
+4. <a name="133-avoiding-ambiguity-between-material-graph-and-node-graph"></a><a name="162-avoiding-ambiguity-between-material-graph-and-node-graph"></a>Avoiding Ambiguity Between Material Graph and Node Graph:
 
-• Material Graph: When the script accesses a material graph, it does so using material names (lux.getMaterialGraph(material_name)), which provides the full graph of a given material, including all nodes.
-• Node Operations: Once the material graph is accessed, node operations (e.g., creating, duplicating, or connecting nodes) are performed using node-specific functions like graph.getNodes(), node.getId(), newNode(), and newEdge(). This separation keeps node operations distinct from material-level operations.
+- Material Graph: When the script accesses a material graph, it does so using material names (lux.getMaterialGraph(material_name)), which provides the full graph of a given material, including all nodes.
+- Node Operations: Once the material graph is accessed, node operations (e.g., creating, duplicating, or connecting nodes) are performed using node-specific functions like graph.getNodes(), node.getId(), newNode(), and newEdge(). This separation keeps node operations distinct from material-level operations.
 
 5. No Confusion Between Material Graph Nodes and Scene-Level Material Names:
 
-• The scene-level material names (scene_material_names = lux.getSceneMaterials()) are distinct from the node names inside any given material graph.
-• The script first accesses a material graph using a scene-level material name and then operates on the nodes within the graph by referencing node names or IDs.
+- The scene-level material names (scene_material_names = lux.getSceneMaterials()) are distinct from the node names inside any given material graph.
+- The script first accesses a material graph using a scene-level material name and then operates on the nodes within the graph by referencing node names or IDs.
 
-Detailed Example to Clarify Traversal and Connection Integrity:
+### Detailed Example to Clarify Traversal and Connection Integrity:
 
 Here’s a simplified example to demonstrate why this approach prevents confusion:
 
 1. Access the Material Graph:
 
-existing_multi_material_graph = lux.getMaterialGraph(existing_multi_material_name)
 
-• Here, existing_multi_material_name is a material name that represents a material at the scene level. The script retrieves the entire graph structure of this material.
+```python
+existing_multi_material_graph = lux.getMaterialGraph(existing_multi_material_name)
+```
+
+
+- Here, existing_multi_material_name is a material name that represents a material at the scene level. The script retrieves the entire graph structure of this material.
 
 2. Traverse the Nodes in the Material Graph:
 
-all_nodes = existing_multi_material_graph.getNodes()
 
-• all_nodes contains nodes within the material graph, not to be confused with materials in the scene.
+```python
+all_nodes = existing_multi_material_graph.getNodes()
+```
+
+
+- all_nodes contains nodes within the material graph, not to be confused with materials in the scene.
 
 3. Identify Nodes Using Names and IDs:
 
+
+```python
 for node in all_nodes:
 node_name = node.getName() if node.getName() else f"Unnamed_Node_{node.getId()}"
 node_id = node.getId()
 # Operations with node_name and node_id
+```
 
-• node_name and node_id are used to identify nodes within the graph. Using a fallback name (Unnamed_Node_<ID>) ensures that all nodes are recognizable.
+
+- node_name and node_id are used to identify nodes within the graph. Using a fallback name (`Unnamed_Node_<ID>`) ensures that all nodes are recognizable.
 
 4. Creating Connections Using Node IDs:
 
+
+```python
 for edge in existing_multi_material_graph.getEdges():
 source_node = edge.getSource()
 target_node = edge.getTarget()
 # Use Node IDs to establish new connections
 new_material_graph.newEdge(new_source_node, new_target_node, edge.getParameter())
+```
 
-• The edge.getSource() and edge.getTarget() methods provide the nodes that form the connection. The script relies on Node IDs here (new_source_node.getId() and new_target_node.getId()) to accurately recreate these connections in the duplicated structure.
+
+- The edge.getSource() and edge.getTarget() methods provide the nodes that form the connection. The script relies on Node IDs here (new_source_node.getId() and new_target_node.getId()) to accurately recreate these connections in the duplicated structure.
 
 ## Takeaway:
 
-• Clear Differentiation: The script maintains a clear differentiation between material-level operations and node-level operations. Materials are identified at the scene level using names, while nodes within a material graph are primarily identified using Node IDs and names when available.
-• Fallback Mechanism: For nodes lacking a name, a fallback mechanism assigns a unique name based on the Node ID, ensuring that nodes are always identifiable across different operations.
-• Redundancy in Node Identification: The script uses Node IDs for critical actions like creating connections, while names are used for human-readable logging and for assigning consistent, identifiable names.
-• Consistency Across Sessions: Since Node IDs can change between sessions, the script ensures that nodes have names assigned whenever possible, thus allowing them to be identified consistently even after the file is saved and reopened.
+- Clear Differentiation: The script maintains a clear differentiation between material-level operations and node-level operations. Materials are identified at the scene level using names, while nodes within a material graph are primarily identified using Node IDs and names when available.
+- Fallback Mechanism: For nodes lacking a name, a fallback mechanism assigns a unique name based on the Node ID, ensuring that nodes are always identifiable across different operations.
+- Redundancy in Node Identification: The script uses Node IDs for critical actions like creating connections, while names are used for human-readable logging and for assigning consistent, identifiable names.
+- Consistency Across Sessions: Since Node IDs can change between sessions, the script ensures that nodes have names assigned whenever possible, thus allowing them to be identified consistently even after the file is saved and reopened.
 
 The careful use of Node IDs, the clear separation of material names from node names, and the fallback naming mechanism make this approach robust, avoiding any ambiguity between different levels of operations within the KeyShot environment. This should allow for smooth duplication, traversal, and maintenance of material graph integrity even in complex scenarios.
 
-### Scripting Materials Documentation
+## Scripting Materials Documentation
 
 ## Scripting: Material Graph
+
+<a name="141-material-graph-manipulation"></a>
+
 Material Graph Manipulation (GUI and Headless)
 
 The following will go through the basic functions to manipulate the Material Graph. 
 
+
+<a name="142-accessing-material-graphs-and-nodes"></a>
+
 Access material graph
 You can access the material graph like this:
 
+
+```python
 graph = lux.getMaterialGraph("name")
+```
+
 The graph is an instance is of the type lux.MaterialGraph which you can interact with.
 
 Access root node
 You can access the root node with the following:
 
+
+```python
 rootNode = graph.getRoot()
+```
+
 The rootNode is an instance is of the type lux.ShaderNode which you can interact with.
 
 Get input edges of a node
 However a node instance was obtained, you can get the edges from a Material Graph by typing:
 
+
+```python
 edges = node.getInputEdges()
+```
+
 Each edge instance is of the type lux.ShaderEdge that you can be interact with.
 
 A specific edge can be obtained via:
 
+
+```python
 edge = node.getInputEdge("parameter name")
+```
+
 This will yield lux.ShaderEdge or an error if the name is unknown.
 
 Get output edges of a node
 However a node instance was obtained, you can get the edges from a Material Graph by typing:
 
+
+```python
 edges = node.getOutputEdges()
+```
+
 Each edge instance is of the type lux.ShaderEdge that you can be interact with.
 
 Get parameters of a node
 However a node instance was obtained, you can get the parameters from a Material Graph by typing:
 
+
+```python
 parameters = node.getParameters()
+```
+
 Each parameter instance is of the type lux.ShaderParameter that you can be interact with.
 
 A specific parameter can be obtained via:
 
+
+```python
 parameter = node.getParameter("parameter name")
+```
+
 This will yield lux.ShaderParameter or error if unknown name.
+
+
+<a name="143-changing-parameters-and-creating-edges"></a>
 
 Change parameter value
 A parameter, parameter, obtained via lux.SceneNode.getParameter() or lux.SceneNode.getParameters(), can have its value modified via lux.ShaderParameter.setValue().
 
 If, for example, the parameter’s type was a boolean (true or false), you could change the value via:
 
+
+```python
 parameter.setValue(True)
+```
+
 Is the value supported as input but entered incorrectly it will be shown in a python exception.
 
 If, for example, the parameter was an RGB color and you applied the boolean value, it would yield the error:
@@ -838,83 +909,112 @@ If, for example, the parameter was an RGB color and you applied the boolean valu
 Color parameter only accepts values of type tuple or list of size 3 containing floats or ints within range [0.0,1.0], or a color name!
 The following would therefore be the correct input for a color parameter:
 
+
+```python
 parameter.setValue((0.5, 0, 0))  # Red, (0x7F, 0x00, 0x00)
 parameter.setValue("Amber")      # Color known by the color library in KeyShot
+```
+
 You can obtain a Python value via lux.ShaderParameter.getValue() to get an understanding of what’s supported or you can print a representation of the instance (str() or repr()).
 
 Remove a node
 You can remove a node, either via the instance:
 
+
+```python
 graph.removeNode(node)
+```
+
 Or its ID:
 
+
+```python
 graph.removeNode(node.getID())
+```
+
 Create a new node
 You can for example create a metal node like this:
 
+
+```python
 metalNode = graph.newNode(lux.SHADER_TYPE_METAL)
+```
+
 Remove an edge
 You can remove an edge, either via the instance:
 
+
+```python
 graph.removeEdge(edge)
+```
+
 Or its ID:
 
+
+```python
 graph.removeEdge(edge.getID())
+```
+
 Create an edge between two nodes
 You can for example create an edge between node1 and node2 on the surface parameter:
 
+
+```python
 edge = graph.newEdge(source=node1, target=node2, param="surface")
+```
+
 
 ### KeyShotPythonScripting MaterialGraph Copy Of A Copy Guide
 
 ## Table of Contents
 
-1. [Debugging in KeyShot](#debugging-in-keyshot)
-   - [1.1 KeyShot Debugging Environment Limitations](#11-keyshot-debugging-environment-limitations)
-     - [1.1.1 No Native Interactive Debugger](#111-no-native-interactive-debugger)
-     - [1.1.2 Script Running Context](#112-script-running-context)
-   - [1.2 Practical Alternatives for Debugging in KeyShot](#12-practical-alternatives-for-debugging-in-keyshot)
-     - [1.2.1 Logging](#121-logging)
-     - [1.2.2 Conditional Logging as Breakpoints](#122-conditional-logging-as-breakpoints)
-     - [1.2.3 Step-by-Step Execution with User Input](#123-step-by-step-execution-with-user-input)
-   - [1.3 Implementation Example for Debugging](#13-implementation-example-for-debugging)
-     - [1.3.1 Logging Scene Information](#131-logging-scene-information)
-     - [1.3.2 Transforming Nodes with Logging](#132-transforming-nodes-with-logging)
-   - [1.4 Challenges with Real Breakpoints](#14-challenges-with-real-breakpoints)
-     - [1.4.1 No Interactive Debugger](#141-no-interactive-debugger)
-     - [1.4.2 Manual Inspection with Logging and Print Statements](#142-manual-inspection-with-logging-and-print-statements)
-   - [1.5 Using Python Tools for External Debugging](#15-using-python-tools-for-external-debugging)
-     - [1.5.1 Pdb Debugger](#151-pdb-debugger)
-   - [1.6 Summary for Debugging Documentation](#16-summary-for-debugging-documentation)
-     - [1.6.1 No Native Debugger in KeyShot](#161-no-native-debugger-in-keyshot)
-     - [1.6.2 Alternatives for Effective Debugging](#162-alternatives-for-effective-debugging)
-     - [1.6.3 Implementation Guidance](#163-implementation-guidance)
-     - [1.6.4 Challenges and Limitations](#164-challenges-and-limitations)
-   - [1.7 Best Practices for Debugging KeyShot Scripts](#17-best-practices-for-debugging-keyshot-scripts)
-     - [1.7.1 Use Logging Extensively to Trace Script Execution](#171-use-logging-extensively-to-trace-script-execution)
-     - [1.7.2 Simulate Breakpoints with Conditional Logging](#172-simulate-breakpoints-with-conditional-logging)
-     - [1.7.3 Manual Stepping Using Input for Line-by-Line Execution](#173-manual-stepping-using-input-for-line-by-line-execution)
-     - [1.7.4 Create Debug Functions for Scene and Material Inspection](#174-create-debug-functions-for-scene-and-material-inspection)
-     - [1.7.5 Centralize Logging Configuration](#175-centralize-logging-configuration)
-     - [1.7.6 Document Logging Intent in Your Script](#176-document-logging-intent-in-your-script)
-     - [1.7.7 Error Handling and Logging Exceptions](#177-error-handling-and-logging-exceptions)
-   - [1.8 Example Scenarios for Using Logs in Debugging](#18-example-scenarios-for-using-logs-in-debugging)
-     - [1.8.1 Incorrect Material Assignment](#181-incorrect-material-assignment)
-     - [1.8.2 Hierarchy Mismatch](#182-hierarchy-mismatch)
-     - [1.8.3 API Function Errors](#183-api-function-errors)
-   - [1.9 Conclusion for Debugging Best Practices in KeyShot](#19-conclusion-for-debugging-best-practices-in-keyshot)
+1. [Debugging in KeyShot](KeyShotPythonScripting_Debugging_Guide.md#debugging-in-keyshot)
+   - [1.1 KeyShot Debugging Environment Limitations](KeyShotPythonScripting_Debugging_Guide.md#11-keyshot-debugging-environment-limitations)
+     - [1.1.1 No Native Interactive Debugger](KeyShotPythonScripting_Debugging_Guide.md#111-no-native-interactive-debugger)
+     - [1.1.2 Script Running Context](KeyShotPythonScripting_Debugging_Guide.md#112-script-running-context)
+   - [1.2 Practical Alternatives for Debugging in KeyShot](KeyShotPythonScripting_Debugging_Guide.md#12-practical-alternatives-for-debugging-in-keyshot)
+     - [1.2.1 Logging](KeyShotPythonScripting_Debugging_Guide.md#121-logging)
+     - [1.2.2 Conditional Logging as Breakpoints](KeyShotPythonScripting_Debugging_Guide.md#122-conditional-logging-as-breakpoints)
+     - [1.2.3 Step-by-Step Execution with User Input](KeyShotPythonScripting_Debugging_Guide.md#123-step-by-step-execution-with-user-input)
+   - [1.3 Implementation Example for Debugging](KeyShotPythonScripting_Debugging_Guide.md#13-implementation-example-for-debugging)
+     - [1.3.1 Logging Scene Information](KeyShotPythonScripting_Debugging_Guide.md#131-logging-scene-information)
+     - [1.3.2 Transforming Nodes with Logging](KeyShotPythonScripting_Debugging_Guide.md#132-transforming-nodes-with-logging)
+   - [1.4 Challenges with Real Breakpoints](KeyShotPythonScripting_Debugging_Guide.md#14-challenges-with-real-breakpoints)
+     - [1.4.1 No Interactive Debugger](KeyShotPythonScripting_Debugging_Guide.md#141-no-interactive-debugger)
+     - [1.4.2 Manual Inspection with Logging and Print Statements](KeyShotPythonScripting_Debugging_Guide.md#142-manual-inspection-with-logging-and-print-statements)
+   - [1.5 Using Python Tools for External Debugging](KeyShotPythonScripting_Debugging_Guide.md#15-using-python-tools-for-external-debugging)
+     - [1.5.1 Pdb Debugger](KeyShotPythonScripting_Debugging_Guide.md#151-pdb-debugger)
+   - [1.6 Summary for Debugging Documentation](KeyShotPythonScripting_Debugging_Guide.md#16-summary-for-debugging-documentation)
+     - [1.6.1 No Native Debugger in KeyShot](KeyShotPythonScripting_Debugging_Guide.md#161-no-native-debugger-in-keyshot)
+     - [1.6.2 Alternatives for Effective Debugging](KeyShotPythonScripting_Debugging_Guide.md#162-alternatives-for-effective-debugging)
+     - [1.6.3 Implementation Guidance](KeyShotPythonScripting_Debugging_Guide.md#163-implementation-guidance)
+     - [1.6.4 Challenges and Limitations](KeyShotPythonScripting_Debugging_Guide.md#164-challenges-and-limitations)
+   - [1.7 Best Practices for Debugging KeyShot Scripts](KeyShotPythonScripting_Debugging_Guide.md#17-best-practices-for-debugging-keyshot-scripts)
+     - [1.7.1 Use Logging Extensively to Trace Script Execution](KeyShotPythonScripting_Debugging_Guide.md#171-use-logging-extensively-to-trace-script-execution)
+     - [1.7.2 Simulate Breakpoints with Conditional Logging](KeyShotPythonScripting_Debugging_Guide.md#172-simulate-breakpoints-with-conditional-logging)
+     - [1.7.3 Manual Stepping Using Input for Line-by-Line Execution](KeyShotPythonScripting_Debugging_Guide.md#173-manual-stepping-using-input-for-line-by-line-execution)
+     - [1.7.4 Create Debug Functions for Scene and Material Inspection](KeyShotPythonScripting_Debugging_Guide.md#174-create-debug-functions-for-scene-and-material-inspection)
+     - [1.7.5 Centralize Logging Configuration](KeyShotPythonScripting_Debugging_Guide.md#175-centralize-logging-configuration)
+     - [1.7.6 Document Logging Intent in Your Script](KeyShotPythonScripting_Debugging_Guide.md#176-document-logging-intent-in-your-script)
+     - [1.7.7 Error Handling and Logging Exceptions](KeyShotPythonScripting_Debugging_Guide.md#177-error-handling-and-logging-exceptions)
+   - [1.8 Example Scenarios for Using Logs in Debugging](KeyShotPythonScripting_Debugging_Guide.md#18-example-scenarios-for-using-logs-in-debugging)
+     - [1.8.1 Incorrect Material Assignment](KeyShotPythonScripting_Debugging_Guide.md#181-incorrect-material-assignment)
+     - [1.8.2 Hierarchy Mismatch](KeyShotPythonScripting_Debugging_Guide.md#182-hierarchy-mismatch)
+     - [1.8.3 API Function Errors](KeyShotPythonScripting_Debugging_Guide.md#183-api-function-errors)
+   - [1.9 Conclusion for Debugging Best Practices in KeyShot](KeyShotPythonScripting_Debugging_Guide.md#19-conclusion-for-debugging-best-practices-in-keyshot)
 
 
 Let’s dive deeper into how KeyShot’s API allows for “copying” materials and material graphs, especially focusing on using functions like lux.createMultiMaterial() to create duplicates.
 
-Manual Copy of Material Graphs Using KeyShot API
+## Manual Copy of Material Graphs Using KeyShot API
 
+
+```python
 # AUTHOR: LUX DT ChatGPT
 # VERSION: 1.3.6
 # PURPOSE: This script duplicates a material using lux.createMultiMaterial(), and then explicitly duplicates each node and edge 
 # from the original material graph into the copied material graph. This script also demonstrates adding the duplicated material 
 # as a sub-material into an existing Multi-Material in KeyShot.
-```python
 import lux
 
 def add_copied_material_to_multimaterial(material_name, multi_material_name):
@@ -1078,86 +1178,98 @@ add_copied_material_to_multimaterial("MaterialName", "MultiMaterialName")
 
 The approach you found uses KeyShot’s internal API to manually create copies of material graphs. Unlike traditional Python copying methods like copy.deepcopy(), which rely on serialization, KeyShot’s API is designed to duplicate its own complex data structures, like material graphs, while ensuring that each copy remains distinct and can be manipulated independently.
 
-Breakdown of the lux.createMultiMaterial() Method:
+## Breakdown of the lux.createMultiMaterial() Method:
 
 1. Getting the Original Material Graph:
 
-mat_graph = lux.getMaterialGraph(name="cool-material")
 
-• lux.getMaterialGraph(name="cool-material") retrieves the material graph of the specified material, named "cool-material".
-• A material graph in KeyShot consists of various nodes (such as shader nodes, texture nodes, etc.), and represents the complete material configuration for an object.
+```python
+mat_graph = lux.getMaterialGraph(name="cool-material")
+```
+
+
+- lux.getMaterialGraph(name="cool-material") retrieves the material graph of the specified material, named "cool-material".
+- A material graph in KeyShot consists of various nodes (such as shader nodes, texture nodes, etc.), and represents the complete material configuration for an object.
 
 2. Creating a New Multi-Material (Copy of the Original):
 
+
+```python
 clone_multi_material_of_mat_graph = lux.createMultiMaterial(
 name="cool-material-copy", mat="cool-material"
 )
+```
 
-• lux.createMultiMaterial() is the key here. This function is used to create a new instance of a multi-material.
-• Arguments:
-• name="cool-material-copy": This specifies the name of the new material being created. The name must be different from the original to distinguish between the two.
-• mat="cool-material": This indicates which material is being duplicated. The new multi-material will be a clone of "cool-material".
-• What This Does:
-• It creates a new multi-material, "cool-material-copy", which is essentially a copy of the original material graph ("cool-material").
-• Importantly, all the internal nodes and connections of the original material graph are replicated, but with new node IDs assigned.
-• This new material is distinct from the original, meaning that modifying the copied material ("cool-material-copy") won’t affect the original ("cool-material").
+
+- lux.createMultiMaterial() is the key here. This function is used to create a new instance of a multi-material.
+- Arguments:
+- name="cool-material-copy": This specifies the name of the new material being created. The name must be different from the original to distinguish between the two.
+- mat="cool-material": This indicates which material is being duplicated. The new multi-material will be a clone of "cool-material".
+- What This Does:
+- It creates a new multi-material, "cool-material-copy", which is essentially a copy of the original material graph ("cool-material").
+- Importantly, all the internal nodes and connections of the original material graph are replicated, but with new node IDs assigned.
+- This new material is distinct from the original, meaning that modifying the copied material ("cool-material-copy") won’t affect the original ("cool-material").
 
 3. Accessing the Copied Material Graph:
 
+
+```python
 mat_graph_copy = lux.getMaterialGraph(name="cool-material-copy")
+```
 
-• After the new material has been created, lux.getMaterialGraph() can be used again to retrieve the material graph for the copied material ("cool-material-copy").
-• At this point, you have full access to the nodes and parameters of the duplicate material graph, allowing you to edit, rename nodes, delete, or make other modifications.
 
-Why lux.createMultiMaterial() Works for Copying Material Graphs:
+- After the new material has been created, lux.getMaterialGraph() can be used again to retrieve the material graph for the copied material ("cool-material-copy").
+- At this point, you have full access to the nodes and parameters of the duplicate material graph, allowing you to edit, rename nodes, delete, or make other modifications.
+
+## Why lux.createMultiMaterial() Works for Copying Material Graphs:
 
 1. KeyShot’s Internal Cloning Mechanism:
-• The lux.createMultiMaterial() function is designed to handle the complexities involved in copying a material graph. Unlike Python’s copy.deepcopy(), which struggles with non-serializable objects like KeyShot’s custom types, lux.createMultiMaterial() uses internal KeyShot methods to ensure the material is duplicated correctly.
-• This includes creating all the necessary nodes, copying parameters, and ensuring that new node IDs are assigned to avoid any reference conflicts.
+- The lux.createMultiMaterial() function is designed to handle the complexities involved in copying a material graph. Unlike Python’s copy.deepcopy(), which struggles with non-serializable objects like KeyShot’s custom types, lux.createMultiMaterial() uses internal KeyShot methods to ensure the material is duplicated correctly.
+- This includes creating all the necessary nodes, copying parameters, and ensuring that new node IDs are assigned to avoid any reference conflicts.
 2. New Unique IDs:
-• One of the crucial aspects of copying materials is ensuring that each node within the copied material graph has a unique ID. This is because:
-• Node IDs are used to identify nodes internally.
-• If two nodes from different material graphs shared the same ID, any changes made to one would inadvertently affect the other, causing unexpected behavior.
-• lux.createMultiMaterial() ensures that every node within "cool-material-copy" has its own new unique ID, making the copied material a fully independent entity.
+- One of the crucial aspects of copying materials is ensuring that each node within the copied material graph has a unique ID. This is because:
+- Node IDs are used to identify nodes internally.
+- If two nodes from different material graphs shared the same ID, any changes made to one would inadvertently affect the other, causing unexpected behavior.
+- lux.createMultiMaterial() ensures that every node within "cool-material-copy" has its own new unique ID, making the copied material a fully independent entity.
 3. Avoiding Conflicts:
-• By giving new node IDs to each element in the material graph, KeyShot avoids the problem of shared state that can happen with simple references.
-• For instance, if you just referenced nodes from the original graph, any change to a node in the new material would reflect back on the original. By duplicating and assigning new IDs, "cool-material-copy" becomes a completely separate graph, allowing for independent modifications.
+- By giving new node IDs to each element in the material graph, KeyShot avoids the problem of shared state that can happen with simple references.
+- For instance, if you just referenced nodes from the original graph, any change to a node in the new material would reflect back on the original. By duplicating and assigning new IDs, "cool-material-copy" becomes a completely separate graph, allowing for independent modifications.
 
-Advantages of Using lux.createMultiMaterial():
+## Advantages of Using lux.createMultiMaterial():
 
 1. Handles Complexity Under the Hood:
-• Material graphs in KeyShot can be incredibly complex, consisting of various interconnected nodes like shaders, textures, bump maps, and more.
-• Manually duplicating this structure, ensuring that all the connections are maintained, and re-assigning IDs for all nodes would be a daunting task. lux.createMultiMaterial() handles all these complexities, making it a convenient solution.
+- Material graphs in KeyShot can be incredibly complex, consisting of various interconnected nodes like shaders, textures, bump maps, and more.
+- Manually duplicating this structure, ensuring that all the connections are maintained, and re-assigning IDs for all nodes would be a daunting task. lux.createMultiMaterial() handles all these complexities, making it a convenient solution.
 2. Supports Full Customization:
-• Once the copy is made, you can modify it without any limitations:
-• Delete nodes you don’t need.
-• Rename nodes to give them more meaningful identifiers for the new material.
-• Add new nodes or reconnect existing nodes to customize the appearance further.
-• The fact that the copied material is a complete, independent graph means that you can use it as a starting point for new materials with only incremental modifications.
+- Once the copy is made, you can modify it without any limitations:
+- Delete nodes you don’t need.
+- Rename nodes to give them more meaningful identifiers for the new material.
+- Add new nodes or reconnect existing nodes to customize the appearance further.
+- The fact that the copied material is a complete, independent graph means that you can use it as a starting point for new materials with only incremental modifications.
 3. Maintains Node Connections:
-• lux.createMultiMaterial() ensures that all connections between nodes are preserved in the copied graph.
-• This is critical for maintaining the visual properties of the material, as connections between shader nodes, textures, and parameters define how the material looks.
+- lux.createMultiMaterial() ensures that all connections between nodes are preserved in the copied graph.
+- This is critical for maintaining the visual properties of the material, as connections between shader nodes, textures, and parameters define how the material looks.
 
-Potential Application for Sub-Materials:
+### Potential Application for Sub-Materials:
 
-• While the primary use of lux.createMultiMaterial() is to copy multi-materials, this approach could potentially be adapted to work with sub-materials.
-• In the case of sub-materials, you might be able to:
-• Access the sub-material’s material graph separately.
-• Use lux.createSceneMaterial() or lux.createMultiMaterial() (depending on the sub-material type) to create a duplicate.
-• Ensure that the new copy gets new node IDs, which makes it independent of the original sub-material.
+- While the primary use of lux.createMultiMaterial() is to copy multi-materials, this approach could potentially be adapted to work with sub-materials.
+- In the case of sub-materials, you might be able to:
+- Access the sub-material’s material graph separately.
+- Use lux.createSceneMaterial() or lux.createMultiMaterial() (depending on the sub-material type) to create a duplicate.
+- Ensure that the new copy gets new node IDs, which makes it independent of the original sub-material.
 
-Summary:
+### Summary:
 
-• Manual Copying with lux.createMultiMaterial(): This function provides a way to effectively clone material graphs within KeyShot, ensuring that all nodes get new unique IDs, thus preventing conflicts.
-• Why It Works: The internal mechanisms of KeyShot handle the complexity of copying, including reassigning node IDs, preserving connections, and maintaining the integrity of the copied material graph.
-• Practical Benefits:
-• You end up with a full, independent copy of the material.
-• This allows you to make changes to the copy without affecting the original material, supporting workflows where variant materials need to be created quickly.
+- Manual Copying with lux.createMultiMaterial(): This function provides a way to effectively clone material graphs within KeyShot, ensuring that all nodes get new unique IDs, thus preventing conflicts.
+- Why It Works: The internal mechanisms of KeyShot handle the complexity of copying, including reassigning node IDs, preserving connections, and maintaining the integrity of the copied material graph.
+- Practical Benefits:
+- You end up with a full, independent copy of the material.
+- This allows you to make changes to the copy without affecting the original material, supporting workflows where variant materials need to be created quickly.
 
-Considerations:
+### Considerations:
 
-• While lux.createMultiMaterial() works well for multi-materials, the same approach may require adaptation for sub-materials.
-• Proper testing is required to ensure that the newly copied material behaves exactly like the original, with new properties and connections intact.
+- While lux.createMultiMaterial() works well for multi-materials, the same approach may require adaptation for sub-materials.
+- Proper testing is required to ensure that the newly copied material behaves exactly like the original, with new properties and connections intact.
 
 This method of manual copying leverages KeyShot’s strengths in managing complex materials internally, making it an essential tool for creating variants and extending material libraries efficiently.
 
@@ -1165,75 +1277,87 @@ Dwuplicating materials and nodes in KeyShot isn’t straightforward due to how i
 
 Let’s break it down a bit further and explain how it works more intuitively so you can feel confident using this technique.
 
-The Essence of lux.createMultiMaterial() for Copying Material Graphs
+## The Essence of lux.createMultiMaterial() for Copying Material Graphs
 
 The approach that was shared with you essentially takes advantage of KeyShot’s internal API functions to create duplicates of materials in a way that respects the complexity of the material graph.
 
-Understanding the Concept: Why You Need This Approach
+### Understanding the Concept: Why You Need This Approach
 
-• Complexity of Material Graphs:
-• A material graph in KeyShot is not just a simple object—it’s a network of nodes, each representing a different aspect of the material (shaders, textures, bump maps, etc.).
-• These nodes are connected to form a graph structure, and each node is identified internally by Node IDs that KeyShot assigns.
-• Why Copying Material Graphs is Not Straightforward:
-• Python’s copy and deepcopy won’t work because lux.MaterialGraph is a custom, non-serializable object. These traditional methods try to pickle objects, but lux.MaterialGraph doesn’t conform to the standard Python object serialization rules.
-• This is why, if you’ve tried to do a deep copy (copy.deepcopy()), you’d get errors indicating that the lux.MaterialGraph is not serializable—basically, it can’t be easily converted into a form that can be copied by Python alone.
+- Complexity of Material Graphs:
+- A material graph in KeyShot is not just a simple object—it’s a network of nodes, each representing a different aspect of the material (shaders, textures, bump maps, etc.).
+- These nodes are connected to form a graph structure, and each node is identified internally by Node IDs that KeyShot assigns.
+- Why Copying Material Graphs is Not Straightforward:
+- Python’s copy and deepcopy won’t work because lux.MaterialGraph is a custom, non-serializable object. These traditional methods try to pickle objects, but lux.MaterialGraph doesn’t conform to the standard Python object serialization rules.
+- This is why, if you’ve tried to do a deep copy (copy.deepcopy()), you’d get errors indicating that the lux.MaterialGraph is not serializable—basically, it can’t be easily converted into a form that can be copied by Python alone.
 
-How lux.createMultiMaterial() Solves This Problem
+### How lux.createMultiMaterial() Solves This Problem
 
 The lux.createMultiMaterial() function is KeyShot’s built-in way of creating a duplicate material that maintains all the internal complexity of the original but gives you a completely separate instance. Here’s why and how it works effectively:
 
 1. Creates a New Material with a New Name:
-• lux.createMultiMaterial(name="cool-material-copy", mat="cool-material") creates a new material ("cool-material-copy") based on the existing material ("cool-material").
-• The name is important because it serves as the new identifier for this material within the scene.
+- lux.createMultiMaterial(name="cool-material-copy", mat="cool-material") creates a new material ("cool-material-copy") based on the existing material ("cool-material").
+- The name is important because it serves as the new identifier for this material within the scene.
 2. New Node IDs Assigned Under the Hood:
-• Each node within the original "cool-material" material graph has a unique Node ID that KeyShot uses internally.
-• When you use lux.createMultiMaterial(), the entire structure of "cool-material" is duplicated, and new Node IDs are assigned to the nodes in "cool-material-copy".
-• This ensures that the new material is completely independent of the original. You can modify nodes in "cool-material-copy" without those changes affecting "cool-material".
+- Each node within the original "cool-material" material graph has a unique Node ID that KeyShot uses internally.
+- When you use lux.createMultiMaterial(), the entire structure of "cool-material" is duplicated, and new Node IDs are assigned to the nodes in "cool-material-copy".
+- This ensures that the new material is completely independent of the original. You can modify nodes in "cool-material-copy" without those changes affecting "cool-material".
 3. Preserves Relationships and Structure:
-• The connections between nodes, like how a texture might be applied to a shader, are preserved in the copied material graph.
-• This means the visual properties and relationships are kept intact, but with new, independent nodes.
+- The connections between nodes, like how a texture might be applied to a shader, are preserved in the copied material graph.
+- This means the visual properties and relationships are kept intact, but with new, independent nodes.
 
-Practical Example: Why This Matters
+### Practical Example: Why This Matters
 
 Imagine you have a multi-material that consists of several sub-materials representing different appearances (e.g., different colors or finishes for a car part). You want to make a copy of this entire structure but change one aspect in the duplicate without affecting the original.
 
-• Using lux.createMultiMaterial() allows you to make that full duplicate, giving you the flexibility to adjust just the copied material.
-• If you tried to manually copy each node and connection yourself, it would be a very cumbersome process, and you’d have to ensure each new node had a distinct ID—something that the KeyShot API manages internally for you with createMultiMaterial().
+- Using lux.createMultiMaterial() allows you to make that full duplicate, giving you the flexibility to adjust just the copied material.
+- If you tried to manually copy each node and connection yourself, it would be a very cumbersome process, and you’d have to ensure each new node had a distinct ID—something that the KeyShot API manages internally for you with createMultiMaterial().
 
-Step-by-Step Recap
+### Step-by-Step Recap
 
 1. Retrieve Original Material Graph:
 
-mat_graph = lux.getMaterialGraph(name="cool-material")
 
-• This gets you the material graph for "cool-material" so you can understand its structure or manipulate it.
+```python
+mat_graph = lux.getMaterialGraph(name="cool-material")
+```
+
+
+- This gets you the material graph for "cool-material" so you can understand its structure or manipulate it.
 
 2. Create a Duplicate of the Material:
 
+
+```python
 clone_multi_material_of_mat_graph = lux.createMultiMaterial(
 name="cool-material-copy", mat="cool-material"
 )
+```
 
-• This function creates a new material ("cool-material-copy") that is essentially a clone of "cool-material".
-• All nodes, connections, and properties are replicated, but they receive new IDs, ensuring no direct links remain between the original and the copy.
+
+- This function creates a new material ("cool-material-copy") that is essentially a clone of "cool-material".
+- All nodes, connections, and properties are replicated, but they receive new IDs, ensuring no direct links remain between the original and the copy.
 
 3. Access and Work with the Copied Graph:
 
+
+```python
 mat_graph_copy = lux.getMaterialGraph(name="cool-material-copy")
+```
 
-• You can now access the copied material graph and manipulate it as needed—add nodes, change properties, etc.—without worrying about altering the original.
 
-Why This is a Powerful Technique
+- You can now access the copied material graph and manipulate it as needed—add nodes, change properties, etc.—without worrying about altering the original.
 
-• Modular Flexibility: If you need to create multiple variations of a material, this approach is efficient. Instead of recreating the entire material from scratch, you can create a copy and tweak the parts that are different.
-• Safe Modifications: Because each node in the copy has a new Node ID, any changes you make are isolated to that copy. This isolation prevents unwanted changes from cascading back to the original material.
-• Efficient Handling of Complexity: Material graphs can be intricate, with many interconnected nodes and parameters. KeyShot’s internal handling of copying all these elements—reassigning IDs, keeping connections intact—makes this a much more efficient and error-free process compared to trying to manually recreate the graph.
+### Why This is a Powerful Technique
 
-What to Keep in Mind
+- Modular Flexibility: If you need to create multiple variations of a material, this approach is efficient. Instead of recreating the entire material from scratch, you can create a copy and tweak the parts that are different.
+- Safe Modifications: Because each node in the copy has a new Node ID, any changes you make are isolated to that copy. This isolation prevents unwanted changes from cascading back to the original material.
+- Efficient Handling of Complexity: Material graphs can be intricate, with many interconnected nodes and parameters. KeyShot’s internal handling of copying all these elements—reassigning IDs, keeping connections intact—makes this a much more efficient and error-free process compared to trying to manually recreate the graph.
 
-• New IDs Mean Independence: Always remember that the new Node IDs assigned during the duplication mean that the copied material is completely independent. This allows for safe experimentation without affecting your original setup.
-• Requires API Knowledge: This approach requires familiarity with KeyShot’s API methods (getMaterialGraph(), createMultiMaterial(), etc.), which are not as straightforward as typical Python functions but are powerful when used correctly.
+### What to Keep in Mind
 
-Final Thought
+- New IDs Mean Independence: Always remember that the new Node IDs assigned during the duplication mean that the copied material is completely independent. This allows for safe experimentation without affecting your original setup.
+- Requires API Knowledge: This approach requires familiarity with KeyShot’s API methods (getMaterialGraph(), createMultiMaterial(), etc.), which are not as straightforward as typical Python functions but are powerful when used correctly.
+
+### Final Thought
 
 The concept of copying in KeyShot using lux.createMultiMaterial() is all about leveraging KeyShot’s built-in capabilities to handle the intricate relationships within a material graph. The KeyShot API does the heavy lifting of creating new, independent nodes and connections while preserving the overall structure and appearance of the original. This approach gives you the ability to build material variants quickly and with confidence that modifications are isolated to specific instances.

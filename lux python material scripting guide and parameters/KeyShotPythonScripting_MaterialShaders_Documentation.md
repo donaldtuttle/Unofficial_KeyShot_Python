@@ -1,66 +1,66 @@
 # Table of Contents
-    - [KeyShot Python Material Shaders](#keyshot-python-material-shaders)
-  - [Table of Contents](#table-of-contents)
+- [KeyShot Python Material Shaders](#keyshot-python-material-shaders)
+  - [Table of Contents](#table-of-contents-1)
 - [Shader Nodes](#shader-nodes)
-  - [Table of Contents](#table-of-contents)
+  - [Table of Contents](#table-of-contents-2)
   - [Material Xray](#material-xray)
-    - [Material: Xray](#material:-xray)
-  - [Parameters for shader node in material'Xray':](#parameters-for-shader-node-in-material'xray':)
-  - [The Xray material type provides a useful tool for illustrative renderings. It is often used to create a faded view through an outer shell.](#the-xray-material-type-provides-a-useful-tool-for-illustrative-renderings.-it-is-often-used-to-create-a-faded-view-through-an-outer-shell.)
+    - [Material: Xray](#material-xray-1)
+  - [Parameters for shader node in material'Xray':](#parameters-for-shader-node-in-materialxray)
+  - [The Xray material type provides a useful tool for illustrative renderings. It is often used to create a faded view through an outer shell.](#the-xray-material-type-provides-a-useful-tool-for-illustrative-renderings-it-is-often-used-to-create-a-faded-view-through-an-outer-shell)
   - [Material Velvet](#material-velvet)
-    - [Material: Velvet](#material:-velvet)
-  - [Parameters for shader node in material'Velvet':](#parameters-for-shader-node-in-material'velvet':)
-  - [The Velvet material is very useful for creating soft fabrics that have the distinct light catching effects that result from the soft fibers in finely woven fabrics.](#the-velvet-material-is-very-useful-for-creating-soft-fabrics-that-have-the-distinct-light-catching-effects-that-result-from-the-soft-fibers-in-finely-woven-fabrics.)
+    - [Material: Velvet](#material-velvet-1)
+  - [Parameters for shader node in material'Velvet':](#parameters-for-shader-node-in-materialvelvet)
+  - [The Velvet material is very useful for creating soft fabrics that have the distinct light catching effects that result from the soft fibers in finely woven fabrics.](#the-velvet-material-is-very-useful-for-creating-soft-fabrics-that-have-the-distinct-light-catching-effects-that-result-from-the-soft-fibers-in-finely-woven-fabrics)
   - [Material Gem](#material-gem)
-    - [Material: Gem](#material:-gem)
-  - [Parameters for shader node in material'Gem':](#parameters-for-shader-node-in-material'gem':)
+    - [Material: Gem](#material-gem-1)
+  - [Parameters for shader node in material'Gem':](#parameters-for-shader-node-in-materialgem)
   - [Material Thin Film](#material-thin-film)
-    - [Material: Thin Film](#material:-thin-film)
-  - [Parameters for shader node in material'Thin Film':](#parameters-for-shader-node-in-material'thin-film':)
-  - [The Thin Film material type produces an iridescent effect similar to a soap bubble.](#the-thin-film-material-type-produces-an-iridescent-effect-similar-to-a-soap-bubble.)
+    - [Material: Thin Film](#material-thin-film-1)
+  - [Parameters for shader node in material'Thin Film':](#parameters-for-shader-node-in-materialthin-film)
+  - [The Thin Film material type produces an iridescent effect similar to a soap bubble.](#the-thin-film-material-type-produces-an-iridescent-effect-similar-to-a-soap-bubble)
   - [Material Measured](#material-measured)
-    - [Material: Measured](#material:-measured)
-  - [Parameters for shader node in material'Gem':](#parameters-for-shader-node-in-material'gem':)
-  - [The Measured material type supports the import of the X-Rite Appearance exchange Format (AxF) and Radiance BSDF format. These formats contain vendor neutral digital material representations that captures the light scattering characteristics for specific physical materials.](#the-measured-material-type-supports-the-import-of-the-x-rite-appearance-exchange-format-(axf)-and-radiance-bsdf-format.-these-formats-contain-vendor-neutral-digital-material-representations-that-captures-the-light-scattering-characteristics-for-specific-physical-materials.)
+    - [Material: Measured](#material-measured-1)
+  - [Parameters for shader node in material'Gem':](#parameters-for-shader-node-in-materialgem-1)
+  - [The Measured material type supports the import of the X-Rite Appearance exchange Format (AxF) and Radiance BSDF format. These formats contain vendor neutral digital material representations that captures the light scattering characteristics for specific physical materials.](#the-measured-material-type-supports-the-import-of-the-x-rite-appearance-exchange-format-axf-and-radiance-bsdf-format-these-formats-contain-vendor-neutral-digital-material-representations-that-captures-the-light-scattering-characteristics-for-specific-physical-materials)
   - [Material Wireframe](#material-wireframe)
-    - [Material: Wireframe](#material:-wireframe)
-  - [Parameters for shader node in material'Wireframe':](#parameters-for-shader-node-in-material'wireframe':)
-  - [The Wireframe material type exposes the lines and vertices of each polygon of a surface.](#the-wireframe-material-type-exposes-the-lines-and-vertices-of-each-polygon-of-a-surface.)
+    - [Material: Wireframe](#material-wireframe-1)
+  - [Parameters for shader node in material'Wireframe':](#parameters-for-shader-node-in-materialwireframe)
+  - [The Wireframe material type exposes the lines and vertices of each polygon of a surface.](#the-wireframe-material-type-exposes-the-lines-and-vertices-of-each-polygon-of-a-surface)
   - [Material Translucent](#material-translucent)
-    - [Material: Translucent](#material:-translucent)
-  - [Parameters for shader node in material'Translucent':](#parameters-for-shader-node-in-material'translucent':)
-  - [The Translucent material type provides control over subsurface scattering properties that are found in many skin, plastic and other materials.](#the-translucent-material-type-provides-control-over-subsurface-scattering-properties-that-are-found-in-many-skin,-plastic-and-other-materials.)
+    - [Material: Translucent](#material-translucent-1)
+  - [Parameters for shader node in material'Translucent':](#parameters-for-shader-node-in-materialtranslucent)
+  - [The Translucent material type provides control over subsurface scattering properties that are found in many skin, plastic and other materials.](#the-translucent-material-type-provides-control-over-subsurface-scattering-properties-that-are-found-in-many-skin-plastic-and-other-materials)
   - [Material Ground](#material-ground)
-    - [Material: Ground](#material:-ground)
-  - [Parameters for shader node in material'Ground':](#parameters-for-shader-node-in-material'ground':)
-  - [The Ground material type is a specialised material type for creating a ground for rendered objects. It is a shadow and reflection catching material that blends with the Environment Background. The shadows and reflections will also have transparency when rendering to an image format that supports it.](#the-ground-material-type-is-a-specialised-material-type-for-creating-a-ground-for-rendered-objects.-it-is-a-shadow-and-reflection-catching-material-that-blends-with-the-environment-background.-the-shadows-and-reflections-will-also-have-transparency-when-rendering-to-an-image-format-that-supports-it.)
+    - [Material: Ground](#material-ground-1)
+  - [Parameters for shader node in material'Ground':](#parameters-for-shader-node-in-materialground)
+  - [The Ground material type is a specialised material type for creating a ground for rendered objects. It is a shadow and reflection catching material that blends with the Environment Background. The shadows and reflections will also have transparency when rendering to an image format that supports it.](#the-ground-material-type-is-a-specialised-material-type-for-creating-a-ground-for-rendered-objects-it-is-a-shadow-and-reflection-catching-material-that-blends-with-the-environment-background-the-shadows-and-reflections-will-also-have-transparency-when-rendering-to-an-image-format-that-supports-it)
   - [Material Metallic Paint](#material-metallic-paint)
-    - [Material: Metallic Paint](#material:-metallic-paint)
-  - [Parameters for shader node in material'Metallic Paint':](#parameters-for-shader-node-in-material'metallic-paint':)
-  - [The Metallic Paint material type simulates a two-layer paint job: a base coat and a clear-coat that provides a clean reflection over the entire material.](#the-metallic-paint-material-type-simulates-a-two-layer-paint-job:-a-base-coat-and-a-clear-coat-that-provides-a-clean-reflection-over-the-entire-material.)
+    - [Material: Metallic Paint](#material-metallic-paint-1)
+  - [Parameters for shader node in material'Metallic Paint':](#parameters-for-shader-node-in-materialmetallic-paint)
+  - [The Metallic Paint material type simulates a two-layer paint job: a base coat and a clear-coat that provides a clean reflection over the entire material.](#the-metallic-paint-material-type-simulates-a-two-layer-paint-job-a-base-coat-and-a-clear-coat-that-provides-a-clean-reflection-over-the-entire-material)
   - [Material Glass](#material-glass)
-    - [Material: Glass](#material:-glass)
-  - [Parameters for shader node in material'Glass':](#parameters-for-shader-node-in-material'glass':)
-  - [This is a simple Material Type for creating glass materials.](#this-is-a-simple-material-type-for-creating-glass-materials.)
+    - [Material: Glass](#material-glass-1)
+  - [Parameters for shader node in material'Glass':](#parameters-for-shader-node-in-materialglass)
+  - [This is a simple Material Type for creating glass materials.](#this-is-a-simple-material-type-for-creating-glass-materials)
   - [Material RealCloth](#material-realcloth)
-    - [Material: RealCloth](#material:-realcloth)
-  - [Parameters for shader node in material'RealCloth':](#parameters-for-shader-node-in-material'realcloth':)
-  - [The RealClothTM procedural material enables you to create woven fabrics, with your custom weave patterns, detailed down to the ply. And make the cloth appear even more tactile with flyaway fibers.](#the-realclothtm-procedural-material-enables-you-to-create-woven-fabrics,-with-your-custom-weave-patterns,-detailed-down-to-the-ply.-and-make-the-cloth-appear-even-more-tactile-with-flyaway-fibers.)
+    - [Material: RealCloth](#material-realcloth-1)
+  - [Parameters for shader node in material'RealCloth':](#parameters-for-shader-node-in-materialrealcloth)
+  - [The RealClothTM procedural material enables you to create woven fabrics, with your custom weave patterns, detailed down to the ply. And make the cloth appear even more tactile with flyaway fibers.](#the-realclothtm-procedural-material-enables-you-to-create-woven-fabrics-with-your-custom-weave-patterns-detailed-down-to-the-ply-and-make-the-cloth-appear-even-more-tactile-with-flyaway-fibers)
   - [Material Point Light](#material-point-light)
-    - [Material: Point Light](#material:-point-light)
-  - [Parameters for shader node in material'Point Light':](#parameters-for-shader-node-in-material'point-light':)
-  - [Applying a Point Light to geometry replaces it with a point located in the parts center.](#applying-a-point-light-to-geometry-replaces-it-with-a-point-located-in-the-parts-center.)
+    - [Material: Point Light](#material-point-light-1)
+  - [Parameters for shader node in material'Point Light':](#parameters-for-shader-node-in-materialpoint-light)
+  - [Applying a Point Light to geometry replaces it with a point located in the parts center.](#applying-a-point-light-to-geometry-replaces-it-with-a-point-located-in-the-parts-center)
   - [Material Generic](#material-generic)
-    - [Material PARAMETER_TYPE: Generic](#material-parameter_type:-generic)
-  - [Parameters for shader node in material 'Generic':](#parameters-for-shader-node-in-material-'generic':)
-  - [The Generic material type is based on the Disney BRDF shader. When you use the Material Importer to import materials such as a Unified 3D Material (.u3m) or Substance Painter Project (.sp) their properties will be mapped to the properties of the Generic material. The generic material is intended for PBR materials where texture used files are used to set parameters.The Disney BRDF shader has values going from 0-1. In the Generic material type, we have, for artistic purposes, allowed some of the parameters to have values exceeding this.](#the-generic-material-type-is-based-on-the-disney-brdf-shader.-when-you-use-the-material-importer-to-import-materials-such-as-a-unified-3d-material-(.u3m)-or-substance-painter-project-(.sp)-their-properties-will-be-mapped-to-the-properties-of-the-generic-material.-the-generic-material-is-intended-for-pbr-materials-where-texture-used-files-are-used-to-set-parameters.the-disney-brdf-shader-has-values-going-from-0-1.-in-the-generic-material-type,-we-have,-for-artistic-purposes,-allowed-some-of-the-parameters-to-have-values-exceeding-this.)
+    - [Material PARAMETER_TYPE: Generic](#material-parameter_type-generic)
+  - [Parameters for shader node in material 'Generic':](#parameters-for-shader-node-in-material-generic)
+  - [The Generic material type is based on the Disney BRDF shader. When you use the Material Importer to import materials such as a Unified 3D Material (.u3m) or Substance Painter Project (.sp) their properties will be mapped to the properties of the Generic material. The generic material is intended for PBR materials where texture used files are used to set parameters.The Disney BRDF shader has values going from 0-1. In the Generic material type, we have, for artistic purposes, allowed some of the parameters to have values exceeding this.](#the-generic-material-type-is-based-on-the-disney-brdf-shader-when-you-use-the-material-importer-to-import-materials-such-as-a-unified-3d-material-u3m-or-substance-painter-project-sp-their-properties-will-be-mapped-to-the-properties-of-the-generic-material-the-generic-material-is-intended-for-pbr-materials-where-texture-used-files-are-used-to-set-parametersthe-disney-brdf-shader-has-values-going-from-0-1-in-the-generic-material-type-we-have-for-artistic-purposes-allowed-some-of-the-parameters-to-have-values-exceeding-this)
   - [Classes ShaderNode ShaderEdge MaterialGraph ShaderParameter MaterialMetadata SHADER PARAMETERS](#classes-shadernode-shaderedge-materialgraph-shaderparameter-materialmetadata-shader-parameters)
     - [Classes](#classes)
   - [class MaterialGraph](#class-materialgraph)
   - [class MaterialMetadata](#class-materialmetadata)
   - [class ShaderNode](#class-shadernode)
   - [class ShaderParameter](#class-shaderparameter)
-  - [saveMaterialMetadata(...)](#savematerialmetadata(...))
+  - [saveMaterialMetadata(...)](#savematerialmetadata)
   - [SHADER PARAMETERS](#shader-parameters)
   - [SHADER_TYPES](#shader_types)
   - [NOTE](#note)
@@ -73,88 +73,88 @@
   - [Roughness Parameter](#roughness-parameter)
   - [Samples](#samples)
   - [Roughness Texture](#roughness-texture)
-  - [The Material Graph facilitates advanced material editing/creation. The feature is available only for users of KeyShot Pro.](#the-material-graph-facilitates-advanced-material-editing/creation.-the-feature-is-available-only-for-users-of-keyshot-pro.)
+  - [The Material Graph facilitates advanced material editing/creation. The feature is available only for users of KeyShot Pro.](#the-material-graph-facilitates-advanced-material-editingcreation-the-feature-is-available-only-for-users-of-keyshot-pro)
   - [Material Graph Nodes](#material-graph-nodes)
   - [Root Node](#root-node)
   - [Types of light sources](#types-of-light-sources)
   - [Material Anisotropic](#material-anisotropic)
-    - [Material: Anisotropic](#material:-anisotropic)
-  - [Parameters for shader node in material'Anisotropic':](#parameters-for-shader-node-in-material'anisotropic':)
+    - [Material: Anisotropic](#material-anisotropic-1)
+  - [Parameters for shader node in material'Anisotropic':](#parameters-for-shader-node-in-materialanisotropic)
   - [Material Dielectric](#material-dielectric)
-    - [Material: Dielectric](#material:-dielectric)
-  - [Parameters for shader node in material'Dielectric':](#parameters-for-shader-node-in-material'dielectric':)
+    - [Material: Dielectric](#material-dielectric-1)
+  - [Parameters for shader node in material'Dielectric':](#parameters-for-shader-node-in-materialdielectric)
   - [Material Translucent Medium](#material-translucent-medium)
-    - [Material: Translucent Medium](#material:-translucent-medium)
-  - [Parameters for shader node in material'Translucent Medium':](#parameters-for-shader-node-in-material'translucent-medium':)
-  - [The TranslucentMedium material type provides control over subsurface scattering properties that are found in many skin, plastic and other materials. Compared to the basic Translucent material type, this generally will resolve faster.](#the-translucentmedium-material-type-provides-control-over-subsurface-scattering-properties-that-are-found-in-many-skin,-plastic-and-other-materials.-compared-to-the-basic-translucent-material-type,-this-generally-will-resolve-faster.)
+    - [Material: Translucent Medium](#material-translucent-medium-1)
+  - [Parameters for shader node in material'Translucent Medium':](#parameters-for-shader-node-in-materialtranslucent-medium)
+  - [The TranslucentMedium material type provides control over subsurface scattering properties that are found in many skin, plastic and other materials. Compared to the basic Translucent material type, this generally will resolve faster.](#the-translucentmedium-material-type-provides-control-over-subsurface-scattering-properties-that-are-found-in-many-skin-plastic-and-other-materials-compared-to-the-basic-translucent-material-type-this-generally-will-resolve-faster)
   - [Material Emissive](#material-emissive)
-    - [Material: Emissive](#material:-emissive)
-  - [Parameters for shader node in material'Emissive':](#parameters-for-shader-node-in-material'emissive':)
-  - [The Emissive material type can be used for small light sources such as LEDs, lamps or even illuminated screen displays. It is not meant to illuminate scenes as a main light source. The emissive material will need “Global illumination” enabled in “lighting” to illuminate other geometry in the Real-time view. It will also need ground illumination to illuminate the ground plane as shown. Color textures can be mapped to the material and any colors included in the texture will be emitted as light. When using emissive materials, it is a good idea to enable “Bloom” in the Image Style settings. This will create the glowing effect shown in the image.](#the-emissive-material-type-can-be-used-for-small-light-sources-such-as-leds,-lamps-or-even-illuminated-screen-displays.-it-is-not-meant-to-illuminate-scenes-as-a-main-light-source.-the-emissive-material-will-need-“global-illumination”-enabled-in-“lighting”-to-illuminate-other-geometry-in-the-real-time-view.-it-will-also-need-ground-illumination-to-illuminate-the-ground-plane-as-shown.-color-textures-can-be-mapped-to-the-material-and-any-colors-included-in-the-texture-will-be-emitted-as-light.-when-using-emissive-materials,-it-is-a-good-idea-to-enable-“bloom”-in-the-image-style-settings.-this-will-create-the-glowing-effect-shown-in-the-image.)
+    - [Material: Emissive](#material-emissive-1)
+  - [Parameters for shader node in material'Emissive':](#parameters-for-shader-node-in-materialemissive)
+  - [The Emissive material type can be used for small light sources such as LEDs, lamps or even illuminated screen displays. It is not meant to illuminate scenes as a main light source. The emissive material will need “Global illumination” enabled in “lighting” to illuminate other geometry in the Real-time view. It will also need ground illumination to illuminate the ground plane as shown. Color textures can be mapped to the material and any colors included in the texture will be emitted as light. When using emissive materials, it is a good idea to enable “Bloom” in the Image Style settings. This will create the glowing effect shown in the image.](#the-emissive-material-type-can-be-used-for-small-light-sources-such-as-leds-lamps-or-even-illuminated-screen-displays-it-is-not-meant-to-illuminate-scenes-as-a-main-light-source-the-emissive-material-will-need-global-illumination-enabled-in-lighting-to-illuminate-other-geometry-in-the-real-time-view-it-will-also-need-ground-illumination-to-illuminate-the-ground-plane-as-shown-color-textures-can-be-mapped-to-the-material-and-any-colors-included-in-the-texture-will-be-emitted-as-light-when-using-emissive-materials-it-is-a-good-idea-to-enable-bloom-in-the-image-style-settings-this-will-create-the-glowing-effect-shown-in-the-image)
   - [Material Plastic Transparent](#material-plastic-transparent)
-    - [Material: Plastic Transparent](#material:-plastic-transparent)
-  - [Parameters for shader node in material'Plastic Transparent':](#parameters-for-shader-node-in-material'plastic-transparent':)
+    - [Material: Plastic Transparent](#material-plastic-transparent-1)
+  - [Parameters for shader node in material'Plastic Transparent':](#parameters-for-shader-node-in-materialplastic-transparent)
   - [Material Cutaway](#material-cutaway)
-    - [Material: Cutaway](#material:-cutaway)
-  - [Parameters for shader node in material'Cutaway':](#parameters-for-shader-node-in-material'cutaway':)
+    - [Material: Cutaway](#material-cutaway-1)
+  - [Parameters for shader node in material'Cutaway':](#parameters-for-shader-node-in-materialcutaway)
   - [Material Liquid](#material-liquid)
-    - [Material: Liquid](#material:-liquid)
-  - [Parameters for shader node in material'Liquid':](#parameters-for-shader-node-in-material'liquid':)
-  - [The Liquid Material Type is a variant of the Solid Glass material that has the added ability to set the outside refractive index. This allows you to accurately create surfaces that represent the interface between, for example, a glass container and water.](#the-liquid-material-type-is-a-variant-of-the-solid-glass-material-that-has-the-added-ability-to-set-the-outside-refractive-index.-this-allows-you-to-accurately-create-surfaces-that-represent-the-interface-between,-for-example,-a-glass-container-and-water.)
+    - [Material: Liquid](#material-liquid-1)
+  - [Parameters for shader node in material'Liquid':](#parameters-for-shader-node-in-materialliquid)
+  - [The Liquid Material Type is a variant of the Solid Glass material that has the added ability to set the outside refractive index. This allows you to accurately create surfaces that represent the interface between, for example, a glass container and water.](#the-liquid-material-type-is-a-variant-of-the-solid-glass-material-that-has-the-added-ability-to-set-the-outside-refractive-index-this-allows-you-to-accurately-create-surfaces-that-represent-the-interface-between-for-example-a-glass-container-and-water)
   - [Material Plastic](#material-plastic)
-    - [Material: Plastic](#material:-plastic)
-  - [Parameters for shader node in material'Plastic':](#parameters-for-shader-node-in-material'plastic':)
-  - [The Plastic Material Type provides the basic settings needed to create simple plastic materials. Set the diffuse (overall color) and add some specular (reflections), then adjust the roughness. This is a very versatile material type that is used for anything from concrete to woods.](#the-plastic-material-type-provides-the-basic-settings-needed-to-create-simple-plastic-materials.-set-the-diffuse-(overall-color)-and-add-some-specular-(reflections),-then-adjust-the-roughness.-this-is-a-very-versatile-material-type-that-is-used-for-anything-from-concrete-to-woods.)
+    - [Material: Plastic](#material-plastic-1)
+  - [Parameters for shader node in material'Plastic':](#parameters-for-shader-node-in-materialplastic)
+  - [The Plastic Material Type provides the basic settings needed to create simple plastic materials. Set the diffuse (overall color) and add some specular (reflections), then adjust the roughness. This is a very versatile material type that is used for anything from concrete to woods.](#the-plastic-material-type-provides-the-basic-settings-needed-to-create-simple-plastic-materials-set-the-diffuse-overall-color-and-add-some-specular-reflections-then-adjust-the-roughness-this-is-a-very-versatile-material-type-that-is-used-for-anything-from-concrete-to-woods)
   - [Material Advanced](#material-advanced)
-    - [Material: Advanced](#material:-advanced)
-  - [Parameters for shader node in material'Advanced':](#parameters-for-shader-node-in-material'advanced':)
+    - [Material: Advanced](#material-advanced-1)
+  - [Parameters for shader node in material'Advanced':](#parameters-for-shader-node-in-materialadvanced)
   - [Material Diffuse](#material-diffuse)
-    - [Material: Diffuse](#material:-diffuse)
-  - [Parameters for shader node in material'Diffuse':](#parameters-for-shader-node-in-material'diffuse':)
-  - [The Diffuse material type is useful for easily creating any kind of matte or non-reflective material. It has only one setting, the diffuse color. Since it is an entirely diffuse material, specular maps are not available.](#the-diffuse-material-type-is-useful-for-easily-creating-any-kind-of-matte-or-non-reflective-material.-it-has-only-one-setting,-the-diffuse-color.-since-it-is-an-entirely-diffuse-material,-specular-maps-are-not-available.)
+    - [Material: Diffuse](#material-diffuse-1)
+  - [Parameters for shader node in material'Diffuse':](#parameters-for-shader-node-in-materialdiffuse)
+  - [The Diffuse material type is useful for easily creating any kind of matte or non-reflective material. It has only one setting, the diffuse color. Since it is an entirely diffuse material, specular maps are not available.](#the-diffuse-material-type-is-useful-for-easily-creating-any-kind-of-matte-or-non-reflective-material-it-has-only-one-setting-the-diffuse-color-since-it-is-an-entirely-diffuse-material-specular-maps-are-not-available)
   - [Material Plastic Cloudy](#material-plastic-cloudy)
-    - [Material: Plastic Cloudy](#material:-plastic-cloudy)
-  - [Parameters for shader node in material'Plastic Cloudy':](#parameters-for-shader-node-in-material'plastic-cloudy':)
+    - [Material: Plastic Cloudy](#material-plastic-cloudy-1)
+  - [Parameters for shader node in material'Plastic Cloudy':](#parameters-for-shader-node-in-materialplastic-cloudy)
   - [Material IES Light](#material-ies-light)
-    - [Material: IES Light](#material:-ies-light)
-  - [Parameters for shader node in material'IES Light':](#parameters-for-shader-node-in-material'ies-light':)
-  - [When using IES Light, you will need to load an IES profile by clicking on the folder icon in the editor. As soon as you load the profile you will see the shape of the IES profile in the material preview. You will also see the shape in form of a mesh in the Real-time View.](#when-using-ies-light,-you-will-need-to-load-an-ies-profile-by-clicking-on-the-folder-icon-in-the-editor.-as-soon-as-you-load-the-profile-you-will-see-the-shape-of-the-ies-profile-in-the-material-preview.-you-will-also-see-the-shape-in-form-of-a-mesh-in-the-real-time-view.)
+    - [Material: IES Light](#material-ies-light-1)
+  - [Parameters for shader node in material'IES Light':](#parameters-for-shader-node-in-materialies-light)
+  - [When using IES Light, you will need to load an IES profile by clicking on the folder icon in the editor. As soon as you load the profile you will see the shape of the IES profile in the material preview. You will also see the shape in form of a mesh in the Real-time View.](#when-using-ies-light-you-will-need-to-load-an-ies-profile-by-clicking-on-the-folder-icon-in-the-editor-as-soon-as-you-load-the-profile-you-will-see-the-shape-of-the-ies-profile-in-the-material-preview-you-will-also-see-the-shape-in-form-of-a-mesh-in-the-real-time-view)
   - [Material Spotlight](#material-spotlight)
-    - [Material: Spotlight](#material:-spotlight)
-  - [Parameters for shader node in material'Spot Light':](#parameters-for-shader-node-in-material'spot-light':)
+    - [Material: Spotlight](#material-spotlight-1)
+  - [Parameters for shader node in material'Spot Light':](#parameters-for-shader-node-in-materialspot-light)
   - [Spotlight](#spotlight)
   - [Material Area Light](#material-area-light)
-    - [Material: Area Light](#material:-area-light)
-  - [Parameters for shader node in material'Area Light':](#parameters-for-shader-node-in-material'area-light':)
+    - [Material: Area Light](#material-area-light-1)
+  - [Parameters for shader node in material'Area Light':](#parameters-for-shader-node-in-materialarea-light)
   - [Material Metal](#material-metal)
-    - [Material: Metal](#material:-metal)
-  - [Parameters for shader node in material'Metal':](#parameters-for-shader-node-in-material'metal':)
-  - [The Metal material type is a simple way to create polished or rough looking metal materials. It provides quick color adjustment, metal presets and simple settings for quick creation of metal materials.](#the-metal-material-type-is-a-simple-way-to-create-polished-or-rough-looking-metal-materials.-it-provides-quick-color-adjustment,-metal-presets-and-simple-settings-for-quick-creation-of-metal-materials.)
+    - [Material: Metal](#material-metal-1)
+  - [Parameters for shader node in material'Metal':](#parameters-for-shader-node-in-materialmetal)
+  - [The Metal material type is a simple way to create polished or rough looking metal materials. It provides quick color adjustment, metal presets and simple settings for quick creation of metal materials.](#the-metal-material-type-is-a-simple-way-to-create-polished-or-rough-looking-metal-materials-it-provides-quick-color-adjustment-metal-presets-and-simple-settings-for-quick-creation-of-metal-materials)
   - [Material Flat](#material-flat)
-    - [Material: Flat](#material:-flat)
-  - [Parameters for shader node in material'Flat':](#parameters-for-shader-node-in-material'flat':)
-  - [The Flat Material Type is a very simple material type that produces an unshaded, perfectly even color over the entire part to which it is applied.](#the-flat-material-type-is-a-very-simple-material-type-that-produces-an-unshaded,-perfectly-even-color-over-the-entire-part-to-which-it-is-applied.)
+    - [Material: Flat](#material-flat-1)
+  - [Parameters for shader node in material'Flat':](#parameters-for-shader-node-in-materialflat)
+  - [The Flat Material Type is a very simple material type that produces an unshaded, perfectly even color over the entire part to which it is applied.](#the-flat-material-type-is-a-very-simple-material-type-that-produces-an-unshaded-perfectly-even-color-over-the-entire-part-to-which-it-is-applied)
   - [Material Paint](#material-paint)
-    - [Material: Paint](#material:-paint)
-  - [Parameters for shader node in material'Paint':](#parameters-for-shader-node-in-material'paint':)
-  - [The Paint Material Type is used when a plain, non-metallic paint appearance is desired. It provides a quick way to set a base color and then control the clear-coat on top.](#the-paint-material-type-is-used-when-a-plain,-non-metallic-paint-appearance-is-desired.-it-provides-a-quick-way-to-set-a-base-color-and-then-control-the-clear-coat-on-top.)
+    - [Material: Paint](#material-paint-1)
+  - [Parameters for shader node in material'Paint':](#parameters-for-shader-node-in-materialpaint)
+  - [The Paint Material Type is used when a plain, non-metallic paint appearance is desired. It provides a quick way to set a base color and then control the clear-coat on top.](#the-paint-material-type-is-used-when-a-plain-non-metallic-paint-appearance-is-desired-it-provides-a-quick-way-to-set-a-base-color-and-then-control-the-clear-coat-on-top)
   - [Material Multi-Layer Optics](#material-multi-layer-optics)
-    - [Material: Multi-Layer Optics](#material:-multi-layer-optics)
-  - [Parameters for shader node in material'Multi-Layer Optics':](#parameters-for-shader-node-in-material'multi-layer-optics':)
-  - [The Multi-Layer Optics material enables you to create materials with multiple thin-film layers.](#the-multi-layer-optics-material-enables-you-to-create-materials-with-multiple-thin-film-layers.)
-  - [Basic Materials](#basic-materials)
+    - [Material: Multi-Layer Optics](#material-multi-layer-optics-1)
+  - [Parameters for shader node in material'Multi-Layer Optics':](#parameters-for-shader-node-in-materialmulti-layer-optics)
+  - [The Multi-Layer Optics material enables you to create materials with multiple thin-film layers.](#the-multi-layer-optics-material-enables-you-to-create-materials-with-multiple-thin-film-layers)
+  - [Basic Materials](#basic-materials-1)
   - [Material Scattering Medium](#material-scattering-medium)
-    - [Material: Scattering Medium](#material:-scattering-medium)
-  - [Parameters for shader node in material'Scattering Medium':](#parameters-for-shader-node-in-material'scattering-medium':)
-  - [With scattering medium you can simulate particle scattering to create such effects as fog or smoke or volumetric lighting such as visualizing beams or rays of light.](#with-scattering-medium-you-can-simulate-particle-scattering-to-create-such-effects-as-fog-or-smoke-or-volumetric-lighting-such-as-visualizing-beams-or-rays-of-light.)
+    - [Material: Scattering Medium](#material-scattering-medium-1)
+  - [Parameters for shader node in material'Scattering Medium':](#parameters-for-shader-node-in-materialscattering-medium)
+  - [With scattering medium you can simulate particle scattering to create such effects as fog or smoke or volumetric lighting such as visualizing beams or rays of light.](#with-scattering-medium-you-can-simulate-particle-scattering-to-create-such-effects-as-fog-or-smoke-or-volumetric-lighting-such-as-visualizing-beams-or-rays-of-light)
   - [Material Glass Solid](#material-glass-solid)
-    - [Material: Glass Solid](#material:-glass-solid)
-  - [Parameters for shader node in material'Glass Solid':](#parameters-for-shader-node-in-material'glass-solid':)
-  - [The Glass (Solid) Material Type provides a physically accurate glass material. Unlike the simpler glass material type, you will find that solid glass simulates the effect color in the glass accurately as it takes into account the thickness of your model.](#the-glass-(solid)-material-type-provides-a-physically-accurate-glass-material.-unlike-the-simpler-glass-material-type,-you-will-find-that-solid-glass-simulates-the-effect-color-in-the-glass-accurately-as-it-takes-into-account-the-thickness-of-your-model.)
+    - [Material: Glass Solid](#material-glass-solid-1)
+  - [Parameters for shader node in material'Glass Solid':](#parameters-for-shader-node-in-materialglass-solid)
+  - [The Glass (Solid) Material Type provides a physically accurate glass material. Unlike the simpler glass material type, you will find that solid glass simulates the effect color in the glass accurately as it takes into account the thickness of your model.](#the-glass-solid-material-type-provides-a-physically-accurate-glass-material-unlike-the-simpler-glass-material-type-you-will-find-that-solid-glass-simulates-the-effect-color-in-the-glass-accurately-as-it-takes-into-account-the-thickness-of-your-model)
   - [Material Toon](#material-toon)
-    - [Material: Toon](#material:-toon)
-  - [Parameters for shader node in material'Toon':](#parameters-for-shader-node-in-material'toon':)
-  - [The Toon material type allows you to apply a solid color with contour lines to your 3D model. You are able to control the contour width, the number of contour lines, and whether or not shadows are cast onto surfaces. This is useful for creating sketches, product concepts, or technical illustrations. The Toon material type contains the following properties:](#the-toon-material-type-allows-you-to-apply-a-solid-color-with-contour-lines-to-your-3d-model.-you-are-able-to-control-the-contour-width,-the-number-of-contour-lines,-and-whether-or-not-shadows-are-cast-onto-surfaces.-this-is-useful-for-creating-sketches,-product-concepts,-or-technical-illustrations.-the-toon-material-type-contains-the-following-properties:)
+    - [Material: Toon](#material-toon-1)
+  - [Parameters for shader node in material'Toon':](#parameters-for-shader-node-in-materialtoon)
+  - [The Toon material type allows you to apply a solid color with contour lines to your 3D model. You are able to control the contour width, the number of contour lines, and whether or not shadows are cast onto surfaces. This is useful for creating sketches, product concepts, or technical illustrations. The Toon material type contains the following properties:](#the-toon-material-type-allows-you-to-apply-a-solid-color-with-contour-lines-to-your-3d-model-you-are-able-to-control-the-contour-width-the-number-of-contour-lines-and-whether-or-not-shadows-are-cast-onto-surfaces-this-is-useful-for-creating-sketches-product-concepts-or-technical-illustrations-the-toon-material-type-contains-the-following-properties)
   - [Geometry Nodes](#geometry-nodes)
     - [Bubbles](#bubbles)
     - [Flakes](#flakes)
@@ -171,7 +171,7 @@
     - [Weave](#weave)
   - [3D Procedural](#3d-procedural)
     - [3D Paint](#3d-paint)
-    - [Brushed (Radial)](#brushed-(radial))
+    - [Brushed (Radial)](#brushed-radial)
     - [Camouflage](#camouflage)
     - [Cellular](#cellular)
     - [Color Gradient](#color-gradient)
@@ -180,15 +180,15 @@
     - [Granite](#granite)
     - [Leather](#leather)
     - [Marble](#marble)
-    - [Noise (Fractal)](#noise-(fractal))
-    - [Noise (Texture)](#noise-(texture))
+    - [Noise (Fractal)](#noise-fractal)
+    - [Noise (Texture)](#noise-texture)
     - [Occlusion](#occlusion)
     - [Scratches](#scratches)
     - [Spots](#spots)
     - [Vertex Color](#vertex-color)
     - [Volume Map](#volume-map)
     - [Wood](#wood)
-    - [Wood (Advanced)](#wood-(advanced))
+    - [Wood (Advanced)](#wood-advanced)
   - [Animation Nodes](#animation-nodes)
     - [Color Fade](#color-fade)
     - [Curve Fade](#curve-fade)
@@ -218,7 +218,7 @@
 - [Material Glass](#material-glass)
 - [Material RealCloth](#material-realcloth)
 - [Material Point Light](#material-point-light)
-- [Material Generic ](#material-generic-)
+- [Material Generic ](#material-generic)
 - [Classes ShaderNode ShaderEdge MaterialGraph ShaderParameter MaterialMetadata SHADER PARAMETERS](#classes-shadernode-shaderedge-materialgraph-shaderparameter-materialmetadata-shader-parameters)
 - [Material Anisotropic](#material-anisotropic)
 - [Material Dielectric](#material-dielectric)
@@ -295,7 +295,6 @@
 
 ## Material Xray
 
-```
 ### Material: Xray
   - **SHADER_TYPE**: lux_xray
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -322,11 +321,9 @@ When applied to a part, the Xray effect works by showing more of the material co
 
 Note
 The Xray material does not cast shadows.
-```
 
 ## Material Velvet
 
-```
 ### Material: Velvet
   - **SHADER_TYPE**: lux_velvet
   - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -377,11 +374,9 @@ This controls how far the sheen effect spreads over the surface. A low value wil
 
 Samples
 The samples setting controls how imperfect or refined the backscatter effect appears. A higher value will smooth out this scattered light and will cause it to appear more even. A low value will show a coarser grain/noisiness in the backscattered light. A higher setting, around 32, is often preferred for this setting as it provides a smoother result.
-```
 
 ## Material Gem
 
-```
 ### Material: Gem
   - **SHADER_TYPE**: lux_gem
   - **abbe_number** (PARAMETER_TYPE_FLOAT): Abbe number for the material, influencing dispersion. (Value: 0.0)
@@ -445,11 +440,9 @@ Ignore intersecting geometry
 When enabled overlapping geometry will be ignored. This is useful for e.g. the prong setting of diamond ring, where the real life deformation made to the prongs when fixing the gemstone is not modeled and the geometry is in fact overlapping,
 
 
-```
 
 ## Material Thin Film
 
-```
 ### Material: Thin Film
   - **SHADER_TYPE**: lux_thinfilm
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -485,11 +478,9 @@ Color Filter
 The Color Filter setting acts as a color multiplier for the Thin Film material type. When the Color Filter is set to white the color of the material will be determined by the Thickness setting. Less saturated colors can be used to add subtle hue shifts while fully saturated colors have a greater influence. The Color Filter setting can be textured with color maps to create material breakups such as those seen on solar cells or to add surface imperfections to an optical lens or automotive headlight.
 
 
-```
 
 ## Material Measured
 
-```
 ### Material: Measured
   - **SHADER_TYPE**: lux_measured
   - **absorption_gain** (PARAMETER_TYPE_FLOAT): Gain for absorption coefficient. (Value: 1.0)
@@ -564,11 +555,9 @@ You can import .Axf materials directly into the material panel or to the Library
 While editing a material in the Projects > Materialtab, select Measured from the Material Type drop-down, the part will appear black and a File location field will appear in the Properties tab. Select the folder icon  to select a measured file format. Both the .axf and .xml file extensions are supported.
 
 
-```
 
 ## Material Wireframe
 
-```
 ### Material: Wireframe
   - **SHADER_TYPE**: show_wireframe
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -621,11 +610,9 @@ This controls the backside of the base color. On a cube this would be the inside
 
 Backside Wire Color
 This controls the backside of the wire color.
-```
 
 ## Material Translucent
 
-```
 ### Material: Translucent
   - **SHADER_TYPE**: lux_translucent
   - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
@@ -698,11 +685,9 @@ A low samples setting (8 or lower) will tend to make the surface look more noisy
 
 Global Illumination
 This options enables Global Illumination for the material independent of the general Lighting setting for Global Illumination.
-```
 
 ## Material Ground
 
-```
 ### Material: Ground
   - **SHADER_TYPE**: lux_ground
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -755,11 +740,9 @@ If any geometry is being displayed below the ground plane material, this option 
 
 Ground Illumination
 When Ground Illumination are on, the rays bounced off the ground will produce indirect lighting.
-```
 
 ## Material Metallic Paint
 
-```
 ### Material: Metallic Paint
   - **SHADER_TYPE**: metallic_paint
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -841,11 +824,9 @@ Sets the thickness of the clear-coat. This is set as a thickness multiplier that
 
 Clear-coat Bump
 Right-click on the  texture icon to add a texture to the Clear-coat Bump. This will only affect the Clear-coat layer while adding a Bump through the Textures tab will affect both the base and the clear-coat.
-```
 
 ## Material Glass
 
-```
 ### Material: Glass
   - **SHADER_TYPE**: lux_window_glass
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -885,11 +866,9 @@ This can enable or disable the refractive property of the material. When enabled
 Co-planar surfaces
 If you have parts with co-planar surfaces and transparent materials, Opacity maps or use Part Fade animations or Curve/Color Fade animations to manipulate the opacity, this may result in surface areas that are not rendered as expected where the 2 parts intersect.
 The workaround is to make sure the parts are not positioned so the surfaces are co-planar, but in stead have a very slight gab between them.
-```
 
 ## Material RealCloth
 
-```
 ### Material: RealCloth
   - **SHADER_TYPE**: lux_real_cloth
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -1065,11 +1044,9 @@ Execute Geometry Node: After any edits to either Flyaway Fibers or 3D Ply Geomet
 
 Note
 Whenever a scene contains un-executed changes to a displacement parameter (eg. flyaways or 3D ply geometry) , you will see the  Execute Displaced Geometry button in the top right corner of the Real-time View. Press this to execute the geometry changes.
-```
 
 ## Material Point Light
 
-```
 ### Material: Point Light
   - **SHADER_TYPE**: lux_point_light
   - **color** (PARAMETER_TYPE_COLOR): The color of the light. (Value: (1.0, 1.0, 1.0))
@@ -1106,11 +1083,9 @@ Adjust the radius to control the softness of shadows cast from this light. A lar
 
 Note
 The effect of radius depends on the size of models. Larger models may require a higher radius value for a similar effect.
-```
 
 ## Material Generic 
 
-```
 ### Material PARAMETER_TYPE: Generic
   - **SHADER_TYPE**: lux_generic
   - **anisotropic** (PARAMETER_TYPE_FLOAT): Degree of anisotropy. (Value: 0.0)
@@ -1185,11 +1160,9 @@ Anisotropic Direction
 UV: the anisotropy follows the UV’s on the object
 Linear: the anisotropic direction is straight
 
-```
 
 ## Classes ShaderNode ShaderEdge MaterialGraph ShaderParameter MaterialMetadata SHADER PARAMETERS
 
-```
 ### Classes
 MaterialGraph
 MaterialMetadata
@@ -1551,7 +1524,7 @@ Plastic
 Thin Film
 Translucent
 
-##Advanced Materials
+## Advanced Materials
 Advanced
 Anisotropic
 Dielectric
@@ -1663,11 +1636,9 @@ When the Power unit is set to Lux, then the light output is specified as luminou
 
 Watt
 Light output os specified as Radient Flux.  This is not electric power.
-```
 
 ## Material Anisotropic
 
-```
 ### Material: Anisotropic
   - **SHADER_TYPE**: lux_anisotropic
   - **angle** (PARAMETER_TYPE_FLOAT): The angle of anisotropy. (Value: 0.0)
@@ -1702,7 +1673,7 @@ Light output os specified as Radient Flux.  This is not electric power.
 - specular (Type: 13)
 - transform_obj_to_uv (Type: 12)
 
-##The Anisotropic material type gives you advanced control over the highlights on the material surface. On other material types that have a single “Roughness” slider, increasing this value causes the highlights on the surface spread out evenly in all directions. Anisotropic gives you control over the highlight shape by controlling the roughness in two directions with two independent sliders. This material type is often used to simulate a finely brushed metal surface.
+## The Anisotropic material type gives you advanced control over the highlights on the material surface. On other material types that have a single “Roughness” slider, increasing this value causes the highlights on the surface spread out evenly in all directions. Anisotropic gives you control over the highlight shape by controlling the roughness in two directions with two independent sliders. This material type is often used to simulate a finely brushed metal surface.
 
 Diffuse
 When trying to create a metal, the diffuse should be set to black. When set to anything other than pure black, this material type will take on more a plastic look.
@@ -1729,11 +1700,9 @@ Samples
 A low samples setting (8 or lower) will tend to make the surface look more noisy which will give a more imperfect and rough look. As you increase the value the noise will even out more and provide a more evenly distributed roughness.
 
 
-```
 
 ## Material Dielectric
 
-```
 ### Material: Dielectric
   - **SHADER_TYPE**: lux_glass
   - **abbe_number** (PARAMETER_TYPE_FLOAT): Abbe number for the material, influencing dispersion. (Value: 0.0)
@@ -1773,7 +1742,7 @@ A low samples setting (8 or lower) will tend to make the surface look more noisy
 - transmission (Type: 13)
 - transmission_out (Type: 13)
 
-##The Dielectric material type is a more advanced way to create glass materials. Compared to the Solid Glass Material Type, you will find additional settings for dispersion (Abbe Number) and it can also be used to create an accurate interface between glass and liquid.
+## The Dielectric material type is a more advanced way to create glass materials. Compared to the Solid Glass Material Type, you will find additional settings for dispersion (Abbe Number) and it can also be used to create an accurate interface between glass and liquid.
 
 Transmission
 This option controls the overall color of this material type. When light enters the surface it will take on the color set here. The amount of color that you see in this material is highly dependent on the Transparency Distance setting as well. If you have set a color in the transmission, but it looks too faint, try to decrease the Transparency Distance.
@@ -1815,11 +1784,9 @@ Multiple Surface Scattering
 This simulates multiple bounces of light on rough dielectric surfaces, before it is scattered back. Multiple scattering enables energy conservation of light interacting with rough dielectrics, which means that it allows you to achieve a more realistic and physically plausible appearance of such materials. With the option disabled, rough dielectric surfaces exhibit single scattering, where light is able to bounce off and scatter from the surface once, but subsequent bounces die out or get absorbed. This discard of multiple bounces causes a loss of light energy, which in turn causes rough dielectric surfaces to appear too dark. With the option enabled, rough dielectric surfaces exihibit physically correct multiple scattering, where multiple light bounces on the surface are respected. No light energy is lost, and surfaces will appear significantly brighter. For the most realistic result, it is best to enable this option, but there is a performance penalty. Multiple Surface Scattering only affects the appearance of Dielectric materials with a roughness greater than 0. The effect is more pronounced at higher roughness values.
 
 
-```
 
 ## Material Translucent Medium
 
-```
 ### Material: Translucent Medium
   - **SHADER_TYPE**: lux_translucent_mc
   - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
@@ -1881,11 +1848,9 @@ Samples
 A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.
 
 
-```
 
 ## Material Emissive
 
-```
 ### Material: Emissive
   - **SHADER_TYPE**: lux_emissive
   - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
@@ -1939,11 +1904,9 @@ This will cause the emissive light to display on both side of the surface.
 
 Use Color Map Alpha
 This will allow you to use the alpha channel in the color map.
-```
 
 ## Material Plastic Transparent
 
-```
 ### Material: Plastic Transparent
   - **SHADER_TYPE**: lux_plastic
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -1977,7 +1940,7 @@ This will allow you to use the alpha channel in the color map.
 - specular (Type: 13)
 - specular_transmission (Type: 13)
 
-##The Plastic (Transparent) material provides the basic settings needed to create simple plastic materials. Set the diffuse (overall color) and add some specular (reflections), then adjust the roughness. This is a very versatile material type that is used for anything from concrete to woods.
+## The Plastic (Transparent) material provides the basic settings needed to create simple plastic materials. Set the diffuse (overall color) and add some specular (reflections), then adjust the roughness. This is a very versatile material type that is used for anything from concrete to woods.
 
 Diffuse
 This can be thought of as the overall color of the material. Transparent materials will have little or no diffuse color applied.
@@ -2002,11 +1965,9 @@ Refractive Index
 This controls how much light will bend or “refract” as it passes through parts on your model that have this type of material. Increase the value to create a more dramatic refraction within the surface.
 
 
-```
 
 ## Material Cutaway
 
-```
 ### Material: Cutaway
   - **SHADER_TYPE**: lux_cutaway
   - **caps** (BOOLEAN): Determines if caps are created where the cutaway occurs. (Value: False)
@@ -2024,7 +1985,7 @@ This controls how much light will bend or “refract” as it passes through par
 - caps_inherit_material (Type: 1)
 - caps_shader (Type: 65537)
 
-##The Cutaway material enables you to non-destructively subtract geometry from your model.
+## The Cutaway material enables you to non-destructively subtract geometry from your model.
 
 Setting up the Cutaway Material
 Simply add the geometry you want to use for the cut, place it so it cuts into your model and assign the cutaway material to it.
@@ -2054,11 +2015,9 @@ Excluded objects:
 Excluded objects have incorrect reflections – Objects excluded by cutaway show reflections of the inside of the object being cut.
 Bad Shadows on excluded objects.
 Basic Glass and Thin Film appear as metal when applied to an excluded cutaway object – Product mode only!
-```
 
 ## Material Liquid
 
-```
 ### Material: Liquid
   - **SHADER_TYPE**: lux_liquid
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2108,11 +2067,9 @@ This is an advanced, but powerful, setting that allows you to accurately simulat
 
 Liquid interfaces
 If you want to visualize liquid interfaces, for example like the ice cubes in the glass of water you see in the image above, you can use any material e.g. glass or cloudy plastic to create your liquids. All you have to do is make sure that the liquid and the glass geometry overlap ever so slightly.
-```
 
 ## Material Plastic
 
-```
 ### Material: Plastic
   - **SHADER_TYPE**: lux_plastic_simple
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2151,11 +2108,9 @@ This will add microscopic levels of imperfections to the surface of the material
 
 Refractive Index
 This controls how much light will bend or “refract” as it passes through parts that have this type of material. The default of 1.5 is accurate for simulating most types of plastics, but you can increase the value to create a more dramatic refraction within the surface.
-```
 
 ## Material Advanced
 
-```
 ### Material: Advanced
   - **SHADER_TYPE**: lux_advanced
   - **alpha** (PARAMETER_TYPE_FLOAT): Transparency of the material. (Value: 1.0)
@@ -2196,7 +2151,7 @@ This controls how much light will bend or “refract” as it passes through par
 - specular_transmission (Type: 13)
 - use_diffuse_map_alpha (Type: 1)
 
-##The Advanced material is the most versatile of all KeyShot material types. There are more parameters in this material than in any other. With this variety of parameters, materials such as metals, plastics, transparent or cloudy plastics, glass, leathers and diffuse materials can all be created from this single material type. Material types that cannot be created are translucent materials and metallic paints.
+## The Advanced material is the most versatile of all KeyShot material types. There are more parameters in this material than in any other. With this variety of parameters, materials such as metals, plastics, transparent or cloudy plastics, glass, leathers and diffuse materials can all be created from this single material type. Material types that cannot be created are translucent materials and metallic paints.
 
 Diffuse
 This can be thought of as the overall color of the material. Transparent materials will have little or no diffuse. Metals will have no diffuse with all the color derived from the specular. To fully understand this parameter see the section on diffuse.
@@ -2232,11 +2187,9 @@ This will control the intensity of the reflections that are perpendicular to the
 Use Diffuse Map Alpha
 This option will be available if your material has a Diffuse texture map, with an alpha channel (eg. a .png with transparent areas).
 When enabled KeyShot will use the diffuse texture to also add opacity to the material. This setting is primarily used with legacy materials. In general we recommend using the Opacity map for transparency.
-```
 
 ## Material Diffuse
 
-```
 ### Material: Diffuse
   - **SHADER_TYPE**: lux_diffuse
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2264,11 +2217,9 @@ Color
 This setting controls the color of the diffuse material. Select the color box to display the Color Picker and select the desired color.
 
 The "Diffuse" material is primarily defined by its color, offering a simple, non-reflective surface ideal for objects needing solid, uniform colors without gloss.
-```
 
 ## Material Plastic Cloudy
 
-```
 ### Material: Plastic Cloudy
   - **SHADER_TYPE**: lux_cloudy_plastic
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2328,11 +2279,9 @@ Controls how the light is scattered. A value of 0 is uniform scattering, a negat
 
 Samples
 A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.
-```
 
 ## Material IES Light
 
-```
 ### Material: IES Light
   - **SHADER_TYPE**: lux_ies_light
   - **color** (PARAMETER_TYPE_COLOR): The color of the IES light. (Value: (1.0, 1.0, 1.0))
@@ -2389,11 +2338,9 @@ Here you can control the axis of your IES Light source.
 
 Tip
 If you have imported a scene where the axis orientation is different from the one in your light sources, you don’t have to rotate them – just choose the appropriate up-axis.
-```
 
 ## Material Spotlight
 
-```
 ### Material: Spotlight
   - **SHADER_TYPE**: lux_spotlight
   - **angle** (PARAMETER_TYPE_FLOAT): Beam angle of the spotlight. (Value: 60.0)
@@ -2462,11 +2409,9 @@ Adjust the radius to control the softness of shadows cast from this light. A lar
 
 
 
-```
 
 ## Material Area Light
 
-```
 ### Material: Area Light
   - **SHADER_TYPE**: lux_mesh_light
   - **apply to back of geometry** (BOOLEAN): Determines if the light is applied to the back of the geometry. (Value: True)
@@ -2494,7 +2439,7 @@ Adjust the radius to control the softness of shadows cast from this light. A lar
 - visible in shadows (Type: 1)
 - visible to the eye (Type: 1)
 
-##Area Light is a material type that will give you a wide range of light dispersion. This will function similarly to a flood light.
+## Area Light is a material type that will give you a wide range of light dispersion. This will function similarly to a flood light.
 
 Color
 Here, you can choose the color the light will cast. You can also place a texture in front of the light source to color and mask the emitted light.
@@ -2543,11 +2488,9 @@ Use this slider to control the amount of samples used in the render.
 
 Limitation
 ZSpheres transferred from ZBrush are not yet supported as Area Lights.
-```
 
 ## Material Metal
 
-```
 ### Material: Metal
   - **SHADER_TYPE**: lux_metal
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2628,11 +2571,9 @@ Changing the Film Thickness setting will shift the colors you see for the metal 
 
 Controlling Anodized Color
 In general, a larger Film Thickness/Refractive Index leads to more colors and an Film Extinction Coefficient will darken colors and dampen variation. For all the metal presets, even if anodized is enabled or not, the color can depend on the viewing angle (just as with the color of real-world metals). You will notice slight color tints at grazing angles, especially for Gold and Aluminum.
-```
 
 ## Material Flat
 
-```
 ### Material: Flat
   - **SHADER_TYPE**: lux_constant
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2660,11 +2601,9 @@ Color
 Click the color box to launch the Color Picker, which allows you to select the color of the material. The flat material has no shading or other surface properties. It will show the solid color you have selected over the entire part that the material is applied to.
 
 "Flat" material type represents a more basic form, likely focusing on flat, non-reflective surfaces with minimal additional properties beyond basic color and opacity​​.
-```
 
 ## Material Paint
 
-```
 ### Material: Paint
   - **SHADER_TYPE**: lux_paint
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2729,11 +2668,9 @@ Clear-Coat Refractive index
 This will be translated into the Refractive index on the Paint material
 
 
-```
 
 ## Material Multi-Layer Optics
 
-```
 ### Material: Multi-Layer Optics
   - **SHADER_TYPE**: lux_multilayer_thinfilm
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -2813,10 +2750,8 @@ Refractive indices for different materials can be easily found online. Once the 
 
 Caustics
 Caustics is the pattern of light and color that occur when light rays are refracted or reflected. In everyday life you encounter caustics when you for example place a glass of water on a table.
-```
 
 
-```
 
 
   - Script KeyShot material templates for: new users, automation, and KSPYGPT knowledge base inclusion.
@@ -2862,7 +2797,7 @@ Plastic
 Thin Film
 Translucent
 
-##Advanced Materials
+## Advanced Materials
 Advanced
 Anisotropic
 Dielectric
@@ -2891,11 +2826,9 @@ Wireframe
 Xray
 
 
-```
 
 ## Material Scattering Medium
 
-```
 ### Material: Scattering Medium
   - **SHADER_TYPE**: lux_scattering_medium
   - **albedo** (PARAMETER_TYPE_COLOR): The albedo color of the medium. (Value: (0.5, 0.5, 0.5))
@@ -2961,11 +2894,9 @@ Volume Caustics
 CPU: Caustics work inherently with volumes (e.g. scattering media), however, caustics will only be applied to light sources outside the volume and this is only supported with interior mode.
 
 GPU: Volume Caustics are not supported in GPU mode.
-```
 
 ## Material Glass Solid
 
-```
 ### Material: Glass Solid
   - **SHADER_TYPE**: lux_glass_simple
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -3011,11 +2942,9 @@ Roughness on this type of material will spread out highlights on the surface sim
 
 Samples
 A low samples setting (8 or lower) will tend to make the surface look more noisy, which will give a more imperfect and rough look. As you increase the value, the noise will even out more and provide a more evenly distributed roughness.
-```
 
 ## Material Toon
 
-```
 ### Material: Toon
   - **SHADER_TYPE**: lux_toon
   - **apply_bump_to_labels** (BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
@@ -3117,7 +3046,6 @@ This will reveal the shadows cast by the model onto itself due to the selected l
 
 Light Source Shadows
 Controls the visibility of shadows produced by a Light Source (Spotlight Diffuse, Point Light Diffuse, Point Light IES Profile, or Area Light Diffuse). The shadow appearance will change depending on the settings of your light source.
-```
 
 ## Geometry Nodes
 

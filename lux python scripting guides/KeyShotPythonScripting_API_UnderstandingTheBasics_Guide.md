@@ -1,8 +1,8 @@
-### Understanding the Basics
+# Understanding the Basics
 
 ## Table of Contents
 
-## 1. [Understanding the Basics](#understanding-the-basics)
+1. [Understanding the Basics](#understanding-the-basics)
    - [1.1 KeyShot Python Basics](#keyshot-python-basics)
    - [1.2 KeyShot Scripting Environment](#keyshot-scripting-environment)
    - [1.3 Exploring KeyShot Scripting Documentation](#exploring-keyshot-scripting-documentation)
@@ -18,19 +18,19 @@
    - [1.7 Continuous Learning](#continuous-learning)
       - [1.7.1 Keep Exploring](#keep-exploring)
 
-## 2. [lux Library Classes](#lux-library-classes)
+2. [lux Library Classes](#lux-library-classes)
    - [2.1 Quick Reference](#quick-reference)
    - [2.2 KeyShot Python API Classes and Their General Functionalities](#keyshot-python-api-classes-and-their-general-functionalities)
 
-## 3. [lux Library Functions](#lux-library-functions)
+3. [lux Library Functions](#lux-library-functions)
    - [3.1 Standard Functions](#standard-functions)
    - [3.2 Headless-Specific Functions](#headless-specific-functions)
 
-## 4. [lux Library Constants](#lux-library-constants)
+4. [lux Library Constants](#lux-library-constatnts)
    - [4.1 KeyShot GUI](#keyshot-gui)
    - [4.2 Export Options](#export-options)
    - [4.3 Image Style](#image-style)
-   - [4.4 Viewer Options](#viewer-options)
+   - [4.4 Viewer Options](#veiwer-options)
    - [4.5 Message Window](#message-window)
    - [4.6 Meta](#meta)
    - [4.7 Thumbnail Models](#thumbnail-models)
@@ -41,43 +41,43 @@
    - [4.12 Scene Units Constants](#scene-units-constants)
    - [4.13 Camera Constants](#camera-constants)
 
-## 5. [Key Concepts in Scripting](#key-concepts-in-scripting)
+5. [Key Concepts in Scripting](#key-concepts-in-scripting)
    - [5.1 Differences in Classes and Functions](#differences-in-classes-and-functions)
    - [5.2 Guidelines for Making Scripts Headless Compliant](#guidelines-for-making-scripts-headless-compliant)
    - [5.3 Headless](#headless)
    - [5.4 Opts](#opts)
 
-## 6. [Script Examples Reference](#script-examples-reference)
+6. [Script Examples Reference](#script-examples-reference)
    - [6.1 Batch Rename ModelSets GUI](#batch-rename-modelsets-gui)
    - [6.2 Duplicate and Randomly Scatter Objects](#duplicate-and-randomly-scatter-objects)
    - [6.3 Render Ambient Occlusion](#render-ambient-occlusion)
    - [6.4 Get Scene Materials](#get-scene-materials)
-   - [6.5 Saves Multi-Material Sub-Materials to Library](#saves-multi-material-sub-materials-to-library)
+   - [6.5 Saves Multi-Material Sub-Materials to Library](#saves-multi-material-sub-materials-to-library-pc-and-apple-compatible)
    - [6.6 Import CAD File, Create New Model Set, and Name After File](#import-cad-file-create-new-model-set-and-name-after-file)
-   - [6.7 Batch Rename ModelSets GUI](#batch-rename-modelsets-gui)
+   - [6.7 Batch Rename ModelSets GUI](#batch-rename-modelsets-gui-1)
    - [6.8 Import CAD File and Create Model Set Named After File](#import-cad-file-and-create-model-set-named-after-file)
 
-## 7. [luxmath](#luxmath)
+7. [luxmath](#luxmath)
    - [7.1 luxmath Classes](#luxmath-classes)
       - [7.1.1 Vector](#vector)
       - [7.1.2 Matrix](#matrix)
    - [7.2 Working with luxmath](#working-with-luxmath)
 
-## 8. [Modular Scripts](#modular-scripts)
-   - [8.1 Benefits of Modular Scripts](#benefits-of-modular-scripts)
+8. [Modular Scripts](#modular-scripts)
+   - [8.1 Benefits of Modular Scripts](#benefits-of-modular-scripts-reusability)
    - [8.2 Implementing Modularity in KeyShot Scripts](#implementing-modularity-in-keyshot-scripts)
 
-## 9. [Agnostic Scripting](#agnostic-scripting)
+9. [Agnostic Scripting](#agnostic-scripting)
    - [9.1 Strategies to Make Scripts Agnostic](#strategies-to-make-scripts-agnostic)
    - [9.2 Agnostic Directory Script](#agnostic-directory-script)
 
-## 10. [Scene Tree](#scene-tree)
+10. [Scene Tree](#scene-tree)
    - [10.1 Components of the Scene Tree](#components-of-the-scene-tree)
    - [10.2 Understanding the Hierarchical Structure](#understanding-the-hierarchical-structure)
    - [10.3 Manipulating the Scene Tree via Scripting](#manipulating-the-scene-tree-via-scripting)
    - [10.4 Environment Nodes](#environment-nodes)
 
-## 11. [Material Graph](#material-graph)
+11. [Material Graph](#material-graph)
    - [11.1 Understanding Shaders and Material Nodes in KeyShot](#understanding-shaders-and-material-nodes-in-keyshot)
    - [11.2 Accessing and Modifying the Material Graph through Scripting](#accessing-and-modifying-the-material-graph-through-scripting)
    - [11.3 Overview Material Node Properties](#overview-material-node-properties)
@@ -85,39 +85,57 @@
    - [11.5 Scripting Material Graph](#scripting-material-graph)
 
 
-KeyShot Python Basics: 
+### KeyShot Python Basics:
 Since KeyShot scripting is based on Python, getting comfortable with Python's syntax, data types, control structures (like loops and conditionals), and basic data structures (like lists and dictionaries) will provide a strong foundation.
 
-KeyShot Scripting Environment: 
+### KeyShot Scripting Environment:
 Familiarize yourself with the KeyShot Scripting Console and how to execute scripts within KeyShot. It’s a great place to test small snippets of code and see immediate results in the KeyShot environment.
 
-Exploring KeyShot Scripting Documentation:
+### Exploring KeyShot Scripting Documentation:
 Documentation: KeyShot provides documentation on its Python API, accessible directly through the Help menu in KeyShot. This documentation is invaluable for understanding what functions and classes are available for scripting.
 
-Practical Exercises:
+### Practical Exercises:
 
-Start Small: 
+### Start Small:
 Begin with simple scripts, like changing the color of a material or automating camera movements. Gradually increase complexity as you become more comfortable.
+
+<a name="scripting-challenges"></a>
+
 Scripting Challenges: Set small, achievable goals, such as automating a part of your workflow that you find repetitive. This could be as simple as exporting renderings with different camera angles or applying materials to multiple models programmatically.
 
-Debugging and Problem Solving:
+### Debugging and Problem Solving:
+
+<a name="debugging"></a>
+
 Debugging: Learn the basics of debugging Python scripts. KeyShot's Script Console will show errors and print statements, which can help you understand what your script is doing and identify any issues.
+
+<a name="online-communities"></a>
+
 Online Communities: Don’t hesitate to seek help from online forums or communities. The KeyShot forum itself can be a great resource, as well as broader Python programming communities.
 
-Best Practices:
+### Best Practices:
+
+<a name="version-control"></a>
+
 Version Control: As you become more comfortable with scripting, consider using a version control system like Git. This allows you to track changes to your scripts over time, making it easier to experiment without losing work.
+
+<a name="read-and-refactor"></a>
+
 Read and Refactor: Read other people's code whenever possible. This can provide new insights and techniques that you can incorporate into your own scripts. Also, regularly revisit and refactor your code to improve its efficiency and readability.
 
-Continuous Learning:
+### Continuous Learning:
+
+<a name="keep-exploring"></a>
+
 Keep Exploring: The world of scripting and automation is vast. As you grow more confident in your skills, explore more advanced topics like creating user interfaces within KeyShot, integrating with external APIs, or even automating the entire pipeline from model import to final rendering.
 
 
-lux Library Classes:
+## lux Library Classes:
 The lux library within KeyShot's Python environment includes a variety of classes designed to interact with and manipulate aspects of KeyShot scenes, from rendering settings and materials to scene structure and camera settings. Here's a detailed list of the classes available in the lux library:
 
-Quick Reference:
+### Quick Reference:
 
-###KeyShot Python API Classes and Their General Functionalities###-
+### KeyShot Python API Classes and Their General Functionalities
 1. ColorParameter: Manages color-related parameters in materials or environments.
 2. Colorway: Handles colorway settings for multi-materials or studios.
 3. Env: Configures environment settings like background, lighting, etc.
@@ -165,10 +183,10 @@ Quick Reference:
 45. Volume: Represents volumetric materials or effects.
 
 
-lux Library Functions:
+## lux Library Functions:
 The lux library in KeyShot's Python environment provides a range of functions to script and automate tasks within KeyShot, such as rendering, scene manipulation, camera control, and more. Here's a detailed list of the functions available in the lux library, based on the provided documentation:
 
-###Standard Functions###-
+### Standard Functions
 lux.getActiveEnvironment(): Retrieves the currently active environment settings.
 lux.getOS(): Returns the operating system version string.
 lux.getObjectMaterial(): Gets the material applied to the specified object(s).
@@ -291,7 +309,7 @@ lux.startRealtimeRender(): Starts a realtime render in the KeyShot Real-time Vie
 lux.stopAnimationRender(): Stops the currently running animation render.
 lux.syncExec(function): Synchronously executes a function, ensuring that script execution waits until the function has completed.
 
-###Headless-Specific Functions###-
+### Headless-Specific Functions
 Headless lux.get Functions:
 lux.getExternalFiles(): Lists external files associated with the scene.
 lux.getImportOptions(): Retrieves current import options.
@@ -373,11 +391,11 @@ lux.sync(): Forces a synchronization of the scene, ensuring all operations are u
 lux.unpause(): Resumes the current headless render if it was paused.
 
 
-lux Library Constatnts:
+## lux Library Constatnts:
 The lux library in KeyShot's Python environment provides a comprehensive set of constants that are used across various functions and classes to specify options, settings, and behaviors in a standardized manner. Here is a detailed list of constants available in the lux library, as extracted from the provided documentation:
 
-###Constants###-
-###KeyShot GUI###:
+### Constants
+### KeyShot GUI
     DIALOG_CHECK = 4
     DIALOG_DOUBLE = 2
     DIALOG_FILE = 5
@@ -386,7 +404,7 @@ The lux library in KeyShot's Python environment provides a comprehensive set of 
     DIALOG_ITEM = 3
     DIALOG_LABEL = 7
     DIALOG_TEXT = 0
-###Export Options###:
+### Export Options
     EXPORT_3MF = 5
     EXPORT_BAKING = 4
     EXPORT_FBX = 1
@@ -402,20 +420,20 @@ The lux library in KeyShot's Python environment provides a comprehensive set of 
     EXPORT_SUB_DIV_POLYCOUNT = 0
     EXPORT_USD = 6
     EXPORT_VERTEX_COLOR = 1
-###Image Style###:  
+### Image Style
     IMAGE_STYLE_BASIC = 0
     IMAGE_STYLE_PHOTOGRAPHIC = 1
-###Veiwer Options###:
+### Veiwer Options
     KSP_VIEWER_SHOW_LOGO = 1
     KSP_VIEWER_SHOW_WATERMARK = 2
-###Message Window###:
+### Message Window
     MESSAGE_BOX_CRITICAL = 3
     MESSAGE_BOX_INFO = 1
     MESSAGE_BOX_WARNING = 2
-Meta:
+### Meta:
     META_DATA_SIMPLE = 1
     META_DATA_XMP = 0
-###Thumbnail Models###:
+### Thumbnail Models
     MODEL_ID_CLOTH_DRAPE = 'ClothDrape_100x200_mm'
     MODEL_ID_CRYSTAL = 'Crystal'
     MODEL_ID_LIQUID_GLASS = 'LiquidGlass_60_mm'
@@ -425,7 +443,7 @@ Meta:
     MODEL_ID_MATERIAL_DISC_25_MM = 'MaterialDisc_25_mm'
     MODEL_ID_MATERIAL_DISC_TOON_100_MM = 'MaterialDiscToon_100_mm'
     MODEL_ID_SPHERE_CUTAWAY_100_MM = 'SphereCutaway_100_mm'
-###NODE###s:
+### NODEs:
     NODE_TYPE_ANIMATION = 3
     NODE_TYPE_CAMERA = 6
     NODE_TYPE_GROUP = 1
@@ -434,10 +452,10 @@ Meta:
     NODE_TYPE_OBJECT = 2
 
 
-Parameter Types Constants
+### Parameter Types Constants
 Identifiers for different parameter types, e.g., PARAMETER_TYPE_BOOLEAN = 1, PARAMETER_TYPE_COLOR = 13, etc.
 
-###All Parameters###:
+### All Parameters
     PARAMETER_TYPE_ANIMATIONCURVE = 17
     PARAMETER_TYPE_AXALTACOLOR = 18
     PARAMETER_TYPE_BOOLEAN = 1
@@ -461,7 +479,7 @@ Identifiers for different parameter types, e.g., PARAMETER_TYPE_BOOLEAN = 1, PAR
     PARAMETER_TYPE_STRING = 9
     PARAMETER_TYPE_STRINGLIST = 10
     PARAMETER_TYPE_WEAVEPATTERN = 19
-###Render Settings and Options###:
+### Render Settings and Options
     RENDER_ENGINE_INTERIOR = 1
     RENDER_ENGINE_INTERIOR_GPU = 4
     RENDER_ENGINE_PRODUCT = 0
@@ -479,10 +497,10 @@ Identifiers for different parameter types, e.g., PARAMETER_TYPE_BOOLEAN = 1, PAR
     RENDER_OUTPUT_TIFF8 = 1
 
 
-Save Constants:
+### Save Constants:
 Options for excluding certain data when saving KeyShot scenes, e.g., SAVE_EXCLUDE_ANIMATIONS = 128, SAVE_EXCLUDE_CAMERAS = 8, etc.
 
-###Save###:
+### Save
     SAVE_EXCLUDE_ANIMATIONS = 128
     SAVE_EXCLUDE_CAMERAS = 8
     SAVE_EXCLUDE_CONFIGURATOR = 1
@@ -493,10 +511,10 @@ Options for excluding certain data when saving KeyShot scenes, e.g., SAVE_EXCLUD
     SAVE_EXCLUDE_STUDIOS = 2
 
 
-Shader Nodes Constants:
+### Shader Nodes Constants:
 Identifiers for different shader types, e.g., SHADER_TYPE_ADVANCED, SHADER_TYPE_ANISOTROPIC, SHADER_TYPE_AXALTA_PAINT, etc.
 
-###Shader NODE###s:
+### Shader NODEs:
     SHADER_TYPE_ADVANCED = 'lux_advanced'
     SHADER_TYPE_ANISOTROPIC = 'lux_anisotropic'
     SHADER_TYPE_AXALTA_PAINT = 'dupont_paint'
@@ -585,9 +603,9 @@ Identifiers for different shader types, e.g., SHADER_TYPE_ADVANCED, SHADER_TYPE_
     SHADER_TYPE_XRAY = 'lux_xray'
 
 
-Scene Units Constants:
+### Scene Units Constants:
 
-###Scene Units###:
+### Scene Units
     UNIT_CM = 1
     UNIT_FT = 3
     UNIT_IN = 2
@@ -595,10 +613,10 @@ Scene Units Constants:
     UNIT_MM = 0
 
 
-Camera Constants:
+### Camera Constants:
 Constants for specifying camera types and views, e.g., CAMERA_TYPE_ORTHOGRAPHIC, VIEW_FRONT, VIEW_BACK, etc.
 
-###Camera###:
+### Camera
     CAMERA_TYPE_ORTHOGRAPHIC = 65536
     CAMERA_TYPE_PANORAMA = 4096
     CAMERA_TYPE_PERSPECTIVE = 16384
@@ -622,7 +640,7 @@ Constants for specifying camera types and views, e.g., CAMERA_TYPE_ORTHOGRAPHIC,
     XR_TYPE_SPHERICAL = 2
     XR_TYPE_TUMBLE = 4
     XR_TYPE_TURNTABLE = 1
-###CMF Exclusive###
+### CMF Exclusive
     CMF_KIND_COLOR_CMYK = 4
     CMF_KIND_COLOR_HEX = 6
     CMF_KIND_COLOR_LAB = 5
@@ -636,7 +654,7 @@ Constants for specifying camera types and views, e.g., CAMERA_TYPE_ORTHOGRAPHIC,
 Query the KeyShot Studio 2026.3 resource folder configured for the current session.
 
     library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
-Library Constants
+### Library Constants
     FOLDER_ANIMATIONS = 8
     FOLDER_BACKPLATES = 3
     FOLDER_COLORS = 9
@@ -655,7 +673,10 @@ Library Constants
     FOLDER_TEXTURES = 4
 
 
-Differences in Classes and Functions
+
+<a name="key-concepts-in-scripting"></a>
+
+### Differences in Classes and Functions
 In headless mode, KeyShot scripting still provides access to essential classes and functions for scene manipulation, such as those related to materials, cameras, rendering, and scene nodes. However, there are specific considerations and functionalities unique to headless mode:
 
 GUI-Dependent Features: Functions and classes that require user interaction through the GUI, such as custom input dialogs (lux.getInputDialog()), are not available or functional in headless mode. Scripts designed for headless operation should avoid relying on any form of GUI feedback or input.
@@ -673,7 +694,7 @@ Headless mode may provide functions or options focused on optimizing performance
 Consistent Core Functionality:
 Despite these differences, the core functionality provided by lux and luxmath for scene construction, material application, camera control, and rendering settings is consistent between GUI and headless modes. Scripts can generally be developed in the GUI version of KeyShot and then executed in headless mode with minor adjustments, primarily related to user interaction and file path handling.
 
-Guidelines for Making Scripts Headless Compliant
+### Guidelines for Making Scripts Headless Compliant
 Avoid GUI Functions: Do not use functions that require GUI interaction, such as lux.getInputDialog() for custom input dialogs or any other function that prompts the user for input through the KeyShot interface.
 
 Use Command-Line Arguments: 
@@ -694,10 +715,10 @@ Since headless mode lacks GUI feedback, design your script to provide appropriat
 Testing in Both Environments: 
 Test your script extensively in both GUI and headless modes to ensure it behaves as expected. This helps identify any GUI-dependent operations or other issues that might only manifest in one mode.
 
-Headless:
+### Headless:
 The lux library for KeyShot, when operated in headless mode (without the graphical user interface, GUI), offers functionality focused on scripting for automation, batch processing, and server-based rendering tasks. While the core functionality between GUI and headless modes remains consistent, focusing on scene manipulation, rendering, and camera control, there are some differences in available classes and functions to accommodate the non-interactive, command-line nature of headless operation.
 
-Opts:
+### Opts:
 In KeyShot scripting, the opts variable often refers to a set of options or settings that can be configured for various operations, such as rendering, importing files, and exporting data. These options are typically stored in a Python dictionary or an object that allows for the customization of behavior and parameters of a given function. Below are examples of some commonly used opts in different contexts within KeyShot scripting:
 
 Rendering Options:
@@ -710,10 +731,12 @@ Image Render Options:
 For image rendering, opts can include detailed settings about the output image, such as file format, DPI, and whether to include alpha channels:
 
 
-###Script Examples Reference:### Analyze .py as .txt
+## Script Examples Reference:
+
+Analyze .py as .txt
 Scripts_Commented.zip contains the following Scripts.
 
-###Batch Rename ModelSets GUI###
+### Batch Rename ModelSets GUI
 Summary:
 This script provides a GUI for batch renaming model sets in KeyShot. It allows users to specify a prefix, name, suffix, and separator for each model set's new name. The script iterates through all model sets in the scene and presents a dialog for renaming each one individually.
 
@@ -724,7 +747,7 @@ node.isModelSet(): Checks if a node is a model set.
 lux.getInputDialog(): Displays a dialog box for user input.
 model_set.setName(): Sets a new name for a model set.
 
-Duplicate and Randomly Scatter Objects
+### Duplicate and Randomly Scatter Objects
 Summary:
 The script duplicates a selected object and scatters the duplicates randomly within the scene. It's headless compliant, meaning it can run in both GUI and headless modes of KeyShot. The script allows specifying the number of duplicates, axes for translation, and whether to rotate the duplicates.
 
@@ -739,7 +762,7 @@ Classes/Modules:
 luxmath.Vector: Represents vectors for transformations.
 luxmath.Matrix: Handles matrices for object transformations.
 
-###Render Ambient Occlusion###
+### Render Ambient Occlusion
 Summary:
 This script renders an ambient occlusion image of the current scene. It prompts the user to specify output parameters such as folder path, image name, dimensions, and maximum render time. It temporarily changes the environment and materials to ensure an accurate occlusion render and then restores them.
 
@@ -751,7 +774,7 @@ lux.getMaterialMapping(), lux.applyMaterialMapping(): Gets and reapplies materia
 lux.getRenderOptions(), lux.renderImage(): Configures render options and initiates the rendering process.
 
 
-###Get Scene Materials###
+### Get Scene Materials
 Summary:
 This script lists all materials currently used in the KeyShot scene by printing their names. It demonstrates a simple way to access and display scene information, particularly useful for auditing or documentation purposes.
 
@@ -759,7 +782,7 @@ Key Functions:
 
 lux.getSceneMaterials(): Retrieves a list of all materials present in the current scene.
 
-Saves Multi-Material Sub-Materials to Library (PC and Apple Compatible)
+### Saves Multi-Material Sub-Materials to Library (PC and Apple Compatible)
 Summary:
 Designed for both Windows and macOS systems, this script saves all sub-materials of multi-materials in the current KeyShot scene to a specified material library, excluding duplicates. It identifies multi-materials by examining their material graph and iterates through each to save sub-materials individually.
 
@@ -771,7 +794,7 @@ lux.saveMaterial(): Saves a specified material to the library.
 platform.system(): Determines the operating system to set the library path accordingly.
 
 
-###Duplicate and Randomly Scatter Objects (Headless Compliant)###
+### Duplicate and Randomly Scatter Objects (Headless Compliant)
 Summary:
 This script duplicates a selected object and scatters the duplicates randomly across the scene. It supports both GUI and headless modes, allowing users to specify the number of duplicates, translation axes, and rotation. The script uses randomization to place duplicates within the scene's bounding box.
 
@@ -787,7 +810,7 @@ random: Generates random numbers for translations and rotations.
 luxmath: KeyShot's module for mathematical operations related to vectors and matrices.
 
 
-###Saves the Scenes Materials and Multi-Material Sub-Materials to the Material Library###
+### Saves the Scenes Materials and Multi-Material Sub-Materials to the Material Library
 Summary:
 This script saves all scene materials and the sub-materials of multi-materials to a specified material library, avoiding duplicates. It is particularly useful for managing and organizing scene materials efficiently within KeyShot.
 
@@ -798,7 +821,7 @@ lux.saveMaterial(): Saves a specific material to the KeyShot material library.
 os, platform: Utilized for setting the library path dynamically based on the operating system.
 
 
-###Save Sub-Materials of Multi-Materials (PC and Apple Compatible)###
+### Save Sub-Materials of Multi-Materials (PC and Apple Compatible)
 Summary:
 Designed to be compatible with both Windows and macOS, this script focuses on saving sub-materials of multi-materials without saving the multi-materials themselves. It ensures no duplicate sub-materials are saved to the material library.
 
@@ -809,7 +832,7 @@ lux.saveMaterial(): Saves the sub-materials to the designated library path.
 platform.system(): Checks the operating system to set the appropriate library path.
 
 
-###Import CAD File, Create New Model Set, and Name After File###
+### Import CAD File, Create New Model Set, and Name After File
 Summary:
 Automates the process of importing a CAD file, creating a new model set in KeyShot, and naming the model set after the imported file. It simplifies the importation and organization of CAD models within KeyShot projects.
 
@@ -821,7 +844,7 @@ os.path.splitext(), os.path.basename(): Extracts the filename to use as the mode
 lux.newModelSet(): Creates a new model set named after the imported file.
 
 
-###Batch Rename ModelSets GUI###
+### Batch Rename ModelSets GUI
 Summary:
 Enables users to batch rename model sets in KeyShot using a GUI. It offers fields to input a new name for each model set, incorporating a prefix, suffix, and separator based on user preferences.
 
@@ -832,7 +855,7 @@ lux.getInputDialog(): Captures new naming specifications from the user.
 model_set.setName(): Applies the new names to each model set.
 
 
-###Import CAD File and Create Model Set Named After File###
+### Import CAD File and Create Model Set Named After File
 Summary:
 Streamlines the workflow of importing a CAD file and organizing it within KeyShot by automatically creating a model set named after the file. It demonstrates an efficient way to manage and categorize imported CAD models.
 
@@ -842,21 +865,25 @@ lux.getInputDialog(): Opens a dialog for file selection.
 lux.importFile(): Imports the CAD file into KeyShot.
 lux.newModelSet(): Creates a new model set with the imported file's name.
 
-luxmath:
+## luxmath:
 The luxmath module in KeyShot's Python environment provides mathematical functionality, particularly focusing on operations involving vectors and matrices, which are essential for 3D transformations, camera positioning, and other spatial calculations in KeyShot scenes. Below is an overview of how luxmath works, including descriptions of its primary classes and their functionalities:
 
-luxmath Classes:
+### luxmath Classes:
 luxmath consists of two main classes: Vector and Matrix. These classes are designed to handle 3D vectors and 4x4 matrices, respectively, allowing for a variety of mathematical operations that are common in 3D graphics and scene manipulation.
 
-Vector:
+### Vector:
 Purpose: Represents a 3D vector with x, y, and z components. It's used for operations like translations, rotations (when specifying an axis), and scaling.
 
 Construction: 
 Can be instantiated with either a single value (applied to all three components), three individual values for x, y, and z, or a tuple/list of three values.
 
-python
-Copy code
+<!-- python -->
+<!-- Copy code -->
+
+```python
 vec = luxmath.Vector(1, 2, 3) # x=1, y=2, z=3
+```
+
 Operations:
 
 Addition, subtraction with other vectors.
@@ -864,15 +891,19 @@ Multiplication, division by a scalar.
 Normalization to get a unit vector.
 Dot and cross product calculations.
 Length calculation, and more.
-Matrix
+### Matrix
 Purpose: Encapsulates a 4x4 matrix, commonly used for affine transformations including translation, rotation, and scaling in 3D space.
 
 Construction: 
 Can be created as an identity matrix or from a 16-element list/tuple representing the 4x4 matrix components.
 
-python
-Copy code
+<!-- python -->
+<!-- Copy code -->
+
+```python
 mat = luxmath.Matrix().makeIdentity() # Creates an identity matrix
+```
+
 Operations:
 
 Matrix multiplication (combining transformations).
@@ -881,40 +912,48 @@ Transpose.
 Determinant calculation.
 Specific transformations like translation, rotation (around an axis or with a quaternion), and scaling.
 Conversion to and from transformation components (translate, rotate, scale).
-Working with luxmath
+### Working with luxmath
 The functionality provided by luxmath is crucial for scripting complex transformations and precisely controlling the spatial aspects of scenes, cameras, and objects within KeyShot. Here are some examples of how luxmath might be used in KeyShot scripting:
 
 Positioning Objects: Use Matrix and Vector to compute the transformation matrix for positioning an object in the scene.
 
-python
-Copy code
+<!-- python -->
+<!-- Copy code -->
+
+```python
 translation = luxmath.Vector(10, 0, 5) # Translate 10 units on X, 5 units on Z
 rotation = luxmath.Matrix().makeRotate(luxmath.Vector(0, 1, 0), 45) # Rotate 45 degrees around Y
 transform = rotation.translate(translation) # Combine translation and rotation
 node.applyTransform(transform) # Apply to a scene node
+```
+
 Camera Setup: Configure a camera's position and orientation by calculating the appropriate matrix.
 
-python
-Copy code
+<!-- python -->
+<!-- Copy code -->
+
+```python
 cameraPosition = luxmath.Vector(0, 2, -5)
 lookAtPoint = luxmath.Vector(0, 1, 0)
 upDirection = luxmath.Vector(0, 1, 0) # Typically the world's up direction
 # Calculate view matrix or use existing functions for positioning the camera
+```
+
 Custom Animations: Script custom animations by interpolating between transformation matrices over time.
 
 
 
-Modular Scripts:
+## Modular Scripts:
 scripts can and should be made modular, especially when working with KeyShot scripting or any programming environment. Modular scripting refers to the practice of organizing a script into separate, distinct components or modules. Each module focuses on a specific aspect of the script's functionality, making the code more organized, reusable, and easier to maintain. This approach aligns well with principles of software development, such as DRY (Don't Repeat Yourself) and separation of concerns.
 
-Benefits of Modular Scripts Reusability: 
+### Benefits of Modular Scripts Reusability:
 Functions or classes defined in a module can be easily reused across different scripts, reducing duplication and effort.
 Maintainability: Changes in one part of a script do not affect other unrelated parts, making debugging and updating easier.
 Clarity: Modular scripts help in organizing code logically, making it more readable and understandable for both the author and others.
 
 Collaboration: 
 Allows multiple people to work on different parts of a script simultaneously without conflicts, enhancing teamwork efficiency.
-Implementing Modularity in KeyShot Scripts
+### Implementing Modularity in KeyShot Scripts
 Function Decomposition: Break down the script into functions, each performing a single responsibility. For example, separate functions for setting up materials, cameras, rendering settings, and outputting render results.
 
 Class Usage: 
@@ -930,8 +969,11 @@ By adopting a modular approach, your KeyShot scripts become more scalable, enabl
 
 
 
-Agnostic Scripting:
+## Agnostic Scripting:
 Making scripts "agnostic" means designing them in a way that they can operate independently of specific, hard-coded conditions, environments, or data. An agnostic script is versatile, reusable across different projects or contexts, and adaptable to various inputs or configurations without requiring significant modifications. Here are strategies to make KeyShot scripts (or any scripts) agnostic:
+
+
+<a name="strategies-to-make-scripts-agnostic"></a>
 
 1. Parameterization
 Use parameters or arguments for dynamic data instead of hard-coding values within the script. This allows the same script to be used with different inputs, such as file paths, material names, or rendering settings.
@@ -951,18 +993,18 @@ Implement comprehensive error handling and logging to manage unexpected inputs o
 6. Documentation and Comments
 Provide clear documentation and comments explaining the script's requirements, how to configure it, and its dependencies. This information aids in making the script user-friendly and adaptable by others.
 
-Agnostic Directory Script:
+### Agnostic Directory Script:
 Query the KeyShot Studio 2026.3 resource folder configured for the current session.
 
     library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
 
 
 
-Scene Tree:
+## Scene Tree:
 
 In KeyShot, the scene tree is a hierarchical representation of all the elements within a KeyShot scene. This structure mirrors the concept of a scene graph commonly used in 3D graphics and rendering software, organizing objects, materials, cameras, lights, and other entities in a way that reflects their relationships and dependencies.
 
-Components of the Scene Tree:
+### Components of the Scene Tree:
 The KeyShot scene tree comprises various nodes, each representing a different aspect of the scene:
 
 Root Node: 
@@ -981,7 +1023,7 @@ These nodes are used for global illumination and background settings. They can d
 Animation Nodes:
 If the scene includes animations, each animation is represented as a node in the scene tree, detailing the animated properties and their keyframes.
 
-Understanding the Hierarchical Structure:
+### Understanding the Hierarchical Structure:
 The hierarchical nature of the scene tree allows for complex relationships between objects:
 
 Parent-Child Relationships: 
@@ -993,7 +1035,7 @@ Similar objects can be grouped under a common parent node, simplifying the organ
 Instancing: 
 The scene tree structure allows for instancing, where the same object or geometry node is referenced multiple times within the scene without duplicating the actual geometry data. This saves memory and makes scene management more efficient.
 
-Manipulating the Scene Tree via Scripting:
+### Manipulating the Scene Tree via Scripting:
 KeyShot's Python API allows scripts to interact with the scene tree, enabling automated tasks like:
 
 Adding or Removing Nodes: 
@@ -1004,7 +1046,7 @@ Scripts can change the properties of nodes, such as transforming geometry, alter
 
 
 
-Environment Nodes:
+### Environment Nodes:
 
 HDRI Environment, Color Environment, etc.:
 Properties: Brightness, Rotation, Background Color, etc.
@@ -1068,12 +1110,12 @@ Remembering to use `getSceneTree()` is crucial for any script where you need to 
 
 
 
-Material Graph:
+## Material Graph:
 
 Material Nodes:
 In KeyShot, a material node essentially functions as a shader by defining how surfaces interact with light. Each material node encapsulates the properties and behaviors necessary to simulate various physical materials, such as metals, plastics, glass, and more, effectively acting as a shader in the traditional 3D graphics sense.
 
-Understanding Shaders and Material Nodes in KeyShot:
+### Understanding Shaders and Material Nodes in KeyShot:
 In 3D graphics, a shader is a type of computer program used to determine the appearance of surfaces when rendered, including colors, brightness, and texture details. KeyShot abstracts the complexity of shader programming into a more user-friendly interface through its Material Graph, where:
 
 Material Nodes represent different types of materials (or shaders) that can be applied to objects in a scene. Each type of material node has its unique set of properties that mimic physical material characteristics, such as roughness, refractive index, or metallic properties.
@@ -1090,7 +1132,7 @@ Plastic Material: Offers a way to simulate various plastic finishes with adjusta
 Paint Material: Designed to simulate painted surfaces, including options for clear coat layers.
 Each of these material nodes has parameters that allow you to fine-tune the appearance of the material, mirroring the role of shaders in a traditional rendering pipeline but in a more accessible manner.
 
-Accessing and Modifying the Material Graph through Scripting:
+### Accessing and Modifying the Material Graph through Scripting:
 You can script the Material Graph in KeyShot using KeyShot's Python scripting API. Scripting the Material Graph allows for automated creation, modification, and application of complex materials programmatically, enabling tasks such as batch processing of materials, procedural material generation, and dynamic adjustments based on external data.
 
 The scripting API provides access to the Material Graph components, including nodes, connections, and parameters. Here are some fundamental concepts for scripting the Material Graph:
@@ -1107,7 +1149,7 @@ Once nodes are created and connected, you can script changes to their properties
 Applying Materials: 
 After creating or modifying a material in the Material Graph through scripting, you can apply it to parts of your scene programmatically.
 
-Overview Material Node Properties:
+### Overview Material Node Properties:
 
 Diffuse: 
 Basic material, primarily defined by its color.
@@ -1192,7 +1234,7 @@ Assembly: A group of objects or models that form a larger structure within the s
 The relationship between the Material Graph and these scene elements is that the materials designed in the Material Graph are applied to these elements to define their appearance. The "root node" within the context of the Material Graph is about the material's properties and is distinct from the scene hierarchy where objects, models, parts, and assemblies reside.
 
 
-How to Find Specific Node Properties:
+### How to Find Specific Node Properties:
 To find the specific properties of a node and how to script them:
 
 KeyShot Scripting Console: Use the auto-completion feature to explore nodes and their properties.
@@ -1200,58 +1242,90 @@ KeyShot Documentation: Consult the latest scripting documentation provided by Lu
 Scripting Tutorials and Examples: Look for tutorials, forums, and example scripts that demonstrate how to manipulate nodes in the Material Graph.
 
 
-Scripting Material Graph:
+### Scripting Material Graph:
 Material Graph Manipulation (GUI and Headless)
 Use lux.getMaterialGraph() to access the material graph from a script.
 
 The following will go through the basic functions to manipulate the Material Graph. To see a full list of functions available, type help(lux) in the Scripting Console or visit the online documentation, for GUI or Headless scripting.
 
-Access material graph
+### Access material graph
 You can access the material graph like this:
 
+
+```python
 graph = lux.getMaterialGraph("name")
+```
+
 The graph is an instance is of the type lux.MaterialGraph which you can interact with.
 
-Access root node
+### Access root node
 You can access the root node with the following:
 
+
+```python
 rootNode = graph.getRoot()
+```
+
 The rootNode is an instance is of the type lux.ShaderNode which you can interact with.
 
-Get input edges of a node
+### Get input edges of a node
 However a node instance was obtained, you can get the edges from a Material Graph by typing:
 
+
+```python
 edges = node.getInputEdges()
+```
+
 Each edge instance is of the type lux.ShaderEdge that you can be interact with.
 
 A specific edge can be obtained via:
 
+
+```python
 edge = node.getInputEdge("parameter name")
+```
+
 This will yield lux.ShaderEdge or an error if the name is unknown.
 
-Get output edges of a node
+### Get output edges of a node
 However a node instance was obtained, you can get the edges from a Material Graph by typing:
 
+
+```python
 edges = node.getOutputEdges()
+```
+
 Each edge instance is of the type lux.ShaderEdge that you can be interact with.
 
-Get parameters of a node
+### Get parameters of a node
 However a node instance was obtained, you can get the parameters from a Material Graph by typing:
 
+
+```python
 parameters = node.getParameters()
+```
+
 Each parameter instance is of the type lux.ShaderParameter that you can be interact with.
 
 A specific parameter can be obtained via:
 
+
+```python
 parameter = node.getParameter("parameter name")
+```
+
 This will yield lux.ShaderParameter or error if unknown name.
 
-Change parameter value
+### Change parameter value
 A parameter, parameter, obtained via lux.SceneNode.getParameter() or lux.SceneNode.getParameters(), can have its value modified via lux.ShaderParameter.setValue().
 
 If, for example, the parameter’s type was a boolean (true or false), you could change the value via:
 
+
+```python
 parameter.setValue(True)
+```
+
 Is the value supported as input but entered incorrectly it will be shown in a python exception.
 
 If, for example, the parameter was an RGB color and you applied the boolean value, it would yield the error:
@@ -1259,29 +1333,56 @@ If, for example, the parameter was an RGB color and you applied the boolean valu
 Color parameter only accepts values of type tuple or list of size 3 containing floats or ints within range [0.0,1.0], or a color name!
 The following would therefore be the correct input for a color parameter:
 
+
+```python
 parameter.setValue((0.5, 0, 0))  # Red, (0x7F, 0x00, 0x00)
 parameter.setValue("Amber")      # Color known by the color library in KeyShot
+```
+
 You can obtain a Python value via lux.ShaderParameter.getValue() to get an understanding of what’s supported or you can print a representation of the instance (str() or repr()).
 
-Remove a node
+### Remove a node
 You can remove a node, either via the instance:
 
+
+```python
 graph.removeNode(node)
+```
+
 Or its ID:
 
+
+```python
 graph.removeNode(node.getID())
-Create a new node
+```
+
+### Create a new node
 You can for example create a metal node like this:
 
+
+```python
 metalNode = graph.newNode(lux.SHADER_TYPE_METAL)
-Remove an edge
+```
+
+### Remove an edge
 You can remove an edge, either via the instance:
+
+```python
+
+```
 
 graph.removeEdge(edge)
 Or its ID:
 
+
+```python
 graph.removeEdge(edge.getID())
-Create an edge between two nodes
+```
+
+### Create an edge between two nodes
 You can for example create an edge between node1 and node2 on the surface parameter:
 
+
+```python
 edge = graph.newEdge(source=node1, target=node2, param="surface")
+```

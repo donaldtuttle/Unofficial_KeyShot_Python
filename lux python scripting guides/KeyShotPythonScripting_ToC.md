@@ -2,36 +2,36 @@
 
 1. **KeyShot Python Scripting Guide**
    - **Overview of Scripting**
-     - [Quick reference](KeyShotPython_Scripting_QuickReference_Documentation.txt)
-     - [KeyShotPythonScripting_API_Guide.txt](KeyShotPythonScripting_API_Guide.txt)
+     - [Quick reference](KeyShotPython_Scripting_QuickReference_Documentation.md)
+     - [KeyShotPythonScripting_API_Guide.md](KeyShotPythonScripting_API_Guide.md)
      - [KeyShotPythonScripting_API_Documentation.md](KeyShotPythonScripting_API_Documentation.md)
    - **Best Practices and Tips**
-     - [KeyShotPythonScripting_API_BestPractices_Guide.txt](KeyShotPythonScripting_API_BestPractices_Guide.txt)
+     - [KeyShotPythonScripting_API_BestPractices_Guide.md](KeyShotPythonScripting_API_BestPractices_Guide.md)
    - **User Interface and Basics**
-     - [GUI Documentation](KeyShotPythonScripting_API_GUI_GuideDocumentation.txt)
-     - [Understanding the Basics](KeyShotPythonScripting_API_UnderstandingTheBasics_Guide.txt)
+     - [GUI Documentation](KeyShotPythonScripting_API_GUI_GuideDocumentation.md)
+     - [Understanding the Basics](KeyShotPythonScripting_API_UnderstandingTheBasics_Guide.md)
    - **Color Management**
-     - [Scene Color and Classes](KeyShotPythonScripting_Color_SceneColor_ColorWay_Classes_Guide.txt)
+     - [Scene Color and Classes](KeyShotPythonScripting_Color_SceneColor_ColorWay_Classes_Guide.md)
    - **Scripting Techniques**
-     - [Constraints and Comprehensive Script Examples](KeyShotPythonScripting_Constraints_ComprehensiveScript_Guide&Examples.txt)
-     - [Debugging Techniques](KeyShotPythonScripting_Debugging_Guide.txt)
+     - [Constraints and Comprehensive Script Examples](KeyShotPythonScripting_Constraints_ComprehensiveScript_Guide&Examples.md)
+     - [Debugging Techniques](KeyShotPythonScripting_Debugging_Guide.md)
    - **Material Graph Scripting**
-     - [Material Graph Guide](KeyShotPythonScripting_MaterialGraph_Guide.txt)
-     - [Copy of a Material Graph](KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt)
+     - [Material Graph Guide](KeyShotPythonScripting_MaterialGraph_Guide.md)
+     - [Copy of a Material Graph](KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.md)
    - **Material Shaders in Scripting**
-     - [Material Shaders Overview](../lux%20python%20material%20scripting%20guide%20and%20parameters/KeyShotPythonScripting_MaterialShaders_Documentation.txt)
-     - [Shader Classes and Parameters](../lux%20python%20material%20scripting%20guide%20and%20parameters/KeyShotPythonScripting_MaterialShaders_ClassesFunctionsParametersTypes_Documentation.txt)
+     - [Material Shaders Overview](../lux%20python%20material%20scripting%20guide%20and%20parameters/KeyShotPythonScripting_MaterialShaders_Documentation.md)
+     - [Shader Classes and Parameters](../lux%20python%20material%20scripting%20guide%20and%20parameters/KeyShotPythonScripting_MaterialShaders_ClassesFunctionsParametersTypes_Documentation.md)
    - **File Management**
      - [Find the configured resource folders](../lux/KeyShot_lux_API.md)
-     - [Python Environments and Scripts](KeyShotPythonScripting_PythonEnviorments&ScriptsInKeyShot_Guide.txt)
+     - [Python Environments and Scripts](KeyShotPythonScripting_PythonEnviorments&ScriptsInKeyShot_Guide.md)
    - **Utilities and Constants**
-     - [Utilities and Magic Methods](KeyShotPythonScripting_PythonUtilitiesMagicMethodsFunctions_Guide.txt)
-     - [Scene Node Types and Constants](KeyShotPythonScripting_SceneNodeTypes&Constants_Guide.txt)
+     - [Utilities and Magic Methods](KeyShotPythonScripting_PythonUtilitiesMagicMethodsFunctions_Guide.md)
+     - [Scene Node Types and Constants](KeyShotPythonScripting_SceneNodeTypes&Constants_Guide.md)
    - **Transformation Techniques**
-     - [Transformation Matrices](KeyShotPythonScripting_TransformationMatrix_Documentation.txt)
+     - [Transformation Matrices](KeyShotPythonScripting_TransformationMatrix_Documentation.md)
 
 2. **KeyShot Material Shaders Types & Parameters**
-   - [KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt](KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.txt)
+   - [KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.md](KeyShotPythonScripting_ShaderNodeTypes&Parameters_Documentation.md)
    - [Material Advanced.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Advanced.txt)
    - [Material Anisotropic.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Anisotropic.txt)
    - [Material Area Light.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Area%20Light.txt)

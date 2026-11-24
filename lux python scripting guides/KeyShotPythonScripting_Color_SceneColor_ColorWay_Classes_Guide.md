@@ -1,0 +1,489 @@
+# KeyShot Python Scripting Guide Color, SceneColor, and Colorway Classes
+
+## Table of Contents
+
+1. [KeyShot Python Scripting Guide: Color, SceneColor, and Colorway Classes](#keyshot-python-scripting-guide-color-scenecolor-and-colorway-classes)
+   - [1.1 Introduction to Color Classes in KeyShot](#11-introduction-to-color-classes-in-keyshot)
+     - [1.1.1 Objective](#111-objective)
+     - [1.1.2 Target Learning](#112-target-learning)
+   - [1.2 Core Components and Capabilities](#12-core-components-and-capabilities)
+     - [1.2.1 Color Class](#121-color-class)
+       - [1.2.1.1 Overview](#1211-overview)
+       - [1.2.1.2 Normalized RGBA Values](#1212-normalized-rgba-values)
+       - [1.2.1.3 Different Color Models](#1213-different-color-models)
+     - [1.2.2 SceneColor Class](#122-scenecolor-class)
+       - [1.2.2.1 Multi-Color Container](#1221-multi-color-container)
+       - [1.2.2.2 Managing Sub-Colors](#1222-managing-sub-colors)
+     - [1.2.3 Colorway Class](#123-colorway-class)
+       - [1.2.3.1 Powerful Color Management](#1231-powerful-color-management)
+       - [1.2.3.2 Key Features of Colorway](#1232-key-features-of-colorway)
+         - [1.2.3.2.1 Managing Multiple Colors](#12321-managing-multiple-colors)
+         - [1.2.3.2.2 Core Methods](#12322-core-methods)
+         - [1.2.3.2.3 Example of Using Colorway in a Script](#12323-example-of-using-colorway-in-a-script)
+   - [1.3 Use Cases for Colorway in Scene Setup](#13-use-cases-for-colorway-in-scene-setup)
+     - [1.3.1 Product Variants](#131-product-variants)
+     - [1.3.2 Design Iterations](#132-design-iterations)
+     - [1.3.3 Scene-Level Flexibility](#133-scene-level-flexibility)
+   - [1.4 Summary and Best Practices](#14-summary-and-best-practices)
+     - [1.4.1 Normalized RGBA Values](#141-normalized-rgba-values)
+     - [1.4.2 Use of SceneColor and Colorway](#142-use-of-scenecolor-and-colorway)
+     - [1.4.3 Methods Recap](#143-methods-recap)
+     - [1.4.4 Error Handling](#144-error-handling)
+   - [1.5 Practical Example for Scene Flexibility with Colorway](#15-practical-example-for-scene-flexibility-with-colorway)
+   - [1.6 Key Differences Between SceneColor and Colorway](#16-key-differences-between-scenecolor-and-colorway)
+     - [1.6.1 Conceptual Role and Usage](#161-conceptual-role-and-usage)
+     - [1.6.2 Functional Scope](#162-functional-scope)
+     - [1.6.3 Use Cases and Scenarios](#163-use-cases-and-scenarios)
+     - [1.6.4 Practical Example Comparison](#164-practical-example-comparison)
+   - [1.7 Summary of Differences](#17-summary-of-differences)
+     - [1.7.1 Feature Comparison](#171-feature-comparison)
+     - [1.7.2 When to Use Each](#172-when-to-use-each)
+   - [1.8 More Information](#18-more-information)
+     - [1.8.1 Key Features of the Colorway Class](#181-key-features-of-the-colorway-class)
+     - [1.8.2 Use Cases for Colorway in Scene Setup](#182-use-cases-for-colorway-in-scene-setup)
+     - [1.8.3 Interaction with Multi-Colors](#183-interaction-with-multi-colors)
+     - [1.8.4 Practical Scripting Example](#184-practical-scripting-example)
+     - [1.8.5 Scene-Level Flexibility](#185-scene-level-flexibility)
+
+This guide introduces KeyShot’s Color, SceneColor, and Colorway classes for managing colors within scenes, emphasizing how each class can be utilized to create efficient and flexible color configurations. These classes play different roles in color manipulation and scene setup, with Colorway serving as a more advanced container for multiple color variations, similar to how Multi-Material manages sub-materials.
+
+<a name="11-introduction-to-color-classes-in-keyshot"></a>
+
+## 1. Introduction to Color Classes in KeyShot
+
+<a name="111-objective"></a>
+
+- Objective: Learn about managing colors using Color, SceneColor, and Colorway classes in KeyShot scripting, focusing on scenarios like product variants and efficient material setups.
+
+<a name="112-target-learning"></a>
+
+- Target Learning: Understand the different methods for color manipulation, including normalized RGBA, sub-color management, and container-based configurations to switch between colors easily.
+
+<a name="12-core-components-and-capabilities"></a>
+
+## 2. Core Components and Capabilities
+
+<a name="121-color-class"></a>
+
+### Color Class
+
+<a name="1211-overview"></a>
+
+- Overview: The ColorParameter class (lux.ColorParameter) is used to define colors in different formats such as RGBA, HSV, CMYK, and Kelvin .
+
+<a name="1212-normalized-rgba-values"></a>
+
+- Normalized RGBA Values:
+- RGBA values in KeyShot are normalized between 0.0 and 1.0. This approach ensures precise control over color mixing, similar to typical 3D graphics environments:
+
+```python
+color = lux.ColorParameter()
+color.setRGBAf(1.0, 0.0, 0.0, 1.0) # Full Red with Full Opacity
+```
+
+
+This example sets a fully opaque red color, where each RGBA component value lies between 0.0 and 1.0 .
+
+<a name="1213-different-color-models"></a>
+
+- Different Color Models:
+- HSV, CMYK, and other models are supported, providing flexibility for setting colors in intuitive ways:
+
+```python
+color.setHSV(240, 1.0, 0.75) # Set a saturated blue using HSV model (Hue 240 degrees)
+```
+
+
+
+- Colors can also be set using Kelvin Temperature, useful for lights and environmental color:
+
+```python
+color.setKelvin(5500) # Set a color temperature of 5500K (neutral daylight)
+```
+
+
+
+
+<a name="122-scenecolor-class"></a>
+
+### SceneColor Class
+
+<a name="1221-multi-color-container"></a>
+
+- Multi-Color Container: SceneColor is analogous to a Multi-Material container and serves to hold multiple colors that can be activated or modified programmatically. It provides an efficient mechanism to switch colors within a scene for dynamic rendering needs.
+
+<a name="1222-managing-sub-colors"></a>
+
+- Managing Sub-Colors:
+- Use setSubColors() to add multiple color variations:
+
+```python
+scene_color = lux.ColorParameter()
+scene_color.setSubColors([(0.5, 0.5, 0.5, 1.0), (0.8, 0.1, 0.1, 1.0)]) # Grey and Red as sub-colors
+```
+
+
+
+- Activate a specific sub-color using setActiveSubColor():
+
+```python
+scene_color.setActiveSubColor((0.8, 0.1, 0.1, 1.0)) # Set Red as the active sub-color
+```
+
+
+
+
+<a name="123-colorway-class"></a>
+
+### Colorway Class
+
+<a name="1231-powerful-color-management"></a>
+
+- Powerful Color Management: The Colorway class (lux.Colorway) serves as a manager for multiple color variations within a scene, effectively allowing for different visual outcomes from the same material setup. This capability is similar to Multi-Material, which manages sub-materials .
+
+<a name="1232-key-features-of-colorway"></a>
+
+- Key Features of Colorway:
+
+<a name="12321-managing-multiple-colors"></a>
+
+#### 1. Managing Multiple Colors:
+- Colorway allows grouping of multiple sub-colors to create different versions of a product without creating separate material setups.
+
+<a name="12322-core-methods"></a>
+
+#### 2. Core Methods:
+- appendColor(multi, sub): Add a sub-color to a multi-color object.
+
+```python
+car_colorway.appendColor(multi="car_paint", sub=(0.1, 0.7, 0.2)) # Adding a green variant
+```
+
+
+
+- getColors(): Retrieve all colors in the Colorway for iteration or validation.
+- setName(name) and getName(): Set or retrieve a unique name for the Colorway, useful for identifying configurations.
+- removeColor(color): Remove a particular color from the Colorway to simplify or clean up configurations.
+- updateColor(multi, sub): Update a multi-color in the Colorway by setting a specific sub-color active. This allows for seamless changes during presentations.
+
+<a name="12323-example-of-using-colorway-in-a-script"></a>
+
+#### Example of Using Colorway in a Script
+
+Suppose you want to manage different color variants for a car model’s paint:
+
+```python
+import lux
+
+# Create a new Colorway
+car_colorway = lux.Colorway()
+
+# Define sub-colors in normalized RGBA (0-1 range)
+red = (1.0, 0.0, 0.0, 1.0) # Red
+blue = (0.0, 0.0, 1.0, 1.0) # Blue
+green = (0.0, 1.0, 0.0, 1.0) # Green
+
+# Append sub-colors to the Colorway
+car_colorway.appendColor(multi="car_paint", sub=red)
+car_colorway.appendColor(multi="car_paint", sub=blue)
+car_colorway.appendColor(multi="car_paint", sub=green)
+
+# Set a unique name for the colorway
+car_colorway.setName("Car Color Variants")
+
+# Retrieve and print all colors in the Colorway
+colors = car_colorway.getColors()
+print(f"Available colors in the colorway: {colors}")
+
+# Update to a specific sub-color
+car_colorway.updateColor(multi="car_paint", sub=blue)
+print(f"Updated the colorway to use the color blue.")
+```
+
+
+This script effectively manages multiple color configurations for the car paint using Colorway, making it easier to iterate between versions during rendering .
+
+<a name="13-use-cases-for-colorway-in-scene-setup"></a>
+
+## 3. Use Cases for Colorway in Scene Setup
+
+<a name="131-product-variants"></a>
+
+- Product Variants: Using Colorway to define multiple color options for products (e.g., cars, clothing) allows easy switching during presentations without reapplying materials manually.
+
+<a name="132-design-iterations"></a>
+
+- Design Iterations: Facilitates efficient comparison of different color setups, aiding designers to make decisions faster.
+
+<a name="133-scene-level-flexibility"></a>
+
+- Scene-Level Flexibility:
+- Dynamic Color Changes: Switch colors dynamically in response to user input, useful for customer presentations and configurators.
+- Efficiency in Workflows: Reduces the complexity and number of individual materials needed by centralizing color changes using Colorway .
+
+<a name="14-summary-and-best-practices"></a>
+
+## 4. Summary and Best Practices
+
+<a name="141-normalized-rgba-values"></a>
+
+- Normalized RGBA Values: Always use normalized RGBA values (0.0 to 1.0) to ensure proper color representation.
+
+<a name="142-use-of-scenecolor-and-colorway"></a>
+
+- Use of SceneColor and Colorway:
+- SceneColor is suitable for managing sub-colors and activating them programmatically.
+- Colorway serves as a comprehensive tool for managing multiple color variations, similar to Multi-Material, allowing for easy version switching during presentations or batch rendering tasks.
+
+<a name="143-methods-recap"></a>
+
+- Methods Recap:
+- appendColor(), getColors(), setName(), removeColor(), and updateColor() are key methods to effectively use the Colorway class to manage and iterate between color configurations.
+
+<a name="144-error-handling"></a>
+
+- Error Handling:
+- Validate color values to ensure they fall within accepted ranges.
+- Make sure to use existing sub-colors when setting the active color in SceneColor or Colorway to avoid runtime errors.
+
+<a name="15-practical-example-for-scene-flexibility-with-colorway"></a>
+
+## Practical Example for Scene Flexibility with Colorway
+
+- Dynamic User Interaction: Incorporate a GUI dialog using lux.getInputDialog() to let users choose the active sub-color, enhancing interactivity during presentations:
+
+```python
+import lux
+
+def choose_car_color():
+colors = ["Red", "Blue", "Green"]
+selection = lux.getInputDialog(
+title="Select Car Color",
+values=[("color", lux.DIALOG_ITEM, "Select Color:", colors[0], colors)]
+)
+if selection:
+color = selection['color']
+if color == "Red":
+car_colorway.updateColor(multi="car_paint", sub=red)
+elif color == "Blue":
+car_colorway.updateColor(multi="car_paint", sub=blue)
+elif color == "Green":
+car_colorway.updateColor(multi="car_paint", sub=green)
+
+choose_car_color()
+```
+
+
+
+
+This interactivity makes Colorway a versatile tool for scenarios that demand real-time updates and a high level of engagement with end-users.
+
+By using Colorway, SceneColor, and ColorParameter efficiently, you can achieve more flexible, interactive, and organized approaches to color management in KeyShot, ultimately enhancing both the design process and presentation quality.
+
+<a name="16-key-differences-between-scenecolor-and-colorway"></a>
+
+## Key Differences Between SceneColor and Colorway
+
+<a name="161-conceptual-role-and-usage"></a>
+
+### 1. Conceptual Role and Usage
+
+- SceneColor:
+- Primary Role: The SceneColor class is essentially a color management class used to manipulate and organize individual colors and a set of sub-colors. It allows for direct control over color values (RGBA, HSV, etc.) and lets users activate one color from a set of sub-colors, which is especially useful for dynamic coloring of individual scene elements.
+- Use Cases: SceneColor is used when you need to apply different color variations on specific parts or components of a scene in a structured manner. It’s helpful in scenarios where you need to switch between colors dynamically without modifying material graphs.
+- Sub-Color Management: You can manage a list of sub-colors, which are color variations. SceneColor can be thought of as having “instances” of color settings that can be activated programmatically using methods like setSubColors() and setActiveSubColor(). This is useful for managing alternate versions of the same scene element.
+- Colorway:
+- Primary Role: The Colorway class, on the other hand, serves as a higher-level manager for multiple color configurations. It is primarily used to define, store, and manage multiple color variations (called multi-colors) across an entire scene or material. The Colorway acts as a “meta-manager” that organizes and efficiently switches between multiple sets of colors, effectively creating different versions of the overall material or scene.
+- Use Cases: Colorway is ideal when you need to manage multiple color configurations for a product or scene to create different visual versions efficiently. It’s used for batch rendering different color variants, product customization presentations, and design comparisons, where the user needs to switch between distinct color setups programmatically.
+- Multi-Color Container: Colorway is more powerful and versatile compared to SceneColor, as it works as a container for multiple color configurations across different objects or materials within a scene. It can append, remove, or switch between these colors dynamically, which provides a high level of flexibility for iterative design or presentations.
+
+<a name="162-functional-scope"></a>
+
+### 2. Functional Scope
+
+- SceneColor:
+- Granular Level Control: SceneColor operates at a more granular level, specifically on individual scene components or specific nodes of a material graph. It is used to manipulate the colors of certain parts without impacting the entire material setup.
+- Methods for Color Changes:
+- setSubColors(): Allows for setting a collection of sub-colors.
+- getSubColors() and setActiveSubColor(): Manage which specific sub-color is currently being used.
+- Interaction Context: SceneColor is often used when you need dynamic adjustments to colors of specific elements of a scene in response to user input or to present variations in specific parts rather than across the whole scene or object.
+- Colorway:
+- Scene-Wide or Material-Level Configurations: The Colorway class impacts a broader level. It can hold multiple sets of colors and enables switching between complete configurations of these color setups at a scene or material level, making it ideal for product presentations and visual explorations.
+- Powerful Scene Manager: It provides a comprehensive set of methods like:
+- appendColor(): Add a new sub-color to an existing collection.
+- getColors(): Retrieve the list of all colors available in the Colorway.
+- updateColor(): Change the active color to provide a different look to a product or scene dynamically.
+- removeColor(): Clean up unnecessary color variants.
+- Comparison: Colorway is a broader container of colors, functioning like a Multi-Material but for colors, where you can swap between entire color setups easily without modifying or duplicating materials.
+
+<a name="163-use-cases-and-scenarios"></a>
+
+### 3. Use Cases and Scenarios
+
+- SceneColor:
+- Used when individual scene components need specific color adjustments.
+- It’s beneficial for local color changes where each component or material element needs its own set of predefined variations, such as different parts of a complex model.
+- Example: Changing the color of a single button on a device model in the scene, or switching between different fabric colors on a single part of a furniture item.
+- Colorway:
+- Ideal for global color management, such as managing color variations for a product line or material variants applied across an entire model.
+- Used in scenarios involving product variants and design iterations, where different versions of the product or scene need to be rendered or presented.
+- Example: Setting up multiple color schemes for a car model, allowing you to easily switch between red, blue, and green car body paints during a client presentation.
+
+<a name="164-practical-example-comparison"></a>
+
+### 4. Practical Example Comparison
+
+#### SceneColor Example:
+
+Suppose you have a chair model, and you want to apply different color variations to only the fabric of the seat:
+
+```python
+import lux
+
+seat_color = lux.ColorParameter()
+seat_color.setSubColors([(0.2, 0.8, 0.2, 1.0), (0.8, 0.1, 0.1, 1.0)]) # Green, Red colors for seat fabric
+
+# Set the fabric to be green initially
+seat_color.setActiveSubColor((0.2, 0.8, 0.2, 1.0)) # Green color is set active
+```
+
+
+- Here, the SceneColor object seat_color manages different colors for the chair seat, and only one part of the chair is modified without impacting other components.
+
+#### Colorway Example:
+
+Suppose you want to manage the entire car paint configuration across the whole car:
+
+```python
+import lux
+
+car_colorway = lux.Colorway()
+
+# Adding different color variations for the car paint
+car_colorway.appendColor(multi="car_paint", sub=(1.0, 0.0, 0.0)) # Red
+car_colorway.appendColor(multi="car_paint", sub=(0.0, 0.0, 1.0)) # Blue
+car_colorway.appendColor(multi="car_paint", sub=(0.0, 1.0, 0.0)) # Green
+
+# Setting a unique name for the Colorway
+car_colorway.setName("Car Color Variants")
+
+# Update to a specific sub-color (e.g., blue)
+car_colorway.updateColor(multi="car_paint", sub=(0.0, 0.0, 1.0)) # Activate Blue
+```
+
+
+- In this example, Colorway manages multiple configurations of the car paint color as a collection. You can switch between colors like red, blue, and green for the entire car model, and it changes globally for the entire paint material.
+
+<a name="17-summary-of-differences"></a>
+
+## Summary of Differences
+
+<a name="171-feature-comparison"></a>
+
+```text
+Feature SceneColor Colorway
+Scope Individual scene elements or material nodes Entire scene-level or material-wide configurations
+Primary Use Case Manage specific sub-colors for individual parts Manage multiple color variations of a product/scene
+Granularity Focused on part-level color variation Broader, scene-wide color management
+Methods for Management setSubColors(), setActiveSubColor() appendColor(), removeColor(), updateColor()
+Application Specific local color changes in the scene Managing and presenting global product variants
+Example Scenario Changing the color of a chair’s fabric Managing different paint jobs for a car model
+```
+
+
+<a name="172-when-to-use-each"></a>
+
+### When to Use Each
+
+- Use SceneColor:
+- When the task is to modify or control specific colors of certain parts of a model (like different fabric parts, buttons, or individual elements).
+- When you need to dynamically swap colors but at a granular, component level.
+- Use Colorway:
+- When managing multiple overall color configurations for an entire scene or product, which is especially useful for showcasing product variants and design iterations.
+- When flexibility in presentations and the ability to swap entire color setups globally is required.
+
+By leveraging these two tools—SceneColor for local control and Colorway for global color variations—KeyShot users can efficiently manage color customization, optimize design workflows, and enhance both creative and presentation capabilities.
+
+<a name="18-more-information"></a>
+
+## more information
+
+The Colorway class in KeyShot serves as a powerful way to manage multiple color variations within a scene, facilitating the creation of different visual outcomes from the same material setup. Essentially, Colorway functions as a manager for color configurations, enabling users to define, update, and manipulate multiple colors within a particular material or scene component. Here’s a deeper dive into what the Colorway class offers and how it can be utilized in KeyShot scripting:
+
+<a name="181-key-features-of-the-colorway-class"></a>
+
+### Key Features of the Colorway Class
+
+#### 1. Managing Multiple Colors:
+- The Colorway class allows you to group multiple color options together, known as multi-color. This is very useful in scenarios where you want to explore various color versions of the same material, product, or model without creating multiple materials manually.
+- A Colorway can be thought of as a container holding different sub-colors, each of which can be activated or modified independently to create variations efficiently.
+#### 2. Core Methods of the Colorway Class:
+The Colorway class provides several methods to manage and manipulate colors effectively:
+- appendColor(multi, sub): This method is used to append a sub-color to an existing multi-color in a Colorway. Essentially, it allows adding a new variation to the collection, where multi refers to the multi-color object, and sub refers to the sub-color that must be a part of the multi-color.
+- getColors(): This method returns a list of all colors present in the Colorway. It’s particularly helpful when you need to iterate through available color variations or programmatically determine the colors associated with a material.
+- getName(): This retrieves the name of the Colorway. The name is important for identifying which specific Colorway is in use, especially in scripts where multiple Colorways might be applied.
+- setName(name): You can assign a unique name to a Colorway using this method, which must be unique across the project. Naming is crucial for keeping track of different Colorway configurations.
+- removeColor(color): This method removes a particular multi-color from the Colorway. This feature can help clean up or modify existing Colorway collections by eliminating unnecessary color variations.
+- updateColor(multi, sub): This method updates an existing multi-color in the Colorway by setting a specific sub-color as active. This feature enables you to dynamically switch colors during the rendering process, which can be used for presenting different versions of the product.
+
+<a name="182-use-cases-for-colorway-in-scene-setup"></a>
+
+### 3. Use Cases for Colorway in Scene Setup:
+- Product Variants: A typical use case is creating color variants of a product (e.g., a car, an appliance, or clothing). Using Colorway, you can define multiple color options and easily switch between them during a presentation or when rendering different versions of a product without manually changing the material colors.
+- Design Iterations: When designing and rendering products, designers often want to compare different color configurations. Colorway makes this easy by providing a means to switch between predefined colors programmatically, enabling efficient iteration and visualization of design changes.
+
+<a name="183-interaction-with-multi-colors"></a>
+
+### 4. Interaction with Multi-Colors:
+- The Colorway class is particularly useful when dealing with multi-colors, where multiple sub-colors exist within a broader color context. It provides the flexibility to add, update, or remove sub-colors, thus allowing dynamic adjustments that suit specific rendering needs.
+- In the context of KeyShot’s material graph, Colorway acts similarly to how a multi-material works by providing a set of predefined configurations that can be swapped as instances to give different looks while maintaining the underlying structure and connectivity of the material graph .
+
+<a name="184-practical-scripting-example"></a>
+
+### 5. Practical Scripting Example:
+Suppose you have a car model, and you want to apply different color configurations to its body paint:
+
+```python
+import lux
+
+# Create a new Colorway
+car_colorway = lux.Colorway()
+
+# Define some sub-colors (using RGB tuples)
+red = (255, 0, 0)
+blue = (0, 0, 255)
+green = (0, 255, 0)
+
+# Append sub-colors to the Colorway
+car_colorway.appendColor(multi="car_paint", sub=red)
+car_colorway.appendColor(multi="car_paint", sub=blue)
+car_colorway.appendColor(multi="car_paint", sub=green)
+
+# Set a unique name for the colorway
+car_colorway.setName("Car Color Variants")
+
+# Retrieve and print all colors in the colorway
+colors = car_colorway.getColors()
+print(f"Available colors in the colorway: {colors}")
+
+# Update to a specific sub-color
+car_colorway.updateColor(multi="car_paint", sub=blue)
+print(f"Updated the colorway to use the color blue.")
+```
+
+
+
+<a name="185-scene-level-flexibility"></a>
+
+### 6. Scene-Level Flexibility:
+- Dynamic Color Changes: By using Colorway, you can create scenes where colors can be dynamically changed based on user interaction, which is valuable for customer presentations or configurators where end-users might want to choose between different color options for a product.
+- Efficiency in Workflows: Instead of creating separate materials for each color variant, Colorway allows for a centralized and efficient way to manage color changes. This reduces both the number of materials required and the complexity of the material setup, improving project organization and render consistency.
+
+### Summary:
+
+- The Colorway class in KeyShot acts as a container and manager for multiple color variations within a scene.
+- It provides methods to add, remove, get, and update colors, thus allowing efficient management of product or design color variations.
+- It’s particularly effective for handling multi-colors, offering the ability to switch between color instances just like multi-materials, enabling efficient rendering of different color configurations without redundant material setups.
+- Using Colorway enhances the flexibility of the rendering process by enabling dynamic and programmable color changes, which are essential for iterative design work and customer presentations.
+
+Overall, Colorway is a powerful tool for managing and visualizing different color configurations, providing KeyShot users with flexibility and control over how they apply and interact with colors in their scenes.

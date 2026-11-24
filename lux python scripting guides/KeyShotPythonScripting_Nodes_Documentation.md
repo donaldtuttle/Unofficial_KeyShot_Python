@@ -143,7 +143,7 @@ Before making changes or applying transformations, it's crucial to understand th
 - Purpose: Provides detailed information about each node, including its type and material properties.
 - Usage: Use this script when you need to inspect the materials applied to different parts of your scene.
 
- Script: Get SceneTree Node Parameters
+ Script: [Get Scene Tree Node Parameters](#3-get-scene-tree-node-parameters)
 - Purpose: Extracts and prints detailed parameters for each node in the scene tree.
 - Usage: Ideal for understanding the attributes and properties of each node, useful for advanced scene manipulation.
 
@@ -350,7 +350,6 @@ if __name__ == "__main__":
    - Key Features:
    - Parameter Extraction: It delves into each node's parameters, providing a detailed overview of what can be manipulated or inspected.
    - Integration: This script complements the others by offering a deep dive into the properties of each node. It’s valuable for users who need to fine-tune specific elements of their scene or script more complex interactions.
-   - Reference: [Get SceneTree Node Parameters](87).
 
 ```python
 # Print Detailed Scene Treen Node Information.

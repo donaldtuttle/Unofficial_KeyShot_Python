@@ -66,7 +66,7 @@ Full static audit against the 2026.3 beta dumps. No KeyShot runtime execution or
 - GitHub and MCP remain optional and are not represented as connected.
 
 ## 2026-10-24
-- Updated from https://github.com/donaldtuttle/Unofficial_KeyShot_Python and https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge
+- Updated from https://github.com/donaldtuttle/Unofficial_KeyShot_Python and the [private knowledge archive](https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge)
 - Added 2026.3 beta `help(lux)` dump as API source of truth (`references/KeyShot_lux_API.md`)
 - Added mandatory constraints, best practices, 2026 corrections, OpenPBR/Planar Light notes, and glossary
 - Incorporated verification checklist, headless patterns, and "dump wins" rule into SKILL.md

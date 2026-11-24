@@ -58,7 +58,7 @@ This makes the collection useful both to people learning KeyShot Python and to A
 
 ## Repository layout
 
-- [Scripting guides](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.txt) cover the API, materials, scene nodes, and transformations.
+- [Scripting guides](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.md) cover the API, materials, scene nodes, and transformations.
 - [Script examples](lux%20scripts/Scripting_Examples.txt) cover materials, information, transforms, rendering, GUI scripting, and animation.
 - [AI skills](ai/skills/) provide configurations and references for multiple platforms.
 
@@ -80,7 +80,7 @@ The repository also includes scripts I've shared with the KeyShot community. The
 - [Material-to-OpenPBR Converter](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/openpbr_material_converter.py): A material conversion example using shader parameters and material graph connections. See the [OpenPBR parameter reference](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/OpenPBR_and_Planar_Light.md#openpbr) and [shader node types and parameters](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt).
 - [Copy a material graph](lux%20python%20scripting%20guides/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) covers copying nodes and edges and adding the copy to a Multi-Material. The [material graph duplication reference](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/Material_Graph_Duplication.txt) summarizes the process.
 
-For related GUI, API, transformation, and scripting guides, see the [documentation index](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.txt).
+For related GUI, API, transformation, and scripting guides, see the [documentation index](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.md).
 
 The Inspector can write report/trace files, and its optional all-saved-item inspections temporarily change active camera, environment, or image-style selections. The converter modifies materials. Review each script's scope and test scene-changing operations on a saved copy. Other [reference scripts](lux%20scripts/Scripting_Examples.txt) remain available throughout the repository.
 

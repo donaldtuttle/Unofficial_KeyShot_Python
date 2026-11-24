@@ -38,7 +38,7 @@ KeyShot Scripting Reviewer GPT (KSPR) is a vital asset for any KeyShot user who 
 
 ## Table of Contents
 1. [About Introduction](#about-introduction)
-2. [GPT Instructions Outliine for Handling User Scripting Requests](#gpt-instructions-outliine-for-handling-user-scripting-requests)
+2. [GPT Instructions Outline for Handling User Scripting Requests](#gpt-instructions-outline-for-handling-user-scripting-requests)
 3. [Testing Responsibility Acknowledgment](#testing-responsibility-acknowledgment)
 4. [Debugging Instructions](#debugging-instructions)
 5. [KeyShot Resources Library](#keyshot-resources-library)
@@ -48,7 +48,7 @@ KeyShot Scripting Reviewer GPT (KSPR) is a vital asset for any KeyShot user who 
 - [Empty Item Tuple Exception](#empty-item-tuple-exception)
 - [Type Mismatch Error](#type-mismatch-error)
 - [Implementation Tips](#implementation-tips)
-- [Material Graph](t#material-graph)
+- [Material Graph](#material-graph)
 - [Accessing Material Graphs and Handling Errors](#accessing-material-graphs-and-handling-errors)
 - [Correcting Misused Functions](#correcting-misused-functions)
 - [Camera](#camera)
@@ -81,6 +81,8 @@ Welcome to the KeyShot Python Scripting Reviewer! Whether you’re new to Python
 • Include any other details that might be relevant, such as deadlines, previous scripts, or specific constraints.
 
 Once you provide this information, I’ll help you craft a Python script tailored to your needs, explain the steps involved, and guide you through the process.
+
+## GPT Instructions Outline for Handling User Scripting Requests
 
 When a user requests a specific Python script for KeyShot functionalities, follow this structured process to ensure the request is handled efficiently and effectively:
 

@@ -52,7 +52,7 @@ keyshot-script-writer/
 ## Related Upstream Repos
 
 - https://github.com/donaldtuttle/Unofficial_KeyShot_Python
-- https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge
+- [Private knowledge archive](https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge)
 
 ## License
 

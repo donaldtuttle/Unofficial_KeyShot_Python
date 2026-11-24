@@ -1915,11 +1915,11 @@ except Exception as e:
 Here is a list of helpful external resources to further your knowledge of KeyShot scripting and Python development.
 
 #### **12.4.1 KeyShot Documentation**
-- [KeyShot Studio 2026.3 Python API](KeyShotPythonScripting_API_Documentation.txt)
+- [KeyShot Studio 2026.3 Python API](KeyShotPythonScripting_API_Documentation.md)
 - Official KeyShot documentation with detailed information on the scripting API and examples.
 
 #### **12.4.2 Python Resources**
-- [Python Official Documentation](https://docs.python.org/3/)
+- [Python 3.13 documentation](https://docs.python.org/3.13/)
 - Python’s official documentation covering all language features, modules, and tutorials.
 
 #### **12.4.3 3D Graphics and Rendering**
@@ -1927,7 +1927,7 @@ Here is a list of helpful external resources to further your knowledge of KeySho
 - A comprehensive book and website covering topics related to 3D rendering, shaders, and graphics.
 
 #### **12.4.4 KeyShot Community and Forums**
-- [KeyShot Forum](https://www.keyshot.com/forum/)
+- [KeyShot Forum](https://community.keyshot.com/forum)
 - The official KeyShot forum where users share tips, scripts, and troubleshooting advice.
 
 ---
@@ -1935,7 +1935,7 @@ Here is a list of helpful external resources to further your knowledge of KeySho
 ### **12.5 Additional Resources**
 
 - **KeyShot Blog**: Keep up-to-date with new releases, tips, and user stories on the [KeyShot Blog](https://www.keyshot.com/blog/).
-- **KeyShot Tutorials**: Access tutorials on rendering, materials, and animation at [KeyShot Learning](https://www.keyshot.com/resources/learning/).
+- **KeyShot Tutorials**: Access tutorials on rendering, materials, and animation at [KeyShot Learning](https://www.keyshot.com/learning/).
 - **Python Programming for 3D**: For those looking to dive deeper into Python scripting for 3D, explore resources like [CG Cookie](https://cgcookie.com/), which offers Python courses for 3D applications.
 
 ---

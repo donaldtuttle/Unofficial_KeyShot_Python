@@ -94,7 +94,7 @@
 92. [Material\Material Physical Light Color Change.py](#material-material-physical-light-color-change)
 93. [Material\Saves All Materials to the Library.py](#material-saves-all-materials-to-the-library)
 94. [Material\ShaderEdge Connect.py](#material-shaderedge-connect)
-95. [Material\Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py](#material-batch-create-multi-material-sub-materials-with-custom-advanced-shader-parameters)
+95. [Material\Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py](#batch-create-multi-material-sub-materials-with-custom-advanced-shader-parameters)
 96. [Model\Delete Model Set by Name.py](#model-delete-model-set-by-name)
 97. [Model\Hide All Model Set Children.py](#model-hide-all-model-set-children)
 98. [Model\Hide All Model Sets Children.py](#model-hide-all-model-sets-children)
@@ -9203,7 +9203,7 @@ connect_color_gradient_to_diffuse_color(material_name)
 ```
 
 ## Color Gradient View Direction.py
-<a name="color-gradient-view-direction"></a>
+<a name="material-color-gradient-view-direction"></a>
 
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.6

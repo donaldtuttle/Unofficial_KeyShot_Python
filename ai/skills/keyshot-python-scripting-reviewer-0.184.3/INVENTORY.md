@@ -9,7 +9,7 @@
 | KeyShot build | 15.2.0.140 |
 | Embedded Python | 3.13.12 |
 | Package files | 22 |
-| Package bytes | 1,242,915 |
+| Package bytes | 1,242,978 |
 
 ## Package files
 
@@ -21,14 +21,14 @@
 | `skills/instructions/SKILL.md` | 9,264 | `003036f3a5535dfddb3860c3f6686eca029d3f60753a56590c8c2f5fdbcd9a5a` |
 | `skills/instructions/agents/openai.yaml` | 231 | `7417b74b4c3fb46626ec06fedc445d7e795350416d744809264f2ad6a6c1ce1f` |
 | `skills/instructions/lookup/knowledge-index.json` | 2,629 | `fa9f1df4ff3f5537f3ff5fd54a50119b25f30e26555efb532a82dd3a4e353748` |
-| `skills/instructions/references/ABOUT.txt` | 27,600 | `d844a1100bb3fd06220ca35534b228c5f7f66c9cc8f07517e0838b90227d1d1d` |
+| `skills/instructions/references/ABOUT.txt` | 27,663 | `3760dad0674922f0f2f7bc3e17f2945c1c2427fca9930fea47be2be806ba837b` |
 | `skills/instructions/references/Action_Handel_User_Input.txt` | 8,451 | `cea7d8bb8288adfc65cc2823a650007db2c1abc69f11bd488eb5f837f77041e6` |
 | `skills/instructions/references/Common_Errors.txt` | 36,033 | `530f683950b9a55e904d7e7c3d0aec2c2b45458ff68471d7a71076f8aaf179e3` |
 | `skills/instructions/references/KeyShot_headless_lux_API.md` | 81,884 | `1b86be9b373fe51a4fde0cabba1b8b7fdb340d4cf5645e60ca75ee0f78494eeb` |
 | `skills/instructions/references/KeyShot_headless_luxmath_API.md` | 8,821 | `c34f0135204f9e3c18d4eacf5181f1ce599ec4cdd2722e222898bf4acd3c868b` |
 | `skills/instructions/references/KeyShot_lux_API.md` | 92,711 | `35d85e275ec37da647eb8656ccc1180065dec3c8dc6200a78de6bd52d7f4b0e3` |
 | `skills/instructions/references/KeyShot_luxmath_API.md` | 8,811 | `09c24fb657ae0cc0e71f8e648e9d4bd059481239d9dfd5a93813f2b3bca7b01a` |
-| `skills/instructions/references/KeyShot_Python_Script_Examples_with_ToC.txt` | 362,728 | `039b4436a9e82771d1cc93b5d565d2ed9e139750f2b883818ec023698afec0e1` |
+| `skills/instructions/references/KeyShot_Python_Script_Examples_with_ToC.txt` | 362,728 | `fa7274cb577281735b047925fafa83a43b5f99ceca31c355dfedd6fd66da731c` |
 | `skills/instructions/references/KeyShot_Resource_Folders.txt` | 11,610 | `dd757d5fa1eefce8df21075a26b8b51874143f4d75a3e3dcacedf90af78a8aee` |
 | `skills/instructions/references/KPSR_QuickGuide.txt` | 30,620 | `e00de1f88c9a6a010efc71825b9912b2b449def7b9bd3051363288c891128a92` |
 | `skills/instructions/references/KS_GUI.txt` | 9,004 | `b4ba4878308dbe9dbeff2e088406dfd212b943df8e747b67ca9c6497e4b7a843` |

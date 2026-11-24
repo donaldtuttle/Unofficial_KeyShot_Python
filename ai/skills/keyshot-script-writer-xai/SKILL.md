@@ -353,7 +353,7 @@ See `references/best-practices.md` and `references/2026-corrections.md` for the 
 - Quick-reference cheat sheet for advanced material graph patterns: `references/Advanced_Material_Graph_Cheat_Sheet.md`
 - Additional curated examples: `references/keyshot-script-examples.md`
 - Clean starter template: `assets/keyshot_script_template.py` (always put user settings in the top block)
-- Upstream knowledge bases: https://github.com/donaldtuttle/Unofficial_KeyShot_Python and https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge
+- Upstream knowledge bases: https://github.com/donaldtuttle/Unofficial_KeyShot_Python and the [private knowledge archive](https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge)
 
 ## Limitations & When to Decline
 

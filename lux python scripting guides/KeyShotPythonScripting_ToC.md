@@ -4,7 +4,7 @@
    - **Overview of Scripting**
      - [Quick reference](KeyShotPython_Scripting_QuickReference_Documentation.txt)
      - [KeyShotPythonScripting_API_Guide.txt](KeyShotPythonScripting_API_Guide.txt)
-     - [KeyShotPythonScripting_API_Documentation.txt](KeyShotPythonScripting_API_Documentation.txt)
+     - [KeyShotPythonScripting_API_Documentation.md](KeyShotPythonScripting_API_Documentation.md)
    - **Best Practices and Tips**
      - [KeyShotPythonScripting_API_BestPractices_Guide.txt](KeyShotPythonScripting_API_BestPractices_Guide.txt)
    - **User Interface and Basics**

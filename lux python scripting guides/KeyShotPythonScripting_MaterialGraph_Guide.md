@@ -964,7 +964,9 @@ edge = graph.newEdge(source=node1, target=node2, param="surface")
 
 ### KeyShotPythonScripting MaterialGraph Copy Of A Copy Guide
 
-## Table of Contents
+<a name="table-of-contents-1"></a>
+
+## Debugging in KeyShot Guide TOC
 
 1. [Debugging in KeyShot](KeyShotPythonScripting_Debugging_Guide.md#debugging-in-keyshot)
    - [1.1 KeyShot Debugging Environment Limitations](KeyShotPythonScripting_Debugging_Guide.md#11-keyshot-debugging-environment-limitations)

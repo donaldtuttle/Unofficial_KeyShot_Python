@@ -10,7 +10,7 @@
 4. [Using Transformation Matrices in KeyShot](#using-transformation-matrices-in-keyshot)
     - [Applying a Transformation Matrix](#applying-a-transformation-matrix)
     - [Combining Multiple Transformations](#combining-multiple-transformations)
-5. [Common Errors and Debugging](#common-errors-and-debugging)
+5. [Common Transformation Scenarios and Key Takeaways](#5-common-transformation-scenarios)
     - [Common Transformation Scenarios](#5-common-transformation-scenarios)
     - [Key Takeaways for Effective Transformation Scripting](#6-key-takeaways-for-effective-transformation-scripting)
 6. [Example Scripts](#example-scripts)

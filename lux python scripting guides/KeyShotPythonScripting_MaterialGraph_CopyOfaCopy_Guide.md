@@ -2,6 +2,24 @@
 
 ## Table of Contents
 
+- [Manual Copy of Material Graphs Using KeyShot API](#manual-copy-of-material-graphs-using-keyshot-api)
+- [Breakdown of the lux.createMultiMaterial() Method:](#breakdown-of-the-luxcreatemultimaterial-method)
+- [Why lux.createMultiMaterial() Works for Copying Material Graphs:](#why-luxcreatemultimaterial-works-for-copying-material-graphs)
+- [Advantages of Using lux.createMultiMaterial():](#advantages-of-using-luxcreatemultimaterial)
+  - [Potential Application for Sub-Materials:](#potential-application-for-sub-materials)
+  - [Summary:](#summary)
+  - [Considerations:](#considerations)
+- [The Essence of lux.createMultiMaterial() for Copying Material Graphs](#the-essence-of-luxcreatemultimaterial-for-copying-material-graphs)
+  - [Understanding the Concept: Why You Need This Approach](#understanding-the-concept-why-you-need-this-approach)
+  - [How lux.createMultiMaterial() Solves This Problem](#how-luxcreatemultimaterial-solves-this-problem)
+  - [Practical Example: Why This Matters](#practical-example-why-this-matters)
+  - [Step-by-Step Recap](#step-by-step-recap)
+  - [Why This is a Powerful Technique](#why-this-is-a-powerful-technique)
+  - [What to Keep in Mind](#what-to-keep-in-mind)
+  - [Final Thought](#final-thought)
+
+## Debugging in KeyShot Guide TOC
+
 1. [Debugging in KeyShot](KeyShotPythonScripting_Debugging_Guide.md#debugging-in-keyshot)
    - [1.1 KeyShot Debugging Environment Limitations](KeyShotPythonScripting_Debugging_Guide.md#11-keyshot-debugging-environment-limitations)
      - [1.1.1 No Native Interactive Debugger](KeyShotPythonScripting_Debugging_Guide.md#111-no-native-interactive-debugger)

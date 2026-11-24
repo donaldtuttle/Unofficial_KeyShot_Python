@@ -9,7 +9,7 @@
 
 ## 2026-10-24 — API compliance pass (v1.3)
 
-Addresses remaining acceptance criteria from the v1.2 review. Static verification against the 2026.3 beta dumps only. No KeyShot runtime execution or rendering was performed.
+Static verification against the 2026.3 beta dumps only. No KeyShot runtime execution or rendering was performed.
 
 ### Corrections
 - Both orphan-cleanup helpers are now inspection-only by default. Deletion requires explicit authorization. Inspection failure is never treated as zero edges. Unknown animation nodes are protected.
@@ -26,7 +26,7 @@ Addresses remaining acceptance criteria from the v1.2 review. Static verificatio
 
 ## 2026-10-24 — API compliance pass (v1.2)
 
-Focused on remaining verified defects from the v1.1 review. Static verification against the 2026.3 beta dumps only. No KeyShot runtime execution or rendering was performed.
+Static verification against the 2026.3 beta dumps only. No KeyShot runtime execution or rendering was performed.
 
 ### Corrections
 - Orphan cleanup: inspection failure no longer treated as zero connections. Nodes whose edge counts cannot be read are skipped, not deleted.

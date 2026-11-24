@@ -70,11 +70,11 @@ Public website docs are useful background only. They are not current for 2026.3:
 
 ## Scripts and reference status
 
-This repository preserves KeyShot Python scripts collected for training, practical use, and reference across different KeyShot releases. These scripts are examples and source material, not a single uniformly current or AI-contract-compliant script collection. Some older scripts have continued to function in their original workflows even when they do not follow every rule in the newer `AI/constraints.md`.
+This repository preserves KeyShot Python scripts collected for training, practical use, and reference across different KeyShot releases.
 
-The AI constraints govern new scripts written or revised by an AI assistant. They are not, by themselves, proof that an older example is broken. When reusing a reference script, check its intended KeyShot version, runtime assumptions, side effects, and each `lux`/`luxmath` call against the appropriate current API dump. A working history is valuable evidence but does not establish behavior on a different, untested build. Preserve the author's reported successful tests; an assistant not executing a script is not evidence that the script has never been tested.
+When reusing a reference script, check its intended KeyShot version, runtime assumptions, side effects, and each `lux`/`luxmath` call against the appropriate current API dump. A working history is valuable evidence but does not establish behavior on a different, untested build.
 
-Newer versions will gradually replace outdated examples. Preserve useful historical versions and their provenance rather than rewriting, deleting, or labeling working examples defective solely for differences in style or contract.
+Newer versions will gradually replace outdated examples.
 
 ## Using the AI agent
 
@@ -84,7 +84,7 @@ See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No v
 
 The repository also includes scripts I've shared with the KeyShot community. These are examples of what can be built with the API, not the primary purpose of this knowledge base:
 
-- [KeyShot Information Inspector v1.2.1](AI/examples/inspector/KeyShot_Inspector_1_2.py): A GUI diagnostic utility with 72 selectable report operations across 12 categories. 1.2.1 is a repair of 1.2.0 (animation-name teaching removed). The author tested v1.2.0 and v1.2.1 in KeyShot and confirmed both working. Offline mock tests are separate evidence. See the [quick start and safety notes](AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt), [complete user guide](AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt), and [runtime testing status](AI/examples/inspector/RUNTIME_CHECKS.md).
+- [KeyShot Information Inspector v1.2.1](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/inspector/KeyShot_Inspector_1_2.py): A GUI diagnostic utility with 72 selectable report operations across 12 categories. The author tested v1.2.0 and v1.2.1 in KeyShot and confirmed both working. See the [quick start and safety notes](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt) and [complete user guide](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt).
 - [Material-to-OpenPBR Converter](AI/examples/openpbr_material_converter.py): A material conversion example using shader parameters and material graph connections. See the [OpenPBR parameter reference](AI/materials/OpenPBR_and_Planar_Light.md#openpbr) and [shader node types and parameters](AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt).
 - [Duplicate material script](AI/examples/Duplicate_Material_CopyOfaCopy.py): The complete material-copy example (also available in [docs](docs/Duplicate_Material_CopyOfaCopy.py)), including the explicit node/edge pass and adding the copy to a Multi-Material. See [Copy of a Copy](docs/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) for the full explanation and [material graph duplication](AI/materials/Material_Graph_Duplication.txt) for the compact pattern.
 

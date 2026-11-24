@@ -5,7 +5,7 @@ Version: 1.2.1
 Target: KeyShot 2026.x (supplied 2026 lux module reference)
 Mode: read-only, KeyShot GUI (not headless)
 
-1.2.1: animation-name teaching removed. Not a new KeyShot runtime test.
+1.2.1: animation-name teaching removed.
 
 Consolidates user-supplied Information, animation, camera, material, and diagnostic scripts.
 Use KeyShot Scripts > Run Script to execute this file.

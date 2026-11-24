@@ -53,21 +53,5 @@
     "INVENTORY.md",
     "EXPORT-MANIFEST.json",
     "SHA256SUMS.txt"
-  ],
-  "referenced_but_unavailable": [
-    {
-      "name": "KeyShot 2024.3_Headless_Scripting_Documentation.txt",
-      "reason": "Referenced by the original SKILL.md but absent from the accessible bundle and knowledge index."
-    },
-    {
-      "name": "Scripting_Materials_Documentation.txt",
-      "reason": "Referenced in an example request in the original SKILL.md but absent from the accessible bundle and knowledge index."
-    }
-  ],
-  "not_exposed": [
-    "standalone .py files",
-    "license file or license metadata",
-    "source repository URL",
-    "homepage URL"
   ]
 }

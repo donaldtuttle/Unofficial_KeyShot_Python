@@ -191,8 +191,6 @@ This interactivity makes Colorway a versatile tool for scenarios that demand rea
 
 By using Colorway, SceneColor, and ColorParameter efficiently, you can achieve more flexible, interactive, and organized approaches to color management in KeyShot, ultimately enhancing both the design process and presentation quality.
 
-Certainly! Let’s compare the SceneColor and Colorway classes in KeyShot to understand their differences and when each should be used effectively.
-
 Key Differences Between SceneColor and Colorway
 
 1. Conceptual Role and Usage

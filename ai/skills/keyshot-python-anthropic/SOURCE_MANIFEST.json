@@ -421,8 +421,7 @@
     "entry_point": {
       "path": "SKILL.md",
       "copied_from": "AI/skills/claude/SKILL.md",
-      "sha256": "baf209e64fee8140ce6e7a4616ac4a565cf3316a7e27f3dff8518509a0c9c7d4",
-      "note": "Lean package. Core rewritten AI/skill.md -> AI/skill_core.md. Older dumps excluded."
+      "sha256": "baf209e64fee8140ce6e7a4616ac4a565cf3316a7e27f3dff8518509a0c9c7d4"
     },
     "content": [
       "AI/best-practices.md",

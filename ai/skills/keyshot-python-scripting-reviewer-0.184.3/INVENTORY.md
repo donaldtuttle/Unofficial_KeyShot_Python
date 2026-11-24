@@ -10,12 +10,9 @@
 | Export date | 2026-11-18 |
 | Original files | 22 |
 | Original bytes | 1,231,111 |
-| Standalone executable scripts | None exposed |
 | Preservation check | All copied original SHA-256 hashes matched |
 
 ## Original plugin files
-
-These files were copied byte-for-byte from the accessible plugin bundle.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
@@ -46,26 +43,7 @@ These files were copied byte-for-byte from the accessible plugin bundle.
 
 | Path | Purpose |
 | --- | --- |
-| `README.md` | Repository overview and handoff instructions |
-| `INVENTORY.md` | Human-readable inventory and accessibility report |
+| `README.md` | Plugin overview |
+| `INVENTORY.md` | File inventory |
 | `EXPORT-MANIFEST.json` | Machine-readable export metadata and inventory |
 | `SHA256SUMS.txt` | Integrity checksums for the 22 original files |
-
-## Referenced but unavailable
-
-| Referenced name | Evidence | Export status |
-| --- | --- | --- |
-| `KeyShot 2024.3_Headless_Scripting_Documentation.txt` | Named in `skills/instructions/SKILL.md` | Not present in the accessible bundle or knowledge index; not included |
-| `Scripting_Materials_Documentation.txt` | Named only in an example request in `skills/instructions/SKILL.md` | Not present in the accessible bundle or knowledge index; not included |
-
-All 16 paths listed in `skills/instructions/lookup/knowledge-index.json` were present and included.
-
-## Other accessibility and packaging notes
-
-- The exact requested package was available as an installed, migrated plugin bundle. The account source listing exposed a separately named `keyshot-python-scripting-assistant` plugin; it was not merged into this export.
-- No standalone `.py`, shell, batch, executable, shared-library, or archive file was present. Python examples remain embedded in the original text files.
-- No `LICENSE`, repository URL, homepage URL, MCP configuration, app binding, or standalone source repository was exposed in the requested bundle.
-- The original `.codex-plugin/plugin.json` compatibility manifest was retained.
-- `skills/instructions/agents/openai.yaml` ends its `short_description` with `Py`; this appears truncated but was deliberately preserved.
-- The portable manifest's `shortDescription` is longer than current packaging guidance permits. It was deliberately preserved because this export is source-preserving.
-- This is a GitHub source snapshot, not a claim of public-directory submission readiness or KeyShot runtime verification.

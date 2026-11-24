@@ -20,4 +20,4 @@ if anims:
 What the result means:
 
 - The constants or the class exist: capture `help()` for them, for example `help(type(a))`, add that to the dump, and rebuild the index.
-- Neither exists: the docstring mentions are ahead of the build. Keep them probe-only. Do not ship animation-creation scripts for 2026.3 beta from those names.
+- Neither exists: the docstring mentions are ahead of the build. Keep them probe-only. Do not ship animation-creation scripts for KeyShot Studio 2026.3 from those names.

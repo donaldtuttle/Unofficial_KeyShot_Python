@@ -1,14 +1,14 @@
 # Dump wins
 
-This guide can contradict the 2026.3 beta dump. Before using any call here, verify it against lux/KeyShot_lux_API.md. The dump is the API source of truth.
+This guide can contradict the 2026.3 dump. Before using any call here, verify it against lux/KeyShot_lux_API.md. The dump is the API source of truth.
 
-Known contradiction: lux.beginUndoSession() / lux.endUndoSession() appear in this guide and are not in the 2026.3 beta dump. Use lux.setUndoEnabled if undo control is required. Do not use beginUndoSession.
+Known contradiction: lux.beginUndoSession() / lux.endUndoSession() appear in this guide and are not in the 2026.3 dump. Use lux.setUndoEnabled if undo control is required. Do not use beginUndoSession.
 
 ---
 
 ### KeyShot Python Scripting Comprehensive Guide
 
-**Updated for KeyShot 2026.1.** This guide consolidates best practices, common error handling, and recommendations. 
+Use the KeyShot Studio 2026.3 captures to verify API calls. This guide consolidates best practices, common error handling, and recommendations.
 
 **Mandatory:** Always follow the hard constraints in `../constraints.md` (or `AI/constraints.md` in the repo). Those rules override anything here. Key elevations:
 
@@ -18,7 +18,7 @@ Known contradiction: lux.beginUndoSession() / lux.endUndoSession() appear in thi
 - Matrices from identity. Absolute transforms only on object nodes.
 - Only `lux`/`luxmath` + stdlib. Check None, empty lists, return values.
 
-Prefer live official docs: https://media.keyshot.com/scripting/doc/2026.1/
+For console usage, see https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html
 
 ## Table of Contents
 

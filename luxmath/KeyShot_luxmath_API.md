@@ -1,16 +1,18 @@
-# Keyshot 2026.3 Python3.11 Lux
+# KeyShot Studio 2026.3 GUI luxmath API
 
->>>
-help(luxmath)
+Captured from the Windows GUI runtime with help(luxmath). Internal build 15.2.0.140, embedded Python 3.13.12.
 
+```text
+built-in module luxmath
 
-Help on built-in module luxmath:
 NAME
     luxmath - The module contains a vector and matrix class for mathematical operations.
+
 CLASSES
     builtins.object
         Matrix
         Vector
+
     class Matrix(builtins.object)
      |  Matrix enables mathematical operations of matrices and vectors.
      |
@@ -155,6 +157,7 @@ CLASSES
      |
      |  data
      |      The Matrix data (4x4).
+
     class Vector(builtins.object)
      |  Vector enables mathematical operations of vectors.
      |
@@ -267,5 +270,7 @@ CLASSES
      |
      |  z
      |      The Z part.
+
 FILE
     (built-in)
+```

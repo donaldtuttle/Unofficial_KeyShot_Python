@@ -1,21 +1,13 @@
-# KeyShot Studio 2026.3 beta — lux API
+# KeyShot Studio 2026.3 GUI lux API
 
-Captured with `help(lux)` in the KeyShot 2026.3 beta scripting console.
+Captured from the Windows GUI runtime with help(lux). Internal build 15.2.0.140, embedded Python 3.13.12.
 
-This is the API source of truth. Prefer it over guides and over the public website.
+```text
+built-in module lux
 
-Newly present relative to the 2026.2 dump:
-- `lux.getAnimations`, `lux.getNodeAnimations`, `lux.createAnimation`
-- `lux.CAMERA_MODE_ORBIT`, `lux.CAMERA_MODE_PATH`
-- `lux.SHADER_TYPE_OPENPBR`, `lux.SHADER_TYPE_PLANAR_LIGHT`
-- `lux.getCameraPivot`, `lux.setCameraPivot`
-- `lux.retessellate_advanced`, `lux.retessellate_simple`
-
----
-
-Help on built-in module lux:
 NAME
     lux - The module contains various classes and functions to use for manipulating the scene and rendering images.
+
 CLASSES
     builtins.object
         ColorParameter
@@ -32,6 +24,7 @@ CLASSES
         ShaderParameter
         Studio
         ThumbnailRenderOptions
+
     class ColorParameter(builtins.object)
      |  ColorParameter encapsulates color settings in a clear and consise way.
      |
@@ -109,6 +102,7 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class Colorway(builtins.object)
      |  Colorway encapsulates colorway settings in a clear and consise way.
      |
@@ -155,8 +149,9 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class Env(builtins.object)
-     |  Env encapsulates environment settings in a clear and consise way. Get an instance of the active environment using lux.getActiveEnvironment().
+     |  Env encapsulates environment settings in a clear and consise way. Get an instance of the active environment using ||lux.getActiveEnvironment()||.
      |
      |  Methods defined here:
      |
@@ -268,8 +263,9 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class ImageStyle(builtins.object)
-     |  ImageStyle encapsulates image style settings in a clear and consise way. Get an instance of the active image style using lux.getActiveImageStyle().
+     |  ImageStyle encapsulates image style settings in a clear and consise way. Get an instance of the active image style using ||lux.getActiveImageStyle()||.
      |
      |  Methods defined here:
      |
@@ -298,7 +294,7 @@ CLASSES
      |      Returns whether denoise is enabled or disabled for the image style.
      |
      |  getKind(self, /)
-     |      Get image style kind. Returns lux.IMAGE_STYLE_BASIC or lux.IMAGE_STYLE_PHOTOGRAPHIC
+     |      Get image style kind. Returns ||lux.IMAGE_STYLE_BASIC|| or ||lux.IMAGE_STYLE_PHOTOGRAPHIC||
      |
      |  getName(self, /)
      |      Get image style name.
@@ -328,7 +324,7 @@ CLASSES
      |
      |  setKind(...)
      |      Set image style kind.
-     |      kind = Kind of image style: lux.IMAGE_STYLE_BASIC or lux.IMAGE_STYLE_PHOTOGRAPHIC. *
+     |      kind = Kind of image style: ||lux.IMAGE_STYLE_BASIC|| or ||lux.IMAGE_STYLE_PHOTOGRAPHIC||. *
      |
      |  setVignette(...)
      |      Enable or disable vignette.
@@ -339,8 +335,9 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class MaterialGraph(builtins.object)
-     |  MaterialGraph encapsulates a graph of material nodes that constitutes a material in the scene, and enables manipulation of material parameters, adding/removing material nodes, and associating them with input and output edges. Get a material graph by using lux.getMaterialGraph(name).
+     |  MaterialGraph encapsulates a graph of material nodes that constitutes a material in the scene, and enables manipulation of material parameters, adding/removing material nodes, and associating them with input and output edges. Get a material graph by using ||lux.getMaterialGraph(name)||.
      |
      |  Methods defined here:
      |
@@ -432,17 +429,18 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class MaterialMetadata(builtins.object)
      |  The MaterialMetadata exposes the functionality needed to edit CMF meta data for a material.
      |  Changes made to the metadata are only applied to library.
-     |  Metadata fields of type lux.CMF_KIND_TEXT or lux.CMF_KIND_IMAGE can be edited through this class.
+     |  Metadata fields of type ||lux.CMF_KIND_TEXT|| or ||lux.CMF_KIND_IMAGE|| can be edited through this class.
      |  A metadata field of the image type may be created or updated with a value containing a path-string to an image.
      |  Alternatively an instance of lux.ThumbnailRenderOptions can be passed as a value when creating/updating an image field.
      |  This will render a thumbnail for the field.
      |  Get a MaterialMetadata instance for a specific material by calling:
-     |  lux.findMaterialMetadata(<material_name>).
+     |  ||lux.findMaterialMetadata(<material_name>)||.
      |  Save changes by passing an instance of this class to:
-     |  lux.saveMaterialMetadata(<metadata_instance>)
+     |  ||lux.saveMaterialMetadata(<metadata_instance>)||
      |
      |  Methods defined here:
      |
@@ -453,7 +451,7 @@ CLASSES
      |      Create a new metadata field for the material.
      |      name = A string key for the field to be created.
      |      value = New value for field.
-     |      type = Specifies datatype of the field. Defaults to lux.CMF_KIND_TEXT. Supports lux.CMF_KIND_IMAGE.
+     |      type = Specifies datatype of the field. Defaults to ||lux.CMF_KIND_TEXT||. Supports ||lux.CMF_KIND_IMAGE||.
      |
      |  deleteField(...)
      |      Delete metadata field.
@@ -464,7 +462,7 @@ CLASSES
      |
      |  readField(...)
      |      Get value of metadata field.
-     |      Does not allow reading fields of type lux.CMF_KIND_IMAGEname = name of field
+     |      Does not allow reading fields of type ||lux.CMF_KIND_IMAGE||name = name of field
      |
      |  updateField(...)
      |      Update value of metadata field.
@@ -476,8 +474,9 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class MultiMaterial(builtins.object)
-     |  MultiMaterial encapsulates access and modification in a clear and consise way. Create a new multi-material using lux.createMultiMaterial() by giving a name of an existing material to base it off of. Or retrieve a multi-material instance via lux.getMultiMaterial(). A multi-material can be applied to scene nodes by using its name, just like normal materials.
+     |  MultiMaterial encapsulates access and modification in a clear and consise way. Create a new multi-material using ||lux.createMultiMaterial()|| by giving a name of an existing material to base it off of. Or retrieve a multi-material instance via ||lux.getMultiMaterial()||. A multi-material can be applied to scene nodes by using its name, just like normal materials.
      |
      |  Methods defined here:
      |
@@ -516,12 +515,13 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class RenderOptions(builtins.object)
      |  RenderOptions encapsulates render options in a clear and concise way. The options can be persisted as a dictionary using getDict() and fed to RenderOptions(dict=your_dict) when employing it.
      |
      |  The rendering mode can be found by the "render_mode" key of the dictionary. It can have three values: lux.RENDER_MODE_ADVANCED, lux.RENDER_MODE_TIME, or lux.RENDER_MODE_SAMPLES.
      |
-     |  Get an instance of the current render options using lux.getRenderOptions().
+     |  Get an instance of the current render options using ||lux.getRenderOptions()||.
      |
      |  Methods defined here:
      |
@@ -556,7 +556,7 @@ CLASSES
      |      Get specified options as a dictionary. This can be useful to persist options and then supply to a lux.RenderOptions() constructor when needed to render something. Be wary of the version specified in the dictionary, key values will be converted to the latest version automatically.
      |
      |  setAddToQueue(...)
-     |      Instead of rendering immediately then it will be added to the internal KeyShot queue, waiting for processing. Note that a copy of the scene will be saved to disk each time. Call lux.processQueue() to process the queue and render what has been added to it.
+     |      Instead of rendering immediately then it will be added to the internal KeyShot queue, waiting for processing. Note that a copy of the scene will be saved to disk each time. Call ||lux.processQueue()|| to process the queue and render what has been added to it.
      |      add = Whether to add to queue or not. *
      |
      |  setAdvancedRendering(...)
@@ -701,8 +701,9 @@ CLASSES
      |  Data and other attributes defined here:
      |
      |  __hash__ = None
+
     class SceneNode(builtins.object)
-     |  SceneNode encapsulates a node in the scene tree and enables for manipulation, such as hiding/showing, locking/unlocking, setting materials etc., and traversal of the tree. It provides a means for searching and accessing groups, objects and animations for global and local operations. Get an instance of the root of the scene tree using lux.getSceneTree().
+     |  SceneNode encapsulates a node in the scene tree and enables for manipulation, such as hiding/showing, locking/unlocking, setting materials etc., and traversal of the tree. It provides a means for searching and accessing groups, objects and animations for global and local operations. Get an instance of the root of the scene tree using ||lux.getSceneTree()||.
      |
      |  Methods defined here:
      |
@@ -876,7 +877,7 @@ CLASSES
      |
      |  setMaterial(...)
      |      Set material of a node. If applying to a group then it will apply to all sub nodes.
-     |      mat = The name of the material or multi-material to apply. It can also be an instance of lux.MultiMaterial. *
+     |      mat = The name of the material or multi-material to apply. It can also be an instance of ||lux.MultiMaterial||. *
      |      link = Whether to link to the material or create a duplicate. (default = False)
      |
      |  setName(...)
@@ -904,6 +905,7 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class ShaderEdge(builtins.object)
      |  ShaderEdge encapsulates a shader edge from a source shader node to a target shader node as part of a material graph. Get a shader edge via a shader node from a material graph instance.
      |
@@ -956,6 +958,7 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class ShaderNode(builtins.object)
      |  ShaderNode encapsulates a shader node as part of a material graph, and enables manipulation of material parameters. Get a shader node via a material graph instance.
      |
@@ -1025,6 +1028,7 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class ShaderParameter(builtins.object)
      |  ShaderParameter encapsulates a parameter of a shader node as part of a material graph. Get a shader parameter via a shader node instance.
      |
@@ -1069,6 +1073,7 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class Studio(builtins.object)
      |  Studio encapsulates studio settings in a clear and consise way.
      |
@@ -1134,9 +1139,10 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
     class ThumbnailRenderOptions(builtins.object)
      |  Encapsulates settings for rendering material thumbnails.
-     |  Can be passed as value parameter for .update() or .create() on a metadata instance retrieved with lux.findMaterialMetadata()
+     |  Can be passed as value parameter for ||.update()|| or ||.create()|| on a metadata instance retrieved with ||lux.findMaterialMetadata()||
      |  Constructor expects a model-ID as a parameter. A model id dictates which model is used for the render.
      |  Accepted model-IDs are:
      |  lux.MODEL_ID_MATERIAL_DISC_25_MM
@@ -1160,44 +1166,56 @@ CLASSES
      |
      |  __new__(*args, **kwargs)
      |      Create and return a new object.  See help(type) for accurate signature.
+
 FUNCTIONS
     applyMaterialMapping(...)
         Applies a material mapping.
         dict = Dictionary of object IDs to material names. *
         link = Whether to link to the material or create a duplicate. (default = False)
+
     clearGeometry(...)
         Clears all geometry in the scene.
         ask = Whether to ask to clear or not (default = false, only in GUI mode).
+
     createAnimation(...)
         Create a new animation and attach it to the given scene node.
-        node = The lux.SceneNode to attach the animation to. *
-        type = Animation type string (e.g. lux.ANIMATION_TYPE_TURNTABLE). Use one of the lux.ANIMATION_TYPE_* constants. *
+        node = The ||lux.SceneNode|| to attach the animation to. *
+        type = Animation type string (e.g. ||lux.ANIMATION_TYPE_TURNTABLE||). Use one of the ||lux.ANIMATION_TYPE_*|| constants. *
         name = Optional name for the animation. Auto-generated if omitted.
+
     createColorway(...)
         Create a new colorway in the scene
         name = Name of color. Must be unique!*
+
     createMultiMaterial(...)
         Create a multi-material based on an existing material.
         name = Name of new multi-material. *
         mat = Name of existing material to clone from. Can be a string or list of strings (first item of the list will be used to clone from). *
+
     createSceneColor(...)
         Create a new color in the scene
         name = Name of color. Must be unique!
         multi = Set to create multi color*
+
     createSceneMaterial(...)
         Creates a new scene material (diffuse).
         name = Name of material to create. *
+
     deleteColorway(...)
         Delete a colorway in the scene
         colorway = Colorway to delete. Either object or name. *
+
     deleteMaterial(...)
         Deletes material from KeyShot context. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         name = Name of material to delete. *
+
     dumpTree(...)
         Dumps the scene tree as a JSON string.
+
     enablePerformanceMode(...)
         Enable or disable performance rendering mode.
         enable = Whether to enable or not. (default = true)
+
     encodeVideo(...)
         Encodes a video from frames of a folder.
         folder = Folder to encode video frames from. *
@@ -1207,7 +1225,8 @@ FUNCTIONS
         firstFrame = Frame to start encoding from (defaults to scene settings).
         lastFrame = Frame to end encoding at (defaults to scene settings).
         keepFrames = Whether to keep the frames after encoding (default = true)
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
+
     exportFile(...)
         Export scene to a file of specified format.
         path = Path to export file to. *
@@ -1234,44 +1253,60 @@ FUNCTIONS
         where preferred_output can be either lux.EXPORT_OUTPUT_TEXTURES or lux.EXPORT_OUTPUT_GEOMETRY_SHADERS. This turns off/on using geometry nodes in GLTF/B exports.
         The dpi field is optional. With dpi specified texture quality in baking is calculated from dpi and is clamped by max_resolution. If dpi is not specified maximum resolution will be
         used on the biggest part and others will get an adaptive resolution based on that and the part size.
+
     findMaterialMetadata(...)
         Retrieve an object with the ability to access/modify metadata for a specific material in the material library.
         name = Name of material. *
+
     getActiveConfiguration(...)
         Returns a dict of the current active configuration.
+
     getActiveEnvironment()
         Get active environment instance for manipulating and retrieving information.
+
     getActiveImageStyle()
         Get active image style instance for manipulating and retrieving information.
+
     getActiveStudio(...)
         Get active studio of the scene. Yields name or instance.
-        instance = Return lux.Studio instance instead of name. (default = False)
+        instance = Return ||lux.Studio|| instance instead of name. (default = False)
+
     getAnimationFrame(...)
         Returns the current animation frame.
+
     getAnimationInfo(...)
         Returns information about the animation; the duration in seconds, and the amount of frames.
+
     getAnimationTime(...)
         Returns the current animation time in seconds.
+
     getAnimations(...)
-        Return a list of all lux.Animation objects in the scene.
-        node = Optional lux.SceneNode to restrict results to direct animation children of that node. Returns all animations in the scene when omitted.
+        Return a list of all ||lux.Animation|| objects in the scene.
+        node = Optional ||lux.SceneNode|| to restrict results to direct animation children of that node. Returns all animations in the scene when omitted.
+
     getBrowserDialog(...)
-        Deprecated and will not work in KeyShot 2024.2.
+        Deprecated and unsupported.
         Show browser dialog. Specify either URL or HTML contents.
         url = URL to load inside browser dialog (use 'file:///' to load local files).
         html = HTML contents to load inside browser dialog.
         result = Lambda expression or function to evaluate when "lux.yieldResult(..)" is called in JavaScript on the page inside the browser dialog. It will be invoked with the result dictionary (JS Object) as parameter. Note that the earliest time to use the function in JS is when the page is loaded, i.e. the 'load' event, and up to 500ms later. The functionality is automatically loaded onto the page. (default = None)
         init = Dictionary of data to initialize the "lux.initData" with in JavaScript of the browser dialog. (default = None)
+
     getCamera(...)
         Retrieves the currently active camera of the scene.
+
     getCameraDirection(...)
         Gets the direction of the active camera of the scene.
+
     getCameraDistance(...)
         Get distance from active camera to pivot/look-at point.
+
     getCameraFieldOfView()
         Gets the field of view of the active camera of the scene.
+
     getCameraFocalLength()
         Gets the focal length of the active camera of the scene.
+
     getCameraLens()
         Get lens information of active camera of the scene as a dictionary.
         The "lens" value will be one of lux.CAMERA_TYPE_ORTHOGRAPHIC, lux.CAMERA_TYPE_PERSPECTIVE,
@@ -1280,27 +1315,38 @@ FUNCTIONS
         The values "vertical_shift" and "horizontal_shift" are only included for shift cameras.
         The "mode" value is only included for panoramic cameras and will be either
         lux.PANORAMA_TYPE_SPHERICAL or lux.PANORAMA_TYPE_CUBEMAP.
+
     getCameraLookAt(...)
         Gets the look-at point of the active camera of the scene.
+
     getCameraPivot(...)
         Gets the pivot point of the active camera of the scene.
+
     getCameraPosition(...)
         Gets the position of the active camera of the scene.
+
     getCameraUp(...)
         Gets the up vector of the active camera of the scene.
+
     getCameras(...)
         Retrieves the cameras of the scene.
+
     getColorway(...)
         Get lux.Colorway object representing the colorway denoted by the colorway name.
         colorway = Colorway to access. Either object or name. *
+
     getColorways()
         Gets colorways of the scene.
+
     getEnvironments()
         Get list of environents of the scene.
+
     getExternalFiles(...)
         Returns a list of all external files needed by the current scene.
+
     getImageStyles()
         Get list of image styles of the scene.
+
     getImportOptions(...)
         Returns import options in a dictionary:
          accurate_tessellation: Use alternative tessellation method when available.
@@ -1331,8 +1377,10 @@ FUNCTIONS
         inclusion_options = A bitwise collection of flags determining which features to import. 0 = Nothing, 1 = Geometry, 2 = Cameras, 4 = Environments, 8 = Image Styles, 16 = Studios. To include geometry and cameras set to 3 (since 1 + 2 = 3). Set to 31 for all features.
         instanceNames = Use instance-level naming for NX and Catia based formats.
         metadata = Import metadata where available.
+
     getInputDialog(...)
         Show dialog according to the arguments provided and return the results. It returns None if cancelled.
+
         For example, to show a dialog asking a string, an integer between 10 and 50 that has default value 42, and an item of [1, 2, 3]:
             values = [("string", lux.DIALOG_TEXT, "Input string:", "hello"),
                       ("int", lux.DIALOG_INTEGER, "Input int:", 42, (10, 50)),
@@ -1341,16 +1389,23 @@ FUNCTIONS
             opts = lux.getInputDialog(title = "This is the title", values = values)
         The returned options, with default values, would be:
             {"string": "hello", "int": 42, "item": [1, "2"]}
+
         Another trick is using a lambda when clicking "Apply" so the dialog does not need to close every time, and it gets a more interactive feel.
             values = [("string", lux.DIALOG_TEXT, "Text:", "test")]
             lux.getInputDialog(title = "Testing Apply", values = values,
                                apply = lambda res: print(res))
         In this case it means that whenever "Apply" is clicked the result will be printed to console.
+
         title = Title of the dialog. *
+
         desc = Description of dialog. (default = None)
+
         values = The values of the dialog to build and show. It expects a list of tuples, one tuple for each control. The tuple must contain four or five values depending on the type: key, type, label, and default value, with the additional constraints value in some cases. The key is a string, the label is a string, the type can be one of the following values: lux.DIALOG_TEXT, lux.DIALOG_INTEGER, lux.DIALOG_DOUBLE, lux.DIALOG_ITEM, lux.DIALOG_CHECK, lux.DIALOG_FILE, lux.DIALOG_FOLDER, or lux.DIALOG_LABEL. If the type is lux.DIALOG_INTEGER or lux.DIALOG_DOUBLE then the extra constraints value must be present in the tuple, which is a tuple of minimum and maximum value, and if the type is lux.DIALOG_ITEM then the extra argument must be a list of items to select from. As a special case, if the type is lux.DIALOG_LABEL then the tuple size must be two and the second value must be a string (if the string contains only dashes then it becomes a horizontal divider). *
+
         id = Special ID to enable persisting values and when reopening. If given then clicking OK will remember the values so that if the ID is used again then the values will be the default values. Make sure that the ID is unique enough so other scripts won't use it by accident. (default = None)
+
         apply = Lambda expression or function to evaluate when "Apply" is clicked in the dialog. It will be invoked with the result dictionary as parameter. The dialog will not close when "Apply" is clicked. (default = None)
+
     getInputDouble(...)
         Show dialog to input a double.
         title = Title of the dialog (default = "Enter double").
@@ -1359,16 +1414,19 @@ FUNCTIONS
         min = Minimum value (default = -2147483647).
         max = Maximum value (default = 2147483647).
         decimal = Maximum number of decimal places (default = 1).
+
     getInputFile(...)
         Show dialog to select file(s) from the file system.
         multiple = If multiple files can be selected (default = false).
         title = Title of the dialog (default = "Select file(s)").
         folder = The folder to show initially (default = home folder).
         filter = Filter of files to allow selection from (default = none). An example could be "*.obj *.bip" for all OBJs and BIPs.
+
     getInputFolder(...)
         Show dialog to select a folder from the file system.
         title = Title of the dialog (default = "Select folder").
         folder = The folder to show initially (default = home folder).
+
     getInputInt(...)
         Show dialog to input an integer.
         title = Title of the dialog (default = "Enter integer").
@@ -1377,6 +1435,7 @@ FUNCTIONS
         min = Minimum value (default = -2147483647).
         max = Maximum value (default = 2147483647).
         step = Stepping amount (default = 1).
+
     getInputItem(...)
         Show dialog to select an item from a list/tuple of items.
         items = List/tuple of items to choose from. *
@@ -1384,182 +1443,245 @@ FUNCTIONS
         label = Label of the dialog (default = "Select item:").
         current = Index of initial item (default = 0).
         editable = If editable or not (default = true).
+
     getInputText(...)
         Show dialog to input a string.
         title = Title of the dialog (default = "Enter text").
         label = Label of the dialog (default = "Enter text:").
         value = Initial value (default = empty string).
+
     getKeepAspectRatio()
         Yield whether aspect ratio is being kept.
+
     getKeyShotDisplayVersion(...)
         Returns the KeyShot display version as a (major, minor) tuple.
+
     getKeyShotFolder(...)
         Returns the path to the specified KeyShot folder.
         type = Type of folder to retrieve can be lux.FOLDER_ANIMATIONS, lux.FOLDER_BACKPLATES, lux.FOLDER_COLORS, lux.FOLDER_CONFIG_ROOT, lux.FOLDER_DOWNLOADS, lux.FOLDER_ENVIRONMENTS, lux.FOLDER_EXTERNAL_PLUGIN, lux.FOLDER_FAVORITES, lux.FOLDER_MATERIALS, lux.FOLDER_MATERIAL_TEMPLATES, lux.FOLDER_MODELS, lux.FOLDER_RESOURCE_ROOT, lux.FOLDER_SCENES, lux.FOLDER_SCREENSHOTS, lux.FOLDER_SCRIPTS, or lux.FOLDER_TEXTURES. *
+
     getKeyShotVersion(...)
         Returns the KeyShot version as a (major, minor, patch, build) tuple.
+
     getLibraryBackplates(...)
         Gets all backplates of the library. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         filter = Filter by relative path in library, e.g. 'Backplates/Outdoor'.
+
     getLibraryColors(...)
         Gets all colors of the library. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         filter = Filter by relative path or name, e.g. 'RAL Colours'.
+
     getLibraryEnvironments(...)
         Gets all environments of the library. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         filter = Filter by relative path in library, e.g. 'Environments/Studio/Basic'.
+
     getLibraryMaterials(...)
         Gets all materials of the library. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         filter = Filter by relative path in library, e.g. 'Materials/Metal/Titanium'.
+
     getLibraryTextures(...)
         Gets all textures of the library. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         filter = Filter by relative path in library, e.g. 'Textures/Wood'.
+
     getLightingPreset(...)
         Get currently used lighting preset.
+
     getLightingPresets(...)
         Get list of lighting presets, both default and custom ones.
+
     getLockResolution()
         Yield whether resolution is locked.
+
     getMaterialGraph(...)
         Get lux.MaterialGraph object representing the material graph denoted by the material name.
         name = Material name to access. *
+
     getMaterialMapping(...)
         Gets material mapping: object ID -> material name.
+
     getMaterialTemplates()
         Gets material template names.
+
     getMessageBox(...)
         Show message box.
         msg = Descriptive text of message box. *
         title = Title of message box. Note that it doesn't show on macOS. (default is empty).
         type = Type of message box: lux.MESSAGE_BOX_INFO, lux.MESSAGE_BOX_WARNING, lux.MESSAGE_BOX_CRITICAL (default = lux.MESSAGE_BOX_INFO).
+
     getMetaData(...)
         Get meta data of scene.
         format = Format of meta data can be lux.META_DATA_SIMPLE (simple format .meta) or lux.META_DATA_XMP (XML). (default = XMP)
+
     getModelSets(...)
         Returns the list of active model sets.
+
     getMultiMaterial(...)
         Get multi-material instanced from material name.
         name = Name of multi-material. *
+
     getNodeAnimations(...)
-        Return a list of lux.Animation objects that are direct children of the given scene node.
-        node = The lux.SceneNode whose animation children to return. *
+        Return a list of ||lux.Animation|| objects that are direct children of the given scene node.
+        node = The ||lux.SceneNode|| whose animation children to return. *
+
     getOS(...)
         Returns the OS version string.
+
     getObjectMaterial(...)
         Gets the material applied to the object(s).
         obj = Object ID or list of IDs. *
+
     getObjects(...)
         Gets the object IDs of the scene.
+
     getRenderEngine()
         Get render engine currently in use.
+
     getRenderLayers(...)
         Returns a list of render layers in the current scene.
+
     getRenderOptions(...)
         Returns render options as a lux.RenderOptions object. If defaults is set then it will return the internal defaults, otherwise it's the values as they appear in the render dialog.
         defaults = Return defaults or not (default = false).
+
     getSceneColor(...)
         Get lux.ColorParameter object representing the color denoted by the color name.
         name = Color name to access.
         multi = get color or multicolor*
+
     getSceneColors()
         Gets currently used colors and multi colors of the scene.
+
     getSceneInfo(...)
         Returns information about the scene in a dict: name, file name, unit/meter scale and number of triangles, objects, nurbs, curves, scene width/height, and rendering width/height.
+
     getSceneMaterials()
         Gets currently used materials of the scene.
+
     getSceneTree(...)
         Get lux.SceneNode object representing the root of the scene tree.
+
     getSphericalCamera(...)
         Get spherical information in degrees of active camera as a list: azimuth, inclination, and
         twist.
+
     getStudio(...)
         Returns a studio object that can be used to modified the studio based on a studio name.
         name = Name of studio. *
+
     getStudios(...)
         Get studios of the scene. Yields names or instances.
-        instances = Return lux.Studio instances instead of names. (default = False)
+        instances = Return ||lux.Studio|| instances instead of names. (default = False)
+
     getSystemInfo(...)
         Returns information about the system as a dictionary.
+
     hasContents(...)
         Determine if there is any content in the scene.
+
     importFile(...)
         Imports a file.
         path = File path to import. *
         showOpts = Show options dialog (default = false, only in GUI mode).
         dontAsk = Whether or not to suppress blocking dialogs while script is running, e.g. save scene (default = true, only in GUI mode).
-        opts = Options specified as a dictionary (see lux.getImportOptions()).
+        opts = Options specified as a dictionary (see ||lux.getImportOptions()||).
+
     importMaterials(...)
         Imports materials from a MTL or KMP file into material library. Note: It is required that resource libraries are loaded once per session - the operation blocks while loading.
         file = MTL/KMP file path to import materials from. *
         folder = The existing sub material library folder to add the materials to, i.e. 'Glass/Basic' (default = '.', which is the root materials folder).
+
     isCameraUnsaved(...)
         Checks if current camera has unsaved changes.
+
     isHeadless()
         Returns whether KeyShot is running in headless or GUI mode.
+
     isPaused(...)
         Checks if renderer is paused.
+
     isPerformanceModeEnabled(...)
         Checks if performance rendering mode is enabled.
+
     isSceneChanged(...)
         Checks if scene has been changed.
+
     isUndoEnabled(...)
         Check whether undo/redo stack is enabled.
+
     loadMaterials(...)
         Loads materials from MTL file as in-project materials, i.e. they will not show up in the material library visually.
         file = MTL File path to load materials from. *
+
     newCamera(...)
         Creates a new camera and makes it active. If not creating unique name and the name exists then it returns false.
         name = The name of the camera to create. *
         unique = Whether to create a unique name using numbers at the end (default = false)
+
     newEnvironment(...)
         Create a new environment.
         name = The name of the new environment to create. *
         activate = Whether or not to activate the new environment. (default = True)
         clone = Whether or not to clone the current environment. (default = True)
+
     newImageStyle(...)
         Create a new image style.
         name = The name of the new image style to create. *
         kind = Kind of image style: lux.IMAGE_STYLE_BASIC or lux.IMAGE_STYLE_PHOTOGRAPHIC. (default = lux.IMAGE_STYLE_BASIC)
         activate = Whether or not to activate the new image style. (default = True)
+
     newModelSet(...)
         Create a new model set.
         name = The name of the new model set to create. *
+
     newScene(...)
         Clears the scene.
         dontAsk = Whether or not to suppress blocking dialogs while script is running, e.g. save scene (default = true, only in GUI mode).
+
     newStudio(...)
         Create a new studio.
         name = Name of studio. *
+
     openFile(...)
         Opens or imports a file. KSP files will be imported into the KeyShot resources folder.
         path = File path to open. *
         dontAsk = Whether or not to suppress blocking dialogs while script is running, e.g. save scene (default = true).
+
     openPackage(...)
         Opens a package (KSP).
         path = KSP file path to open. *
         resources = Path to extract the resources to. (default = KeyShot resource folder).
         NOTE: folder removal is required if manually specifying resources folder.
         dontAsk = Whether or not to suppress blocking dialogs while script is running, e.g. save scene (default = true).
+
     pause(...)
         Pauses renderer.
+
     prettyPrint(...)
         Returns pretty representation of input object.
+
     processQueue(...)
         Process render queue.
+
     removeCamera(...)
         Removes a camera.
         name = The name of the camera to remove. *
+
     removeEnvironment(...)
         Removes an environment.
         name = The name of the environment to remove. *
+
     removeImageStyle(...)
         Removes an image style.
         name = The name of the image style to remove. *
+
     removeModelSet(...)
         Remove a model set. If current model set is to be removed then the default model set is chosen.
         name = The name of the new model set to remove. *
+
     removeStudio(...)
         Removes a studio.
         name = Name of studio. *
+
     renderAnimation(...)
         Renders frames of the scene to a folder and/or video file.
         folder = Folder to render frames to. *
@@ -1569,9 +1691,10 @@ FUNCTIONS
         height = Resolution height in pixels of the frames (default = scene height).
         fps = Frames per second (default = 12).
         videoName = Name of the video file, if any. The extension dictates the video format (can be mp4, mov, avi, or flv). (default = none)
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
         format = Image format. Can be one of the following values: lux.RENDER_OUTPUT_JPEG, lux.RENDER_OUTPUT_PNG, lux.RENDER_OUTPUT_EXR, lux.RENDER_OUTPUT_TIFF8, lux.RENDER_OUTPUT_TIFF32, lux.RENDER_OUTPUT_PSD8, lux.RENDER_OUTPUT_PSD16, lux.RENDER_OUTPUT_PSD32 (requires file extension to match).
         renderLastFrame = Whether to render the last frame (default = true).
+
     renderCMF(...)
         Renders the scene to an image file.
         folder = Folder path to render to.*
@@ -1580,7 +1703,8 @@ FUNCTIONS
         pagetemplate = Uses a page template - (default = portrait)
         width = Resolution width in pixels of the output image (default = scene width).
         height = Resolution height in pixels of the output image (default = scene height).
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
+
     renderConfiguration(...)
         Renders a configuration of the scene.
         name = Name of configuration. It must contain an image extension: jpg, jpeg, or png. For images mode the name must also contain '%d'. *
@@ -1589,7 +1713,8 @@ FUNCTIONS
         modelVariations = Enable model variations for images mode (default = False).
         materialVariations = Enable material variations for images mode (default = False).
         studioVariations = Enable studio variations for images mode (default = False).
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
+
     renderFrames(...)
         Renders frames of the scene to a folder.
         folder = Folder to render frames to. *
@@ -1597,21 +1722,24 @@ FUNCTIONS
         width = Resolution width in pixels of the frames (default = scene width).
         height = Resolution height in pixels of the frames (default = scene height).
         fps = Frames per second (default = 12).
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
         format = Image format. Can be one of the following values: lux.RENDER_OUTPUT_JPEG, lux.RENDER_OUTPUT_PNG, lux.RENDER_OUTPUT_EXR, lux.RENDER_OUTPUT_TIFF8, lux.RENDER_OUTPUT_TIFF32, lux.RENDER_OUTPUT_PSD8, lux.RENDER_OUTPUT_PSD16, lux.RENDER_OUTPUT_PSD32 (requires file extension to match).
         renderLastFrame = Whether to render the last frame (default = true).
+
     renderImage(...)
         Renders the scene to an image file.
         path = File path to render to. The extension dictates the image format (can be jpg/jpeg, png, exr, tif/tiff or psd). *
         width = Resolution width in pixels of the output image (default = scene width).
         height = Resolution height in pixels of the output image (default = scene height).
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
         format = Image format. Can be one of the following values: lux.RENDER_OUTPUT_JPEG, lux.RENDER_OUTPUT_PNG, lux.RENDER_OUTPUT_EXR, lux.RENDER_OUTPUT_TIFF8, lux.RENDER_OUTPUT_TIFF32, lux.RENDER_OUTPUT_PSD8, lux.RENDER_OUTPUT_PSD16, lux.RENDER_OUTPUT_PSD32 (requires file extension to match).
+
     renderMultiMaterial(...)
         Renders a multi-material in the scene.
-        name = The name of the material or multi-material to apply. It can also be an instance of lux.MultiMaterial. *
+        name = The name of the material or multi-material to apply. It can also be an instance of ||lux.MultiMaterial||. *
         folder = Folder to render files to. *
-        opts = Options specified as a lux.RenderOptions object (see lux.getRenderOptions()).
+        opts = Options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||).
+
     renderXR(...)
         Renders a XR from the scene.
         folder = Folder to put results in. *
@@ -1628,19 +1756,23 @@ FUNCTIONS
         hend = Horizontal angel end. (only for lux.XR_TYPE_CUSTOM)
         vbegin = Vertical angel begin. (only for lux.XR_TYPE_CUSTOM)
         vend = Vertical angel end. (only for lux.XR_TYPE_CUSTOM)
-        opts = Explicit render options specified as a lux.RenderOptions object (see lux.getRenderOptions()). NOTE that some values are overwritten by other options provided to this function and internally to suite the XR rendering.
+        opts = Explicit render options specified as a lux.RenderOptions object (see ||lux.getRenderOptions()||). NOTE that some values are overwritten by other options provided to this function and internally to suite the XR rendering.
+
     retessellate_advanced(...)
         Tessellates geometry.
         objectIDs = list of IDs of the sceneNodes to retesselate.
         distanceTolerance = set distance tolerance as a float between 0 and 100.
         angleTolerance = set angle tolerance as a float between 0 and 90.
         maxEdgeLength = set maximum edge length as a float between 0 and 100.
+
     retessellate_simple(...)
         Tessellates geometry.
         objectIDs = list of IDs of the sceneNodes to retesselate.
         quality = set quality of retesselation as a float between 0 and 1.
+
     saveCamera(...)
         Saves current camera if there are unsaved changes.
+
     saveFile(...)
         Saves scene to a file. If no path is given then known path is used or a dialog will ask in GUI mode while an exception is thrown in headless mode.
         path = File to save to.
@@ -1648,17 +1780,21 @@ FUNCTIONS
         Allowed excludeFlags are lux.SAVE_EXCLUDE_CONFIGURATOR, lux.SAVE_EXCLUDE_STUDIOS, lux.SAVE_EXCLUDE_GEOMETRY, lux.SAVE_EXCLUDE_CAMERAS, lux.SAVE_EXCLUDE_ENVIRONMENTS, lux.SAVE_EXCLUDE_IMAGE_STYLES, lux.SAVE_EXCLUDE_NURBS and lux.SAVE_EXCLUDE_ANIMATIONS.
         Notice you need to exclude Configurator (if there is one) to exclude Studios.
         In order exclude something a studio can control both studios and configurator must be excluded. If that isn't done the exclude will not occur.
+
     saveMaterial(...)
         Save material to material library.
         name = Name of material to save. *
         folder = Relative folder to save to inside material library.
+
     saveMaterialMetadata(object, /)
         Persist the changes made to the metadata of a material.
         metadata = The metadata object on which the metadata properties have been updated. *
+
     saveMaterialPackage(...)
         Saves a material, including textures etc., to a file as a KMP.
         mat = The name of the material to save. *
         path = File to save to. *
+
     savePackage(...)
         Saves scene to a file as a KSP. If no path is given then known path is used or a dialog will ask in GUI mode while an exception is thrown in headless mode.
         path = File to save to.
@@ -1669,110 +1805,144 @@ FUNCTIONS
         Allowed excludeFlags are lux.SAVE_EXCLUDE_CONFIGURATOR, lux.SAVE_EXCLUDE_STUDIOS, lux.SAVE_EXCLUDE_GEOMETRY, lux.SAVE_EXCLUDE_CAMERAS, lux.SAVE_EXCLUDE_ENVIRONMENTS, lux.SAVE_EXCLUDE_IMAGE_STYLES, lux.SAVE_EXCLUDE_NURBS and lux.SAVE_EXCLUDE_ANIMATIONS.
         Notice you need to exclude Configurator (if there is one) to exclude Studios.
         In order exclude something a studio can control both studios and configurator must be excluded. If that isn't done the exclude will not occur.
+
     screenshot(...)
         Take a screenshot of current real-time view state and return the path to it.
+
     setActiveColorway(...)
-        Set active colorway of the scene. Use lux.getColorways() to get a list of names.
+        Set active colorway of the scene. Use ||lux.getColorways()|| to get a list of names.
         colorway = colorway object. *
+
     setActiveEnvironment(...)
-        Set active environment of the scene. Use lux.getEnvironments() to get a list of names.
+        Set active environment of the scene. Use ||lux.getEnvironments()|| to get a list of names.
         name = Name of the environment. *
+
     setActiveImageStyle(...)
-        Set active image style of the scene. Use lux.getImageStyles() to get a list of names.
+        Set active image style of the scene. Use ||lux.getImageStyles()|| to get a list of names.
         name = Name of the image style. *
+
     setActiveStudio(...)
         Set active studio name of the scene.
         name = Name of studio. *
+
     setAnimationFrame(...)
         Set the animation frame.
         frame = The animation frame number. *
+
     setAnimationTime(...)
         Set the animation time in seconds.
         secs = The animation time in seconds as a floating-point number. *
+
     setCamera(...)
         Sets the active camera of the scene.
         camera = The name of the camera to use. *
+
     setCameraDirection(...)
         Sets the direction of the active camera of the scene.
         dir = Direction of the camera (x, y, z). Vector will be normalized. *
+
     setCameraDistance(...)
         Set distance from active camera to pivot/look-at point.
         dist = The distance. *
+
     setCameraFieldOfView(...)
         Sets the field of view of the active camera of the scene.
         deg = Field of view in degrees ]0, 180[. *
+
     setCameraFocalLength(...)
         Sets the focal length of the active camera of the scene.
         length = Focal length in mm [5, 200]. *
+
     setCameraLookAt(...)
         Set camera to look at an object or a point.
         obj = Object ID.
         pt = Point as tuple (x, y, z).
+
     setCameraOrthographic()
         Set the active camera of the scene to orthographic mode.
+
     setCameraPanoramic(...)
         Set the active camera of the scene to panoramic mode.
         type = Type of the panoramic mode. Must be one of the following: lux.PANORAMA_TYPE_SPHERICAL, lux.PANORAMA_TYPE_CUBEMAP. (default = lux.PANORAMA_TYPE_SPHERICAL)
+
     setCameraPerspective()
         Set the active camera of the scene to perspective mode.
+
     setCameraPivot(...)
         Set the pivot point of the camera to coincide with an object or a point.
         obj = Object ID.
         pt = Point as tuple (x, y, z).
+
     setCameraPosition(...)
         Sets the position of the active camera of the scene.
         pos = Position of the camera (x, y, z). *
+
     setCameraShift(...)
         Set the active camera of the scene to shift lens mode.
         vertical = sets the vertical shift of the lens (default not set).
         horizontal = sets the horizontal shift of the lens (default not set).
         estimate = optimizes parameters incl. vertical from the horizontal setting (default = false).
+
     setCameraUp(...)
         Sets the up vector of the active camera of the scene. Vector will be normalized.
         up = Up vector of the camera (x, y, z). *
+
     setKeepAspectRatio(...)
         Set whether aspect ratio is to be kept.
         keep = Keep aspect ratio. (default = True)
+
     setLightingPreset(...)
         Set lighting preset to be used.
         name = Name of preset. *
+
     setLockResolution(...)
         Set whether resolution is locked.
         lock = Lock resolution. (default = True)
+
     setMaterialTemplate(...)
         Applies a material template to part of the scene or all of it if no argument is given.
         name = Name of the material template. *
         showSel = Show part selection dialog. (only in GUI mode)
+
     setModelSets(...)
         Set active model sets and deativate all others. It returns true if all names of model sets could be activated, and thus false even if only some were activated.
         names = The list of names of model sets to activate. Using 'Default' will set the default model set. An empty list deactivates all model sets. *
+
     setObjectMaterial(...)
         Applies a material to an object in the scene.
         mat = Material name to apply. *
         obj = Object ID to apply to. *
         link = Whether to link to the material or create a duplicate. (default = False)
+
     setRenderEngine(...)
         Set render engine to use for the scene.
         engine = Type of render engine to use: lux.RENDER_ENGINE_PRODUCT, lux.RENDER_ENGINE_INTERIOR, lux.RENDER_ENGINE_PRODUCT_GPU, or lux.RENDER_ENGINE_INTERIOR_GPU. *
+
     setSceneUnit(...)
         Set scene unit and rescale scene if desired.
         unit = The scene unit can be one of the following values: lux.UNIT_MM, lux.UNIT_CM, lux.UNIT_IN, lux.UNIT_FT, lux.UNIT_M. *
         keep = Whether to keep current size or rescale (default = True).
+
     setSphericalCamera(...)
         Set spherical information of active camera: azimuth, inclination, and twist.
         azimuth = The spherical azimuth in degrees [-180, 180]. *
         incl = The spherical inclination in degrees [-90, 90]. *
         twist = The spherical twist degrees [-180, 180]. *
+
     setStandardView(...)
         Set standard view of currently active camera.
         view = Standard view to set. Must be one of the following: lux.VIEW_FRONT, lux.VIEW_BACK, lux.VIEW_LEFT, lux.VIEW_RIGHT, lux.VIEW_TOP, lux.VIEW_BOTTOM, lux.VIEW_ISOMETRIC. *
+
     setUndoEnabled(...)
         Enable or disable the undo/redo stack. When a script context is destroyed then undo is re-enabled if disabled.
         enable = Enable or not (default = true).
+
     sync(...)
         Synchronize event queue to enforce pending operations.
+
     unpause(...)
         Unpauses renderer.
+
 DATA
     CAMERA_MODE_ORBIT = 1
     CAMERA_MODE_PATH = 0
@@ -2009,3 +2179,7 @@ DATA
     XR_TYPE_SPHERICAL = 2
     XR_TYPE_TUMBLE = 4
     XR_TYPE_TURNTABLE = 1
+
+FILE
+    (built-in)
+```

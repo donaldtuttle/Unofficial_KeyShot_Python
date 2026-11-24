@@ -147,7 +147,7 @@ lux.getRenderOptions(): Gets the current render options.
 lux.getExternalFiles() (Headless): Lists external files associated with the scene.
 lux.getImportOptions() (Headless): Retrieves current import options.
 lux.getKeyShotDisplayVersion() (Headless): Gets the display version of KeyShot.
-lux.getKeyShotFolder() (Headless): Returns the KeyShot folder path.
+lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT) (Headless): Returns the configured resource root.
 lux.getKeyShotVersion() (Headless): Retrieves the full KeyShot version.
 lux.getLibraryBackplates(), getLibraryColors(), getLibraryEnvironments(), getLibraryMaterials(), getLibraryTextures() (Headless): Retrieves lists of library items.
 lux.getLightingPreset() (Headless): Gets the current lighting preset.
@@ -210,7 +210,7 @@ Headless lux.get Functions:
 lux.getExternalFiles(): Lists external files associated with the scene.
 lux.getImportOptions(): Retrieves current import options.
 lux.getKeyShotDisplayVersion(): Gets the display version of KeyShot.
-lux.getKeyShotFolder(): Returns the KeyShot folder path.
+lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT): Returns the configured resource root.
 lux.getKeyShotVersion(): Retrieves the full KeyShot version.
 lux.getLibraryBackplates(): Retrieves lists of library backplates.
 lux.getLibraryColors(): Retrieves lists of library colors.

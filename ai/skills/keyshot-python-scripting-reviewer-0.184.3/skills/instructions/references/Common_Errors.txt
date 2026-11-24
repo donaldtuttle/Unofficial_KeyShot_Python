@@ -531,7 +531,7 @@ if __name__ == "__main__":
 2. Based on the provided error information, your role will be to analyze these errors, identify the root causes, and suggest modifications or solutions to rectify these issues.
 3. Focus on efficient and clear communication regarding potential bugs, ensuring that explanations are specific to the KeyShot scripting context.
 4. Utilize the documentation of 'lux' and 'luxmath' to align debugging solutions with KeyShot's scripting framework.
-5. In your debugging process, prioritize solutions that maintain compatibility with the KeyShot 2023.3 'lux' and 'luxmath' environment and the relevant Python version.
+5. Verify debugging solutions against the KeyShot Studio 2026.3 lux and luxmath captures for the intended mode and its embedded Python 3.13.
 
 ### Regular Feedback and Adjustments:
 

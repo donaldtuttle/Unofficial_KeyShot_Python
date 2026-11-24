@@ -229,7 +229,7 @@ lux.getRenderOptions(): Gets the current render options.
 lux.getExternalFiles() (Headless): Lists external files associated with the scene.
 lux.getImportOptions() (Headless): Retrieves current import options.
 lux.getKeyShotDisplayVersion() (Headless): Gets the display version of KeyShot.
-lux.getKeyShotFolder() (Headless): Returns the KeyShot folder path.
+lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT) (Headless): Returns the configured resource root.
 lux.getKeyShotVersion() (Headless): Retrieves the full KeyShot version.
 lux.getLibraryBackplates(), getLibraryColors(), getLibraryEnvironments(), getLibraryMaterials(), getLibraryTextures() (Headless): Retrieves lists of library items.
 lux.getLightingPreset() (Headless): Gets the current lighting preset.
@@ -296,7 +296,7 @@ Headless lux.get Functions:
 lux.getExternalFiles(): Lists external files associated with the scene.
 lux.getImportOptions(): Retrieves current import options.
 lux.getKeyShotDisplayVersion(): Gets the display version of KeyShot.
-lux.getKeyShotFolder(): Returns the KeyShot folder path.
+lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT): Returns the configured resource root.
 lux.getKeyShotVersion(): Retrieves the full KeyShot version.
 lux.getLibraryBackplates(): Retrieves lists of library backplates.
 lux.getLibraryColors(): Retrieves lists of library colors.
@@ -633,11 +633,9 @@ Constants for specifying camera types and views, e.g., CAMERA_TYPE_ORTHOGRAPHIC,
     CMF_KIND_TEXT = 0
 
 
-#Set the KeyShot "Resources Library" path based on the operating system.
-Windows
-        library_path = "C:\\Users\\Public\\Documents\\KeyShot 12"
-MacOS and Unix
-        library_path = "/Library/Application Support/KeyShot 12"
+Query the KeyShot Studio 2026.3 resource folder configured for the current session.
+
+    library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
 Library Constants
     FOLDER_ANIMATIONS = 8
     FOLDER_BACKPLATES = 3
@@ -954,11 +952,9 @@ Implement comprehensive error handling and logging to manage unexpected inputs o
 Provide clear documentation and comments explaining the script's requirements, how to configure it, and its dependencies. This information aids in making the script user-friendly and adaptable by others.
 
 Agnostic Directory Script:
-Set the KeyShot "Resources Library" path based on the operating system.
-Windows
-        library_path = "C:\\Users\\Public\\Documents\\KeyShot 12"
-MacOS and Unix
-        library_path = "/Library/Application Support/KeyShot 12"
+Query the KeyShot Studio 2026.3 resource folder configured for the current session.
+
+    library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
 
 
 
@@ -1206,7 +1202,7 @@ Scripting Tutorials and Examples: Look for tutorials, forums, and example script
 
 Scripting Material Graph:
 Material Graph Manipulation (GUI and Headless)
-Manipulating the Material Graph via Scripting is an advanced feature that has been added in KeyShot 11.
+Use lux.getMaterialGraph() to access the material graph from a script.
 
 The following will go through the basic functions to manipulate the Material Graph. To see a full list of functions available, type help(lux) in the Scripting Console or visit the online documentation, for GUI or Headless scripting.
 

@@ -5,8 +5,8 @@ KeyShot Python Script Template
 Copy this file into your KeyShot Scripts folder or paste into the Scripting Console.
 Customize the USER SETTINGS section, then run.
 
-Targets KeyShot Studio 2026.3 beta (embedded Python).
-All lux / luxmath calls verified against the 2026.3 beta help() dumps.
+Targets KeyShot Studio 2026.3 (embedded Python).
+All lux / luxmath calls verified against the 2026.3 help() dumps.
 Static verification only — not runtime-tested in KeyShot.
 """
 

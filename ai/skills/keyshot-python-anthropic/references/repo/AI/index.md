@@ -6,7 +6,8 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 
 ## API source of truth
 
-- [2026.3 beta help(lux) dump](../lux/KeyShot_lux_API.md) — primary for what exists in the 2026.3 beta runtime. Prefer this over the public 2026.1 website.
+- Scripting Console: [`lux`](../lux/KeyShot_lux_API.md) and [`luxmath`](../lux/KeyShot_luxmath_API.md)
+- Headless runtime: [`lux`](../lux_headless/KeyShot_headless_lux_API.md) and [`luxmath`](../luxmath_headless/KeyShot_headless_luxmath_API.md)
 
 ## Core agent files (flat)
 
@@ -14,29 +15,27 @@ For every scripting task, first read `AI/constraints.md` and `AI/best-practices.
 - [Best practices](best-practices.md)
 - [Skill](skill_core.md) — agent skill definition
 - [Knowledge base (TOC)](knowledge_base.md)
-- [2026 mode comparison](reference/mode-comparison.md) — secondary; 2026.1 website comparison only
 - [Materials](materials/) — per-shader parameter docs + material examples
 - [KPSA knowledge](kpsa_knowledge/) — QuickReference, matrix, GUI, material graph guides
 - [Examples](examples/) — runnable scripts (OpenPBR converter, Information Inspector)
 
-## Secondary (lags 2026.3 beta)
+## KeyShot scripting manual
 
-- GUI: https://media.keyshot.com/scripting/doc/2026.1/
-- Headless: https://media.keyshot.com/scripting/headless_doc/2026.1/
+- GUI: https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html
+- Headless: https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html
 - Manual: https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html
-- Do not prefer these over the 2026.3 beta dump.
 
 ## Topics (pointers to existing kpsa_knowledge / materials)
 
-- API ownership and evidence → constraints + best-practices + 2026.3 beta dump
-- Cameras → QuickReference + 2026.3 beta dump
-- Scene nodes → QuickReference + 2026.3 beta dump
+- API ownership and evidence → constraints + best-practices + 2026.3 dump
+- Cameras → QuickReference + 2026.3 dump
+- Scene nodes → QuickReference + 2026.3 dump
 - Materials and duplication → materials/ + [Material_Graph_Duplication.txt](materials/Material_Graph_Duplication.txt)
-- Material graphs, parameters and edges → materials/ + ShaderNodeTypes doc + 2026.3 beta dump
+- Material graphs, parameters and edges → materials/ + ShaderNodeTypes doc + 2026.3 dump
 - OpenPBR conversion → [materials/openpbr_material_converter.py](materials/openpbr_material_converter.py)
 - Scene inspection / diagnostics → [examples/inspector/](examples/inspector/) (KeyShot Information Inspector v1.2.0)
 - Transformations → TransformationMatrix doc
-- GUI dialogs → API_GUI_Guide + constraints + 2026.3 beta dump
-- Rendering / Import-export / Headless / Animation → QuickReference + 2026.3 beta dump
+- GUI dialogs → API_GUI_Guide + constraints + 2026.3 dump
+- Rendering / Import-export / Headless / Animation → QuickReference + 2026.3 dump
 
 Full source collection and audits remain in the private repo `donaldtuttle/KeyShot-Python-AI-Knowledge`.

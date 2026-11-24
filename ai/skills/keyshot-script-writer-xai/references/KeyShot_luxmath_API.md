@@ -1,18 +1,18 @@
-# KeyShot Studio 2026.3 beta — luxmath API
+# KeyShot Studio 2026.3 GUI luxmath API
 
-Captured with `help(luxmath)` in the KeyShot 2026.3 beta scripting console.
+Captured from the Windows GUI runtime with help(luxmath). Internal build 15.2.0.140, embedded Python 3.13.12.
 
-This is the math source of truth. Prefer it over guides. Use `luxmath.Matrix` and `luxmath.Vector` only as documented here.
+```text
+built-in module luxmath
 
----
-
-Help on built-in module luxmath:
 NAME
     luxmath - The module contains a vector and matrix class for mathematical operations.
+
 CLASSES
     builtins.object
         Matrix
         Vector
+
     class Matrix(builtins.object)
      |  Matrix enables mathematical operations of matrices and vectors.
      |
@@ -157,6 +157,7 @@ CLASSES
      |
      |  data
      |      The Matrix data (4x4).
+
     class Vector(builtins.object)
      |  Vector enables mathematical operations of vectors.
      |
@@ -269,6 +270,7 @@ CLASSES
      |
      |  z
      |      The Z part.
+
 FILE
     (built-in)
-8ms
+```

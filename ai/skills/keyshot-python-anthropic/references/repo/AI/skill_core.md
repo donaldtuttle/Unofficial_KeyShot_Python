@@ -16,17 +16,17 @@ Use it to solve the user's actual KeyShot scripting request.
 
 ## API authority
 
-The API source of truth is the `help()` capture for the user's KeyShot build. The repository currently holds one build, KeyShot Studio 2026.3 beta:
+The API source of truth is the `help()` capture for the user's KeyShot build. The repository currently holds one build, KeyShot Studio 2026.3:
 
-- `lux/KeyShot_lux_API.md` — `help(lux)`
-- `lux/KeyShot_luxmath_API.md` — `help(luxmath)`
+- Scripting Console: [`lux`](../lux/KeyShot_lux_API.md) and [`luxmath`](../lux/KeyShot_luxmath_API.md)
+- Headless runtime: [`lux`](../lux_headless/KeyShot_headless_lux_API.md) and [`luxmath`](../luxmath_headless/KeyShot_headless_luxmath_API.md)
 
 Check each module against its own dump.
 
-The dump wins because it is what the runtime reported about itself. The public 2026.1 website lags, guides in this repository can contradict the dump, and many example scripts predate it. Precedence: dump, then knowledge guides and material files, then example scripts, then the public website. Model memory is never evidence. Lower sources are good for patterns and ideas; only the dump confirms a symbol.
+The dump wins because it is what the runtime reported about itself. Guides and examples can differ from the captured API. Precedence: dump, then knowledge guides and material files, then example scripts, then the public website. Model memory is never evidence. Lower sources are good for patterns and ideas; only the dump confirms a symbol.
 
 - Not in the dump: do not ship the call. Name the missing symbol and offer a documented alternative, a focused runtime probe, or say the operation is unsupported. Do not build a full solution around an unsupported call.
-- Mentioned in dump docstrings but never declared: unverified until a runtime probe confirms it. In 2026.3 beta this includes `lux.ANIMATION_TYPE_*` and `lux.Animation`, referenced by `createAnimation`, `getAnimations` and `getNodeAnimations`. Do not ship animation-creation scripts that depend on them yet. Probe: `AI/examples/inspector/RUNTIME_CHECKS.md`.
+- Mentioned in dump docstrings but never declared: unverified until a runtime probe confirms it. In 2026.3 this includes `lux.ANIMATION_TYPE_*` and `lux.Animation`, referenced by `createAnimation`, `getAnimations` and `getNodeAnimations`. Do not ship animation-creation scripts that depend on them yet. Probe: `AI/examples/inspector/RUNTIME_CHECKS.md`.
 - Ellipsis signatures (`name(...)`) are not real Python signatures. Their arguments come from the docstring's `name = description *` lines (`*` marks a required argument). That is good evidence, not proof.
 - User on another build: say which build the dump covers, mark every call as unverified for theirs, and offer to capture `help(lux)` and `help(luxmath)` from their build.
 
@@ -34,10 +34,10 @@ The dump wins because it is what the runtime reported about itself. The public 2
 
 ### With code execution: run the checker
 
-`tools/verify_symbols.py` checks a script against `symbols.json`, an index built from the dumps by `tools/build_symbol_index.py`. It finds undeclared names, members called on the wrong object, broken signatures, docstring-only symbols and policy items more reliably than reading the dump by eye.
+The bundled `scripts/verify_symbols.py` checks a script against the 2026.3 Scripting Console symbol index. Verify headless support against the headless captures. It finds undeclared names, members called on the wrong object, broken signatures, docstring-only symbols and policy items more reliably than reading the dump by eye.
 
 ```
-python tools/verify_symbols.py script.py --index path/to/symbols.json
+python scripts/verify_symbols.py script.py --index references/api/2026.3/symbols.json
 ```
 
 Host adapters give the packaged paths. Handle the results:

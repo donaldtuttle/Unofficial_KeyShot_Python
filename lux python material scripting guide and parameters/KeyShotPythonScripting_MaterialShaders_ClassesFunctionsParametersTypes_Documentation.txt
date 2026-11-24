@@ -2343,7 +2343,7 @@ If you want to visualize liquid interfaces, for example like the ice cubes in th
   - **SHADER_TYPE**: lux_measured
   - **absorption_gain** (PARAMETER_TYPE_FLOAT): Gain for absorption coefficient. (Value: 1.0)
   - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
-  - **bsdf** (PARAMETER_TYPE_TEXTURE): Defines the Bidirectional Scattering Distribution Function. (Value: C:/Users/Public/Documents/KeyShot 12/Textures/X-Rite AxF/General/X-Rite_White_Panel.axf)
+  - **bsdf** (PARAMETER_TYPE_TEXTURE): Defines the Bidirectional Scattering Distribution Function. (Value: X-Rite AxF/General/X-Rite_White_Panel.axf relative to the configured textures folder)
   - **bump_height** (PARAMETER_TYPE_FLOAT): Height for the bump map. (Value: 1.0)
   - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
   - **cc_bump_height** (PARAMETER_TYPE_FLOAT): Clearcoat bump map height. (Value: 1.0)

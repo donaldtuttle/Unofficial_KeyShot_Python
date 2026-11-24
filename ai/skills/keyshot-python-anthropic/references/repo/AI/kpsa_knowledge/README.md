@@ -1,8 +1,8 @@
 # KeyShot Python Scripting Assistant Knowledge
 
-Elevated guides for the agnostic agent. KeyShot Studio 2026.3 beta.
+Elevated guides for the agnostic agent. KeyShot Studio 2026.3.
 
-**API source of truth:** [`lux/KeyShot_lux_API.md`](../../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 beta console. Prefer this over any guide in this folder and over the public website. Guides can contradict the dump. The dump wins.
+**API source of truth:** [`lux/KeyShot_lux_API.md`](../../lux/KeyShot_lux_API.md) — `help(lux)` from the 2026.3 console. Prefer this over any guide in this folder and over the public website. Guides can contradict the dump. The dump wins.
 
 ## Contents
 
@@ -16,6 +16,6 @@ Elevated guides for the agnostic agent. KeyShot Studio 2026.3 beta.
 
 These files are supporting knowledge. They are not the API source of truth.
 
-Public 2026.1 website (secondary, lags):
-- https://media.keyshot.com/scripting/doc/2026.1/
-- https://media.keyshot.com/scripting/headless_doc/2026.1/
+KeyShot scripting manual:
+- https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html
+- https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html

@@ -1,11 +1,9 @@
-### KeyShot Resources Library Path Documentation
-###Compatible with KeyShot 2024 and higher.
+# KeyShot Studio 2026.3 resource folders and libraries
+
+Use lux.getKeyShotFolder(type=...) to read the configured resource paths on this installation.
 
 '''
 # Script to Get the KeyShot Resources Library Path and Retrieve Default Folder Paths
-# Compatible with KeyShot 2024 and higher.
-
-import os
 import lux
 
 # Constants for folder types
@@ -28,63 +26,18 @@ FOLDER_TYPES = {
     "Textures": lux.FOLDER_TEXTURES
 }
 
-def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system and displays the path in a message box.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = "C:\\Users\\Public\\Documents\\KeyShot"
-    else:  # macOS or Unix-like
-        library_path = "/Library/Application Support/KeyShot"
-    
-    # Display the library path in a message box
-    lux.getMessageBox(f"Your KeyShot Resources Library path is:\n{library_path}", "Library Path", lux.MESSAGE_BOX_INFO)
-    
-    return library_path
-
-def get_default_folders():
-    """
-    Returns a dictionary of default folder paths in the KeyShot resources library.
-    """
-    folders = {name: lux.getKeyShotFolder(folder_id) for name, folder_id in FOLDER_TYPES.items()}
-    return folders
-
 def main():
-    """
-    Main function to execute the script.
-    """
-    folders = get_default_folders()
-    
-    # Display the default folders paths in a message box
-    folder_paths = "\n".join([f"{name}: {path}" for name, path in folders.items()])
-    lux.getMessageBox(f"Your KeyShot default folders are:\n{folder_paths}", "Default Folders", lux.MESSAGE_BOX_INFO)
+    report = "\n".join(
+        f"{name}: {lux.getKeyShotFolder(type=folder_type)}"
+        for name, folder_type in FOLDER_TYPES.items()
+    )
+    if lux.isHeadless():
+        print(report)
+    else:
+        lux.getMessageBox(msg=report, title="Configured KeyShot folders")
 
-# Execute the main function
+
 main()
-
-'''
-
-OS Agnostic Paths
-Windows: library_path = "C:\\Users\\Public\\Documents\\KeyShot"
-macOS and Unix: library_path = "/Library/Application Support/KeyShot"
-Folder Constants
-FOLDER_ANIMATIONS = 8
-FOLDER_BACKPLATES = 3
-FOLDER_COLORS = 9
-FOLDER_CONFIG_ROOT = 14
-FOLDER_DOWNLOADS = 16
-FOLDER_ENVIRONMENTS = 5
-FOLDER_EXTERNAL_PLUGIN = 13
-FOLDER_FAVORITES = 11
-FOLDER_MATERIALS = 7
-FOLDER_MATERIAL_TEMPLATES = 10
-FOLDER_MODELS = 15
-FOLDER_RESOURCE_ROOT = 1
-FOLDER_SCENES = 6
-FOLDER_SCREENSHOTS = 2
-FOLDER_SCRIPTS = 12
-FOLDER_TEXTURES = 4
-
 '''
 
 ### Script to Apply Environment from Library
@@ -98,22 +51,26 @@ import os
 
 # Function to load environments
 def load_environment_from_library(env_filename):
-    library_envs = lux.getLibraryEnvironments()
+    library_envs = lux.getLibraryEnvironments() or []
     full_env_path = None
     for lib_env_path in library_envs:
-        if env_filename.lower() in os.path.basename(lib_env_path).lower():
+        if env_filename.casefold() == os.path.basename(lib_env_path).casefold():
             full_env_path = lib_env_path
             break
     
     if full_env_path is not None:
         try:
             env_name = os.path.splitext(env_filename)[0].replace(" ", "_")
-            new_env = lux.newEnvironment(name=env_name, activate=True)
-            if new_env.setLightingEnvironment(full_env_path):
-                print(f"Environment '{env_filename}' has been successfully loaded and set.")
-                return new_env
-            else:
-                print(f"Failed to apply environment '{env_filename}'.")
+            if env_name in (lux.getEnvironments() or []):
+                print(f"Environment '{env_name}' already exists.")
+                return None
+            lux.newEnvironment(name=env_name, activate=True)
+            new_env = lux.getActiveEnvironment()
+            if new_env is None or new_env.getName() != env_name:
+                print(f"Could not activate environment '{env_name}'.")
+                return None
+            new_env.setLightingEnvironment(path=full_env_path)
+            return new_env
         except Exception as e:
             print(f"An error occurred while setting the environment '{env_filename}': {e}")
     else:
@@ -130,8 +87,8 @@ def set_environment_parameters(env, brightness, size, height, rotation):
             env.setRotation(rotation)
             env.setBackgroundColor((255, 255, 255))
             env.setGroundSize(0.01)
-            env.setGroundShadows(False)
             env.setOcclusionGroundShadows(False)
+            env.setGroundShadows(False)
             env.setGroundReflections(False)
             env.setFlattenGround(False)
             lux.setActiveEnvironment(env.getName())
@@ -158,11 +115,13 @@ def configure_environment():
 configure_environment()
 '''
 
-###Script to Apply a Texture to the Bump Map of a Diffuse Material
+### Script to Apply a Texture to the Bump Map of a Diffuse Material
 '''
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
 # Script to apply a texture to the bump map of a diffuse material in KeyShot.
+
+from pathlib import Path
 
 import lux
 
@@ -224,12 +183,16 @@ def connect_textures_to_bump(material_name, texture_file_paths):
 
 # Example usage
 material_name = "Cube Material"
+texture_root = Path(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES))
 texture_file_paths = [
-    "C:/Users/Public/Documents/KeyShot/Textures/ash.jpg",
-    "C:/Users/Public/Documents/KeyShot/Textures/Color Maps/asphalt.jpg"
+    str(texture_root / "ash.jpg"),
+    str(texture_root / "Color Maps" / "asphalt.jpg"),
 ]
 
-connect_textures_to_bump(material_name, texture_file_paths)
+if all(Path(path).is_file() for path in texture_file_paths):
+    connect_textures_to_bump(material_name, texture_file_paths)
+else:
+    print("Choose texture files within the configured KeyShot texture folder.")
 '''
 
 ###Script to Assign a Library Color to a Material
@@ -253,7 +216,7 @@ def assign_library_color_to_material_by_name(material_name, color_name):
     for shader_node in material_graph.getNodes():
         # Iterate through parameters to find 'diffuse'
         for parameter in shader_node.getParameters():
-            if parameter.getName() == 'diffuse' and parameter.getType() == 14:  # Type 14 for color
+            if parameter.getName() == 'diffuse' and not parameter.isPure() and parameter.getType() == lux.PARAMETER_TYPE_COLOR:
                 try:
                     # Set the diffuse color by name, assuming it exists in KeyShot's color library
                     parameter.setValue(color_name)
@@ -280,18 +243,11 @@ assign_library_color_to_material_by_name("Cube Material", "PANTONE 186 C")
 # VERSION 0.1.1
 # Script to save the scene's materials and multi-material sub-materials to the material library in KeyShot.
 
-import os
-import lux  # Import the KeyShot built-in module 'lux'.
+import lux
 
-def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot")
-    else:  # macOS and Unix/Linux
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
-    return library_path
+# Relative to the configured material library. The folder must already exist.
+LIBRARY_FOLDER = "."
+
 
 def get_all_children(node):
     """
@@ -317,20 +273,20 @@ def save_sub_materials_to_library(multi_material_name, saved_materials):
     :param multi_material_name: Name of the multi-material.
     :param saved_materials: Set of already saved material names to avoid duplication.
     """
-    library_path = get_library_path()  # Get the library path based on the OS.
     material_graph = lux.getMaterialGraph(name=multi_material_name)
     if not material_graph:
         print(f"Multi-material '{multi_material_name}' not found.")
         return
 
     # Retrieve sub-materials of the multi-material.
-    sub_materials = material_graph.getMaterialNodes()
+    scene_materials = set(lux.getSceneMaterials() or [])
+    sub_materials = material_graph.getMaterialNodes() or []
     for sub_material in sub_materials:
         sub_material_name = sub_material.getName()
         # Check if the sub-material has not been saved already.
-        if sub_material_name not in saved_materials:
-            lux.saveMaterial(name=sub_material_name, folder=library_path)
-            print(f"Saved sub-material '{sub_material_name}' to library at '{library_path}'.")
+        if sub_material_name in scene_materials and sub_material_name not in saved_materials:
+            lux.saveMaterial(name=sub_material_name, folder=LIBRARY_FOLDER)
+            print(f"Requested library save for '{sub_material_name}' in '{LIBRARY_FOLDER}'.")
             saved_materials.add(sub_material_name)
 
 def process_current_scene():
@@ -357,27 +313,3 @@ def main():
 # Execute the main function.
 main()
 '''
-
-###OS Agnostic Paths
-Windows
-        library_path = "C:\\Users\\Public\\Documents\\KeyShot"
-MacOS and Unix
-        library_path = "/Library/Application Support/KeyShot"
-
-###Folder Constants
-FOLDER_ANIMATIONS = 8
-FOLDER_BACKPLATES = 3
-FOLDER_COLORS = 9
-FOLDER_CONFIG_ROOT = 14
-FOLDER_DOWNLOADS = 16
-FOLDER_ENVIRONMENTS = 5
-FOLDER_EXTERNAL_PLUGIN = 13
-FOLDER_FAVORITES = 11
-FOLDER_MATERIALS = 7
-FOLDER_MATERIAL_TEMPLATES = 10
-FOLDER_MODELS = 15
-FOLDER_RESOURCE_ROOT = 1
-FOLDER_SCENES = 6
-FOLDER_SCREENSHOTS = 2
-FOLDER_SCRIPTS = 12
-FOLDER_TEXTURES = 4

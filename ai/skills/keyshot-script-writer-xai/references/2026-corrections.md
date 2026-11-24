@@ -1,4 +1,4 @@
-# Corrected 2026 contracts
+# KeyShot Studio 2026.3 API corrections
 
 Read `references/constraints.md` first. **The AI MUST NOT use non-standard or external libraries.** This page brings together the behavior errors found during documentation review; each named symbol should be verified against `references/KeyShot_lux_API.md`.
 
@@ -8,7 +8,7 @@ Read `references/constraints.md` first. **The AI MUST NOT use non-standard or ex
 
 `lux.getModelSets` lists **active** model sets. To inventory inactive sets too, inspect root children with `isModelSet()`. `lux.setModelSets(names)` activates the requested sets and deactivates the others; False can follow partial activation. Activation is separate from geometry hiding. Use documented node `hide()`/`show()` for visibility; no recursive keyword is specified. `SceneNode.delete()` is documented but destructive. Protect exact targets and do not infer that an unconnected shader root is unused.
 
-Use `lux.getKeyShotFolder(type=...)` with the relevant FOLDER constant for configured resources. Hardcoded KeyShot 12 paths and “all non-Windows systems are macOS” are historical assumptions. A timestamp alone is not a uniqueness guarantee for an output.
+Use `lux.getKeyShotFolder(type=...)` with the relevant FOLDER constant for configured resources. Use the configured resource path on the current operating system. A timestamp alone is not a uniqueness guarantee for an output.
 
 ## Importing, exporting and saving
 
@@ -32,7 +32,7 @@ For the returned import dictionary, `import_type=0` adds, `1` updates active geo
 
 `lux.RenderOptions.setMaxSamplesRendering` and `setAdvancedRendering` are documented. Supply output dimensions to `lux.renderImage`; do not invent a resolution setter. Adding a job to the queue is distinct from `lux.processQueue` and from a completed render. `lux.screenshot` captures the current real-time view and returns its path; it is GUI-only in the reference comparison and does not establish convergence or offline-render quality.
 
-Use `lux.setAnimationTime`/`lux.getAnimationTime` in **seconds**, with frame getters/setters for frame positions. `lux.pause`/`lux.unpause` control the renderer, not animation playback. Do not invent timeline playback or duration functions; inspect `lux.getAnimationInfo` instead. The two supplied animation-list accessors are flagged as absent from official 2026.1 pages.
+Use `lux.setAnimationTime`/`lux.getAnimationTime` in **seconds**, with frame getters/setters for frame positions. `lux.pause`/`lux.unpause` control the renderer, not animation playback. Do not invent timeline playback or duration functions; inspect `lux.getAnimationInfo` instead. The 2026.3 `lux` capture lists `getAnimations()` and `getNodeAnimations()`. Probe the returned object type and available members in the target runtime before using them.
 
 Held frames require unique output positions. Preserve inclusive range and total-copy intent: three copies means three output positions for that source frame. At FPS `f`, `n` encoded frames last `n/f` seconds. Accept padded formats deliberately, validate every expected input, and keep encoding separate from rendering. A falsey unspecified return is not automatically failure; historical cancellation guidance supports checking specifically for False, while actual output still needs validation.
 

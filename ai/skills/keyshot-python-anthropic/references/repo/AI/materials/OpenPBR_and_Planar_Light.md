@@ -1,7 +1,7 @@
 # OpenPBR and Planar Light — runtime parameters
 
 
-`SHADER_TYPE_OPENPBR` (`lux_openpbr`) and `SHADER_TYPE_PLANAR_LIGHT` (`lux_arealight`) exist in the 2026.3 beta dump. The parameter lists below come from `getParameters()` on the nodes, not from a static catalog.
+`SHADER_TYPE_OPENPBR` (`lux_openpbr`) and `SHADER_TYPE_PLANAR_LIGHT` (`lux_arealight`) are declared in the [KeyShot Studio 2026.3 `lux` capture](../../lux/KeyShot_lux_API.md). The parameter lists below come from `getParameters()` on the nodes, not from a static catalog.
 
 Type numbers match the dump:
 

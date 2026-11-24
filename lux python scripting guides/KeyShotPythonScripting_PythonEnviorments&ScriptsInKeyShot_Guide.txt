@@ -239,7 +239,7 @@ This script will not run in an external environment because lux is a KeyShot-spe
 2. Different Python Version or Missing Dependencies
 
 • Problem: The version of Python available in KeyShot might be different from the one you use in VS Code or PyCharm, leading to compatibility issues. KeyShot may not have all standard libraries or may use an older version of Python that lacks newer features.
-• For example, f-string formatting (introduced in Python 3.6) might not be supported if KeyShot is using an older version.
+• Check Python compatibility in KeyShot Studio 2026.3 by printing sys.version in the scripting console.
 • Some standard libraries that you import in VS Code may not exist in KeyShot’s environment, resulting in errors.
 • Solution:
 • Match Python Versions: Make sure the version of Python installed in your IDE matches the version used by KeyShot.
@@ -282,7 +282,7 @@ In this example, you create a LuxMock class that simulates the lux behavior so y
 • Write your KeyShot-specific code and your general-purpose Python code in separate modules.
 • For instance, put all lux calls into one file (keyshot_operations.py), and put general logic or reusable utilities (logging, calculations, etc.) into another (utilities.py). You can work on utilities.py freely in any IDE, while keyshot_operations.py should be developed and tested within KeyShot.
 4. Match Python Versions:
-• Find out which Python version KeyShot uses (e.g., Python 3.7) and set up the same version in your IDE.
+• Check the Python version in the KeyShot Studio 2026.3 scripting console and use the same version in your IDE.
 • If KeyShot uses a conda environment or a virtual environment, create a similar virtual environment in your IDE to match the packages and version.
 5. Use Remote Editing (If Possible):
 • Some IDEs allow you to connect remotely to an application that runs Python scripts. If KeyShot has this capability, you could, in theory, run the script from your IDE directly in KeyShot (though this setup is advanced and might require a lot of tweaking).

@@ -15,12 +15,12 @@ The idea is simple: preserve the knowledge, keep it current, and make it accessi
 
 ## API source of truth — KeyShot Studio 2026.3
 
-The primary references were captured directly from KeyShot's embedded Python scripting console, rather than copied from the public website:
+The API references were captured from KeyShot Studio 2026.3 for Windows, build 15.2.0.140 with embedded Python 3.13.12. The GUI references are:
 
 - [`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md) — the `help(lux)` dump documenting exposed scene, material graph, camera, environment, import/export, rendering, and other KeyShot Python APIs.
-- [`lux/KeyShot_luxmath_API.md`](lux/KeyShot_luxmath_API.md) — the `help(luxmath)` dump documenting the vector and matrix API used for transformations.
+- [`luxmath/KeyShot_luxmath_API.md`](luxmath/KeyShot_luxmath_API.md) — the `help(luxmath)` dump documenting the vector and matrix API used for transformations.
 
-These captures are the API source of truth for the recorded 2026.3 build. Prefer them over the older public 2026.1 scripting pages and historical examples. An AI assistant must not invent a missing function, method, constant, or argument. When working with a different KeyShot build, check what that build actually exposes.
+Use the capture for the module and execution mode you are working with. See the [headless lux reference](lux_headless/KeyShot_headless_lux_API.md) and [headless luxmath reference](luxmath_headless/KeyShot_headless_luxmath_API.md) for headless scripting.
 
 ## Why the material and shader parameters are here
 
@@ -44,53 +44,45 @@ for material_name in lux.getSceneMaterials() or []:
 
 Preserving that hard-to-find information is one of the reasons this knowledge base exists. Rather than requiring everyone to rediscover shader identifiers and parameter types in the scripting console, the repository brings together:
 
-- [Individual material references](AI/materials/) with material-specific parameters and usage notes.
-- [Shader node types and parameters](AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt) covering shader, texture, procedural, and geometry-node details.
-- [OpenPBR and Planar Light runtime parameters](AI/materials/OpenPBR_and_Planar_Light.md) captured from material graphs in a KeyShot Studio 2026.3 prerelease build.
+- [Individual material references](lux%20python%20material%20scripting%20guide%20and%20parameters/) with material-specific parameters and usage notes.
+- [Shader node types and parameters](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt) covering shader, texture, procedural, and geometry-node details.
+- [OpenPBR and Planar Light runtime parameters](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/OpenPBR_and_Planar_Light.md) captured from material graphs in a KeyShot Studio 2026.3 prerelease build.
 
 This makes the collection useful both to people learning KeyShot Python and to AI assistants that need concrete material and shader information instead of guessed parameter names. The saved parameter lists are reference observations, not a guarantee that every material or KeyShot version exposes identical settings. For an actual script, verify the relevant graph and parameter types in the target scene.
 
-## Secondary (lags 2026.3)
+## KeyShot Studio manual
 
-Public website docs are useful background only. They are not current for 2026.3:
-
-- GUI scripting: [https://media.keyshot.com/scripting/doc/2026.1/](https://media.keyshot.com/scripting/doc/2026.1/)
-- Headless: [https://media.keyshot.com/scripting/headless_doc/2026.1/](https://media.keyshot.com/scripting/headless_doc/2026.1/)
-- Manual overview: [https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html](https://manuals.keyshot.com/kss2026/en-us/manual/scripting.html)
+- [2026.3 release notes](https://manuals.keyshot.com/kss2026/en-us/manual/Release-Notes-2026.3.htm)
+- [Scripting Console](https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html)
+- [Headless scripting](https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html)
 
 ## Repository layout
 
-- [`lux/KeyShot_lux_API.md`](lux/KeyShot_lux_API.md) — 2026.3 source of truth
-- [`lux/KeyShot_luxmath_API.md`](lux/KeyShot_luxmath_API.md) — 2026.3 math dump
-- `luxmath/`, `lux_headless/`, `luxmath_headless/` — older dumps (historical; do not prefer over the 2026.3 lux dump)
-- `Scripts/` — older example notes
-- [`Scripts/examples/`](Scripts/examples/) — collected reference scripts (materials, information, transforms, rendering, GUI, animation)
-- `docs/` — main scripting documentation, with complete copies of the seven guides in `AI/kpsa_knowledge/`
-- `AI/` — agnostic KeyShot Python agent. Drop the system prompt + knowledge base into any LLM (Grok, Claude, GPT, local, etc.). The agent is instructed to verify against the 2026.3 dump.
+- [Scripting guides](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.txt) cover the API, materials, scene nodes, and transformations.
+- [Script examples](lux%20scripts/Scripting_Examples.txt) cover materials, information, transforms, rendering, GUI scripting, and animation.
+- [AI skills](ai/skills/) provide configurations and references for multiple platforms.
 
 ## Scripts and reference status
 
-This repository preserves KeyShot Python scripts collected for training, practical use, and reference across different KeyShot releases.
+This repository includes KeyShot Python scripts for training, practical use, and reference.
 
-When reusing a reference script, check its intended KeyShot version, runtime assumptions, side effects, and each `lux`/`luxmath` call against the appropriate current API dump. A working history is valuable evidence but does not establish behavior on a different, untested build.
-
-Newer versions will gradually replace outdated examples.
+When reusing a reference script, check its runtime assumptions and side effects. Verify its `lux` and `luxmath` calls against the appropriate KeyShot Studio 2026.3 API reference.
 
 ## Using the AI agent
 
-See [`AI/README.md`](AI/README.md). One system prompt + one knowledge base. No vendor lock-in. The agent treats the 2026.3 dump as the API source of truth.
+See the [KeyShot Python knowledge base](ai/skills/keyshot-python-anthropic/references/repo/AI/knowledge_base.md) and the [available skills](ai/skills/).
 
 ## Selected script examples
 
 The repository also includes scripts I've shared with the KeyShot community. These are examples of what can be built with the API, not the primary purpose of this knowledge base:
 
 - [KeyShot Information Inspector v1.2.1](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/inspector/KeyShot_Inspector_1_2.py): A GUI diagnostic utility with 72 selectable report operations across 12 categories. The author tested v1.2.0 and v1.2.1 in KeyShot and confirmed both working. See the [quick start and safety notes](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/inspector/README_KeyShot_Inspector_v1_2_0.txt) and [complete user guide](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/inspector/KeyShot_Information_Inspector_v1_2_0_User_Guide.txt).
-- [Material-to-OpenPBR Converter](AI/examples/openpbr_material_converter.py): A material conversion example using shader parameters and material graph connections. See the [OpenPBR parameter reference](AI/materials/OpenPBR_and_Planar_Light.md#openpbr) and [shader node types and parameters](AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt).
-- [Duplicate material script](AI/examples/Duplicate_Material_CopyOfaCopy.py): The complete material-copy example (also available in [docs](docs/Duplicate_Material_CopyOfaCopy.py)), including the explicit node/edge pass and adding the copy to a Multi-Material. See [Copy of a Copy](docs/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) for the full explanation and [material graph duplication](AI/materials/Material_Graph_Duplication.txt) for the compact pattern.
+- [Material-to-OpenPBR Converter](ai/skills/keyshot-python-anthropic/references/repo/AI/examples/openpbr_material_converter.py): A material conversion example using shader parameters and material graph connections. See the [OpenPBR parameter reference](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/OpenPBR_and_Planar_Light.md#openpbr) and [shader node types and parameters](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/KeyShotPythonScripting_ShaderNodeTypes_and_Parameters_Documentation.txt).
+- [Copy a material graph](lux%20python%20scripting%20guides/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.txt) covers copying nodes and edges and adding the copy to a Multi-Material. The [material graph duplication reference](ai/skills/keyshot-python-anthropic/references/repo/AI/materials/Material_Graph_Duplication.txt) summarizes the process.
 
-For related GUI, API, transformation, and scripting guides, see the [documentation index](docs/README.md).
+For related GUI, API, transformation, and scripting guides, see the [documentation index](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.txt).
 
-The Inspector can write report/trace files, and its optional all-saved-item inspections temporarily change active camera, environment, or image-style selections. The converter modifies materials. Review each script's scope and test scene-changing operations on a saved copy. Other [reference scripts](Scripts/examples/) remain available throughout the repository.
+The Inspector can write report/trace files, and its optional all-saved-item inspections temporarily change active camera, environment, or image-style selections. The converter modifies materials. Review each script's scope and test scene-changing operations on a saved copy. Other [reference scripts](lux%20scripts/Scripting_Examples.txt) remain available throughout the repository.
 
 ## Contributing
 
@@ -98,4 +90,4 @@ PRs welcome for new examples, 2026.3 patterns, or AI knowledge improvements. Whe
 
 ## License
 
-GPLv3 — see LICENSE.
+GPLv3. See [LICENSE](LICENSE).

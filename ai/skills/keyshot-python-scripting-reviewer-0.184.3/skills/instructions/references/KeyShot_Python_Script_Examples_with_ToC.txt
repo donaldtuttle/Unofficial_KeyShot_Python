@@ -45,9 +45,9 @@
 43. [Information\Get Model Sets.py](#information-get-model-sets)
 44. [Information\Get Node Type.py](#information-get-node-type)
 45. [Information\Get Render Info.py](#information-get-render-info)
-46. [Information\Get Resource Library Models 2024.py](#information-get-resource-library-models-2024)
-47. [Information\Get Resource Library Path 2024.py](#information-get-resource-library-path-2024)
-48. [Information\Get Resource Library Path 2024_v2.py](#information-get-resource-library-path-2024_v2)
+46. [Information\Get Resource Library Models.py](#information-get-resource-library-models)
+47. [Information\Get Configured Resource Library Path.py](#information-get-configured-resource-library-path)
+48. [Information\Display Resource Library Path.py](#information-display-resource-library-path)
 49. [Information\Get Resource Library Path.py](#information-get-resource-library-path)
 50. [Information\Get Scene Info.py](#information-get-scene-info)
 51. [Information\Get Scene Information.py](#information-get-scene-information)
@@ -58,23 +58,23 @@
 56. [Information\Get_Camera_Info.py](#information-get_camera_info)
 57. [Load\Load Enviorment From Library and Apply Settings.py](#load-load-enviorment-from-library-and-apply-settings)
 58. [Load\Load Enviorment From Library.py](#load-load-enviorment-from-library)
-59. [Load\Load Ground Plane 2024.py](#load-load-ground-plane-2024)
+59. [Load\Load Ground Plane into Default Model Set.py](#load-load-ground-plane-into-default-model-set)
 60. [Load\Load Ground Plane.py](#load-load-ground-plane)
-61. [Load\Load Library Texture Assign to Diffuse Material Bump Add 2024.py](#load-load-library-texture-assign-to-diffuse-material-bump-add-2024)
+61. [Load\Load Library Texture Assign to Diffuse Material Bump Add.py](#load-load-library-texture-assign-to-diffuse-material-bump-add)
 62. [Material\Adjust Texture Scale Scene Units 1cm.py](#material-adjust-texture-scale-scene-units-1cm)
 63. [Material\Apply 2 Library Textures to Diffuse Material Bump Add.py](#material-apply-2-library-textures-to-diffuse-material-bump-add)
 64. [Material\Apply Library Color by Name to Diffuse Material Color.py](#material-apply-library-color-by-name-to-diffuse-material-color)
-65. [Material\Apply Library Texture to Diffuse Material Bump Add 2024.py](#material-apply-library-texture-to-diffuse-material-bump-add-2024)
+65. [Material\Apply Multiple Library Textures to Diffuse Material Bump Add.py](#material-apply-multiple-library-textures-to-diffuse-material-bump-add)
 66. [Material\Apply Library Texture to Diffuse Material Bump Add.py](#material-apply-library-texture-to-diffuse-material-bump-add)
 67. [Material\Apply Library Texture to Diffuse Material Bump.py](#material-apply-library-texture-to-diffuse-material-bump)
 68. [Material\Apply Library Texture to Diffuse Material Color.py](#material-apply-library-texture-to-diffuse-material-color)
 69. [Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py](#material-batch-multi-material-diffuse-sub-material-assign-texture-default-units-m)
 70. [Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py](#material-batch-multi-material-diffuse-sub-material-assign-texture-scale-units-cm)
-71. [Material\Batch Save All Scene Materials to KS2024 Material Library Agnostic.py](#material-batch-save-all-scene-materials-to-ks2024-material-library-agnostic)
-72. [Material\Batch Save All Scene Materials to Library Agnostic 2024.py](#material-batch-save-all-scene-materials-to-library-agnostic-2024)
+71. [Material\Batch Save Scene Sub-Materials to Material Library.py](#material-batch-save-scene-sub-materials-to-material-library)
+72. [Material\Batch Save All Scene Materials Without Duplicates.py](#material-batch-save-all-scene-materials-without-duplicates)
 73. [Material\Batch Save All Scene Materials to Material Library Agnostic.py](#material-batch-save-all-scene-materials-to-material-library-agnostic)
 74. [Material\Batch Save All Scene Materials to Material Library.py](#material-batch-save-all-scene-materials-to-material-library)
-75. [Material\Batch Save Multi-Material Sub-Materials to KS2024 Material Library Agnostic.py](#material-batch-save-multi-material-sub-materials-to-ks2024-material-library-agnostic)
+75. [Material\Batch Save Multi-Material Sub-Materials Without Duplicates.py](#material-batch-save-multi-material-sub-materials-without-duplicates)
 76. [Material\Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py](#material-batch-save-multi-material-sub-materials-to-material-library-agnostic)
 77. [Material\Change IES Light Color and File Agnostic.py](#material-change-ies-light-color-and-file-agnostic)
 78. [Material\Color Gradient ShaderEdge Cube Material Color Connect.py](#material-color-gradient-shaderedge-cube-material-color-connect)
@@ -87,7 +87,7 @@
 85. [Material\Material Diffuse Color Apply Texture Example.py](#material-material-diffuse-color-apply-texture-example)
 86. [Material\Material Diffuse Color Change Example.py](#material-material-diffuse-color-change-example)
 87. [Material\Material Diffuse Color Texture Example.py](#material-material-diffuse-color-texture-example)
-88. [Material\Material IES Light Color and File Change 2024.py](#material-material-ies-light-color-and-file-change-2024)
+88. [Material\Material IES Light Properties Change.py](#material-material-ies-light-properties-change)
 89. [Material\Material IES Light Color and File Change.py](#material-material-ies-light-color-and-file-change)
 90. [Material\Material Color Gradient ShaderEdge Diffuse Material Color Connect.py](#material-color-gradient-shaderedge-diffuse-material-color-connect)
 91. [Material\Material Gradient View Direction.py](#material-color-gradient-view-direction)
@@ -2694,11 +2694,7 @@ lux.importFile(path=file_path, opts=opts)
 import os
 import lux
 
-# Determine the operating system and set the library path accordingly
-if os.name == 'nt':  # Windows
-    file_path = "C:\\Users\\Public\\Documents\\KeyShot 12\\Templates\\Layout_Master_Scene_05.bip"
-else:  # macOS and Unix/Linux
-    file_path = "/Library/Application Support/KeyShot 12/Templates/Layout_Master_Scene_05.bip"
+file_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT), "Templates", "Layout_Master_Scene_05.bip")
 
 # Get the default import options
 opts = lux.getImportOptions(getDefaults=True)
@@ -3075,33 +3071,21 @@ print_render_options_prettily()
 ```
 # End of Information\Get Render Info.py
 
-# Information\Get Resource Library Models 2024.py
-<a name="information-get-resource-library-models-2024"></a>
+# Information\Get Resource Library Models.py
+<a name="information-get-resource-library-models"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
 # Script that lists models in the KeyShot Resources/Models directory and its subdirectories.
-# Compatible with KeyShot 2024 and higher.
 ``` python
 import os
 import lux
 
-def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    # Determine the library path based on the operating system
-    library_path = os.path.join(os.environ.get('PUBLIC', ''), "Documents", "KeyShot")
-    if not os.path.exists(library_path):  # If not Windows, try Unix-like path
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
-    
-    return library_path
 
 def list_models_in_library():
     """
     Lists all model files in the KeyShot Resources/Models directory and its subdirectories.
     """
-    library_path = get_library_path()
-    models_path = os.path.join(library_path, "Models")
+    models_path = lux.getKeyShotFolder(type=lux.FOLDER_MODELS)
     
     # Check if the models directory exists
     if not os.path.exists(models_path):
@@ -3127,27 +3111,20 @@ def list_models_in_library():
 list_models_in_library()
 ```
 
-# End of Information\Get Resource Library Models 2024.py
+# End of Information\Get Resource Library Models.py
 
-# Information\Get Resource Library Path 2024.py
-<a name="information-get-resource-library-path-2024"></a>
+# Information\Get Configured Resource Library Path.py
+<a name="information-get-configured-resource-library-path"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
 # Script that gets the KeyShot Resources Library Path.  
-# Compatible with KeyShot 2024 and higher.
 ``` python
-import os
 import lux
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system and displays the path in a message box.
-    """
-    # Determine the library path based on the operating system
-    library_path = os.path.join(os.environ.get('PUBLIC', ''), "Documents", "KeyShot",)
-    if not os.path.exists(library_path):  # If not Windows, try Unix-like path
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot",)
-    
+    """Display the configured KeyShot resource folder."""
+    library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
+
     # Display the library path in a message box
     lux.getMessageBox(f"Your KeyShot Resources Library path is:\n{library_path}", "Library Path", lux.MESSAGE_BOX_INFO)
     
@@ -3158,34 +3135,20 @@ library_path = get_library_path()
 print(f"Library path: {library_path}")
 ```
 
-# End of Information\Get Resource Library Path 2024.py
+# End of Information\Get Configured Resource Library Path.py
 
-# Information\Get Resource Library Path 2024_v2.py
-<a name="information-get-resource-library-path-2024_v2"></a>
+# Information\Display Resource Library Path.py
+<a name="information-display-resource-library-path"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
-# Determines the KeyShot 2024 and higher "Resources Library" path based on the operating system and displays the path in a message box.
+# Displays the configured KeyShot resource folder in a message box.
 ``` python
-import os
 import lux
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system and displays the path in a message box.
-    """
-    # Determine the library path based on the operating system
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ.get('USERPROFILE', ''), "Documents", "KeyShot",)
-    else:  # macOS or Unix-like
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
-    
-    # Check if the path exists and if not, try an alternative common path
-    if not os.path.exists(library_path):
-        if os.name == 'nt':  # Windows alternative
-            library_path = os.path.join(os.environ.get('PUBLIC', ''), "Documents", "KeyShot")
-        else:  # macOS alternative
-            library_path = os.path.join(os.path.expanduser('~'), "Documents", "KeyShot")
-    
+    """Display the configured KeyShot resource folder."""
+    library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
+
     # Display the library path in a message box
     lux.getMessageBox(f"Your KeyShot Resources Library path is:\n{library_path}", "Library Path", lux.MESSAGE_BOX_INFO)
     
@@ -3196,27 +3159,20 @@ library_path = get_library_path()
 print(f"Library path: {library_path}")
 ```
 
-# End of Information\Get Resource Library Path 2024_v2.py
+# End of Information\Display Resource Library Path.py
 
 # Information\Get Resource Library Path.py
 <a name="information-get-resource-library-path"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
 # Script that gets the KeyShot Resources Library Path.  
-# Compatible with KeyShot 2024 and higher.
 ``` python
-import os
 import lux
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system and displays the path in a message box.
-    """
-    # Determine the library path based on the operating system
-    library_path = os.path.join(os.environ.get('PUBLIC', ''), "Documents", "KeyShot",)
-    if not os.path.exists(library_path):  # If not Windows, try Unix-like path
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot",)
-    
+    """Display the configured KeyShot resource folder."""
+    library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
+
     # Display the library path in a message box
     lux.getMessageBox(f"Your KeyShot Resources Library path is:\n{library_path}", "Library Path", lux.MESSAGE_BOX_INFO)
     
@@ -3614,22 +3570,17 @@ load_environment_from_library(env_filename)
 ```
 # End of Load\Load Enviorment From Library.py
 
-# Load\Load Ground Plane 2024.py
-<a name="load-load-ground-plane-2024"></a>
+# Load\Load Ground Plane into Default Model Set.py
+<a name="load-load-ground-plane-into-default-model-set"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
 # Script that loads a ground plane from the keyshot resources library.  Must have Ground Plane Model. 
-# Compatible with KeyShot 2024 and higher.
 ``` python
 import lux
 import os
 
 def get_library_path():
-    if os.name == 'nt':
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot", "Models", "Ground")
-    else:
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot", "Models", "Ground")
-    return library_path
+    return os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_MODELS), "Ground")
 
 def add_ground_plane_to_default_model_set():
     default_model_set_name = "Default"
@@ -3664,7 +3615,7 @@ if __name__ == "__main__":
     main()
 ```
 
-# End of Load\Load Ground Plane 2024.py
+# End of Load\Load Ground Plane into Default Model Set.py
 
 # Load\Load Ground Plane.py
 <a name="load-load-ground-plane"></a>
@@ -3730,8 +3681,8 @@ if __name__ == "__main__":
 
 # End of Load\Load Ground Plane.py
 
-# Load\Load Library Texture Assign to Diffuse Material Bump Add 2024.py
-<a name="load-load-library-texture-assign-to-diffuse-material-bump-add-2024"></a>
+# Load\Load Library Texture Assign to Diffuse Material Bump Add.py
+<a name="load-load-library-texture-assign-to-diffuse-material-bump-add"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
 # Script to apply a texture to the bump map of a diffuse material in KeyShot.
@@ -3804,7 +3755,7 @@ texture_file_paths = [
 connect_textures_to_bump(material_name, texture_file_paths)
 ```
 
-# End of Load\Load Library Texture Assign to Diffuse Material Bump Add 2024.py
+# End of Load\Load Library Texture Assign to Diffuse Material Bump Add.py
 
 # Material\Adjust Texture Scale Scene Units 1cm.py
 <a name="material-adjust-texture-scale-scene-units-1cm"></a>
@@ -3812,6 +3763,7 @@ connect_textures_to_bump(material_name, texture_file_paths)
 # VERSION 0.1.0
 # Resets the texture Scale Width and Height to 1cm.  KeyShot imports in Meters.
 ``` python
+import os
 import lux
 
 # Replace with your material name
@@ -3825,7 +3777,7 @@ texture_node = graph.newNode(lux.SHADER_TYPE_TEXTURE_MAP)
 
 # Set the texture file
 texture_file_parameter_name = "texture"
-texture_path = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 texture_node.getParameter(texture_file_parameter_name).setValue(texture_path)
 
 # Adjust the UV scale to 1 cm (assuming scene units are in meters)
@@ -3864,6 +3816,7 @@ print("No suitable color parameter found in the surface shader node.")
 # VERSION 0.1.6
 # Script to apply two textures to the bump map of a diffuse material in KeyShot.
 ``` python
+import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def connect_shader_edges_to_bump(material_name, texture_file_path_1, texture_file_path_2):
@@ -3955,8 +3908,8 @@ def connect_shader_edges_to_bump(material_name, texture_file_path_1, texture_fil
 # Example usage
 # Define the material name and texture file paths.
 material_name = "Cube Material"
-texture_file_path_1 = "C:/Users/Public/Documents/KeyShot 12/Textures/ash.jpg"
-texture_file_path_2 = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_file_path_1 = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "ash.jpg")
+texture_file_path_2 = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 
 # Apply the bump textures to the specified material.
 connect_shader_edges_to_bump(material_name, texture_file_path_1, texture_file_path_2)
@@ -4005,8 +3958,8 @@ assign_library_color_to_material_by_name("Cube Material", "PANTONE 186 C")
 
 # End of Material\Apply Library Color by Name to Diffuse Material Color.py
 
-# Material\Apply Library Texture to Diffuse Material Bump Add 2024.py
-<a name="material-apply-library-texture-to-diffuse-material-bump-add-2024"></a>
+# Material\Apply Multiple Library Textures to Diffuse Material Bump Add.py
+<a name="material-apply-multiple-library-textures-to-diffuse-material-bump-add"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
 # Script to apply a texture to the bump map of a diffuse material in KeyShot.
@@ -4079,7 +4032,7 @@ texture_file_paths = [
 connect_textures_to_bump(material_name, texture_file_paths)
 ```
 
-# End of Material\Apply Library Texture to Diffuse Material Bump Add 2024.py
+# End of Material\Apply Multiple Library Textures to Diffuse Material Bump Add.py
 
 # Material\Apply Library Texture to Diffuse Material Bump Add.py
 <a name="material-apply-library-texture-to-diffuse-material-bump-add"></a>
@@ -4087,6 +4040,7 @@ connect_textures_to_bump(material_name, texture_file_paths)
 # VERSION 0.1.5
 # Script to apply a texture to the bump map of a diffuse material in KeyShot.
 ``` python
+import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def connect_shader_edge_to_bump(material_name, texture_file_path):
@@ -4154,7 +4108,7 @@ def connect_shader_edge_to_bump(material_name, texture_file_path):
 # Example usage
 # Define the material name and texture file path.
 material_name = "Cube Material"
-texture_file_path = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_file_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 
 # Apply the bump texture to the specified material.
 connect_shader_edge_to_bump(material_name, texture_file_path)
@@ -4168,6 +4122,7 @@ connect_shader_edge_to_bump(material_name, texture_file_path)
 # VERSION 0.1.5
 # Script to apply a texture to the bump map of a diffuse material in KeyShot.
 ``` python
+import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def connect_shader_edge_to_bump(material_name, texture_file_path):
@@ -4235,7 +4190,7 @@ def connect_shader_edge_to_bump(material_name, texture_file_path):
 # Example usage
 # Define the material name and texture file path.
 material_name = "Cube Material"
-texture_file_path = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_file_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 
 # Apply the bump texture to the specified material.
 connect_shader_edge_to_bump(material_name, texture_file_path)
@@ -4249,6 +4204,7 @@ connect_shader_edge_to_bump(material_name, texture_file_path)
 # VERSION 0.1.0
 # Assign Texture from Library to the Color of a Diffuse Material.
 ``` python
+import os
 import lux
 
 def connect_texture_to_diffuse_color(material_name, texture_file_path):
@@ -4296,7 +4252,7 @@ def connect_texture_to_diffuse_color(material_name, texture_file_path):
 
 # Example usage
 material_name = "Cube Material"
-texture_file_path = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_file_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 connect_texture_to_diffuse_color(material_name, texture_file_path)
 ```
 
@@ -4503,24 +4459,17 @@ main()
 
 # End of Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py
 
-# Material\Batch Save All Scene Materials to KS2024 Material Library Agnostic.py
-<a name="material-batch-save-all-scene-materials-to-ks2024-material-library-agnostic"></a>
+# Material\Batch Save Scene Sub-Materials to Material Library.py
+<a name="material-batch-save-scene-sub-materials-to-material-library"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
 # Script to save the scene's materials and multi-material sub-materials to the material library in KeyShot.
 ``` python
-import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot")
-    else:  # macOS and Unix/Linux
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
-    return library_path
+    """Return the folder relative to the KeyShot Materials library."""
+    return "."
 
 def get_all_children(node):
     """
@@ -4546,7 +4495,7 @@ def save_sub_materials_to_library(multi_material_name, saved_materials):
     :param multi_material_name: Name of the multi-material.
     :param saved_materials: Set of already saved material names to avoid duplication.
     """
-    library_path = get_library_path()  # Get the library path based on the OS.
+    library_path = get_library_path()  # The folder is relative to the Materials library.
     material_graph = lux.getMaterialGraph(name=multi_material_name)
     if not material_graph:
         print(f"Multi-material '{multi_material_name}' not found.")
@@ -4587,26 +4536,19 @@ def main():
 main()
 ```
 
-# End of Material\Batch Save All Scene Materials to KS2024 Material Library Agnostic.py
+# End of Material\Batch Save Scene Sub-Materials to Material Library.py
 
-# Material\Batch Save All Scene Materials to Library Agnostic 2024.py
-<a name="material-batch-save-all-scene-materials-to-library-agnostic-2024"></a>
+# Material\Batch Save All Scene Materials Without Duplicates.py
+<a name="material-batch-save-all-scene-materials-without-duplicates"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
 # Script to save all scene materials to the material libray.
-# Compatible with KeyShot 2024 and higher.
 ``` python
-import os
 import lux
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    library_path = os.path.join(os.environ.get('PUBLIC', ''), "Documents", "KeyShot")
-    if not os.path.exists(library_path):
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
-    return library_path
+    """Return the folder relative to the KeyShot Materials library."""
+    return "."
 
 def get_all_children(node):
     """
@@ -4667,7 +4609,7 @@ def main():
 main()
 ```
 
-# End of Material\Batch Save All Scene Materials to Library Agnostic 2024.py
+# End of Material\Batch Save All Scene Materials Without Duplicates.py
 
 # Material\Batch Save All Scene Materials to Material Library Agnostic.py
 <a name="material-batch-save-all-scene-materials-to-material-library-agnostic"></a>
@@ -4675,18 +4617,11 @@ main()
 # VERSION 0.1.1
 # Script to save the scene's materials and multi-material sub-materials to the material library in KeyShot.
 ``` python
-import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot 12")
-    else:  # macOS and Unix/Linux
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot 12")
-    return library_path
+    """Return the folder relative to the KeyShot Materials library."""
+    return "."
 
 def get_all_children(node):
     """
@@ -4712,7 +4647,7 @@ def save_sub_materials_to_library(multi_material_name, saved_materials):
     :param multi_material_name: Name of the multi-material.
     :param saved_materials: Set of already saved material names to avoid duplication.
     """
-    library_path = get_library_path()  # Get the library path based on the OS.
+    library_path = get_library_path()  # The folder is relative to the Materials library.
     material_graph = lux.getMaterialGraph(name=multi_material_name)
     if not material_graph:
         print(f"Multi-material '{multi_material_name}' not found.")
@@ -4785,7 +4720,7 @@ def save_sub_materials_to_library(multi_material_name, library_path, saved_mater
     Save all sub-materials of a multi-material while avoiding duplicates.
 
     :param multi_material_name: Name of the multi-material.
-    :param library_path: Path to the material library where materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     :param saved_materials: Set of already saved material names to avoid duplication.
     """
     material_graph = lux.getMaterialGraph(name=multi_material_name)
@@ -4807,7 +4742,7 @@ def process_current_scene(library_path):
     """
     Process the currently open KeyShot file and avoid saving duplicate materials.
 
-    :param library_path: Path to the material library where materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     """
     saved_materials = set()
     root_node = lux.getSceneTree()
@@ -4823,8 +4758,7 @@ def main():
     """
     Main function to execute the script.
     """
-    # Define the library path based on the operating system.
-    library_path = "C:\\Users\\Public\\Documents\\KeyShot 12\\Materials"
+    library_path = "."  # Relative to the configured Materials library.
 
     # Process the currently open KeyShot scene.
     process_current_scene(library_path)
@@ -4835,14 +4769,12 @@ main()
 
 # End of Material\Batch Save All Scene Materials to Material Library.py
 
-# Material\Batch Save Multi-Material Sub-Materials to KS2024 Material Library Agnostic.py
-<a name="material-batch-save-multi-material-sub-materials-to-ks2024-material-library-agnostic"></a>
+# Material\Batch Save Multi-Material Sub-Materials Without Duplicates.py
+<a name="material-batch-save-multi-material-sub-materials-without-duplicates"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
 # Script to save multi-material sub-materials to the material library in KeyShot, compatible with PC and Apple systems.
 ``` python
-import os
-import platform  # Module to detect the operating system.
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def get_all_children(node):
@@ -4877,7 +4809,7 @@ def save_sub_materials_to_library(multi_material_name, library_path, saved_mater
     Save all sub-materials of a multi-material while avoiding duplicates.
 
     :param multi_material_name: The name of the multi-material.
-    :param library_path: The library path where the materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     :param saved_materials: A set to keep track of already saved materials.
     """
     material_graph = lux.getMaterialGraph(name=multi_material_name)
@@ -4898,7 +4830,7 @@ def process_current_scene(library_path):
     """
     Process the currently open KeyShot file and avoid saving duplicate materials.
 
-    :param library_path: The library path where the materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     """
     saved_materials = set()
     root_node = lux.getSceneTree()
@@ -4914,11 +4846,7 @@ def main():
     """
     Main function to execute the script.
     """
-    # Determine the library path based on the operating system.
-    if platform.system() == "Windows":
-        library_path = "C:/Users/Public/Documents/KeyShot/Materials"
-    else:  # macOS and other Unix-like systems
-        library_path = "/Library/Application Support/KeyShot/Materials"
+    library_path = "."  # Relative to the configured Materials library.
 
     # Process the currently open KeyShot scene.
     process_current_scene(library_path)
@@ -4927,7 +4855,7 @@ def main():
 main()
 ```
 
-# End of Material\Batch Save Multi-Material Sub-Materials to KS2024 Material Library Agnostic.py
+# End of Material\Batch Save Multi-Material Sub-Materials Without Duplicates.py
 
 # Material\Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py
 <a name="material-batch-save-multi-material-sub-materials-to-material-library-agnostic"></a>
@@ -4935,8 +4863,6 @@ main()
 # VERSION 0.1.2
 # Script to save multi-material sub-materials to the material library in KeyShot, compatible with PC and Apple systems.
 ``` python
-import os
-import platform  # Module to detect the operating system.
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def get_all_children(node):
@@ -4971,7 +4897,7 @@ def save_sub_materials_to_library(multi_material_name, library_path, saved_mater
     Save all sub-materials of a multi-material while avoiding duplicates.
 
     :param multi_material_name: The name of the multi-material.
-    :param library_path: The library path where the materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     :param saved_materials: A set to keep track of already saved materials.
     """
     material_graph = lux.getMaterialGraph(name=multi_material_name)
@@ -4992,7 +4918,7 @@ def process_current_scene(library_path):
     """
     Process the currently open KeyShot file and avoid saving duplicate materials.
 
-    :param library_path: The library path where the materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     """
     saved_materials = set()
     root_node = lux.getSceneTree()
@@ -5008,11 +4934,7 @@ def main():
     """
     Main function to execute the script.
     """
-    # Determine the library path based on the operating system.
-    if platform.system() == "Windows":
-        library_path = "C:/Users/Public/Documents/KeyShot 12/Materials"
-    else:  # macOS and other Unix-like systems
-        library_path = "/Library/Application Support/KeyShot 12/Materials"
+    library_path = "."  # Relative to the configured Materials library.
 
     # Process the currently open KeyShot scene.
     process_current_scene(library_path)
@@ -5033,14 +4955,8 @@ import os
 import lux
 
 def get_ies_library_path():
-    """
-    Determines the path to the IES Profiles based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot 12", "Textures", "IES Profiles")
-    else:  # macOS and Unix/Linux
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot 12", "Textures", "IES Profiles")
-    return library_path
+    """Find the IES profiles in the configured textures folder."""
+    return os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "IES Profiles")
 
 def display_material_selection():
     scene_materials = lux.getSceneMaterials()
@@ -5467,14 +5383,8 @@ import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot 12")
-    else:  # macOS and Unix/Linux
-        library_path = "/Library/Application Support/KeyShot12"
-    return library_path
+    """Return the configured KeyShot resource folder."""
+    return lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
 
 def connect_shader_edge_to_diffuse_color(material_name, texture_relative_path):
     """
@@ -5539,6 +5449,7 @@ connect_shader_edge_to_diffuse_color(material_name, texture_relative_path)
 # VERSION 0.1.0
 # Script to apply a texture to the diffuse color of a material in KeyShot.
 ``` python
+import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def connect_shader_edge_to_diffuse_color(material_name, texture_file_path):
@@ -5587,7 +5498,7 @@ def connect_shader_edge_to_diffuse_color(material_name, texture_file_path):
 # Example usage
 # Define the material name and texture file path.
 material_name = "Cube Material"
-texture_file_path = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_file_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 
 # Apply the texture to the diffuse color of the specified material.
 connect_shader_edge_to_diffuse_color(material_name, texture_file_path)
@@ -5653,6 +5564,7 @@ main()
 # VERSION 0.1.0
 # Script to apply a texture to the diffuse color of a material in KeyShot.
 ``` python
+import os
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def connect_shader_edge_to_diffuse_color(material_name, texture_file_path):
@@ -5701,7 +5613,7 @@ def connect_shader_edge_to_diffuse_color(material_name, texture_file_path):
 # Example usage
 # Define the material name and texture file path.
 material_name = "Cube Material"
-texture_file_path = "C:/Users/Public/Documents/KeyShot 12/Textures/Color Maps/asphalt.jpg"
+texture_file_path = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "Color Maps", "asphalt.jpg")
 
 # Apply the texture to the diffuse color of the specified material.
 connect_shader_edge_to_diffuse_color(material_name, texture_file_path)
@@ -5709,8 +5621,8 @@ connect_shader_edge_to_diffuse_color(material_name, texture_file_path)
 
 # End of Material\Material Diffuse Color Texture Example.py
 
-# Material\Material IES Light Color and File Change 2024.py
-<a name="material-material-ies-light-color-and-file-change-2024"></a>
+# Material\Material IES Light Properties Change.py
+<a name="material-material-ies-light-properties-change"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.6
 ``` python
@@ -5776,7 +5688,7 @@ def main():
 main()
 ```
 
-# End of Material\Material IES Light Color and File Change 2024.py
+# End of Material\Material IES Light Properties Change.py
 
 # Material\Material IES Light Color and File Change.py
 <a name="material-material-ies-light-color-and-file-change"></a>
@@ -5784,6 +5696,7 @@ main()
 # VERSION 0.1.0
 # Change IES Light Color and File
 ``` python
+import os
 import lux
 
 def display_material_selection():
@@ -5834,7 +5747,7 @@ def main():
         return
 
     new_color = (1.0, 1.0, 1.0)  # Example: White color in RGB format
-    new_ies_file = "C:/Users/Public/Documents/KeyShot 12/Textures/IES Profiles/IES Spot Light/keyshot_spot_45.ies"  # Replace with the path to your texture file
+    new_ies_file = os.path.join(lux.getKeyShotFolder(type=lux.FOLDER_TEXTURES), "IES Profiles", "IES Spot Light", "keyshot_spot_45.ies")  # Replace with the path to your texture file
 
     for material_name in selected_materials:
         change_ies_light_properties(material_name, new_color, new_ies_file)
@@ -5923,7 +5836,6 @@ main()
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
 # Script to save all scene materials to the material libray.
-# Compatible with KeyShot 2024 and higher.
 ``` python
 import lux
 import os
@@ -7515,7 +7427,7 @@ main()  # Executes the main function.
 # -*- coding: utf-8 -*-
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.18.2
-# DESCRIPTION: This script sets up a scene in KeyShot 2024 and higher for ambient occlusion rendering.
+# DESCRIPTION: This script sets up a scene for ambient occlusion rendering.
 # It configures the lighting settings, environment, hides all model sets except for the one named 'AO', and queues the cameras for rendering.
 # Assumes Units are in meters.
 ```python

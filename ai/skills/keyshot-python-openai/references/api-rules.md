@@ -1,4 +1,4 @@
-<!-- doc-id: kpsa-skills-keyshot-python-references-api-rules | target-api: 2026 | reviewed: 2026-10-23 -->
+<!-- doc-id: kpsa-skills-keyshot-python-references-api-rules | target-api: 2026.3 | reviewed: 2026-10-23 -->
 
 # KeyShot API pitfalls
 
@@ -13,4 +13,4 @@
 - Dialog results can be `None`. `DIALOG_ITEM` returns a selection pair, not simply a string. Numeric controls require ranges. Use GUI calls only in GUI mode.
 - `getRenderOptions` returns `RenderOptions`; `getImportOptions` returns a dictionary. Verify each option against its own API. No invented undo or transaction support.
 
-For evidence retrieve the exact owner-qualified entries in the checkout's `reference/keyshot-2026/api-index.json` and the normalized source in `reference/keyshot-2026/local/lux.txt`. These reminders do not replace those entries.
+For exact owner-qualified declarations, see the KeyShot Studio 2026.3 module captures in [retrieval guidance](retrieval.md).

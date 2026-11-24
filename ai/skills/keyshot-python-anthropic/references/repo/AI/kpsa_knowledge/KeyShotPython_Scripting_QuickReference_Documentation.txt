@@ -1,6 +1,6 @@
 # KeyShot Python Scripting Quick Reference
 
-**Target:** KeyShot Studio 2026.3 beta
+**Target:** KeyShot Studio 2026.3
 
 This file is a pointer. It is not a second API.
 
@@ -26,7 +26,7 @@ If this file and the dump disagree, the dump is correct. Do not use a symbol tha
 - `lux.Studio`
 - `lux.ThumbnailRenderOptions`
 
-## Module functions in the 2026.3 beta dump
+## Module functions in the 2026.3 dump
 
 - `lux.applyMaterialMapping`
 - `lux.clearGeometry`
@@ -183,7 +183,7 @@ If this file and the dump disagree, the dump is correct. Do not use a symbol tha
 - `lux.sync`
 - `lux.unpause`
 
-## Constants in the 2026.3 beta dump
+## Constants in the 2026.3 dump
 
 - `lux.CAMERA_MODE_ORBIT`
 - `lux.CAMERA_MODE_PATH`

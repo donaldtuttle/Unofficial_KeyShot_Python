@@ -1,5 +1,5 @@
 {
- "build": "2026.3-beta",
+ "build": "2026.3",
  "doc_references": {
   "lux": [
    {
@@ -23,27 +23,6 @@
     ],
     "prefix": false,
     "symbol": "lux.Animation"
-   },
-   {
-    "mentioned_in": [
-     "lux.MaterialMetadata.readField"
-    ],
-    "prefix": false,
-    "symbol": "lux.CMF_KIND_IMAGEname"
-   },
-   {
-    "mentioned_in": [
-     "lux.getBrowserDialog"
-    ],
-    "prefix": false,
-    "symbol": "lux.initData"
-   },
-   {
-    "mentioned_in": [
-     "lux.getBrowserDialog"
-    ],
-    "prefix": false,
-    "symbol": "lux.yieldResult"
    }
   ]
  },
@@ -5481,7 +5460,7 @@
      ],
      "params_source": "docstring",
      "signature": "(...)",
-     "summary": "Deprecated and will not work in KeyShot 2024.2."
+     "summary": "Deprecated and unsupported."
     },
     "getCamera": {
      "accepts_varargs": false,
@@ -9236,22 +9215,27 @@
   "returns entries exist only where the dump text states the type; see each 'source'.",
   "doc_references lists symbols that docstrings mention but this capture never declares. They require a runtime check (hasattr/dir in KeyShot) before use."
  ],
+ "runtime": {
+  "internal_build": "15.2.0.140",
+  "mode": "GUI",
+  "python_version": "3.13.12"
+ },
  "schema": 1,
  "source_commit": null,
  "sources": [
   {
-   "file": "/home/runner/work/Unofficial_KeyShot_Python/Unofficial_KeyShot_Python/lux/KeyShot_lux_API.md",
+   "file": "references/repo/lux/KeyShot_lux_API.md",
    "modules": [
     "lux"
    ],
-   "sha256": "3ead00c17c9aca3f5d1b9a747a5ceb533c0735a435c4a8f8c8d2ae128c0bb42e"
+   "sha256": "35d85e275ec37da647eb8656ccc1180065dec3c8dc6200a78de6bd52d7f4b0e3"
   },
   {
-   "file": "/home/runner/work/Unofficial_KeyShot_Python/Unofficial_KeyShot_Python/lux/KeyShot_luxmath_API.md",
+   "file": "references/repo/lux/KeyShot_luxmath_API.md",
    "modules": [
     "luxmath"
    ],
-   "sha256": "c5f38037601f940226931da939783b1a2dd736588e75f43942b465e593b3861c"
+   "sha256": "09c24fb657ae0cc0e71f8e648e9d4bd059481239d9dfd5a93813f2b3bca7b01a"
   }
  ]
 }

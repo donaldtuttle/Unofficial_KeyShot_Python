@@ -42,7 +42,7 @@ KeyShot Scripting Reviewer GPT (KSPR) is a vital asset for any KeyShot user who 
 3. [Testing Responsibility Acknowledgment](#testing-responsibility-acknowledgment)
 4. [Debugging Instructions](#debugging-instructions)
 5. [KeyShot Resources Library](#keyshot-resources-library)
-6. [KeyShot 2024.1 Python Scripting Common ChatGPT Errors](#keyshot-2024-1-python-scripting-common-chatgpt-errors)
+6. [KeyShot Studio 2026.3 Python Scripting Errors](#keyshot-studio-20263-python-scripting-errors)
 - [GUI Considerations](#gui-considerations)
 - [Common Errors](#common-errors)
 - [Empty Item Tuple Exception](#empty-item-tuple-exception)
@@ -145,7 +145,7 @@ msearch(["camera manipulation", "material graph manipulation"])
 2.	Based on the provided error information, your role will be to analyze these errors, identify the root causes, and suggest modifications or solutions to rectify these issues.
 3.	Focus on efficient and clear communication regarding potential bugs, ensuring that explanations are specific to the KeyShot scripting context.
 4.	Utilize the documentation of 'lux' and 'luxmath' to align debugging solutions with KeyShot's scripting framework.
-5.	In your debugging process, prioritize solutions that maintain compatibility with the KeyShot 2023.3 'lux' and 'luxmath' environment and the relevant Python version.
+5.	Verify debugging solutions against the KeyShot Studio 2026.3 lux and luxmath captures for the intended mode and its embedded Python 3.13.
 
 Regular Feedback and Adjustments:
 •Actively seek and incorporate feedback to refine scripts, ensuring they meet the specific needs and standards of KeyShot Python scripting.
@@ -263,43 +263,20 @@ zip_file_path
 
 ## KeyShot Resources Library
 
-### KeyShot Resources Library Agnostic
-"""python
-# AUTHOR LUX DT ChatGPT
-# VERSION 0.1.0
-# Determines the KeyShot 2024 and higher "Resources Library" path based on the operating system and displays the path in a message box.
+### Configured resource library
 
-import os
+Query the configured resource root in KeyShot Studio 2026.3:
+
+```python
 import lux
 
-def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system and displays the path in a message box.
-    """
-    # Determine the library path based on the operating system
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ.get('USERPROFILE', ''), "Documents", "KeyShot", "Library")
-    else:  # macOS or Unix-like
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot", "Library")
-    
-    # Check if the path exists and if not, try an alternative common path
-    if not os.path.exists(library_path):
-        if os.name == 'nt':  # Windows alternative
-            library_path = os.path.join(os.environ.get('PUBLIC', ''), "Documents", "KeyShot", "Library")
-        else:  # macOS alternative
-            library_path = os.path.join(os.path.expanduser('~'), "Documents", "KeyShot", "Library")
-    
-    # Display the library path in a message box
-    lux.getMessageBox(f"Your KeyShot Resources Library path is:\n{library_path}", "Library Path", lux.MESSAGE_BOX_INFO)
-    
-    return library_path
-
-# Example usage
-library_path = get_library_path()
+library_path = lux.getKeyShotFolder(type=lux.FOLDER_RESOURCE_ROOT)
 print(f"Library path: {library_path}")
-"""
+```
 
-## KeyShot 2024.1 Python Scripting Common ChatGPT Errors
+See [`KeyShot_Resource_Folders.txt`](KeyShot_Resource_Folders.txt) for more folder types and examples.
+
+## KeyShot Studio 2026.3 Python Scripting Errors
 
 ### GUI Considerations
 - **Non-Empty Default Values for `lux.getInputDialog()`**:

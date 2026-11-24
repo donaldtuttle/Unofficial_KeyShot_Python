@@ -1,6 +1,6 @@
 ---
 name: keyshot-script-writer
-description: Write accurate, complete Python scripts for KeyShot using the lux module. Covers scene, materials, cameras, rendering, animations, batch, XR. Verify every call against the 2026.3 beta help(lux) dump. Use for any KeyShot scripting request.
+description: Write accurate, complete Python scripts for KeyShot using the lux module. Covers scene, materials, cameras, rendering, animations, batch, XR. Verify every call against the 2026.3 help(lux) dump. Use for any KeyShot scripting request.
 ---
 
 # Keyshot Script Writer
@@ -9,11 +9,11 @@ description: Write accurate, complete Python scripts for KeyShot using the lux m
 
 This skill generates accurate, complete, runnable Python scripts that control KeyShot via its built-in `lux` module. It covers scene manipulation, camera/lighting control, material graphs, rendering pipelines (still, animation, configuration, XR), and export workflows.
 
-**API source of truth:** `references/KeyShot_lux_API.md` and `references/KeyShot_luxmath_API.md` — captured with `help(lux)` / `help(luxmath)` in the KeyShot Studio 2026.3 beta scripting console. Prefer these over public website docs (which lag) and over any guides that conflict with them. If a symbol is not in the dumps, do not use it.
+**API source of truth:** [`help(lux)`](references/KeyShot_lux_API.md) and [`help(luxmath)`](references/KeyShot_luxmath_API.md) from KeyShot Studio 2026.3. Check both the API signature and the documented execution mode before using a symbol.
 
 Before generating any script:
 1. Read `references/constraints.md` (mandatory hard rules) and `references/best-practices.md`.
-2. Verify every `lux` / `luxmath` symbol, owner, and arguments against the 2026.3 beta dumps.
+2. Verify every `lux` / `luxmath` symbol, owner, and arguments against the 2026.3 dumps.
 3. Guard GUI-only calls with `if not lux.isHeadless()` when the script may run headless.
 4. Deliver complete, self-contained scripts with user settings at the top, progress prints, and explicit error handling. No placeholders or invented facilities.
 
@@ -28,7 +28,7 @@ Activate on triggers such as: "write a KeyShot script to...", "generate KeyShot 
 - **All generated scripts must be COMPLETE, self-contained, and immediately runnable** in KeyShot with no placeholders, outlines, hypotheticals, or missing pieces. Every script must include: clear header, user-editable SETTINGS section at the very top, full logic, progress prints, and error handling where appropriate. The user will paste and test directly.
 - Scripts execute in the context of the currently open scene. Always validate early with `lux.hasContents()` and `lux.getSceneInfo()`.
 - KeyShot operations are stateful. Many methods (set*, apply*, render*) modify the live scene immediately. Do not invent undo, progress, or logging facilities that are not in the dump.
-- **Exact API usage only** (from the 2026.3 beta dump): Use `lux.getCamera()`, `lux.getSceneTree()`, `lux.getMaterialGraph(name)`, `lux.getSceneMaterials()`, `lux.getActiveEnvironment()`, `lux.getRenderOptions()`, `lux.getInputDialog(...)`, etc. Never invent function names. Dump wins over any guide.
+- **Exact API usage only** (from the 2026.3 dump): Use `lux.getCamera()`, `lux.getSceneTree()`, `lux.getMaterialGraph(name)`, `lux.getSceneMaterials()`, `lux.getActiveEnvironment()`, `lux.getRenderOptions()`, `lux.getInputDialog(...)`, etc. Never invent function names. Dump wins over any guide.
 - For GUI interaction (Scripting Console or button scripts): Use `lux.getInputDialog(...)`. Guard with `if not lux.isHeadless()`. Handle cancellation (None). Prefer one complete dialog. See `references/constraints.md` for the headless pattern.
 - Rendering: `lux.renderImage(path, width, height, opts, format)`, `lux.renderAnimation(...)`, `lux.renderConfiguration(...)`, `lux.renderXR(...)` — pass a `RenderOptions` object. Many parameters have sensible defaults. Always pass an explicit path in headless.
 - Material work: Prefer `SceneNode.setMaterial(name)` or `lux.setObjectMaterial(...)` for simple cases. Use `lux.getMaterialGraph(name)` + node/parameter methods only for advanced graph editing. Re-query node IDs after any copy or link. Pure parameters forbid getValue/setValue.
@@ -36,7 +36,7 @@ Activate on triggers such as: "write a KeyShot script to...", "generate KeyShot 
 
 ## Verification Checklist (required before delivery)
 
-Source: `references/KeyShot_lux_API.md` and `references/KeyShot_luxmath_API.md` (2026.3 beta dumps). Nothing else counts.
+Source: `references/KeyShot_lux_API.md` and `references/KeyShot_luxmath_API.md` (2026.3 dumps). Nothing else counts.
 
 Before returning a script, check every `lux` and `luxmath` symbol:
 - Symbol exists in the dump (function, method, or constant)
@@ -58,7 +58,7 @@ If a box cannot be checked, do not ship that call. Name the missing symbol and o
 1. **Complete & Working Only**: Every script must be a full, self-contained, copy-paste-and-run program. No comments like "# TODO", no example snippets, no "you can add...", no outlines. The entire concept must work end-to-end when pasted into KeyShot.
 2. **User Settings at Top**: All configurable values (paths, names, numbers, booleans) must be in a clearly marked `### USER SETTINGS ###` block at the very top, using simple variables. User changes only this section.
 3. **Progress & Debug Prints**: Include `print()` statements at every major step so the user sees exactly what is happening in the Scripting Console.
-4. **Exact lux API**: Use only functions and constants that exist in the 2026.3 beta dump. Examples of correct calls: `lux.getCamera()`, `lux.getMaterialGraph(name)`, `lux.renderImage(...)`, `lux.getInputDialog(...)`.
+4. **Exact lux API**: Use only functions and constants that exist in the 2026.3 dump. Examples of correct calls: `lux.getCamera()`, `lux.getMaterialGraph(name)`, `lux.renderImage(...)`, `lux.getInputDialog(...)`.
 5. **GUI Dialogs**: When user input is needed in GUI mode, use `lux.getInputDialog()` with properly formed tuples. Provide a unique `id=` for persistence across runs. Guard for headless.
 6. **Headless Compatible**: Where possible, design so the script can also run via command line (`keyshot --script ...`). Avoid GUI-only calls unless wrapped in mode detection.
 7. **Error Resilience**: Wrap risky operations in try/except with informative prints. Check return values and object existence before using them.
@@ -189,7 +189,7 @@ else:
 - `lux.setActiveStudio(name)`, `lux.setActiveEnvironment(name)`
 - `lux.saveFile(path=None)`, `lux.openFile(path)`, `lux.importFile(path)`
 - `lux.processQueue()` after setting `opts.setAddToQueue(True)`
-- Full constant list in the 2026.3 beta dump (`references/KeyShot_lux_API.md`)
+- Full constant list in the 2026.3 dump (`references/KeyShot_lux_API.md`)
 
 ## Common Errors & How to Avoid Them
 
@@ -335,19 +335,19 @@ See `references/best-practices.md` and `references/2026-corrections.md` for the 
 - **Large Scenes**: Limit depth in `find()` calls. Use model sets or configurations for variations instead of duplicating geometry.
 - **Output Formats**: Match extension to `RENDER_OUTPUT_*` constant. EXR/TIFF for 32-bit passes; JPEG for quick previews.
 - **Testing**: Develop in the Scripting Console (Window > Scripting Console). Use the Scripts tab to save/load reusable .py files. Add `print()` everywhere during development. Separate static checks from runtime tests.
-- **Version Differences**: Target KeyShot 2026.3 beta dump as source of truth. Newer releases add GPU engines, XR, OpenPBR, Planar Light, etc. Test on target version.
+- **Target build** — Use the KeyShot Studio 2026.3 API references and test on that build in the intended execution mode.
 - **External Python**: Do not use external libraries unless the user explicitly asks and confirms availability in the embedded runtime.
 
 ## Additional Resources
 
-- **API source of truth**: `references/KeyShot_lux_API.md` and `references/KeyShot_luxmath_API.md` (2026.3 beta dumps)
+- **API source of truth**: `references/KeyShot_lux_API.md` and `references/KeyShot_luxmath_API.md` (2026.3 dumps)
+- Headless 2026.3 API captures: [`lux`](https://github.com/donaldtuttle/Unofficial_KeyShot_Python/blob/main/lux_headless/KeyShot_headless_lux_API.md) and [`luxmath`](https://github.com/donaldtuttle/Unofficial_KeyShot_Python/blob/main/luxmath_headless/KeyShot_headless_luxmath_API.md).
 - Mandatory constraints: `references/constraints.md`
 - Best practices: `references/best-practices.md`
 - 2026 corrections and pitfalls: `references/2026-corrections.md`
 - OpenPBR / Planar Light runtime parameters: `references/OpenPBR_and_Planar_Light.md`
 - Glossary: `references/glossary.md`
-- Official KeyShot Scripting Manual: https://manual.keyshot.com/ (search "Scripting") — secondary; lags the dump
-- Full pydoc API (version-specific): https://media.keyshot.com/scripting/doc/ — secondary
+- KeyShot Studio 2026 manual for the [Scripting Console](https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html) and [Headless Scripting](https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html).
 - Scripting examples in KeyShot UI: Scripts tab > Examples
 - For production-ready best practices + complete examples: `references/KeyShot_Best_Practices_Examples.md`
 - Quick-reference cheat sheet for advanced material graph patterns: `references/Advanced_Material_Graph_Cheat_Sheet.md`
@@ -357,7 +357,7 @@ See `references/best-practices.md` and `references/2026-corrections.md` for the 
 
 ## Limitations & When to Decline
 
-This skill focuses on the official `lux` Python API verified against the 2026.3 beta dump. It does not cover:
+This skill focuses on the official `lux` Python API verified against the 2026.3 dump. It does not cover:
 - Creating custom KeyShot plugins (C++ / Luxion SDK)
 - Third-party render farm integration beyond queue export
 - Reverse-engineering undocumented internal calls
@@ -367,4 +367,4 @@ If a request falls outside KeyShot Python scripting (e.g., "write a Blender scri
 
 Always produce scripts that are safe, commented, and respect the user's scene state. Ask clarifying questions about KeyShot version, desired output resolution/format, specific objects/materials, or whether the script should be interactive vs. fully automatic. If evidence is incomplete, state the uncertainty and offer a documented alternative or a focused runtime probe.
 
-**Static verification only.** This skill verifies symbols against the 2026.3 beta dumps. It does not claim that any script has been executed or rendered inside KeyShot unless a live runtime observation was performed.
+**Static verification only.** This skill verifies symbols against the 2026.3 dumps. It does not claim that any script has been executed or rendered inside KeyShot unless a live runtime observation was performed.

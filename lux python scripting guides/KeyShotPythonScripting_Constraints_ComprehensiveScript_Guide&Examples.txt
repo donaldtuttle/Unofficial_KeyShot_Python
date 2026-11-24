@@ -506,8 +506,6 @@ Save Sub-Materials to Library and Avoid Duplicates
 
 # Script to save multi-material sub-materials to the material library in KeyShot, compatible with PC and Apple systems.
 ```python
-import os
-import platform  # Module to detect the operating system.
 import lux  # Import the KeyShot built-in module 'lux'.
 
 def get_all_children(node):
@@ -542,7 +540,7 @@ def save_sub_materials_to_library(multi_material_name, library_path, saved_mater
     Save all sub-materials of a multi-material while avoiding duplicates.
 
     :param multi_material_name: The name of the multi-material.
-    :param library_path: The library path where the materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     :param saved_materials: A set to keep track of already saved materials.
     """
     material_graph = lux.getMaterialGraph(name=multi_material_name)
@@ -563,7 +561,7 @@ def process_current_scene(library_path):
     """
     Process the currently open KeyShot file and avoid saving duplicate materials.
 
-    :param library_path: The library path where the materials will be saved.
+    :param library_path: Folder relative to the configured Materials library.
     """
     saved_materials = set()
     root_node = lux.getSceneTree()
@@ -579,11 +577,7 @@ def main():
     """
     Main function to execute the script.
     """
-    # Determine the library path based on the operating system.
-    if platform.system() == "Windows":
-        library_path = "C:/Users/Public/Documents/KeyShot/Materials"
-    else:  # macOS and other Unix-like systems
-        library_path = "/Library/Application Support/KeyShot/Materials"
+    library_path = "."  # Relative to the configured Materials library.
 
     # Process the currently open KeyShot scene.
     process_current_scene(library_path)
@@ -592,24 +586,17 @@ def main():
 main()
 ```
 
-Script Name: Batch Save Multi-Material Sub-Materials to KS2024 Material Library Agnostic.py
+Script Name: Batch Save Multi-Material Sub-Materials Without Duplicates.py
 Overview: This script includes built-in error handling while saving materials to avoid duplicates. It uses a set to track saved materials and ensures that no material is saved twice. This demonstrates proper validation and error handling practices for complex operations within the material graph​.
 Check Node Availability and Connection Handling
 
 # Script to save the scene's materials and multi-material sub-materials to the material library in KeyShot.
 ```python
-import os
-import lux  # Import the KeyShot built-in module 'lux'.
+import lux
 
 def get_library_path():
-    """
-    Determines the KeyShot "Resources Library" path based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        library_path = os.path.join(os.environ['PUBLIC'], "Documents", "KeyShot")
-    else:  # macOS and Unix/Linux
-        library_path = os.path.join(os.path.expanduser('~'), "Library", "Application Support", "KeyShot")
-    return library_path
+    """Return the folder relative to the KeyShot Materials library."""
+    return "."
 
 def get_all_children(node):
     """
@@ -635,7 +622,7 @@ def save_sub_materials_to_library(multi_material_name, saved_materials):
     :param multi_material_name: Name of the multi-material.
     :param saved_materials: Set of already saved material names to avoid duplication.
     """
-    library_path = get_library_path()  # Get the library path based on the OS.
+    library_path = get_library_path()
     material_graph = lux.getMaterialGraph(name=multi_material_name)
     if not material_graph:
         print(f"Multi-material '{multi_material_name}' not found.")
@@ -853,7 +840,7 @@ Graph Operations & Node Management:
 Scripts like Delete Unused Shader and Material Graph Nodes.py and Color Gradient ShaderEdge Diffuse Material Color Connect.py provide a practical guide to maintaining and editing the material graph.
 Batch Processing & External Loading:
 
-Scripts focusing on batch assignment (Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py) and saving (Batch Save All Scene Materials to KS2024 Material Library Agnostic.py) are useful for automating tasks and learning how to handle multiple materials simultaneously.
+Scripts focusing on batch assignment (Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py) and saving (Batch Save Scene Sub-Materials to Material Library.py) are useful for automating tasks and learning how to handle multiple materials simultaneously.
 Error Handling Best Practices:
 
 Error handling in scripts like Batch Save All Scene Materials teaches the importance of robust validation in complex workflows, which directly relates to understanding the limits and preconditions of the lux API.

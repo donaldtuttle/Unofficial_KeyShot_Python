@@ -1,10 +1,16 @@
 import os
 import re
 import zipfile
+from pathlib import Path
+
+REFERENCE_DIR = Path(__file__).resolve().parent if "__file__" in globals() else Path("/mnt/data")
+QUICK_REFERENCE = "Quick_Reference_Documentation.txt"
+SCRIPT_EXAMPLES = "KeyShot_Python_Script_Examples_with_ToC.txt"
+MATERIAL_REFERENCE = "ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt"
 
 # Load specific section from a file
 def load_specific_section(file_path, section_name):
-    with open(file_path, 'r') as file:
+    with open(file_path, encoding='utf-8') as file:
         content = file.read()
         start_marker = f'## {section_name}'
         end_marker = '## '  # Assuming the next section starts with '## '
@@ -20,7 +26,7 @@ def load_specific_section(file_path, section_name):
 
 # Load the entire document content
 def load_document(file_path):
-    with open(file_path, 'r') as file:
+    with open(file_path, encoding='utf-8') as file:
         return file.read()
 
 # Extract sections using regular expressions
@@ -37,7 +43,7 @@ def extract_sections(content, section_names):
 
 # Load user input handler logic
 def load_user_input_handler(file_path='/mnt/data/user_input_handler.py'):
-    with open(file_path, 'r') as file:
+    with open(file_path, encoding='utf-8') as file:
         code = file.read()
     exec(code, globals())
     return "User input handler loaded."
@@ -45,7 +51,7 @@ def load_user_input_handler(file_path='/mnt/data/user_input_handler.py'):
 # User input handler functions
 def handle_user_request(user_input, tocs, instructions_toc):
     if "import" in user_input and "CAD" in user_input:
-        response = handle_specific_request(user_input, tocs, "Batch Import CAD")
+        response = handle_specific_request(tocs, "Batch Import CAD")
     elif "TypeError" in user_input or "FileNotFoundError" in user_input:
         response = analyze_error(user_input, tocs)
     elif "list scripts" in user_input:
@@ -71,18 +77,24 @@ def handle_user_request(user_input, tocs, instructions_toc):
     
     return response
 
-def handle_specific_request(user_input, tocs, section_name):
-    file_name = '2024_1_Scripting_Documentation.txt'
-    return load_specific_section(os.path.join('/mnt/data', file_name), section_name)
+def handle_specific_request(tocs, section_name):
+    content = tocs[SCRIPT_EXAMPLES]
+    example = re.search(
+        rf"^# (?P<title>[^\r\n\\]+\\{re.escape(section_name)}\.py)\s*$",
+        content,
+        flags=re.MULTILINE,
+    )
+    if example is None:
+        return "Script example not found."
+    end = content.index("# End of " + example.group("title"), example.end())
+    return content[example.start():end].strip()
 
 def handle_generic_request(user_input, tocs, instructions_toc):
     instructions = re.findall(r'##\s(.+?)\n', instructions_toc)
     
     for instruction in instructions:
         if instruction.lower() in user_input.lower():
-            file_name = '2024_1_Scripting_Documentation.txt'
-            section_name = instruction
-            return load_specific_section(os.path.join('/mnt/data', file_name), section_name)
+            return load_specific_section(REFERENCE_DIR / QUICK_REFERENCE, instruction)
     
     return "Request not identified. Please provide more details."
 
@@ -93,15 +105,13 @@ def analyze_error(log, tocs):
         return "FileNotFoundError: Ensure the file path is correct and the file exists."
 
     # Add more error handling based on documentation
-    file_name = 'Best Practices for Python Scripting.txt'
-    section_name = 'Exception Handling'
-    best_practices = load_specific_section(os.path.join('/mnt/data', file_name), section_name)
+    best_practices = load_specific_section(REFERENCE_DIR / 'Common_Errors.txt', 'Error Handling')
     
     return best_practices
 
 def list_available_scripts(tocs):
-    examples_toc = tocs['Scripting_Examples.txt']
-    scripts = re.findall(r'##\s(.+?)\n', examples_toc)
+    examples_toc = tocs[SCRIPT_EXAMPLES]
+    scripts = re.findall(r"^\d+\.\s+\[([^\]]+\.py)\]", examples_toc, flags=re.MULTILINE)
     return scripts
 
 def search_documentation(tocs, search_term):
@@ -182,7 +192,7 @@ def extract_materials_section(tocs):
         "Material Glass Solid",
         "Material Toon"
     ]
-    content = load_document('/mnt/data/Scripting_Materials_Documentation.txt')
+    content = load_document(REFERENCE_DIR / MATERIAL_REFERENCE)
     sections = extract_sections(content, section_names)
     
     result = ""
@@ -192,25 +202,20 @@ def extract_materials_section(tocs):
 
 # Helper function to load all ToCs from given files
 def load_all_tocs():
-    toc_files = [
-        '/mnt/data/Quick_Reference_Documentation.txt',
-        '/mnt/data/Common_Errors.txt',
-        '/mnt/data/KeyShot_Python_Script_Examples_with_ToC',
-        '/mnt/data/Scripting_Material_Graph.txt',
-        '/mnt/data/Scripting_Transforming_Scene_Nodes.txt',
-        '/mnt/data/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt'
+    filenames = [
+        QUICK_REFERENCE,
+        "Common_Errors.txt",
+        SCRIPT_EXAMPLES,
+        "Scripting_Material_Graph.txt",
+        "Scripting_Transforming_Scene_Nodes.txt",
+        MATERIAL_REFERENCE,
     ]
-    
-    tocs = {}
-    for toc_file in toc_files:
-        with open(toc_file, 'r') as file:
-            tocs[toc_file] = file.read()
-    return tocs
+    return {name: load_document(REFERENCE_DIR / name) for name in filenames}
 
 # Example usage
 tocs = load_all_tocs()
 user_input = "extract_materials"
-instructions_toc = tocs['/mnt/data/2024_1_Scripting_Documentation.txt']
+instructions_toc = tocs[QUICK_REFERENCE]
 
 response = handle_user_request(user_input, tocs, instructions_toc)
 print(response)

@@ -1,6 +1,6 @@
 # KeyShot Script Examples & Advanced Patterns
 
-This reference supplements the main SKILL.md. Some snippets are complete and executable; others are illustrative and may contain placeholders or incomplete signatures. Non-executable fragments are labeled as such. All lux/luxmath symbols must still be verified against the 2026.3 beta dumps before use.
+This reference supplements the main SKILL.md. Some snippets are complete and executable; others are illustrative and may contain placeholders or incomplete signatures. Non-executable fragments are labeled as such. All lux/luxmath symbols must still be verified against the 2026.3 dumps before use.
 
 ## Table of Contents
 - Advanced Still Render with Passes and Post Effects
@@ -108,16 +108,15 @@ else:
     print("Node not found")
 ```
 
-## Headless / CLI Scripting Notes
-KeyShot supports headless execution (no GUI). Typical invocation (exact flags depend on platform/version):
+## Headless / CLI Scripting
 
+KeyShot Studio supports headless execution for scripts that use functions available in that mode. On Windows, pass the scene path before `-script`.
+
+```powershell
+keyshot_headless "C:\Scenes\product.ksp" -script "C:\Scripts\my_automation.py"
 ```
-keyshot.exe --headless --script "C:\Scripts\my_automation.py" --scene "C:\Scenes\product.ksp" --output "C:\Renders"
-```
 
-Inside script you can still use most lux calls. Some UI-dependent features (dialogs, certain previews) are unavailable. Use `print()` for logging; output is captured in console or log file.
-
-Check KeyShot documentation or `--help` for your specific build. Combine with task schedulers or render farm wrappers for overnight batches.
+On macOS, use `keyshot -headless` with the same scene and script arguments. Use explicit parameters and paths in place of dialogs. For launch options, see [Headless Scripting](https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html).
 
 ## Queue Management & Batch Processing
 ```python
@@ -161,9 +160,9 @@ Useful for submitting many jobs without blocking the main thread.
 - `lux.EXPORT_OBJ`, `EXPORT_FBX`, `EXPORT_GLTF`, `EXPORT_STL`, `EXPORT_3MF`, `EXPORT_USD`
 
 **XR Types** (for renderXR)
-- `lux.XR_TYPE_TURNTABLE`, `XR_TYPE_SPHERICAL`, `XR_TYPE_CYLINDRICAL`, `XR_TYPE_CUSTOM`
+- `lux.XR_TYPE_TURNTABLE`, `XR_TYPE_SPHERICAL`, `XR_TYPE_HEMISPHERICAL`, `XR_TYPE_CUSTOM`
 
-Full list available in the version-specific pydoc at media.keyshot.com/scripting/doc/
+See the [KeyShot Studio 2026.3 `lux` API reference](KeyShot_lux_API.md) for the full list.
 
 ## Troubleshooting & Debugging Tips
 
@@ -185,7 +184,7 @@ Full list available in the version-specific pydoc at media.keyshot.com/scripting
 
 9. **IDE Autocompletion**: Use the community stubs repo (github.com/larsniem/keyshot-scripting-stubs). Place in your editor's python path or use as type hints.
 
-10. **Version-specific features**: Newer KeyShot versions add more AOV passes, better GPU denoising, and additional RenderOptions keys. If a method is missing, check the pydoc for your exact KeyShot build or fall back to older equivalent.
+10. **Build-specific features** — Check the [KeyShot Studio 2026.3 `lux` API reference](KeyShot_lux_API.md) for supported render passes, rendering options, and method signatures.
 
 ## Next Steps for Complex Workflows
 

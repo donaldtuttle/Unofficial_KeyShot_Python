@@ -1,16 +1,20 @@
 # KeyShot Python Scripting Reviewer
 
-KPSR is a skills-only Agent Plugin for reviewing and generating Python scripts used with KeyShot. Its original package metadata describes it as a reviewer that identifies potential issues, inefficiencies, and areas for improvement.
+KPSR is a skills-only Agent Plugin for reviewing and generating Python scripts for KeyShot Studio 2026.3.
+
+## API references
+
+- GUI console — [`lux`](skills/instructions/references/KeyShot_lux_API.md) and [`luxmath`](skills/instructions/references/KeyShot_luxmath_API.md).
+- Headless — [`lux`](skills/instructions/references/KeyShot_headless_lux_API.md) and [`luxmath`](skills/instructions/references/KeyShot_headless_luxmath_API.md).
 
 ## Contents
 
-- `plugin.json` — portable Agent Plugins 1.0 manifest.
-- `.codex-plugin/plugin.json` — original Codex compatibility manifest.
-- `assets/gpt-icon.png` — original plugin icon.
-- `skills/instructions/SKILL.md` — original KPSR instructions.
-- `skills/instructions/agents/openai.yaml` — original agent-facing metadata.
-- `skills/instructions/lookup/knowledge-index.json` — original knowledge-file index.
-- `skills/instructions/references/` — 16 original knowledge and example files.
-- `INVENTORY.md` — file inventory.
-- `EXPORT-MANIFEST.json` — machine-readable export provenance and original-file inventory.
-- `SHA256SUMS.txt` — SHA-256 checksums for every original plugin file.
+- [Portable Agent Plugins manifest](plugin.json)
+- [Codex compatibility manifest](.codex-plugin/plugin.json)
+- [Plugin icon](assets/gpt-icon.png)
+- [Skill instructions](skills/instructions/SKILL.md)
+- [Agent metadata](skills/instructions/agents/openai.yaml)
+- [Knowledge-file index](skills/instructions/lookup/knowledge-index.json)
+- [File inventory](INVENTORY.md)
+- [Package and capture metadata](EXPORT-MANIFEST.json)
+- [Package file checksums](SHA256SUMS.txt)

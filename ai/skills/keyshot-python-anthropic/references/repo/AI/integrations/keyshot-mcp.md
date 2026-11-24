@@ -6,7 +6,7 @@
 
 - Independent upstream project: [lfoletti/keyshot-mcp](https://github.com/lfoletti/keyshot-mcp), MIT licensed, a working **prototype** maintained by its author.
 - The upstream `1.1.1` release (2026-10-24) describes **33 MCP tools** for scene state, cameras, environments, materials and graphs, rendering, screenshots, plus bridge inspection.
-- The author reports Windows and KeyShot Studio **2026.2 Pro** testing. KeyShot **2026.3 beta is not validated by that report**. Do not claim compatibility until tested in that build.
+- Verify the bridge against KeyShot Studio 2026.3 before relying on it.
 - Architecture: an **external Python 3.12+ stdio MCP server** speaks to a **separately installed bridge inside KeyShot** via a token-protected, localhost-only (`127.0.0.1:1998` by default) TCP connection. The server and bridge need to run on the same Windows host. This is **not** a cloud-accessible MCP service by default.
 - The upstream project currently documents a Claude Code setup; MCP is a protocol, not a guarantee that another agent host can connect to this local stdio server. Follow the upstream README for installation; adapt client configuration only for hosts that explicitly support local MCP.
 
@@ -23,7 +23,7 @@
 
 ## GitHub knowledge retrieval is separate
 
-- [Current 2026.3 beta API and working materials](https://github.com/donaldtuttle/Unofficial_KeyShot_Python) provide the scripting knowledge. Access via a **connected GitHub tool** or packaged local files.
+- [Current 2026.3 API and working materials](https://github.com/donaldtuttle/Unofficial_KeyShot_Python) provide the scripting knowledge. Access via a **connected GitHub tool** or packaged local files.
 - [Original KPSA archive](https://github.com/donaldtuttle/KeyShot-Python-AI-Knowledge) provides historical documentation and audits when authorized and accessible.
 - MCP and GitHub serve distinct roles: **GitHub for reference documents**, **KeyShot MCP for the running application**. A skill may describe both without providing either integration itself.
 
@@ -36,4 +36,4 @@
 - Separately verify render and save operations only after explicit permission.
 - If any step fails, disable write tools and use documentation-only mode.
 
-See the [core agent skill](../skill_core.md) and [platform adapters](../skills/README.md).
+See the [core agent skill](../skill_core.md) and [Claude adapter](../../../../SKILL.md).

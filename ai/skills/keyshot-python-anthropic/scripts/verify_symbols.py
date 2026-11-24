@@ -6,8 +6,8 @@ Static check of KeyShot Python scripts against a symbol index produced by
 build_symbol_index.py from help(lux) / help(luxmath) captures.
 
 Usage
-    python verify_symbols.py my_script.py --index references/api/2026.3-beta/symbols.json
-    python verify_symbols.py my_script.py --build 2026.3-beta
+    python verify_symbols.py my_script.py --index references/api/2026.3/symbols.json
+    python verify_symbols.py my_script.py --build 2026.3
         (searches ../references/**/symbols.json next to this file, then ./symbols.json)
     python verify_symbols.py a.py b.py --json        machine-readable output
     python verify_symbols.py a.py --strict           warnings and policy notes also fail
@@ -888,7 +888,7 @@ def main(argv=None) -> int:
     ap.add_argument("scripts", nargs="+", help="Python files to check")
     group = ap.add_mutually_exclusive_group()
     group.add_argument("--index", help="path to symbols.json")
-    group.add_argument("--build", help="find symbols.json for this build label, e.g. 2026.3-beta")
+    group.add_argument("--build", help="find symbols.json for this build label, e.g. 2026.3")
     ap.add_argument("--json", action="store_true", help="print JSON instead of text")
     ap.add_argument("--strict", action="store_true", help="warnings and policy notes also fail (exit 2)")
     ap.add_argument("--no-policy", action="store_true", help="skip skill-contract policy checks")

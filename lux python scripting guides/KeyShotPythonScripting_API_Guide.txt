@@ -557,7 +557,7 @@ for obj in objects:
 
 ### **5.1 Accessing and Manipulating the Material Graph**
 
-The material graph in KeyShot allows you to manipulate materials in a more advanced and flexible way. By using the `lux.getMaterialGraph()` function, you can access and modify the material nodes, parameters, and connections. Material graph manipulation was introduced in KeyShot 11, and this chapter will explore the basics of working with the material graph, nodes, edges, and parameters.
+The material graph in KeyShot allows you to manipulate materials in a more advanced and flexible way. By using the `lux.getMaterialGraph()` function, you can access and modify the material nodes, parameters, and connections. The following examples cover the material graph, nodes, edges, and parameters.
 
 ---
 
@@ -1915,7 +1915,7 @@ except Exception as e:
 Here is a list of helpful external resources to further your knowledge of KeyShot scripting and Python development.
 
 #### **12.4.1 KeyShot Documentation**
-- [KeyShot Scripting Documentation](https://www.keyshot.com/resources/learning/scripting/)
+- [KeyShot Studio 2026.3 Python API](KeyShotPythonScripting_API_Documentation.txt)
 - Official KeyShot documentation with detailed information on the scripting API and examples.
 
 #### **12.4.2 Python Resources**

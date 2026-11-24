@@ -10,7 +10,7 @@ This reference consolidates authoritative best practices, GUI dialog usage, OS-a
 4. **Exact lux API** — Only use functions that exist in the current KeyShot `lux` module (`getCamera()`, `getMaterialGraph(name)`, `getInputDialog()`, `getKeyShotFolder()`, etc.).
 5. **Stay in the lux Environment** — Use only documented `lux.*` + `luxmath.*` + minimal safe stdlib (`os`, `platform`). No external packages unless user confirms.
 6. **GUI Dialogs** — Use `lux.getInputDialog()` with properly formed tuples. A nonempty default is not universally required for `DIALOG_TEXT` (see `references/2026-corrections.md`). Use a unique `id=` for persistence.
-7. **Performance** — Prefer documented batch patterns. `lux.beginUndoSession()` / `lux.endUndoSession()` are **not present** in the 2026.3 beta dump and must not be used.
+7. **Performance** — Prefer documented batch patterns. `lux.beginUndoSession()` / `lux.endUndoSession()` are **not present** in the 2026.3 dump and must not be used.
 8. **Error Resilience** — Try/except around risky calls + informative prints.
 9. **OS Agnostic** — Handle Windows vs macOS paths for library access.
 
@@ -41,7 +41,7 @@ else:
 
 **Common Error to Avoid**: Do not assume every `DIALOG_TEXT` requires a nonempty default. Check the dump and `references/2026-corrections.md`. Incomplete `DIALOG_ITEM` tuples are a separate issue.
 
-## OS-Agnostic Library & Folder Paths (KeyShot 2024+)
+## OS-Agnostic Library & Folder Paths (KeyShot Studio 2026.3)
 
 ```python
 import os
@@ -288,13 +288,13 @@ if __name__ == "__main__":
 
 ## Additional Best Practice Highlights
 
-- **Performance**: Do not use `lux.beginUndoSession()` / `lux.endUndoSession()`. These symbols are absent from the 2026.3 beta dump.
+- **Performance**: Do not use `lux.beginUndoSession()` / `lux.endUndoSession()`. These symbols are absent from the 2026.3 dump.
 - **Material Graphs**: Always check `if graph:` before use. Use `getNodesFromType()`, `getParameter()`, `newEdge()`, `newNode()`.
 - **Camera**: `lux.getCamera()`, `lux.setCamera*()`, `lux.saveCamera()`.
 - **Error Handling**: `try/except` + `print()` + optional custom log file.
 - **Hybrid Automation + Verification**: For complex material duplication, use `lux.createMultiMaterial()` then manually verify nodes/parameters/edges with helper functions.
 - **Message Boxes**: `lux.getMessageBox(message, title, lux.MESSAGE_BOX_INFO)` for user feedback.
-- **Progress (long operations)**: `lux.getProgressBar()` is **not present** in the 2026.3 beta dump. Use `print()` for progress.
+- **Progress (long operations)**: `lux.getProgressBar()` is **not present** in the 2026.3 dump. Use `print()` for progress.
 
 These patterns come directly from KeyShot training materials and real-world scripting practice. Use them as the foundation for every script you generate.
 

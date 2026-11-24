@@ -2,7 +2,8 @@
 
 A Grok / Claude skill for generating accurate, complete, runnable Python scripts that control KeyShot via the built-in `lux` and `luxmath` modules.
 
-**Source of truth:** KeyShot Studio 2026.3 beta `help(lux)` / `help(luxmath)` dumps.  
+**KeyShot Studio 2026.3 API references** — [`lux`](references/KeyShot_lux_API.md) and [`luxmath`](references/KeyShot_luxmath_API.md).
+
 Static verification only — scripts are not claimed to have been executed inside KeyShot unless a live runtime observation was performed.
 
 ## Contents
@@ -18,8 +19,8 @@ keyshot-script-writer/
 │   ├── triggers.json
 │   └── static_regression.py          # Static scanner for known unsafe patterns
 └── references/
-    ├── KeyShot_lux_API.md            # Full 2026.3 beta lux dump
-    ├── KeyShot_luxmath_API.md        # Full 2026.3 beta luxmath dump
+    ├── KeyShot_lux_API.md            # Full 2026.3 lux dump
+    ├── KeyShot_luxmath_API.md        # Full 2026.3 luxmath dump
     ├── constraints.md                # Hard rules
     ├── best-practices.md
     ├── 2026-corrections.md
@@ -41,7 +42,7 @@ keyshot-script-writer/
 
 ## Key Rules the Skill Enforces
 
-- Only symbols that exist in the 2026.3 beta dumps.
+- Only symbols that exist in the 2026.3 dumps.
 - Complete, self-contained scripts with a `USER SETTINGS` block at the top.
 - Progress prints and explicit error handling.
 - GUI calls (`lux.getInputDialog`, etc.) guarded with `if not lux.isHeadless()`.

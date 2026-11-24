@@ -421,7 +421,7 @@
     "entry_point": {
       "path": "SKILL.md",
       "copied_from": "AI/skills/claude/SKILL.md",
-      "sha256": "baf209e64fee8140ce6e7a4616ac4a565cf3316a7e27f3dff8518509a0c9c7d4"
+      "sha256": "3effbb4fed0731847c1512e295405e1b2a448ec1fe7adace11a406b4587ac391"
     },
     "content": [
       "AI/best-practices.md",
@@ -487,7 +487,9 @@
       "AI/materials/openpbr_material_converter.py",
       "AI/skill_core.md",
       "lux/KeyShot_lux_API.md",
-      "lux/KeyShot_luxmath_API.md"
+      "lux/KeyShot_luxmath_API.md",
+      "lux_headless/KeyShot_headless_lux_API.md",
+      "luxmath_headless/KeyShot_headless_luxmath_API.md"
     ],
     "rules": [
       "exactly one SKILL.md",
@@ -497,11 +499,11 @@
     "bundled_tools": [
       {
         "path": "scripts/verify_symbols.py",
-        "sha256": "b35491f6b15696b22bed36c3a917c31b32fdd3c7cb24dd72230758ed8ae2a0aa"
+        "sha256": "b261dc0ed9c08db0eda3fbceb447fa3b8b5a87a8ca5b2ae8f91ec44f042b5517"
       },
       {
-        "path": "references/api/2026.3-beta/symbols.json",
-        "sha256": "87e10f19dcfe6c4d8378a4b2fa89957385ce36c59b7a9e524c52a4f72c12456f"
+        "path": "references/api/2026.3/symbols.json",
+        "sha256": "78553ca80916815cab014fc4d3db5c00909728e05a1085ff168757f367f4117a"
       }
     ]
   }

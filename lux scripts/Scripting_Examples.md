@@ -1,154 +1,191 @@
-# Table of Contents
+# Scripting Examples
 
-1. [Animation\Animation Batch Rendering Frame Padding.py](#animation-animation-batch-rendering-frame-padding)
-2. [Animation\Animation Encode Video with Padding.py](#animation-animation-encode-video-with-padding)
-3. [Animation\Animation Frame Padding Agnostic.py](#animation-animation-frame-padding-agnostic)
-4. [Animation\Animation Rendered Image Sequence Padding Agnostic.py](#animation-animation-rendered-image-sequence-padding-agnostic)
-5. [Automation\Animation Pad Frames.py](#automation-animation-pad-frames)
-6. [Automation\Batch Import Queue XR .py](#automation-batch-import-queue-xr-)
-7. [Automation\Create Camera Extract xmp Camera Data.py](#automation-create-camera-extract-xmp-camera-data)
-8. [Automation\Create Cameras Additional Functions Example.py](#automation-create-cameras-additional-functions-example)
-9. [Automation\Create Cameras Template.py](#automation-create-cameras-template)
-10. [Automation\Create Configured Cameras Template.py](#automation-create-configured-cameras-template)
-11. [Automation\Create Custom Cameras From XMP.py](#automation-create-custom-cameras-from-xmp)
-12. [Automation\Create Standard Scene Example.py](#automation-create-standard-scene-example)
-13. [Automation\Create Standard Views and Perspective Beauty Camera.py](#automation-create-standard-views-and-perspective-beauty-camera)
-14. [Automation\Create Standard Views and Perspective Camera with ModelSets.py](#automation-create-standard-views-and-perspective-camera-with-modelsets)
-15. [Automation\Create Standard Views and Perspective Camera.py](#automation-create-standard-views-and-perspective-camera)
-16. [Automation\Create Standard Views and Perspective Cameras.py](#automation-create-standard-views-and-perspective-cameras)
-17. [Automation\Create Standard Views and Perspective Cameras_Distance_50Units.py](#automation-create-standard-views-and-perspective-cameras_distance_50units)
-18. [Automation\Create Standard Views and Perspective Cameras_Distance_5Units.py](#automation-create-standard-views-and-perspective-cameras_distance_5units)
-19. [Automation\Create a Perspective Camera.py](#automation-create-a-perspective-camera)
-20. [Automation\Create and Configure Studios.py](#automation-create-and-configure-studios)
-21. [Automation\Creates Model Set.py](#automation-creates-model-set)
-22. [Automation\Delete Unused Nodes.py](#automation-delete-unused-nodes)
-23. [GUI\CustomInputDialog_PC.py](#gui-custominputdialog_pc)
-24. [GUI\GUI Script Example Doc.py](#gui-gui-script-example-doc)
-25. [GUI\Get InputDialog GUI Example.py](#gui-get-inputdialog-gui-example)
-26. [ImportExport\Batch Import CAD Model Assign Material Template Name Model Set.py](#importexport-batch-import-cad-model-assign-material-template-name-model-set)
-27. [ImportExport\Batch Import CAD Model Assign Material Template.py](#importexport-batch-import-cad-model-assign-material-template)
-28. [ImportExport\Batch Import CAD.py](#importexport-batch-import-cad)
-29. [ImportExport\Batch Import Multiple CAD File Types.py](#importexport-batch-import-multiple-cad-file-types)
-30. [ImportExport\Import CAD.py](#importexport-import-cad)
-31. [ImportExport\Import CAD_Prompt.py](#importexport-import-cad_prompt)
-32. [ImportExport\Import Scene Template cm into a New Scene.py](#importexport-import-scene-template-cm-into-a-new-scene)
-33. [ImportExport\Import Scene Template cm into an Existing Scene.py](#importexport-import-scene-template-cm-into-an-existing-scene)
-34. [ImportExport\Import Scene Template cm.py](#importexport-import-scene-template-cm)
-35. [ImportExport\Import Scene Template mm.py](#importexport-import-scene-template-mm)
-36. [ImportExport\Import Template meters.py](#importexport-import-template-meters)
-37. [ImportExport\Import Template mm.py](#importexport-import-template-mm)
-38. [ImportExport\Import_GLB_TranslateRotateScale.py](#importexport-import_glb_translaterotatescale)
-39. [ImportExport\Import_OBJ_TranslateRotateScale.py](#importexport-import_obj_translaterotatescale)
-40. [Information\Get Camera Distance.py](#information-get-camera-distance)
-41. [Information\Get MaterialGraph Parameters.py](#information-get-materialgraph-parameters)
-42. [Information\Get Metadata.py](#information-get-metadata)
-43. [Information\Get Model Sets.py](#information-get-model-sets)
-44. [Information\Get Node Type.py](#information-get-node-type)
-45. [Information\Get Render Info.py](#information-get-render-info)
-46. [Information\Get Resource Library Models.py](#information-get-resource-library-models)
-47. [Information\Get Configured Resource Library Path.py](#information-get-configured-resource-library-path)
-48. [Information\Display Resource Library Path.py](#information-display-resource-library-path)
-49. [Information\Get Resource Library Path.py](#information-get-resource-library-path)
-50. [Information\Get Scene Info.py](#information-get-scene-info)
-51. [Information\Get Scene Information.py](#information-get-scene-information)
-52. [Information\Get Scene Materials.py](#information-get-scene-materials)
-53. [Information\Get SceneTree Nodes.py](#information-get-scenetree-nodes)
-54. [Information\Get SceneTree.py](#information-get-scenetree)
-55. [Information\Get Scenes Material Parameters and Save to File.py](#information-get-scenes-material-parameters-and-save-to-file)
-56. [Information\Get_Camera_Info.py](#information-get_camera_info)
-57. [Load\Load Enviorment From Library and Apply Settings.py](#load-load-enviorment-from-library-and-apply-settings)
-58. [Load\Load Enviorment From Library.py](#load-load-enviorment-from-library)
-59. [Load\Load Ground Plane into Default Model Set.py](#load-load-ground-plane-into-default-model-set)
-60. [Load\Load Ground Plane.py](#load-load-ground-plane)
-61. [Load\Load Library Texture Assign to Diffuse Material Bump Add.py](#load-load-library-texture-assign-to-diffuse-material-bump-add)
-62. [Material\Adjust Texture Scale Scene Units 1cm.py](#material-adjust-texture-scale-scene-units-1cm)
-63. [Material\Apply 2 Library Textures to Diffuse Material Bump Add.py](#material-apply-2-library-textures-to-diffuse-material-bump-add)
-64. [Material\Apply Library Color by Name to Diffuse Material Color.py](#material-apply-library-color-by-name-to-diffuse-material-color)
-65. [Material\Apply Multiple Library Textures to Diffuse Material Bump Add.py](#material-apply-multiple-library-textures-to-diffuse-material-bump-add)
-66. [Material\Apply Library Texture to Diffuse Material Bump Add.py](#material-apply-library-texture-to-diffuse-material-bump-add)
-67. [Material\Apply Library Texture to Diffuse Material Bump.py](#material-apply-library-texture-to-diffuse-material-bump)
-68. [Material\Apply Library Texture to Diffuse Material Color.py](#material-apply-library-texture-to-diffuse-material-color)
-69. [Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py](#material-batch-multi-material-diffuse-sub-material-assign-texture-default-units-m)
-70. [Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py](#material-batch-multi-material-diffuse-sub-material-assign-texture-scale-units-cm)
-71. [Material\Batch Save Scene Sub-Materials to Material Library.py](#material-batch-save-scene-sub-materials-to-material-library)
-72. [Material\Batch Save All Scene Materials Without Duplicates.py](#material-batch-save-all-scene-materials-without-duplicates)
-73. [Material\Batch Save All Scene Materials to Material Library Agnostic.py](#material-batch-save-all-scene-materials-to-material-library-agnostic)
-74. [Material\Batch Save All Scene Materials to Material Library.py](#material-batch-save-all-scene-materials-to-material-library)
-75. [Material\Batch Save Multi-Material Sub-Materials Without Duplicates.py](#material-batch-save-multi-material-sub-materials-without-duplicates)
-76. [Material\Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py](#material-batch-save-multi-material-sub-materials-to-material-library-agnostic)
-77. [Material\Change IES Light Color and File Agnostic.py](#material-change-ies-light-color-and-file-agnostic)
-78. [Material\Color Gradient ShaderEdge Cube Material Color Connect.py](#material-color-gradient-shaderedge-cube-material-color-connect)
-79. [Material\Color Gradient ShaderEdge Diffuse Material Color Connect.py](#material-color-gradient-shaderedge-diffuse-material-color-connect)
-80. [Material\Create Python Material Output Script.py](#material-create-python-material-output-script)
-81. [Material\Delete Unused Nodes in Material Graph.py](#material-delete-unused-nodes-in-material-graph)
-82. [Material\Delete Unused Shader Nodes.py](#material-delete-unused-shader-nodes)
-83. [Material\Delete Unused Shader and Material Graph Nodes.py](#material-delete-unused-shader-and-material-graph-nodes)
-84. [Material\Material Diffuse Color Apply Texture Example Agnostic.py](#material-material-diffuse-color-apply-texture-example-agnostic)
-85. [Material\Material Diffuse Color Apply Texture Example.py](#material-material-diffuse-color-apply-texture-example)
-86. [Material\Material Diffuse Color Change Example.py](#material-material-diffuse-color-change-example)
-87. [Material\Material Diffuse Color Texture Example.py](#material-material-diffuse-color-texture-example)
-88. [Material\Material IES Light Properties Change.py](#material-material-ies-light-properties-change)
-89. [Material\Material IES Light Color and File Change.py](#material-material-ies-light-color-and-file-change)
-90. [Material\Material Color Gradient ShaderEdge Diffuse Material Color Connect.py](#material-color-gradient-shaderedge-diffuse-material-color-connect)
-91. [Material\Material Gradient View Direction.py](#material-color-gradient-view-direction)
-92. [Material\Material Physical Light Color Change.py](#material-material-physical-light-color-change)
-93. [Material\Saves All Materials to the Library.py](#material-saves-all-materials-to-the-library)
-94. [Material\ShaderEdge Connect.py](#material-shaderedge-connect)
-95. [Material\Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py](#batch-create-multi-material-sub-materials-with-custom-advanced-shader-parameters)
-96. [Model\Delete Model Set by Name.py](#model-delete-model-set-by-name)
-97. [Model\Hide All Model Set Children.py](#model-hide-all-model-set-children)
-98. [Model\Hide All Model Sets Children.py](#model-hide-all-model-sets-children)
-99. [Model\Hide All Model Sets and Children.py](#model-hide-all-model-sets-and-children)
-100. [Model\Hide and Show Model Sets.py](#model-hide-and-show-model-sets)
-101. [Model\Hides Node by Name.py](#model-hides-node-by-name)
-102. [Model\Model Set Remove Default .py](#model-model-set-remove-default-)
-103. [Model\Model Set Renamer.py](#model-model-set-renamer)
-104. [Model\Model Translate and Rotate Example.py](#model-model-translate-and-rotate-example)
-105. [Model\New Model Set Template.py](#model-new-model-set-template)
-106. [Model\Product Model Sets.py](#model-product-model-sets)
-107. [Model\Show All Model Sets Children.py](#model-show-all-model-sets-children)
-108. [Model\Show All Model Sets.py](#model-show-all-model-sets)
-109. [Model\Show Model Set.py](#model-show-model-set)
-110. [Model\Transform Model Sets.py](#model-transform-model-sets)
-111. [Naming\Batch Rename Find Replace GUI.py](#naming-batch-rename-find-replace-gui)
-112. [Naming\Batch Rename Material Clashing Node Names.py](#naming-batch-rename-material-clashing-node-names)
-113. [Naming\Batch Rename Model Sets.py](#naming-batch-rename-model-sets)
-114. [Naming\Batch Rename Rhino CAD.py](#naming-batch-rename-rhino-cad)
-115. [Naming\Batch Rename Rhino Clashing Node Names Remove Underscores Colons.py](#naming-batch-rename-rhino-clashing-node-names-remove-underscores-colons)
-116. [Naming\Rename Clashing Node Names.py](#naming-rename-clashing-node-names)
-117. [Naming\Rename Model Sets per Imported CAD.py](#naming-rename-model-sets-per-imported-cad)
-118. [Naming\Rename ModelSets Manual.py](#naming-rename-modelsets-manual)
-119. [Naming\Renames Nodes Parenthesis.py](#naming-renames-nodes-parenthesis)
-120. [Render\Add To Queue.py](#render-add-to-queue)
-121. [Render\Batch Render Incrmental Screenshots.py](#render-batch-render-incrmental-screenshots)
-122. [Render\Queue Render And Name Per Image Style.py](#render-queue-render-and-name-per-image-style)
-123. [Render\Queue Render SwapToggle Aspect Ratio.py](#render-queue-render-swaptoggle-aspect-ratio)
-124. [Render\Render Images Commented.py](#render-render-images-commented)
-125. [Render\Render Optimal Ambient Occlusion Pass.py](#render-render-optimal-ambient-occlusion-pass)
-126. [Render\Render SwapToggle Aspect Ratio.py](#render-render-swaptoggle-aspect-ratio)
-127. [Render\Screenshot.py](#render-screenshot)
-128. [Scripts_Lux\Create Standard Views.py](#scripts_lux-create-standard-views)
-129. [Scripts_Lux\Encode Video.py](#scripts_lux-encode-video)
-130. [Scripts_Lux\Random Scattering.py](#scripts_lux-random-scattering)
-131. [Scripts_Lux\Render Ambient Occlusion.py](#scripts_lux-render-ambient-occlusion)
-132. [Scripts_Lux\Render Animation Passes.py](#scripts_lux-render-animation-passes)
-133. [Scripts_Lux\Render Images.py](#scripts_lux-render-images)
-134. [Scripts_Lux\Render Panoramic Frames.py](#scripts_lux-render-panoramic-frames)
-135. [Settings\Lighting Settings.py](#settings-lighting-settings)
-136. [Settings\Set Scene Unit.py](#settings-set-scene-unit)
-137. [Settings\Set Scene Unit_CM.py](#settings-set-scene-unit_cm)
-138. [Transform\Apply Ground Transformations.py](#transform-apply-ground-transformations)
-139. [Transform\Select Group by Name and Translate Rotate Scale.py](#transform-select-group-by-name-and-translate-rotate-scale)
-140. [Transform\Select Model by Name and Translate Rotate Scale.py](#transform-select-model-by-name-and-translate-rotate-scale)
-141. [Transform\Select by Name and Translate and Rotate.py](#transform-select-by-name-and-translate-and-rotate)
-142. [Transform\Transform Model and Export.py](#transform-transform-model-and-export)
-143. [Transform\Translate Part By Name.py](#transform-translate-part-by-name)
-144. [Transform\Translate and Rotate a Part.py](#transform-translate-and-rotate-a-part)
+## Table of Contents
 
-# Color Gradient View Direction.py
-<a name="color-gradient-view-direction"></a>
+### Animation
 
-# Animation\Animation Batch Rendering Frame Padding.py
+- [Animation Batch Rendering Frame Padding.py](#animation-batch-rendering-frame-paddingpy)
+- [Animation Encode Video with Padding.py](#animation-encode-video-with-paddingpy)
+- [Animation Frame Padding Agnostic.py](#animation-frame-padding-agnosticpy)
+- [Animation Rendered Image Sequence Padding Agnostic.py](#animation-rendered-image-sequence-padding-agnosticpy)
+
+### Automation
+
+- [Animation Pad Frames.py](#animation-pad-framespy)
+- [Batch Import Queue XR .py](#batch-import-queue-xr-py)
+- [Create Camera Extract xmp Camera Data.py](#create-camera-extract-xmp-camera-datapy)
+- [Create Cameras Additional Functions Example.py](#create-cameras-additional-functions-examplepy)
+- [Create Cameras Template.py](#create-cameras-templatepy)
+- [Create Configured Cameras Template.py](#create-configured-cameras-templatepy)
+- [Create Custom Cameras From XMP.py](#create-custom-cameras-from-xmppy)
+- [Create Standard Scene Example.py](#create-standard-scene-examplepy)
+- [Create Standard Views and Perspective Beauty Camera.py](#create-standard-views-and-perspective-beauty-camerapy)
+- [Create Standard Views and Perspective Camera with ModelSets.py](#create-standard-views-and-perspective-camera-with-modelsetspy)
+- [Create Standard Views and Perspective Camera.py](#create-standard-views-and-perspective-camerapy)
+- [Create Standard Views and Perspective Cameras.py](#create-standard-views-and-perspective-cameraspy)
+- [Create Standard Views and Perspective Cameras_Distance_50Units.py](#create-standard-views-and-perspective-cameras_distance_50unitspy)
+- [Create Standard Views and Perspective Cameras_Distance_5Units.py](#create-standard-views-and-perspective-cameras_distance_5unitspy)
+- [Create a Perspective Camera.py](#create-a-perspective-camerapy)
+- [Create and Configure Studios.py](#create-and-configure-studiospy)
+- [Creates Model Set.py](#creates-model-setpy)
+- [Delete Unused Nodes.py](#delete-unused-nodespy)
+
+### GUI
+
+- [CustomInputDialog_PC.py](#custominputdialog_pcpy)
+- [GUI Script Example Doc.py](#gui-script-example-docpy)
+- [Get InputDialog GUI Example.py](#get-inputdialog-gui-examplepy)
+
+### ImportExport
+
+- [Batch Import CAD Model Assign Material Template Name Model Set.py](#batch-import-cad-model-assign-material-template-name-model-setpy)
+- [Batch Import CAD Model Assign Material Template.py](#batch-import-cad-model-assign-material-templatepy)
+- [Batch Import CAD.py](#batch-import-cadpy)
+- [Batch Import Multiple CAD File Types.py](#batch-import-multiple-cad-file-typespy)
+- [Import CAD.py](#import-cadpy)
+- [Import CAD_Prompt.py](#import-cad_promptpy)
+- [Import Scene Template cm into a New Scene.py](#import-scene-template-cm-into-a-new-scenepy)
+- [Import Scene Template cm into an Existing Scene.py](#import-scene-template-cm-into-an-existing-scenepy)
+- [Import Scene Template cm.py](#import-scene-template-cmpy)
+- [Import Scene Template mm.py](#import-scene-template-mmpy)
+- [Import Template meters.py](#import-template-meterspy)
+- [Import Template mm.py](#import-template-mmpy)
+- [Import_GLB_TranslateRotateScale.py](#import_glb_translaterotatescalepy)
+- [Import_OBJ_TranslateRotateScale.py](#import_obj_translaterotatescalepy)
+
+### Information
+
+- [Get Camera Distance.py](#get-camera-distancepy)
+- [Get MaterialGraph Parameters.py](#get-materialgraph-parameterspy)
+- [Get Metadata.py](#get-metadatapy)
+- [Get Model Sets.py](#get-model-setspy)
+- [Get Node Type.py](#get-node-typepy)
+- [Get Render Info.py](#get-render-infopy)
+- [Get Resource Library Models.py](#get-resource-library-modelspy)
+- [Get Configured Resource Library Path.py](#get-configured-resource-library-pathpy)
+- [Display Resource Library Path.py](#display-resource-library-pathpy)
+- [Get Resource Library Path.py](#get-resource-library-pathpy)
+- [Get Scene Info.py](#get-scene-infopy)
+- [Get Scene Information.py](#get-scene-informationpy)
+- [Get Scene Materials.py](#get-scene-materialspy)
+- [Get SceneTree Nodes.py](#get-scenetree-nodespy)
+- [Get SceneTree.py](#get-scenetreepy)
+- [Get Scenes Material Parameters and Save to File.py](#get-scenes-material-parameters-and-save-to-filepy)
+- [Get_Camera_Info.py](#get_camera_infopy)
+
+### Load
+
+- [Load Enviorment From Library and Apply Settings.py](#load-enviorment-from-library-and-apply-settingspy)
+- [Load Enviorment From Library.py](#load-enviorment-from-librarypy)
+- [Load Ground Plane into Default Model Set.py](#load-ground-plane-into-default-model-setpy)
+- [Load Ground Plane.py](#load-ground-planepy)
+- [Load Library Texture Assign to Diffuse Material Bump Add.py](#load-library-texture-assign-to-diffuse-material-bump-addpy)
+
+### Material
+
+- [Adjust Texture Scale Scene Units 1cm.py](#adjust-texture-scale-scene-units-1cmpy)
+- [Apply 2 Library Textures to Diffuse Material Bump Add.py](#apply-2-library-textures-to-diffuse-material-bump-addpy)
+- [Apply Library Color by Name to Diffuse Material Color.py](#apply-library-color-by-name-to-diffuse-material-colorpy)
+- [Apply Multiple Library Textures to Diffuse Material Bump Add.py](#apply-multiple-library-textures-to-diffuse-material-bump-addpy)
+- [Apply Library Texture to Diffuse Material Bump Add.py](#apply-library-texture-to-diffuse-material-bump-addpy)
+- [Apply Library Texture to Diffuse Material Bump.py](#apply-library-texture-to-diffuse-material-bumppy)
+- [Apply Library Texture to Diffuse Material Color.py](#apply-library-texture-to-diffuse-material-colorpy)
+- [Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py](#batch-multi-material-diffuse-sub-material-assign-texture-default-units-mpy)
+- [Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py](#batch-multi-material-diffuse-sub-material-assign-texture-scale-units-cmpy)
+- [Batch Save Scene Sub-Materials to Material Library.py](#batch-save-scene-sub-materials-to-material-librarypy)
+- [Batch Save All Scene Materials Without Duplicates.py](#batch-save-all-scene-materials-without-duplicatespy)
+- [Batch Save All Scene Materials to Material Library Agnostic.py](#batch-save-all-scene-materials-to-material-library-agnosticpy)
+- [Batch Save All Scene Materials to Material Library.py](#batch-save-all-scene-materials-to-material-librarypy)
+- [Batch Save Multi-Material Sub-Materials Without Duplicates.py](#batch-save-multi-material-sub-materials-without-duplicatespy)
+- [Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py](#batch-save-multi-material-sub-materials-to-material-library-agnosticpy)
+- [Change IES Light Color and File Agnostic.py](#change-ies-light-color-and-file-agnosticpy)
+- [Color Gradient ShaderEdge Cube Material Color Connect.py](#color-gradient-shaderedge-cube-material-color-connectpy)
+- [Color Gradient ShaderEdge Diffuse Material Color Connect.py](#color-gradient-shaderedge-diffuse-material-color-connectpy)
+- [Create Python Material Output Script.py](#create-python-material-output-scriptpy)
+- [Delete Unused Nodes in Material Graph.py](#delete-unused-nodes-in-material-graphpy)
+- [Delete Unused Shader Nodes.py](#delete-unused-shader-nodespy)
+- [Delete Unused Shader and Material Graph Nodes.py](#delete-unused-shader-and-material-graph-nodespy)
+- [Material Diffuse Color Apply Texture Example Agnostic.py](#material-diffuse-color-apply-texture-example-agnosticpy)
+- [Material Diffuse Color Apply Texture Example.py](#material-diffuse-color-apply-texture-examplepy)
+- [Material Diffuse Color Change Example.py](#material-diffuse-color-change-examplepy)
+- [Material Diffuse Color Texture Example.py](#material-diffuse-color-texture-examplepy)
+- [Material IES Light Properties Change.py](#material-ies-light-properties-changepy)
+- [Material IES Light Color and File Change.py](#material-ies-light-color-and-file-changepy)
+- [Material Color Gradient ShaderEdge Diffuse Material Color Connect.py](#material-color-gradient-shaderedge-diffuse-material-color-connectpy)
+- [Material Gradient View Direction.py](#material-gradient-view-directionpy)
+- [Material Physical Light Color Change.py](#material-physical-light-color-changepy)
+- [Saves All Materials to the Library.py](#saves-all-materials-to-the-librarypy)
+- [ShaderEdge Connect.py](#shaderedge-connectpy)
+- [Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py](#batch-create-multi-material-sub-materials-with-custom-advanced-shader-parameterspy)
+
+### Model
+
+- [Delete Model Set by Name.py](#delete-model-set-by-namepy)
+- [Hide All Model Set Children.py](#hide-all-model-set-childrenpy)
+- [Hide All Model Sets Children.py](#hide-all-model-sets-childrenpy)
+- [Hide All Model Sets and Children.py](#hide-all-model-sets-and-childrenpy)
+- [Hide and Show Model Sets.py](#hide-and-show-model-setspy)
+- [Hides Node by Name.py](#hides-node-by-namepy)
+- [Model Set Remove Default .py](#model-set-remove-default-py)
+- [Model Set Renamer.py](#model-set-renamerpy)
+- [Model Translate and Rotate Example.py](#model-translate-and-rotate-examplepy)
+- [New Model Set Template.py](#new-model-set-templatepy)
+- [Product Model Sets.py](#product-model-setspy)
+- [Show All Model Sets Children.py](#show-all-model-sets-childrenpy)
+- [Show All Model Sets.py](#show-all-model-setspy)
+- [Show Model Set.py](#show-model-setpy)
+- [Transform Model Sets.py](#transform-model-setspy)
+
+### Naming
+
+- [Batch Rename Find Replace GUI.py](#batch-rename-find-replace-guipy)
+- [Batch Rename Material Clashing Node Names.py](#batch-rename-material-clashing-node-namespy)
+- [Batch Rename Model Sets.py](#batch-rename-model-setspy)
+- [Batch Rename Rhino CAD.py](#batch-rename-rhino-cadpy)
+- [Batch Rename Rhino Clashing Node Names Remove Underscores Colons.py](#batch-rename-rhino-clashing-node-names-remove-underscores-colonspy)
+- [Rename Clashing Node Names.py](#rename-clashing-node-namespy)
+- [Rename Model Sets per Imported CAD.py](#rename-model-sets-per-imported-cadpy)
+- [Rename ModelSets Manual.py](#rename-modelsets-manualpy)
+- [Renames Nodes Parenthesis.py](#renames-nodes-parenthesispy)
+
+### Render
+
+- [Add To Queue.py](#add-to-queuepy)
+- [Batch Render Incrmental Screenshots.py](#batch-render-incrmental-screenshotspy)
+- [Queue Render And Name Per Image Style.py](#queue-render-and-name-per-image-stylepy)
+- [Queue Render SwapToggle Aspect Ratio.py](#queue-render-swaptoggle-aspect-ratiopy)
+- [Render Images Commented.py](#render-images-commentedpy)
+- [Render Optimal Ambient Occlusion Pass.py](#render-optimal-ambient-occlusion-passpy)
+- [Render SwapToggle Aspect Ratio.py](#render-swaptoggle-aspect-ratiopy)
+- [Screenshot.py](#screenshotpy)
+
+### Scripts Lux
+
+- [Create Standard Views.py](#create-standard-viewspy)
+- [Encode Video.py](#encode-videopy)
+- [Random Scattering.py](#random-scatteringpy)
+- [Render Ambient Occlusion.py](#render-ambient-occlusionpy)
+- [Render Animation Passes.py](#render-animation-passespy)
+- [Render Images.py](#render-imagespy)
+- [Render Panoramic Frames.py](#render-panoramic-framespy)
+
+### Settings
+
+- [Lighting Settings.py](#lighting-settingspy)
+- [Set Scene Unit.py](#set-scene-unitpy)
+- [Set Scene Unit_CM.py](#set-scene-unit_cmpy)
+
+### Transform
+
+- [Apply Ground Transformations.py](#apply-ground-transformationspy)
+- [Select Group by Name and Translate Rotate Scale.py](#select-group-by-name-and-translate-rotate-scalepy)
+- [Select Model by Name and Translate Rotate Scale.py](#select-model-by-name-and-translate-rotate-scalepy)
+- [Select by Name and Translate and Rotate.py](#select-by-name-and-translate-and-rotatepy)
+- [Transform Model and Export.py](#transform-model-and-exportpy)
+- [Translate Part By Name.py](#translate-part-by-namepy)
+- [Translate and Rotate a Part.py](#translate-and-rotate-a-partpy)
+
+## Animation Batch Rendering Frame Padding.py
 <a name="animation-animation-batch-rendering-frame-padding"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -221,7 +258,7 @@ if __name__ == "__main__":
 
 # End of Animation\Animation Batch Rendering Frame Padding.py
 
-# Animation\Animation Encode Video with Padding.py
+## Animation Encode Video with Padding.py
 <a name="animation-animation-encode-video-with-padding"></a>
 
 
@@ -329,7 +366,7 @@ main()
 
 # End of Animation\Animation Encode Video with Padding.py
 
-# Animation\Animation Frame Padding Agnostic.py
+## Animation Frame Padding Agnostic.py
 <a name="animation-animation-frame-padding-agnostic"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -413,7 +450,7 @@ if __name__ == "__main__":
 
 # End of Animation\Animation Frame Padding Agnostic.py
 
-# Animation\Animation Rendered Image Sequence Padding Agnostic.py
+## Animation Rendered Image Sequence Padding Agnostic.py
 <a name="animation-animation-rendered-image-sequence-padding-agnostic"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -468,7 +505,7 @@ else:
 
 # End of Animation\Animation Rendered Image Sequence Padding Agnostic.py
 
-# Automation\Animation Pad Frames.py
+## Animation Pad Frames.py
 <a name="automation-animation-pad-frames"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -520,7 +557,7 @@ else:
 
 # End of Automation\Animation Pad Frames.py
 
-# Automation\Batch Import Queue XR .py
+## Batch Import Queue XR .py
 <a name="automation-batch-import-queue-xr-"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -575,7 +612,7 @@ if __name__ == "__main__":
 
 # End of Automation\Batch Import Queue XR .py
 
-# Automation\Create Camera Extract xmp Camera Data.py
+## Create Camera Extract xmp Camera Data.py
 <a name="automation-create-camera-extract-xmp-camera-data"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -642,7 +679,7 @@ main()
 
 # End of Automation\Create Camera Extract xmp Camera Data.py
 
-# Automation\Create Cameras Additional Functions Example.py
+## Create Cameras Additional Functions Example.py
 <a name="automation-create-cameras-additional-functions-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -726,7 +763,7 @@ for cam in camera_data:
 
 # End of Automation\Create Cameras Additional Functions Example.py
 
-# Automation\Create Cameras Template.py
+## Create Cameras Template.py
 <a name="automation-create-cameras-template"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -808,7 +845,7 @@ for cam in camera_data:
 
 # End of Automation\Create Cameras Template.py
 
-# Automation\Create Configured Cameras Template.py
+## Create Configured Cameras Template.py
 <a name="automation-create-configured-cameras-template"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -891,7 +928,7 @@ for cam in camera_data:
 
 # End of Automation\Create Configured Cameras Template.py
 
-# Automation\Create Custom Cameras From XMP.py
+## Create Custom Cameras From XMP.py
 <a name="automation-create-custom-cameras-from-xmp"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -975,7 +1012,7 @@ for cam in camera_data:
 
 # End of Automation\Create Custom Cameras From XMP.py
 
-# Automation\Create Standard Scene Example.py
+## Create Standard Scene Example.py
 <a name="automation-create-standard-scene-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1035,7 +1072,7 @@ if __name__ == '__main__':
 
 # End of Automation\Create Standard Scene Example.py
 
-# Automation\Create Standard Views and Perspective Beauty Camera.py
+## Create Standard Views and Perspective Beauty Camera.py
 <a name="automation-create-standard-views-and-perspective-beauty-camera"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.8
@@ -1121,7 +1158,7 @@ print("Cameras created successfully.")
 
 # End of Automation\Create Standard Views and Perspective Beauty Camera.py
 
-# Automation\Create Standard Views and Perspective Camera with ModelSets.py
+## Create Standard Views and Perspective Camera with ModelSets.py
 <a name="automation-create-standard-views-and-perspective-camera-with-modelsets"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.8
@@ -1210,10 +1247,12 @@ create_perspective_beauty_camera(
 print("Model sets and cameras created successfully.")
 
 
+```
 # End of Automation\Create Standard Views and Perspective Camera with ModelSets.py
 
-# Automation\Create Standard Views and Perspective Camera.py
+## Create Standard Views and Perspective Camera.py
 <a name="automation-create-standard-views-and-perspective-camera"></a>
+```python
 import lux
 import luxmath
 
@@ -1260,7 +1299,7 @@ create_standard_views_and_perspective_camera()
 
 # End of Automation\Create Standard Views and Perspective Camera.py
 
-# Automation\Create Standard Views and Perspective Cameras.py
+## Create Standard Views and Perspective Cameras.py
 <a name="automation-create-standard-views-and-perspective-cameras"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -1311,7 +1350,7 @@ print("All cameras have been created and set up.")
 
 # End of Automation\Create Standard Views and Perspective Cameras.py
 
-# Automation\Create Standard Views and Perspective Cameras_Distance_50Units.py
+## Create Standard Views and Perspective Cameras_Distance_50Units.py
 <a name="automation-create-standard-views-and-perspective-cameras_distance_50units"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -1362,7 +1401,7 @@ print("All cameras have been created and set up.")
 
 # End of Automation\Create Standard Views and Perspective Cameras_Distance_50Units.py
 
-# Automation\Create Standard Views and Perspective Cameras_Distance_5Units.py
+## Create Standard Views and Perspective Cameras_Distance_5Units.py
 <a name="automation-create-standard-views-and-perspective-cameras_distance_5units"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -1413,7 +1452,7 @@ print("All cameras have been created and set up.")
 
 # End of Automation\Create Standard Views and Perspective Cameras_Distance_5Units.py
 
-# Automation\Create a Perspective Camera.py
+## Create a Perspective Camera.py
 <a name="automation-create-a-perspective-camera"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1453,7 +1492,7 @@ print("Camera created and set up successfully.")
 
 # End of Automation\Create a Perspective Camera.py
 
-# Automation\Create and Configure Studios.py
+## Create and Configure Studios.py
 <a name="automation-create-and-configure-studios"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.3
@@ -1610,7 +1649,7 @@ if __name__ == "__main__":
 
 # End of Automation\Create and Configure Studios.py
 
-# Automation\Creates Model Set.py
+## Creates Model Set.py
 <a name="automation-creates-model-set"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1631,7 +1670,7 @@ print(f"Model set '{model_set_name}' created successfully.")
 
 # End of Automation\Creates Model Set.py
 
-# Automation\Delete Unused Nodes.py
+## Delete Unused Nodes.py
 <a name="automation-delete-unused-nodes"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1699,7 +1738,7 @@ cleanup_scene()
 
 # End of Automation\Delete Unused Nodes.py
 
-# GUI\CustomInputDialog_PC.py
+## CustomInputDialog_PC.py
 <a name="gui-custominputdialog_pc"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1728,7 +1767,7 @@ else:
 
 # End of GUI\CustomInputDialog_PC.py
 
-# GUI\GUI Script Example Doc.py
+## GUI Script Example Doc.py
 <a name="gui-gui-script-example-doc"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1767,7 +1806,7 @@ create_input_dialog()
 
 # End of GUI\GUI Script Example Doc.py
 
-# GUI\Get InputDialog GUI Example.py
+## Get InputDialog GUI Example.py
 <a name="gui-get-inputdialog-gui-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -1806,7 +1845,7 @@ create_input_dialog()
 
 # End of GUI\Get InputDialog GUI Example.py
 
-# ImportExport\Batch Import CAD Model Assign Material Template Name Model Set.py
+## Batch Import CAD Model Assign Material Template Name Model Set.py
 <a name="importexport-batch-import-cad-model-assign-material-template-name-model-set"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
@@ -1922,7 +1961,7 @@ main()
 
 # End of ImportExport\Batch Import CAD Model Assign Material Template Name Model Set.py
 
-# ImportExport\Batch Import CAD Model Assign Material Template.py
+## Batch Import CAD Model Assign Material Template.py
 <a name="importexport-batch-import-cad-model-assign-material-template"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR LUX DT ChatGPT
@@ -2028,7 +2067,7 @@ main()
 
 # End of ImportExport\Batch Import CAD Model Assign Material Template.py
 
-# ImportExport\Batch Import CAD.py
+## Batch Import CAD.py
 <a name="importexport-batch-import-cad"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.3.0
@@ -2158,7 +2197,7 @@ if __name__ == "__main__":
 
 # End of ImportExport\Batch Import CAD.py
 
-# ImportExport\Batch Import Multiple CAD File Types.py
+## Batch Import Multiple CAD File Types.py
 <a name="importexport-batch-import-multiple-cad-file-types"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.3.2
@@ -2273,7 +2312,7 @@ main()
 
 # End of ImportExport\Batch Import Multiple CAD File Types.py
 
-# ImportExport\Import CAD.py
+## Import CAD.py
 <a name="importexport-import-cad"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -2387,7 +2426,7 @@ main()
 
 # End of ImportExport\Import CAD.py
 
-# ImportExport\Import CAD_Prompt.py
+## Import CAD_Prompt.py
 <a name="importexport-import-cad_prompt"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.0.1
@@ -2502,7 +2541,7 @@ main()
 
 # End of ImportExport\Import CAD_Prompt.py
 
-# ImportExport\Import Scene Template cm into a New Scene.py
+## Import Scene Template cm into a New Scene.py
 <a name="importexport-import-scene-template-cm-into-a-new-scene"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.3
@@ -2549,7 +2588,7 @@ main()
 
 # End of ImportExport\Import Scene Template cm into a New Scene.py
 
-# ImportExport\Import Scene Template cm into an Existing Scene.py
+## Import Scene Template cm into an Existing Scene.py
 <a name="importexport-import-scene-template-cm-into-an-existing-scene"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.7
@@ -2612,7 +2651,7 @@ main()
 
 # End of ImportExport\Import Scene Template cm into an Existing Scene.py
 
-# ImportExport\Import Scene Template cm.py
+## Import Scene Template cm.py
 <a name="importexport-import-scene-template-cm"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -2651,7 +2690,7 @@ lux.importFile(path=file_path, opts=opts)
 
 # End of ImportExport\Import Scene Template cm.py
 
-# ImportExport\Import Scene Template mm.py
+## Import Scene Template mm.py
 <a name="importexport-import-scene-template-mm"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -2685,7 +2724,7 @@ lux.importFile(path=file_path, opts=opts)
 
 # End of ImportExport\Import Scene Template mm.py
 
-# ImportExport\Import Template meters.py
+## Import Template meters.py
 <a name="importexport-import-template-meters"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -2720,7 +2759,7 @@ lux.importFile(path=file_path, opts=opts)
 
 # End of ImportExport\Import Template meters.py
 
-# ImportExport\Import Template mm.py
+## Import Template mm.py
 <a name="importexport-import-template-mm"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -2759,7 +2798,7 @@ lux.importFile(path=file_path, opts=opts)
 
 # End of ImportExport\Import Template mm.py
 
-# ImportExport\Import_GLB_TranslateRotateScale.py
+## Import_GLB_TranslateRotateScale.py
 <a name="importexport-import_glb_translaterotatescale"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
@@ -2820,7 +2859,7 @@ print("Importing and transformations of GLB files complete.")
 
 # End of ImportExport\Import_GLB_TranslateRotateScale.py
 
-# ImportExport\Import_OBJ_TranslateRotateScale.py
+## Import_OBJ_TranslateRotateScale.py
 <a name="importexport-import_obj_translaterotatescale"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.2
@@ -2881,7 +2920,7 @@ print("Importing and transformations of OBJ files complete.")
 
 # End of ImportExport\Import_OBJ_TranslateRotateScale.py
 
-# Information\Get Camera Distance.py
+## Get Camera Distance.py
 <a name="information-get-camera-distance"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -2921,7 +2960,7 @@ main()
 
 # End of Information\Get Camera Distance.py
 
-# Information\Get MaterialGraph Parameters.py
+## Get MaterialGraph Parameters.py
 <a name="information-get-materialgraph-parameters"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -2976,7 +3015,7 @@ main()  # Execute the main function.
 
 # End of Information\Get MaterialGraph Parameters.py
 
-# Information\Get Metadata.py
+## Get Metadata.py
 <a name="information-get-metadata"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -2989,10 +3028,12 @@ scene_metadata = lux.getMetaData
 print(scene_metadata)
 
 
+```
 # End of Information\Get Metadata.py
 
-# Information\Get Model Sets.py
+## Get Model Sets.py
 <a name="information-get-model-sets"></a>
+```python
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.0.0
 # Script that prints out the names of all model sets.
@@ -3013,7 +3054,7 @@ print_model_sets()
 
 # End of Information\Get Model Sets.py
 
-# Information\Get Node Type.py
+## Get Node Type.py
 <a name="information-get-node-type"></a>
 # AUTHOR LUX DT
 # VERSION 0.1.1
@@ -3045,7 +3086,7 @@ print_part_properties()
 
 # End of Information\Get Node Type.py
 
-# Information\Get Render Info.py
+## Get Render Info.py
 <a name="information-get-render-info"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3071,7 +3112,7 @@ print_render_options_prettily()
 ```
 # End of Information\Get Render Info.py
 
-# Information\Get Resource Library Models.py
+## Get Resource Library Models.py
 <a name="information-get-resource-library-models"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -3113,7 +3154,7 @@ list_models_in_library()
 
 # End of Information\Get Resource Library Models.py
 
-# Information\Get Configured Resource Library Path.py
+## Get Configured Resource Library Path.py
 <a name="information-get-configured-resource-library-path"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3137,7 +3178,7 @@ print(f"Library path: {library_path}")
 
 # End of Information\Get Configured Resource Library Path.py
 
-# Information\Display Resource Library Path.py
+## Display Resource Library Path.py
 <a name="information-display-resource-library-path"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3161,7 +3202,7 @@ print(f"Library path: {library_path}")
 
 # End of Information\Display Resource Library Path.py
 
-# Information\Get Resource Library Path.py
+## Get Resource Library Path.py
 <a name="information-get-resource-library-path"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3185,7 +3226,7 @@ print(f"Library path: {library_path}")
 
 # End of Information\Get Resource Library Path.py
 
-# Information\Get Scene Info.py
+## Get Scene Info.py
 <a name="information-get-scene-info"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3198,10 +3239,12 @@ scene_info = lux.getSceneInfo()
 print(scene_info)
 
 
+```
 # End of Information\Get Scene Info.py
 
-# Information\Get Scene Information.py
+## Get Scene Information.py
 <a name="information-get-scene-information"></a>
+```python
 # AUTHOR LUX DT CHATGPT
 # VERSION 0.1.1
 # HEADLESS COMPLIANT
@@ -3223,7 +3266,7 @@ print_scene_info()
 ```
 # End of Information\Get Scene Information.py
 
-# Information\Get Scene Materials.py
+## Get Scene Materials.py
 <a name="information-get-scene-materials"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3248,7 +3291,7 @@ test_script()
 
 # End of Information\Get Scene Materials.py
 
-# Information\Get SceneTree Nodes.py
+## Get SceneTree Nodes.py
 <a name="information-get-scenetree-nodes"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3305,7 +3348,7 @@ if __name__ == "__main__":
 
 # End of Information\Get SceneTree Nodes.py
 
-# Information\Get SceneTree.py
+## Get SceneTree.py
 <a name="information-get-scenetree"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3338,7 +3381,7 @@ if __name__ == "__main__":
 
 # End of Information\Get SceneTree.py
 
-# Information\Get Scenes Material Parameters and Save to File.py
+## Get Scenes Material Parameters and Save to File.py
 <a name="information-get-scenes-material-parameters-and-save-to-file"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3378,7 +3421,7 @@ save_material_graph_info_to_file(output_file_path)
 
 # End of Information\Get Scenes Material Parameters and Save to File.py
 
-# Information\Get_Camera_Info.py
+## Get_Camera_Info.py
 <a name="information-get_camera_info"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.3
@@ -3452,7 +3495,7 @@ display_camera_selection()
 ```
 # End of Information\Get_Camera_Info.py
 
-# Load\Load Enviorment From Library and Apply Settings.py
+## Load Enviorment From Library and Apply Settings.py
 <a name="load-load-enviorment-from-library-and-apply-settings"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.0
@@ -3524,7 +3567,7 @@ configure_environment()
 ```
 # End of Load\Load Enviorment From Library and Apply Settings.py
 
-# Load\Load Enviorment From Library.py
+## Load Enviorment From Library.py
 <a name="load-load-enviorment-from-library"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.0
@@ -3570,7 +3613,7 @@ load_environment_from_library(env_filename)
 ```
 # End of Load\Load Enviorment From Library.py
 
-# Load\Load Ground Plane into Default Model Set.py
+## Load Ground Plane into Default Model Set.py
 <a name="load-load-ground-plane-into-default-model-set"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3617,7 +3660,7 @@ if __name__ == "__main__":
 
 # End of Load\Load Ground Plane into Default Model Set.py
 
-# Load\Load Ground Plane.py
+## Load Ground Plane.py
 <a name="load-load-ground-plane"></a>
 # AUTHOR LUX DT ChatGPT4
 # VERSION 0.1.5
@@ -3681,7 +3724,7 @@ if __name__ == "__main__":
 
 # End of Load\Load Ground Plane.py
 
-# Load\Load Library Texture Assign to Diffuse Material Bump Add.py
+## Load Library Texture Assign to Diffuse Material Bump Add.py
 <a name="load-load-library-texture-assign-to-diffuse-material-bump-add"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
@@ -3757,7 +3800,7 @@ connect_textures_to_bump(material_name, texture_file_paths)
 
 # End of Load\Load Library Texture Assign to Diffuse Material Bump Add.py
 
-# Material\Adjust Texture Scale Scene Units 1cm.py
+## Adjust Texture Scale Scene Units 1cm.py
 <a name="material-adjust-texture-scale-scene-units-1cm"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3810,7 +3853,7 @@ print("No suitable color parameter found in the surface shader node.")
 
 # End of Material\Adjust Texture Scale Scene Units 1cm.py
 
-# Material\Apply 2 Library Textures to Diffuse Material Bump Add.py
+## Apply 2 Library Textures to Diffuse Material Bump Add.py
 <a name="material-apply-2-library-textures-to-diffuse-material-bump-add"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.6
@@ -3917,7 +3960,7 @@ connect_shader_edges_to_bump(material_name, texture_file_path_1, texture_file_pa
 
 # End of Material\Apply 2 Library Textures to Diffuse Material Bump Add.py
 
-# Material\Apply Library Color by Name to Diffuse Material Color.py
+## Apply Library Color by Name to Diffuse Material Color.py
 <a name="material-apply-library-color-by-name-to-diffuse-material-color"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -3958,7 +4001,7 @@ assign_library_color_to_material_by_name("Cube Material", "PANTONE 186 C")
 
 # End of Material\Apply Library Color by Name to Diffuse Material Color.py
 
-# Material\Apply Multiple Library Textures to Diffuse Material Bump Add.py
+## Apply Multiple Library Textures to Diffuse Material Bump Add.py
 <a name="material-apply-multiple-library-textures-to-diffuse-material-bump-add"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
@@ -4034,7 +4077,7 @@ connect_textures_to_bump(material_name, texture_file_paths)
 
 # End of Material\Apply Multiple Library Textures to Diffuse Material Bump Add.py
 
-# Material\Apply Library Texture to Diffuse Material Bump Add.py
+## Apply Library Texture to Diffuse Material Bump Add.py
 <a name="material-apply-library-texture-to-diffuse-material-bump-add"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
@@ -4116,7 +4159,7 @@ connect_shader_edge_to_bump(material_name, texture_file_path)
 
 # End of Material\Apply Library Texture to Diffuse Material Bump Add.py
 
-# Material\Apply Library Texture to Diffuse Material Bump.py
+## Apply Library Texture to Diffuse Material Bump.py
 <a name="material-apply-library-texture-to-diffuse-material-bump"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.5
@@ -4198,7 +4241,7 @@ connect_shader_edge_to_bump(material_name, texture_file_path)
 
 # End of Material\Apply Library Texture to Diffuse Material Bump.py
 
-# Material\Apply Library Texture to Diffuse Material Color.py
+## Apply Library Texture to Diffuse Material Color.py
 <a name="material-apply-library-texture-to-diffuse-material-color"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -4258,7 +4301,7 @@ connect_texture_to_diffuse_color(material_name, texture_file_path)
 
 # End of Material\Apply Library Texture to Diffuse Material Color.py
 
-# Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py
+## Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py
 <a name="material-batch-multi-material-diffuse-sub-material-assign-texture-default-units-m"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -4357,7 +4400,7 @@ main()
 
 # End of Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Default Units m.py
 
-# Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py
+## Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py
 <a name="material-batch-multi-material-diffuse-sub-material-assign-texture-scale-units-cm"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.0
@@ -4459,7 +4502,7 @@ main()
 
 # End of Material\Batch Multi-Material Diffuse Sub-Material Assign Texture Scale Units cm.py
 
-# Material\Batch Save Scene Sub-Materials to Material Library.py
+## Batch Save Scene Sub-Materials to Material Library.py
 <a name="material-batch-save-scene-sub-materials-to-material-library"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -4538,7 +4581,7 @@ main()
 
 # End of Material\Batch Save Scene Sub-Materials to Material Library.py
 
-# Material\Batch Save All Scene Materials Without Duplicates.py
+## Batch Save All Scene Materials Without Duplicates.py
 <a name="material-batch-save-all-scene-materials-without-duplicates"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
@@ -4611,7 +4654,7 @@ main()
 
 # End of Material\Batch Save All Scene Materials Without Duplicates.py
 
-# Material\Batch Save All Scene Materials to Material Library Agnostic.py
+## Batch Save All Scene Materials to Material Library Agnostic.py
 <a name="material-batch-save-all-scene-materials-to-material-library-agnostic"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -4690,7 +4733,7 @@ main()
 
 # End of Material\Batch Save All Scene Materials to Material Library Agnostic.py
 
-# Material\Batch Save All Scene Materials to Material Library.py
+## Batch Save All Scene Materials to Material Library.py
 <a name="material-batch-save-all-scene-materials-to-material-library"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -4769,7 +4812,7 @@ main()
 
 # End of Material\Batch Save All Scene Materials to Material Library.py
 
-# Material\Batch Save Multi-Material Sub-Materials Without Duplicates.py
+## Batch Save Multi-Material Sub-Materials Without Duplicates.py
 <a name="material-batch-save-multi-material-sub-materials-without-duplicates"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -4857,7 +4900,7 @@ main()
 
 # End of Material\Batch Save Multi-Material Sub-Materials Without Duplicates.py
 
-# Material\Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py
+## Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py
 <a name="material-batch-save-multi-material-sub-materials-to-material-library-agnostic"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -4945,7 +4988,7 @@ main()
 
 # End of Material\Batch Save Multi-Material Sub-Materials to Material Library Agnostic.py
 
-# Material\Change IES Light Color and File Agnostic.py
+## Change IES Light Color and File Agnostic.py
 <a name="material-change-ies-light-color-and-file-agnostic"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5019,8 +5062,9 @@ main()
 
 # End of Material\Change IES Light Color and File Agnostic.py
 
-# Material\Color Gradient ShaderEdge Cube Material Color Connect.py
+## Color Gradient ShaderEdge Cube Material Color Connect.py
 <a name="material-color-gradient-shaderedge-cube-material-color-connect"></a>
+```python
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
 # Example of graphing a Color Gradient shader edge node.
@@ -5073,10 +5117,12 @@ material_name = "Cube Material"
 connect_color_gradient_to_diffuse_color(material_name)
 
 
+```
 # End of Material\Color Gradient ShaderEdge Cube Material Color Connect.py
 
-# Material\Color Gradient ShaderEdge Diffuse Material Color Connect.py
+## Color Gradient ShaderEdge Diffuse Material Color Connect.py
 <a name="material-color-gradient-shaderedge-diffuse-material-color-connect"></a>
+```python
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
 # Example of graphing a Color Gradient shader edge node.
@@ -5131,7 +5177,7 @@ connect_color_gradient_to_diffuse_color(material_name)
 
 # End of Material\Color Gradient ShaderEdge Diffuse Material Color Connect.py
 
-# Material\Create Python Material Output Script.py
+## Create Python Material Output Script.py
 <a name="material-create-python-material-output-script"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5190,7 +5236,7 @@ print(f"KeyShot material creation script saved as: {script_file_path}")
 
 # End of Material\Create Python Material Output Script.py
 
-# Material\Delete Unused Nodes in Material Graph.py
+## Delete Unused Nodes in Material Graph.py
 <a name="material-delete-unused-nodes-in-material-graph"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5251,7 +5297,7 @@ cleanup_scene()
 
 # End of Material\Delete Unused Nodes in Material Graph.py
 
-# Material\Delete Unused Shader Nodes.py
+## Delete Unused Shader Nodes.py
 <a name="material-delete-unused-shader-nodes"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.1.0
@@ -5312,7 +5358,7 @@ cleanup_scene()
 
 # End of Material\Delete Unused Shader Nodes.py
 
-# Material\Delete Unused Shader and Material Graph Nodes.py
+## Delete Unused Shader and Material Graph Nodes.py
 <a name="material-delete-unused-shader-and-material-graph-nodes"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.1.0
@@ -5373,7 +5419,7 @@ cleanup_scene()
 
 # End of Material\Delete Unused Shader and Material Graph Nodes.py
 
-# Material\Material Diffuse Color Apply Texture Example Agnostic.py
+## Material Diffuse Color Apply Texture Example Agnostic.py
 <a name="material-material-diffuse-color-apply-texture-example-agnostic"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5443,7 +5489,7 @@ connect_shader_edge_to_diffuse_color(material_name, texture_relative_path)
 
 # End of Material\Material Diffuse Color Apply Texture Example Agnostic.py
 
-# Material\Material Diffuse Color Apply Texture Example.py
+## Material Diffuse Color Apply Texture Example.py
 <a name="material-material-diffuse-color-apply-texture-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5506,7 +5552,7 @@ connect_shader_edge_to_diffuse_color(material_name, texture_file_path)
 
 # End of Material\Material Diffuse Color Apply Texture Example.py
 
-# Material\Material Diffuse Color Change Example.py
+## Material Diffuse Color Change Example.py
 <a name="material-material-diffuse-color-change-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5558,7 +5604,7 @@ main()
 
 # End of Material\Material Diffuse Color Change Example.py
 
-# Material\Material Diffuse Color Texture Example.py
+## Material Diffuse Color Texture Example.py
 <a name="material-material-diffuse-color-texture-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5621,7 +5667,7 @@ connect_shader_edge_to_diffuse_color(material_name, texture_file_path)
 
 # End of Material\Material Diffuse Color Texture Example.py
 
-# Material\Material IES Light Properties Change.py
+## Material IES Light Properties Change.py
 <a name="material-material-ies-light-properties-change"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.6
@@ -5690,7 +5736,7 @@ main()
 
 # End of Material\Material IES Light Properties Change.py
 
-# Material\Material IES Light Color and File Change.py
+## Material IES Light Color and File Change.py
 <a name="material-material-ies-light-color-and-file-change"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5757,7 +5803,7 @@ main()
 
 # End of Material\Material IES Light Color and File Change.py
 
-# Material\Material Physical Light Color Change.py
+## Material Physical Light Color Change.py
 <a name="material-material-physical-light-color-change"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5831,7 +5877,7 @@ main()
 
 # End of Material\Material Physical Light Color Change.py
 
-# Material\Saves All Materials to the Library.py
+## Saves All Materials to the Library.py
 <a name="material-saves-all-materials-to-the-library"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
@@ -5911,7 +5957,7 @@ configure_environment()
 
 # End of Material\Saves All Materials to the Library.py
 
-# Material\ShaderEdge Connect.py
+## ShaderEdge Connect.py
 <a name="material-shaderedge-connect"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -5967,7 +6013,7 @@ connect_color_gradient_to_diffuse_color(material_name)
 
 # End of Material\ShaderEdge Connect.py
 
-# Model\Delete Model Set by Name.py
+## Delete Model Set by Name.py
 <a name="model-delete-model-set-by-name"></a>
 # AUTHOR Donald Tuttle
 # VERSION 0.1.0
@@ -5993,7 +6039,7 @@ delete_model_set("Default")
 
 # End of Model\Delete Model Set by Name.py
 
-# Model\Hide All Model Set Children.py
+## Hide All Model Set Children.py
 <a name="model-hide-all-model-set-children"></a>
 # AUTHOR Donald Tuttle
 # VERSION 0.1.0
@@ -6018,7 +6064,7 @@ hide_all_model_sets()
 
 # End of Model\Hide All Model Set Children.py
 
-# Model\Hide All Model Sets Children.py
+## Hide All Model Sets Children.py
 <a name="model-hide-all-model-sets-children"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -6039,7 +6085,7 @@ hide_model_sets_contents()
 
 # End of Model\Hide All Model Sets Children.py
 
-# Model\Hide All Model Sets and Children.py
+## Hide All Model Sets and Children.py
 <a name="model-hide-all-model-sets-and-children"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.4
@@ -6082,7 +6128,7 @@ if __name__ == "__main__":
 
 # End of Model\Hide All Model Sets and Children.py
 
-# Model\Hide and Show Model Sets.py
+## Hide and Show Model Sets.py
 <a name="model-hide-and-show-model-sets"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -6115,7 +6161,7 @@ set_active_model_set("Product")
 
 # End of Model\Hide and Show Model Sets.py
 
-# Model\Hides Node by Name.py
+## Hides Node by Name.py
 <a name="model-hides-node-by-name"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -6145,7 +6191,7 @@ hide_node_by_name("AO")
 
 # End of Model\Hides Node by Name.py
 
-# Model\Model Set Remove Default .py
+## Model Set Remove Default .py
 <a name="model-model-set-remove-default-"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -6164,7 +6210,7 @@ print(f'Model set "{model_set_name}" has been removed.')
 
 # End of Model\Model Set Remove Default .py
 
-# Model\Model Set Renamer.py
+## Model Set Renamer.py
 <a name="model-model-set-renamer"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.0.0
@@ -6188,7 +6234,7 @@ if __name__ == "__main__":
 
 # End of Model\Model Set Renamer.py
 
-# Model\Model Translate and Rotate Example.py
+## Model Translate and Rotate Example.py
 <a name="model-model-translate-and-rotate-example"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -6248,7 +6294,7 @@ else:
 
 # End of Model\Model Translate and Rotate Example.py
 
-# Model\New Model Set Template.py
+## New Model Set Template.py
 <a name="model-new-model-set-template"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -6275,7 +6321,7 @@ create_keyshot_scene()
 
 # End of Model\New Model Set Template.py
 
-# Model\Product Model Sets.py
+## Product Model Sets.py
 <a name="model-product-model-sets"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -6302,7 +6348,7 @@ create_keyshot_scene()
 
 # End of Model\Product Model Sets.py
 
-# Model\Show All Model Sets Children.py
+## Show All Model Sets Children.py
 <a name="model-show-all-model-sets-children"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -6344,7 +6390,7 @@ if __name__ == "__main__":
 
 # End of Model\Show All Model Sets Children.py
 
-# Model\Show All Model Sets.py
+## Show All Model Sets.py
 <a name="model-show-all-model-sets"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -6378,7 +6424,7 @@ if __name__ == "__main__":
 
 # End of Model\Show All Model Sets.py
 
-# Model\Show Model Set.py
+## Show Model Set.py
 <a name="model-show-model-set"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.0.0
@@ -6408,7 +6454,7 @@ show_model_set("Product")
 
 # End of Model\Show Model Set.py
 
-# Model\Transform Model Sets.py
+## Transform Model Sets.py
 <a name="model-transform-model-sets"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.0
@@ -6510,7 +6556,7 @@ if __name__ == "__main__":
 
 # End of Model\Transform Model Sets.py
 
-# Naming\Batch Rename Find Replace GUI.py
+## Batch Rename Find Replace GUI.py
 <a name="naming-batch-rename-find-replace-gui"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -6571,7 +6617,7 @@ if __name__ == "__main__":
 
 # End of Naming\Batch Rename Find Replace GUI.py
 
-# Naming\Batch Rename Material Clashing Node Names.py
+## Batch Rename Material Clashing Node Names.py
 <a name="naming-batch-rename-material-clashing-node-names"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -6631,7 +6677,7 @@ if __name__ == "__main__":
 
 # End of Naming\Batch Rename Material Clashing Node Names.py
 
-# Naming\Batch Rename Model Sets.py
+## Batch Rename Model Sets.py
 <a name="naming-batch-rename-model-sets"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.1.1
@@ -6686,7 +6732,7 @@ if __name__ == "__main__":
 
 # End of Naming\Batch Rename Model Sets.py
 
-# Naming\Batch Rename Rhino CAD.py
+## Batch Rename Rhino CAD.py
 <a name="naming-batch-rename-rhino-cad"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -6778,8 +6824,9 @@ for node in all_nodes:
 
 # End of Naming\Batch Rename Rhino CAD.py
 
-# Naming\Batch Rename Rhino Clashing Node Names Remove Underscores Colons.py
+## Batch Rename Rhino Clashing Node Names Remove Underscores Colons.py
 <a name="naming-batch-rename-rhino-clashing-node-names-remove-underscores-colons"></a>
+```python
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
 # Renames "Clashing Node Names" with a unique UPPERCASE name, replaces spaces and colons with one underscore, and removes # from keyshot duplicates.
@@ -6868,7 +6915,7 @@ for node in all_nodes:
 
 # End of Naming\Batch Rename Rhino Clashing Node Names Remove Underscores Colons.py
 
-# Naming\Rename Clashing Node Names.py
+## Rename Clashing Node Names.py
 <a name="naming-rename-clashing-node-names"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.1
@@ -6963,7 +7010,7 @@ for node in all_nodes:
 
 # End of Naming\Rename Clashing Node Names.py
 
-# Naming\Rename Model Sets per Imported CAD.py
+## Rename Model Sets per Imported CAD.py
 <a name="naming-rename-model-sets-per-imported-cad"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.0
@@ -6996,7 +7043,7 @@ if __name__ == "__main__":
 
 # End of Naming\Rename Model Sets per Imported CAD.py
 
-# Naming\Rename ModelSets Manual.py
+## Rename ModelSets Manual.py
 <a name="naming-rename-modelsets-manual"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 1.0.0
@@ -7029,7 +7076,7 @@ if __name__ == "__main__":
 
 # End of Naming\Rename ModelSets Manual.py
 
-# Naming\Renames Nodes Parenthesis.py
+## Renames Nodes Parenthesis.py
 <a name="naming-renames-nodes-parenthesis"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.2.0
@@ -7093,7 +7140,7 @@ if __name__ == "__main__":
 
 # End of Naming\Renames Nodes Parenthesis.py
 
-# Render\Add To Queue.py
+## Add To Queue.py
 <a name="render-add-to-queue"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -7118,10 +7165,12 @@ lux.renderImage("/path/to/save/image.png", opts=opts)
 # lux.processQueue()
 
 
+```
 # End of Render\Add To Queue.py
 
-# Render\Batch Render Incrmental Screenshots.py
+## Batch Render Incrmental Screenshots.py
 <a name="render-batch-render-incrmental-screenshots"></a>
+```python
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
 # Batch render incrmental screenshots.
@@ -7159,7 +7208,7 @@ if __name__ == "__main__":
 
 # End of Render\Batch Render Incrmental Screenshots.py
 
-# Render\Queue Render And Name Per Image Style.py
+## Queue Render And Name Per Image Style.py
 <a name="render-queue-render-and-name-per-image-style"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -7199,7 +7248,7 @@ render_with_style_based_name(output_folder)
 
 # End of Render\Queue Render And Name Per Image Style.py
 
-# Render\Queue Render SwapToggle Aspect Ratio.py
+## Queue Render SwapToggle Aspect Ratio.py
 <a name="render-queue-render-swaptoggle-aspect-ratio"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -7242,7 +7291,7 @@ queue_portrait_render_with_timestamp()
 
 # End of Render\Queue Render SwapToggle Aspect Ratio.py
 
-# Render\Render Images Commented.py
+## Render Images Commented.py
 <a name="render-render-images-commented"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR LUX DT ChatGPT
@@ -7422,7 +7471,7 @@ main()  # Executes the main function.
 
 # End of Render\Render Images Commented.py
 
-# Render\Render Optimal Ambient Occlusion Pass.py
+## Render Optimal Ambient Occlusion Pass.py
 <a name="render-render-optimal-ambient-occlusion-pass"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR LUX DT ChatGPT
@@ -7622,7 +7671,7 @@ if __name__ == "__main__":
 
 # End of Render\Render Optimal Ambient Occlusion Pass.py
 
-# Render\Render SwapToggle Aspect Ratio.py
+## Render SwapToggle Aspect Ratio.py
 <a name="render-render-swaptoggle-aspect-ratio"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -7680,7 +7729,7 @@ render_with_toggled_orientation_and_unique_name()
 
 # End of Render\Render SwapToggle Aspect Ratio.py
 
-# Render\Screenshot.py
+## Screenshot.py
 <a name="render-screenshot"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -7699,10 +7748,12 @@ def take_and_save_screenshot():
 take_and_save_screenshot()
 
 
+```
 # End of Render\Screenshot.py
 
-# Scripts_Lux\Create Standard Views.py
+## Create Standard Views.py
 <a name="scripts_lux-create-standard-views"></a>
+```python
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
 # VERSION 0.1.3
@@ -7731,10 +7782,12 @@ for view in views:
     print("{} camera: {}".format("Updated" if has else "Created", name))
 
 
+```
 # End of Scripts_Lux\Create Standard Views.py
 
-# Scripts_Lux\Encode Video.py
+## Encode Video.py
 <a name="scripts_lux-encode-video"></a>
+```python
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
 # VERSION 0.4.0
@@ -7843,7 +7896,7 @@ main()
 
 # End of Scripts_Lux\Encode Video.py
 
-# Scripts_Lux\Random Scattering.py
+## Random Scattering.py
 <a name="scripts_lux-random-scattering"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
@@ -7987,7 +8040,7 @@ main()
 
 # End of Scripts_Lux\Random Scattering.py
 
-# Scripts_Lux\Render Ambient Occlusion.py
+## Render Ambient Occlusion.py
 <a name="scripts_lux-render-ambient-occlusion"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
@@ -8056,7 +8109,7 @@ main()
 
 # End of Scripts_Lux\Render Ambient Occlusion.py
 
-# Scripts_Lux\Render Animation Passes.py
+## Render Animation Passes.py
 <a name="scripts_lux-render-animation-passes"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
@@ -8160,7 +8213,7 @@ main()
 
 # End of Scripts_Lux\Render Animation Passes.py
 
-# Scripts_Lux\Render Images.py
+## Render Images.py
 <a name="scripts_lux-render-images"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
@@ -8315,7 +8368,7 @@ main()
 
 # End of Scripts_Lux\Render Images.py
 
-# Scripts_Lux\Render Panoramic Frames.py
+## Render Panoramic Frames.py
 <a name="scripts_lux-render-panoramic-frames"></a>
 # -*- coding: utf-8 -*-
 # AUTHOR Luxion
@@ -8468,7 +8521,7 @@ main()
 
 # End of Scripts_Lux\Render Panoramic Frames.py
 
-# Settings\Lighting Settings.py
+## Lighting Settings.py
 <a name="settings-lighting-settings"></a>
 # AUTHOR LUX DT ChatGPT4
 # VERSION 0.1.0
@@ -8490,10 +8543,12 @@ if __name__ == "__main__":
     configure_lighting_settings()
 
 
+```
 # End of Settings\Lighting Settings.py
 
-# Settings\Set Scene Unit.py
+## Set Scene Unit.py
 <a name="settings-set-scene-unit"></a>
+```python
 # AUTHOR LUX  DT ChatGPT4
 # VERSION 0.0.0
 # Set Scene Unit Template
@@ -8544,7 +8599,7 @@ if __name__ == "__main__":
 
 # End of Settings\Set Scene Unit.py
 
-# Settings\Set Scene Unit_CM.py
+## Set Scene Unit_CM.py
 <a name="settings-set-scene-unit_cm"></a>
 # AUTHOR LUX DT ChatGPT4
 # VERSION 0.1.0
@@ -8563,7 +8618,7 @@ if __name__ == "__main__":
 
 # End of Settings\Set Scene Unit_CM.py
 
-# Transform\Apply Ground Transformations.py
+## Apply Ground Transformations.py
 <a name="transform-apply-ground-transformations"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -8620,7 +8675,7 @@ if __name__ == "__main__":
 
 # End of Transform\Apply Ground Transformations.py
 
-# Transform\Select Group by Name and Translate Rotate Scale.py
+## Select Group by Name and Translate Rotate Scale.py
 <a name="transform-select-group-by-name-and-translate-rotate-scale"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -8681,7 +8736,7 @@ else:
 
 # End of Transform\Select Group by Name and Translate Rotate Scale.py
 
-# Transform\Select Model by Name and Translate Rotate Scale.py
+## Select Model by Name and Translate Rotate Scale.py
 <a name="transform-select-model-by-name-and-translate-rotate-scale"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.2
@@ -8742,7 +8797,7 @@ else:
 
 # End of Transform\Select Model by Name and Translate Rotate Scale.py
 
-# Transform\Select by Name and Translate and Rotate.py
+## Select by Name and Translate and Rotate.py
 <a name="transform-select-by-name-and-translate-and-rotate"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -8802,7 +8857,7 @@ else:
 
 # End of Transform\Select by Name and Translate and Rotate.py
 
-# Transform\Transform Model and Export.py
+## Transform Model and Export.py
 <a name="transform-transform-model-and-export"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -8866,7 +8921,7 @@ print("Transforming and exporting complete.")
 
 # End of Transform\Transform Model and Export.py
 
-# Transform\Translate Part By Name.py
+## Translate Part By Name.py
 <a name="transform-translate-part-by-name"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -8914,7 +8969,7 @@ else:
 
 # End of Transform\Translate Part By Name.py
 
-# Transform\Translate and Rotate a Part.py
+## Translate and Rotate a Part.py
 <a name="transform-translate-and-rotate-a-part"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.1
@@ -8971,7 +9026,7 @@ if __name__ == "__main__":
 
 # End of Transform\Translate and Rotate a Part.py
 
-# Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py
+## Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py
 <a name="batch-create-multi-material-sub-materials-with-custom-advanced-shader-parameters"></a>
 # AUTHOR LUX DT ChatGPT
 # VERSION 0.1.0
@@ -9142,7 +9197,7 @@ main()
 # End of Batch Create Multi-Material Sub-Materials with Custom Advanced Shader Parameters.py
 <a name="end-material-batch-create-multi-material-sub-materials-with-custom-advanced-shader-parameters"></a>
 
-## Color Gradient ShaderEdge Diffuse Material Color Connect.py
+## Material Color Gradient ShaderEdge Diffuse Material Color Connect.py
 <a name="color-gradient-shaderedge-diffuse-material-color-connect"></a>
 
 # AUTHOR LUX DT ChatGPT
@@ -9202,7 +9257,7 @@ connect_color_gradient_to_diffuse_color(material_name)
 <a name="color-gradient-shaderedge-diffuse-material-color-connect"></a>
 ```
 
-## Color Gradient View Direction.py
+## Material Gradient View Direction.py
 <a name="material-color-gradient-view-direction"></a>
 
 # AUTHOR LUX DT ChatGPT

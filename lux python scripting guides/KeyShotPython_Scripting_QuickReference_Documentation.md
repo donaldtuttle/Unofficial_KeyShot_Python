@@ -586,7 +586,7 @@ For image rendering, opts can include detailed settings about the output image, 
 ## Script Examples Reference:
 
 Analyze .py as .txt
-'Scripting_Examples.txt' contains the following Scripts.
+[Scripting_Examples.md](../lux%20scripts/Scripting_Examples.md) contains the following Scripts.
 ### Batch Rename ModelSets GUI
 Summary:
 This script provides a GUI for batch renaming model sets in KeyShot. It allows users to specify a prefix, name, suffix, and separator for each model set's new name. The script iterates through all model sets in the scene and presents a dialog for renaming each one individually.
@@ -1090,7 +1090,7 @@ Error Checking: Implement try-except blocks around your camera function calls to
 By adhering to the correct usage of lux.getCamera() for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
 ## Reference:
 ##All scripts must be complete and ensured to conform to the lux library.  No Assumptions, No Examples, No Hypotheticals, No Outlines, No Placeholders, etc...  Only the entire working concept script! I will test it in the KeyShot environment and give you errors to adjust.  ##
-- 'Scripting_Examples.txt' contains the following-
+- [Scripting_Examples.md](../lux%20scripts/Scripting_Examples.md) contains the following-
 
 <a name="file-formats"></a>
 

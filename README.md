@@ -59,7 +59,7 @@ This makes the collection useful both to people learning KeyShot Python and to A
 ## Repository layout
 
 - [Scripting guides](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.md) cover the API, materials, scene nodes, and transformations.
-- [Script examples](lux%20scripts/Scripting_Examples_TOC.md) cover materials, information, transforms, rendering, GUI scripting, and animation.
+- [Script examples](lux%20scripts/Scripting_Examples.md) cover materials, information, transforms, rendering, GUI scripting, and animation.
 - [AI skills](ai/skills/) provide configurations and references for multiple platforms.
 
 ## Scripts and reference status
@@ -82,7 +82,7 @@ The repository also includes scripts I've shared with the KeyShot community. The
 
 For related GUI, API, transformation, and scripting guides, see the [documentation index](lux%20python%20scripting%20guides/KeyShotPythonScripting_ToC.md).
 
-The Inspector can write report/trace files, and its optional all-saved-item inspections temporarily change active camera, environment, or image-style selections. The converter modifies materials. Review each script's scope and test scene-changing operations on a saved copy. Other [reference scripts](lux%20scripts/Scripting_Examples_TOC.md) remain available throughout the repository.
+The Inspector can write report/trace files, and its optional all-saved-item inspections temporarily change active camera, environment, or image-style selections. The converter modifies materials. Review each script's scope and test scene-changing operations on a saved copy. Other [reference scripts](lux%20scripts/Scripting_Examples.md) remain available throughout the repository.
 
 ## Contributing
 

@@ -15,7 +15,7 @@ scripting session, run help(lux) or help(luxmath) to inspect that build.
 - [KeyShot Studio Scripting Console](https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html)
 - [KeyShot Studio headless scripting](https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html)
 - [Repository scripting guides](KeyShotPythonScripting_ToC.md)
-- [Repository script examples](../lux%20scripts/Scripting_Examples_TOC.md)
+- [Repository script examples](../lux%20scripts/Scripting_Examples.md)
 
 ## Scripting examples
 
@@ -859,4 +859,4 @@ Understanding Camera Functions: Familiarize yourself with other camera-related f
 Error Checking: Implement try-except blocks around your camera function calls to catch and handle potential errors gracefully, improving script robustness.
 By adhering to the correct usage of lux.getCamera() for accessing the active camera's details, you can avoid common attribute errors and effectively control camera settings within your KeyShot Python scripts.
 
-Additional real-world working KeyShot Python script examples are located in the "Scripting_Examples.txt".
+Additional real-world working KeyShot Python script examples are located in the [Scripting_Examples.md](../lux%20scripts/Scripting_Examples.md).

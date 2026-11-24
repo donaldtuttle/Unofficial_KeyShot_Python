@@ -15,7 +15,7 @@ scripting session, run help(lux) or help(luxmath) to inspect that build.
 - [KeyShot Studio Scripting Console](https://manuals.keyshot.com/kss2026/en-us/manual/scripting-console.html)
 - [KeyShot Studio headless scripting](https://manuals.keyshot.com/kss2026/en-us/manual/exposed-headless-scripting-functionality.html)
 - [Repository scripting guides](KeyShotPythonScripting_ToC.md)
-- [Repository script examples](../lux%20scripts/Scripting_Examples.txt)
+- [Repository script examples](../lux%20scripts/Scripting_Examples.md)
 
 ## Scripting examples
 

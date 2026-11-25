@@ -33,7 +33,6 @@
 - [Material Flat](#material-flat)
 - [Material Paint](#material-paint)
 - [Material Multi-Layer Optics](#material-multi-layer-optics)
-- [Material Scripting Prompt](#material-scripting-prompt)
 - [Material Scattering Medium](#material-scattering-medium)
 - [Material Glass Solid](#material-glass-solid)
 - [Material Toon](#material-toon)

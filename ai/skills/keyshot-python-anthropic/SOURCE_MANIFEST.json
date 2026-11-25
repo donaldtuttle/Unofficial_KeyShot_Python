@@ -215,10 +215,6 @@
       "sha256": "77cdcff6b26f4418e8555c08601f71d26685552e52155963885544cae25653fd"
     },
     {
-      "path": "AI/materials/Material_Scripting_Prompt.txt",
-      "sha256": "4b54a809373f7017b440fe3af6d9bb4bd8f7a4a98b326de70cbe9f0e90fb4a55"
-    },
-    {
       "path": "AI/materials/Material_Spotlight.txt",
       "sha256": "76bc6583c04f4c1dc85cc05ef71d881b7113c3c8011d7831a66d078bd1fd168a"
     },
@@ -474,7 +470,6 @@
       "AI/materials/Material_Point_Light.txt",
       "AI/materials/Material_RealCloth.txt",
       "AI/materials/Material_Scattering_Medium.txt",
-      "AI/materials/Material_Scripting_Prompt.txt",
       "AI/materials/Material_Spotlight.txt",
       "AI/materials/Material_Thin_Film.txt",
       "AI/materials/Material_Toon.txt",

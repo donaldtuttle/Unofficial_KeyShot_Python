@@ -45,10 +45,10 @@
     {"path":"skills/instructions/references/KPSR_QuickGuide.txt","bytes":30620,"sha256":"e00de1f88c9a6a010efc71825b9912b2b449def7b9bd3051363288c891128a92"},
     {"path":"skills/instructions/references/KS_GUI.txt","bytes":9004,"sha256":"b4ba4878308dbe9dbeff2e088406dfd212b943df8e747b67ca9c6497e4b7a843"},
     {"path":"skills/instructions/references/Quick_Reference_Documentation.txt","bytes":74085,"sha256":"fa083246f9df629fcbd3ffa5ca026be0d98d6c5ac81f1892d6740ffe4124ac0d"},
-    {"path":"skills/instructions/references/Scripting_Material_Graph.txt","bytes":216122,"sha256":"b78b0010577013834244b904483d40276591360ce4ffb394d316c3544b6acf79"},
+    {"path":"skills/instructions/references/Scripting_Material_Graph.txt","bytes":214934,"sha256":"88647f15203574d7374fde10a6daea8198030798c4d90cd99c319141b31aef9e"},
     {"path":"skills/instructions/references/Scripting_Transforming_Scene_Nodes.txt","bytes":24057,"sha256":"937446d14223d14c0bf9e633b4630946aa9a14edf2e17f6a66ec242544f1cea3"},
     {"path":"skills/instructions/references/Scripts_Commented_Detailed_Summary.txt","bytes":7060,"sha256":"c29ac6b1839d37199726cdffaf9eac5098c90436f7281ed8cbdab60722ffe6cb"},
-    {"path":"skills/instructions/references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt","bytes":183510,"sha256":"31d72b3d111c04bd7847953af0aa5f6382c735331799e169dbd8520cd007aeee"}
+    {"path":"skills/instructions/references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt","bytes":183451,"sha256":"6b01bc35bc4e95bb61938bf577c36ffc9f0c75faffb67a82c0f083dd26b15f81"}
   ],
   "documentation_files": [
     "README.md",

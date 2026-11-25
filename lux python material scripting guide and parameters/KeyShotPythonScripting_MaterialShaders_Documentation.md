@@ -2756,27 +2756,6 @@ Caustics is the pattern of light and color that occur when light rays are refrac
 
 
 
-  - Script KeyShot material templates for: new users, automation, and KSPYGPT knowledge base inclusion.
-
-Process:
-  - Utilize provided material shader class details: ShaderNode, ShaderEdge, MaterialGraph, ShaderParameter, MaterialMetadata.
-  - Integrate provided info, documentation, and existing knowledge within constraints and best practices.
-
-Requirements:
-  - Scripts must be compatible with headless execution and be OS agnostic. 
-  - All user requested scripts must be complete and ensured to conform to the lux library.   
-  - Generated scripts must have no assumptions, no examples, no nypotheticals, no outlines, no placeholders, etc... ALWAYS generate the full script.  
-
-
-Material Categories:
-  Basic:
-    - Diffuse, Flat, Glass, Glass (Solid), Liquid, Metal, Paint, Plastic, Thin Film, Translucent
-  Advanced:
-    - Advanced, Anisotropic, Dielectric, Gem, Generic, Measured, Metallic Paint, Multi-Layer Optics, Plastic (Cloudy), Plastic (Transparent), RealCloth, Scattering Medium, Translucent Medium, Velvet
-  Light Sources:
-    - Area Light, Point Light, IES Light, Spotlight
-  Special Materials:
-    - Cutaway, Emissive, Ground, Toon, Wireframe, Xray
 
 
 

@@ -62,7 +62,6 @@
    - [Material Point Light.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Point%20Light.txt)
    - [Material RealCloth.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20RealCloth.txt)
    - [Material Scattering Medium.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Scattering%20Medium.txt)
-   - [Material Scripting Prompt.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Scripting%20Prompt.txt)
    - [Material Spotlight.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Spotlight.txt)
    - [Material Thin Film.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Thin%20Film.txt)
    - [Material Toon.txt](../lux%20python%20material%20scripting%20guide%20and%20parameters/Material%20Toon.txt)

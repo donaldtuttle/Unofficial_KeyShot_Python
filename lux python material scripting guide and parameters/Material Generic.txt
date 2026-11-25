@@ -4,7 +4,7 @@
   - **anisotropic direction** (PARAMETER_TYPE_INTEGER): Direction of anisotropy. (Value: 0)
   - **anisotropic_angle** (PARAMETER_TYPE_FLOAT): Angle of anisotropy. (Value: 0.0)
   - **apply_bump_to_labels** (PARAMETER_TYPE_BOOLEAN): Determines if bump maps are applied to labels. (Value: False)
-  - **base_color** (PARAMETER_TYPE_COLOR): Base color of the material. (Value: (0, 0, 0, 1.0))
+  - **base_color** (PARAMETER_TYPE_COLORALPHA): Base color of the material. (Value: (0, 0, 0, 1.0))
   - **bumpmap** (PARAMETER_TYPE_TEXTURE): Defines the bump map used for the material. (Value: Pure Parameter)
   - **clearcoat** (PARAMETER_TYPE_FLOAT): Intensity of clearcoat layer. (Value: 0.0)
   - **clearcoat_roughness** (PARAMETER_TYPE_FLOAT): Roughness of clearcoat layer. (Value: 0.0)

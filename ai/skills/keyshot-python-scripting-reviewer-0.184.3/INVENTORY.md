@@ -9,7 +9,7 @@
 | KeyShot build | 15.2.0.140 |
 | Embedded Python | 3.13.12 |
 | Package files | 22 |
-| Package bytes | 1,241,731 |
+| Package bytes | 1,241,741 |
 
 ## Package files
 
@@ -33,10 +33,10 @@
 | `skills/instructions/references/KPSR_QuickGuide.txt` | 30,620 | `e00de1f88c9a6a010efc71825b9912b2b449def7b9bd3051363288c891128a92` |
 | `skills/instructions/references/KS_GUI.txt` | 9,004 | `b4ba4878308dbe9dbeff2e088406dfd212b943df8e747b67ca9c6497e4b7a843` |
 | `skills/instructions/references/Quick_Reference_Documentation.txt` | 74,085 | `fa083246f9df629fcbd3ffa5ca026be0d98d6c5ac81f1892d6740ffe4124ac0d` |
-| `skills/instructions/references/Scripting_Material_Graph.txt` | 214,934 | `88647f15203574d7374fde10a6daea8198030798c4d90cd99c319141b31aef9e` |
+| `skills/instructions/references/Scripting_Material_Graph.txt` | 214,939 | `2a8db6d7cbf1f7af4b30fefad4b4231e62903a634c0752dd6d28352f73230732` |
 | `skills/instructions/references/Scripting_Transforming_Scene_Nodes.txt` | 24,057 | `937446d14223d14c0bf9e633b4630946aa9a14edf2e17f6a66ec242544f1cea3` |
 | `skills/instructions/references/Scripts_Commented_Detailed_Summary.txt` | 7,060 | `c29ac6b1839d37199726cdffaf9eac5098c90436f7281ed8cbdab60722ffe6cb` |
-| `skills/instructions/references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt` | 183,451 | `6b01bc35bc4e95bb61938bf577c36ffc9f0c75faffb67a82c0f083dd26b15f81` |
+| `skills/instructions/references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt` | 183,456 | `9052f48ed587e70e645977545f4c1979e1569dcb5aa05ea33920dc3c8218cfda` |
 
 ## Package documentation
 

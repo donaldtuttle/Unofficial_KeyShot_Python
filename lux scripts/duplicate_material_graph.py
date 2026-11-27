@@ -1,14 +1,19 @@
 """Rebuild one material graph in a named multi-material. KeyShot 2026.3 review script.
 
-Set the names below, then run in KeyShot's Scripting Console on a test scene.
+Run in KeyShot's Scripting Console for material selection and naming controls.
+For headless runs, configure the settings below.
 The new container can remain in the scene if reconstruction stops.
 """
 
 import lux
 
+# Headless material settings
 SOURCE_MATERIAL = "MaterialName"
 COPY_MATERIAL = "MaterialName_Copy"
 PARENT_MULTI_MATERIAL = None  # Optional existing multi-material name, e.g. "Finishes".
+
+NODE_PREFIX = ""
+NODE_SUFFIX = "_Copy"  # Clear both affixes to preserve the original node labels.
 
 # Concrete types covered by the repository's earlier parameter-copy correction.
 # Pure sockets are handled independently, whatever their type.
@@ -88,7 +93,7 @@ def copy_values(target, values):
             raise RuntimeError(f"Cannot copy {target.getName()!r}.{name}: {exc}") from exc
 
 
-def rebuild_graph(source, target, root_id, nodes):
+def rebuild_graph(source, target, root_id, nodes, node_prefix, node_suffix):
     # The container can already contain a material. Keep its structural roots
     # and replace its seed shaders so the rebuilt network drives the actual output.
     roots = target.getMaterialNodes() or []
@@ -113,7 +118,10 @@ def rebuild_graph(source, target, root_id, nodes):
             new_node = target.newNode(type=kind)
             if new_node is None:
                 raise RuntimeError(f"Could not create {label!r} ({kind})")
-            new_node.setName(f"{label}_Copy")
+            requested_name = f"{node_prefix}{label}{node_suffix}"
+            new_node.setName(requested_name)
+            if new_node.getName() != requested_name:
+                raise RuntimeError(f"Requested node name {requested_name!r}, got {new_node.getName()!r}")
             mapped[node_id] = new_node
         copy_values(mapped[node_id], values)
 
@@ -151,7 +159,7 @@ def member_names(parent):
     return list(members)
 
 
-def copy_material_graph(source_name, copy_name, parent_name=None):
+def copy_material_graph(source_name, copy_name, parent_name=None, node_prefix=NODE_PREFIX, node_suffix=NODE_SUFFIX):
     """Create the container, rebuild its graph, then optionally append to a parent."""
     names = [source_name, copy_name]
     if parent_name is not None:
@@ -191,7 +199,7 @@ def copy_material_graph(source_name, copy_name, parent_name=None):
         if target is None or target.getMaterialName() != copy_name or target == source:
             raise RuntimeError("Could not retrieve a distinct graph by the requested name")
         print(f"Rebuilding nodes and connections in {copy_name!r}...")
-        rebuild_graph(source, target, root_id, nodes)
+        rebuild_graph(source, target, root_id, nodes, node_prefix, node_suffix)
         if parent is not None:
             members = member_names(parent)
             if copy_name in members:
@@ -205,10 +213,45 @@ def copy_material_graph(source_name, copy_name, parent_name=None):
         raise RuntimeError(f"Copy of {source_name!r} stopped. Inspect {copy_name!r} before retrying. {exc}") from exc
 
 
-if __name__ == "__main__":
+def main():
+    headless = lux.isHeadless()
+    title = "Duplicate material graph"
     try:
-        print("Material graph duplication", "(headless)" if lux.isHeadless() else "(Scripting Console)")
-        copy_material_graph(SOURCE_MATERIAL, COPY_MATERIAL, PARENT_MULTI_MATERIAL)
+        if headless:
+            settings = (SOURCE_MATERIAL, COPY_MATERIAL, PARENT_MULTI_MATERIAL, NODE_PREFIX, NODE_SUFFIX)
+        else:
+            materials = sorted(lux.getSceneMaterials() or [], key=str.casefold)
+            if not materials:
+                raise ValueError("The scene contains no materials to select.")
+            options = lux.getInputDialog(
+                title=title,
+                desc="Select a regular material. Node naming applies to each rebuilt shader and texture.",
+                values=[
+                    ("source", lux.DIALOG_ITEM, "Source material", materials[0], materials),
+                    ("copy", lux.DIALOG_TEXT, "New material name (blank uses source name + _Copy)", ""),
+                    ("prefix", lux.DIALOG_TEXT, "Node name prefix", NODE_PREFIX),
+                    ("suffix", lux.DIALOG_TEXT, "Node name suffix (clear both fields to keep labels)", NODE_SUFFIX),
+                    ("parent", lux.DIALOG_TEXT, "Add to existing multi-material (optional name)", ""),
+                ],
+            )
+            if options is None:
+                print("Cancelled.")
+                return
+            source = materials[options["source"][0]]
+            copy_name = options["copy"] or f"{source}_Copy"
+            settings = (source, copy_name, options["parent"] or None, options["prefix"], options["suffix"])
+
+        copy_material_graph(*settings)
+        message = f"Created {settings[1]!r} from {settings[0]!r}."
+        print(message)
+        if not headless:
+            lux.getMessageBox(msg=message, title=title)
     except Exception as error:
         print(f"Material graph duplication failed: {error}")
+        if not headless:
+            lux.getMessageBox(msg=str(error), title=title, type=lux.MESSAGE_BOX_CRITICAL)
         raise
+
+
+if __name__ == "__main__":
+    main()

@@ -15,13 +15,18 @@ To identify a socket, the walk compares the edges returned by `getInputEdges()` 
 
 ## Running the review script
 
-Open a disposable copy of a scene in KeyShot Studio 2026.3. Set these names at the top of the standalone file and run it in the Scripting Console.
+Run the standalone file in the Scripting Console with a disposable scene open. The native dialog controls material selection, naming, and optional multi-material membership.
 
-| Setting | Value |
+| Field | How to use it |
 | --- | --- |
-| `SOURCE_MATERIAL` | Exact name of one regular source material |
-| `COPY_MATERIAL` | Unused name for the destination multi-material |
-| `PARENT_MULTI_MATERIAL` | Leave as `None` for the first test. Set to an existing multi-material name to test appending the new copy. |
+| Source material | Choose a regular material from the scene. |
+| New material name | Enter the exact destination name, or leave it blank to append `_Copy` to the selected source name. |
+| Node name prefix and suffix | Enter literal text, including any separators. The default suffix is `_Copy`. Clear both fields to preserve the source shader and texture labels. The destination material root keeps its container-assigned name. |
+| Add to existing multi-material | Optionally enter the exact parent name. Leave blank for a standalone result. |
+
+For example, a copy named `Housing_Blue_Satin` can retain a node named `BaseColor`, or give it the label `CMF_BaseColor_Blue` using prefix `CMF_` and suffix `_Blue`. Labels can repeat. The graph walk tracks node identity separately, so a naming convention does not determine which nodes get connected.
+
+For headless use, configure `SOURCE_MATERIAL`, `COPY_MATERIAL`, `PARENT_MULTI_MATERIAL`, `NODE_PREFIX` and `NODE_SUFFIX` at the top of the script. Both entry points use the same rebuild.
 
 The source preflight stops for concrete types outside the script's supported set, including ColorGradient and AnimationCurve. It also stops for disabled edges or inputs it cannot resolve unambiguously, such as multiple edges exposed through only one named socket. If a later step fails after container creation, a partial destination can remain in the scene. The console identifies the failing step.
 
@@ -29,9 +34,9 @@ The source preflight stops for concrete types outside the script's supported set
 
 Use a source with a recognizable color or roughness value and a texture connected to two compatible inputs. Include a connection to a pure input such as the material root's `surface` socket.
 
-1. Open the source and copy in the Material Graph. Compare the shader connected to `surface`, trace both texture connections to their receiving inputs, and check the concrete values.
+1. Verify the new material name and the labels of two recreated nodes against the selected naming convention. Open the source and copy in the Material Graph. Compare the shader connected to `surface`, trace both texture connections to their receiving inputs, and check the concrete values.
 2. Change a value and disconnect one texture input **on the copy**. Reopen the source and confirm that its original value and both connections are intact.
-3. For the optional parent test, use a fresh copy name and set `PARENT_MULTI_MATERIAL`. Check that the new entry appears after the existing members and select it to verify which material it displays.
+3. For the optional parent test, use a fresh copy name and enter the existing parent name in the dialog. Check that the new entry appears after the existing members and select it to verify which material it displays.
 
 The script's connection read-back checks topology. Record the KeyShot build and what happened during the edit-on-copy test before describing the revision as runtime-tested.
 

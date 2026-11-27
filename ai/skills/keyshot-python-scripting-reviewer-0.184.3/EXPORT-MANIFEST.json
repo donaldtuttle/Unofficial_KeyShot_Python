@@ -42,10 +42,10 @@
     {"path":"skills/instructions/references/KeyShot_luxmath_API.md","bytes":8811,"sha256":"09c24fb657ae0cc0e71f8e648e9d4bd059481239d9dfd5a93813f2b3bca7b01a"},
     {"path":"skills/instructions/references/KeyShot_Python_Script_Examples_with_ToC.txt","bytes":362728,"sha256":"fa7274cb577281735b047925fafa83a43b5f99ceca31c355dfedd6fd66da731c"},
     {"path":"skills/instructions/references/KeyShot_Resource_Folders.txt","bytes":11610,"sha256":"dd757d5fa1eefce8df21075a26b8b51874143f4d75a3e3dcacedf90af78a8aee"},
-    {"path":"skills/instructions/references/KPSR_QuickGuide.txt","bytes":30620,"sha256":"e00de1f88c9a6a010efc71825b9912b2b449def7b9bd3051363288c891128a92"},
+    {"path":"skills/instructions/references/KPSR_QuickGuide.txt","bytes":20614,"sha256":"7686f72e84f944512b6529131d33197020b9cb22f6918072f9264eb861ad1cd7"},
     {"path":"skills/instructions/references/KS_GUI.txt","bytes":9004,"sha256":"b4ba4878308dbe9dbeff2e088406dfd212b943df8e747b67ca9c6497e4b7a843"},
     {"path":"skills/instructions/references/Quick_Reference_Documentation.txt","bytes":74085,"sha256":"fa083246f9df629fcbd3ffa5ca026be0d98d6c5ac81f1892d6740ffe4124ac0d"},
-    {"path":"skills/instructions/references/Scripting_Material_Graph.txt","bytes":214939,"sha256":"2a8db6d7cbf1f7af4b30fefad4b4231e62903a634c0752dd6d28352f73230732"},
+    {"path":"skills/instructions/references/Scripting_Material_Graph.txt","bytes":206231,"sha256":"99e4fa7963f22f92115e76076c5a339eda7578303b5a124be1b00a57b2639974"},
     {"path":"skills/instructions/references/Scripting_Transforming_Scene_Nodes.txt","bytes":24057,"sha256":"937446d14223d14c0bf9e633b4630946aa9a14edf2e17f6a66ec242544f1cea3"},
     {"path":"skills/instructions/references/Scripts_Commented_Detailed_Summary.txt","bytes":7060,"sha256":"c29ac6b1839d37199726cdffaf9eac5098c90436f7281ed8cbdab60722ffe6cb"},
     {"path":"skills/instructions/references/ToC_Scripting_MaterialGraph_Materials_Shaders_Nodes_DetailedParameters.txt","bytes":183456,"sha256":"9052f48ed587e70e645977545f4c1979e1569dcb5aa05ea33920dc3c8218cfda"}

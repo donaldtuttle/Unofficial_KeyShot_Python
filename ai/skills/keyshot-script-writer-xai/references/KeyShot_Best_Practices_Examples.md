@@ -292,7 +292,7 @@ if __name__ == "__main__":
 - **Material Graphs**: Always check `if graph:` before use. Use `getNodesFromType()`, `getParameter()`, `newEdge()`, `newNode()`.
 - **Camera**: `lux.getCamera()`, `lux.setCamera*()`, `lux.saveCamera()`.
 - **Error Handling**: `try/except` + `print()` + optional custom log file.
-- **Hybrid Automation + Verification**: For complex material duplication, use `lux.createMultiMaterial()` then manually verify nodes/parameters/edges with helper functions.
+- **Material graph duplication** requires the [standalone graph walk](../../../../lux%20scripts/duplicate_material_graph.py). Create the named container, recreate the nodes, copy supported non-pure values, and rebuild edges by target input name.
 - **Message Boxes**: `lux.getMessageBox(message, title, lux.MESSAGE_BOX_INFO)` for user feedback.
 - **Progress (long operations)**: `lux.getProgressBar()` is **not present** in the 2026.3 dump. Use `print()` for progress.
 

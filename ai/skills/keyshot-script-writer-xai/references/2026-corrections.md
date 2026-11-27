@@ -38,7 +38,9 @@ Held frames require unique output positions. Preserve inclusive range and total-
 
 ## Materials, edges and colors
 
-`lux.createMultiMaterial` requires both the new name and existing `mat`; it does not guarantee every nested node gets fresh IDs, textures are independent, or all specialized data is cloned. Its successful return shape is unspecified. Retrieve by the explicitly chosen name and test structure/appearance. `lux.createSceneMaterial(name)` creates a diffuse scene material, not an arbitrary shader type.
+For independent material graph duplication, use the [standalone graph walk](../../../../lux%20scripts/duplicate_material_graph.py). `lux.createMultiMaterial` takes the new name and an existing `mat`. It supplies the named container only and does not guarantee a deep independent clone. The capture leaves its success return unspecified. Retrieve the graph by the chosen name, explicitly rebuild its nodes, supported non-pure parameter values and connections, then test it in KeyShot.
+
+`lux.createSceneMaterial(name)` creates a diffuse scene material, not an arbitrary shader type.
 
 `lux.ShaderNode.getType` describes internal and human-friendly names without a complete return container contract. Do not stringify an unknown tuple/dictionary and feed it to `newNode`. Pure parameters forbid concrete `getValue`, `getColor` and `setValue`. Check both source and target pure/type status. Equal type codes do not prove complex values are independent or safely copyable.
 

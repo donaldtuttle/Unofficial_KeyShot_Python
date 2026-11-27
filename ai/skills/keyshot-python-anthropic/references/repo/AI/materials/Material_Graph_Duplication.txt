@@ -1,40 +1,7 @@
-# Material Graph Duplication — createMultiMaterial
+# Material graph duplication
 
-KeyShot material graphs cannot be copied with Python copy/deepcopy.
-lux.MaterialGraph is not serializable.
+Use the explicit walk in lux scripts/duplicate_material_graph.py in the Unofficial_KeyShot_Python repository. lux.createMultiMaterial supplies the named container only. It does not guarantee a deep independent clone.
 
-Use lux.createMultiMaterial() to duplicate a material graph.
-The new material receives new node IDs and is fully independent.
+Recreate the nodes, copy supported non-pure parameter values, and rebuild each connection using its target input parameter name. Read only non-pure source values and write only to matching non-pure destination parameters.
 
-## Pattern
-
-```python
-import lux
-
-source_name = "cool-material"
-copy_name = "cool-material-copy"
-
-# Optional: inspect original
-graph = lux.getMaterialGraph(name=source_name)
-
-# Duplicate
-lux.createMultiMaterial(name=copy_name, mat=source_name)
-
-# Work with the independent copy
-graph_copy = lux.getMaterialGraph(name=copy_name)
-# Modify graph_copy freely — original is unaffected
-```
-
-## Why this works
-
-- createMultiMaterial clones the full graph (shaders, textures, edges, parameters).
-- New node IDs are assigned internally.
-- Connections are preserved in the copy.
-- Changes to the copy do not affect the source.
-
-## Notes
-
-- Node IDs are session-specific and change after the copy.
-- Prefer names over IDs when referencing materials or nodes.
-- After graph operations, re-query and verify edges/parameters.
-- Use only lux / luxmath + stdlib.
+For the procedure and test steps, see lux python scripting guides/KeyShotPythonScripting_MaterialGraph_CopyOfaCopy_Guide.md
